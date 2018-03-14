@@ -1,8 +1,6 @@
 ##call()
 
-
 fn.call(thisArg,arg) => thisArg.fn(arg)
-
 
 ```
     var a = 0;
@@ -23,26 +21,27 @@ fn.call(thisArg,arg) => thisArg.fn(arg)
     fn1.call.call(fn2);
 ```
 
-> 输出结果    
-fn1=1|1    
-fn1=undefined|undefined    
-fn2=2|2    
-fn2=2|0    
+> 输出结果  
+> fn1=1|1  
+> fn1=undefined|undefined  
+> fn2=2|2  
+> fn2=2|0
 
 今天在一个群里看到这个东西，本来以为自己理解了 .call()
-但是做了一下发现没搞懂 所以又看了一遍文档    
+但是做了一下发现没搞懂 所以又看了一遍文档
 
     Function.prototype.call()
     Calls (executes) a function and sets its this to the provided value, arguments can be passed as they are.
 
-根据规范 
+根据规范
+
 ```
-15.3.4.4 Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] ) # 
+15.3.4.4 Function.prototype.call (thisArg [ , arg1 [ , arg2, … ] ] ) #
 
 When the call method is called on an object func with argument thisArg and optional arguments arg1, arg2 etc, the following steps are taken:
-    
+
 - If IsCallable(func) is false, then throw a TypeError exception.
-    
+
 - Let argList be an empty List.
 
 - If this method was called with more than one argument then in left to right order starting with arg1 append each argument as the last element of argList
@@ -52,13 +51,14 @@ When the call method is called on an object func with argument thisArg and optio
 - The length property of the call method is 1.
 
 NOTE The thisArg value is passed without modification as the this value. This is a change from Edition 3, where a undefined or null thisArg is replaced with the global object and ToObject is applied to all other values and that result is passed as the this value.
-
 ```
-fn1.call(thisArg,arguments) 
+
+fn1.call(thisArg,arguments)
+
 - 如果 fn1 可以执行 就继续 不行 就 扔一个类型错误
 - 建一个空的 argList
-- 把每一个 argument of fn1 放进这个list里
-- 返回 [[Call]] (thisArg,argList) 
+- 把每一个 argument of fn1 放进这个 list 里
+- 返回 [[Call]](thisArg,argList)
 
 ```
 [[Call]]
@@ -72,16 +72,16 @@ fn1.call(thisArg,arguments)
 否则 result.type 必定是 normal。返回 undefined。
 ```
 
-
 fn1.call() => Function.prototype.call.call(fn1)
 fn1.call(fn2) => Function.prototype.call.call(fn1,fn2)
 
 所以
 console.log("fn1="+a+"|"+b); 输出 1 | 1
 
-console.log("fn1="+this.a+"|"+this.b); 输出 fn2 Object 的 a key储存的值
-fn2 object 是一个function object
+console.log("fn1="+this.a+"|"+this.b); 输出 fn2 Object 的 a key 储存的值
+fn2 object 是一个 function object
 长这个样子，
+
 ```
 ƒ fn2()
 arguments:null
@@ -93,12 +93,13 @@ __proto__:ƒ ()
 [[FunctionLocation]]:VM2149:1
 [[Scopes]]:Scopes[2]
 ```
-有没有a？有没有b？ 没有 所以输出是 undefined
+
+有没有 a？有没有 b？ 没有 所以输出是 undefined
 
 fn1.call.call(fn2);
 我们从左往右看
 fn1.call 是什么？ fn1.call 就是 fn1 中 call 这个 key
-这个key在 fn1 的 隐式原型 \__proto\__  找的到 这个东西属于谁呢
+这个 key 在 fn1 的 隐式原型 \_\_proto\_\_ 找的到 这个东西属于谁呢
 属于 Function.prototype 所以
 fn1.call.call(fn2) 就 等于 Function.prototype.call.call(fn2)
 跟 fn1 没关系了

@@ -2,96 +2,96 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calculator</title>
 </head>
 
 <body>
-    <div class="body">
-        <div id="led">LED</div>
-        <ul id="buttons">
-            (li>span{a})*16
-        </ul>
-    </div>
+  <div class="body">
+    <div id="led">LED</div>
+    <ul id="buttons">
+      (li>span{a})*16
+    </ul>
+  </div>
 </body>
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        box-sizing: border-box;
-    }
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+  }
 
-    ul#buttons {
-        width: 30%;
-        margin: 50px auto;
-    }
+  ul#buttons {
+    width: 30%;
+    margin: 50px auto;
+  }
 
-    li {
-        width: 25%;
-        float: left;
-        text-align: center;
-        height: 5vh;
-        line-height: 5vh;
-    }
+  li {
+    width: 25%;
+    float: left;
+    text-align: center;
+    height: 5vh;
+    line-height: 5vh;
+  }
 </style>
 
 </html>
 
 <script>
 
-    var controller = {
-        init(options) {
+  var controller = {
+    init(options) {
 
-            let view = options.view
-            let model = options.model
-            this.view = view
-            this.model = model
+      let view = options.view
+      let model = options.model
+      this.view = view
+      this.model = model
 
-            this.view.render(this.model.data)
+      this.view.render(this.model.data)
 
-            this.bindEvents()
-            this.model.fetch(1).then(() => {
-                console.log('this.model.data')
-                console.log(this.model.data)
-                this.view.render(this.model.data)
-            })
+      this.bindEvents()
+      this.model.fetch(1).then(() => {
+        console.log('this.model.data')
+        console.log(this.model.data)
+        this.view.render(this.model.data)
+      })
 
-        },
-        addOne() {
-            var oldNumber = $('#number').text() // string
-            var newNumber = oldNumber - 0 + 1
-            this.model.update({
-                number: newNumber
-            }).then(() => {
-                this.view.render(this.model.data)
-            })
+    },
+    addOne() {
+      var oldNumber = $('#number').text() // string
+      var newNumber = oldNumber - 0 + 1
+      this.model.update({
+        number: newNumber
+      }).then(() => {
+        this.view.render(this.model.data)
+      })
 
-        },
-        minusOne() {
-            var oldNumber = $('#number').text() // string
-            var newNumber = oldNumber - 0 - 1
-            this.model.update({
-                number: newNumber
-            }).then(() => {
-                this.view.render(this.model.data)
-            })
-        },
-        reset() {
-            this.model.update({
-                number: 0
-            }).then(() => {
-                this.view.render(this.model.data)
-            })
-        },
-        bindEvents() {
-            // this === controller
-            $(this.view.el).on('click', '#addOne', this.addOne.bind(this))
-            $(this.view.el).on('click', '#minusOne', this.minusOne.bind(this))
-            $(this.view.el).on('click', '#reset', this.reset.bind(this))
-        }
+    },
+    minusOne() {
+      var oldNumber = $('#number').text() // string
+      var newNumber = oldNumber - 0 - 1
+      this.model.update({
+        number: newNumber
+      }).then(() => {
+        this.view.render(this.model.data)
+      })
+    },
+    reset() {
+      this.model.update({
+        number: 0
+      }).then(() => {
+        this.view.render(this.model.data)
+      })
+    },
+    bindEvents() {
+      // this === controller
+      $(this.view.el).on('click', '#addOne', this.addOne.bind(this))
+      $(this.view.el).on('click', '#minusOne', this.minusOne.bind(this))
+      $(this.view.el).on('click', '#reset', this.reset.bind(this))
     }
+  }
 
 </script>

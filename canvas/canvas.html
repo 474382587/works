@@ -2,102 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Joseph's Canvas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Joseph's Canvas</title>
 </head>
 
 <body>
 
-    <canvas id="canvas">
+  <canvas id="canvas">
 
-    </canvas>
-    <div class="buttons">
-        <button id="eraser">
-            Eraser
-        </button>
-        <button id="brush">
-            Brush
-        </button>
-    </div>
-    <script>
-        var canvas = document.getElementById('canvas');
-        setCanvasSize();
-        var canvasContext = canvas.getContext('2d');
-        var action = false;//If drawing or erasing should be start
+  </canvas>
+  <div class="buttons">
+    <button id="eraser">
+      Eraser
+    </button>
+    <button id="brush">
+      Brush
+    </button>
+  </div>
+  <script>
+    var canvas = document.getElementById('canvas');
+    setCanvasSize();
+    var canvasContext = canvas.getContext('2d');
+    var action = false;//If drawing or erasing should be start
 
-        var currentPosition = {
-            x: undefined,
-            y: undefined
-        };
-        //move triggered by mouse down
-        canvas.onmousedown = function (e) {
-            action = true;
-            currentPosition = {
-                x: e.clientX,
-                y: e.clientY
-            };
-            console.log(currentPosition);
-        };
-        canvas.onmousemove = function (e) {
-            if (action) {
-                var nextPosisiton = {
-                    x: e.clientX,
-                    y: e.clientY
-                };
-
-                draw(currentPosition.x, currentPosition.y, nextPosisiton.x, nextPosisiton.y);
-
-                currentPosition = nextPosisiton;
-            }
-        };
-        canvas.onmouseup = function () {
-          action = false;  
+    var currentPosition = {
+      x: undefined,
+      y: undefined
+    };
+    //move triggered by mouse down
+    canvas.onmousedown = function (e) {
+      action = true;
+      currentPosition = {
+        x: e.clientX,
+        y: e.clientY
+      };
+      console.log(currentPosition);
+    };
+    canvas.onmousemove = function (e) {
+      if (action) {
+        var nextPosisiton = {
+          x: e.clientX,
+          y: e.clientY
         };
 
-        //when screen size changed change size accordinglly
-        window.onresize = function () {
-            setCanvasSize();
+        draw(currentPosition.x, currentPosition.y, nextPosisiton.x, nextPosisiton.y);
 
-        };
+        currentPosition = nextPosisiton;
+      }
+    };
+    canvas.onmouseup = function () {
+      action = false;
+    };
 
-        //set canvas width and height
-        function setCanvasSize() {
-            //get height and width from "client"
-            var canvasHeight = document.documentElement.clientHeight;
-            var canvasWidth = document.documentElement.clientWidth;
-            //set this to canvas element
-            canvas.height = canvasHeight;
-            canvas.width = canvasWidth;
-        };
+    //when screen size changed change size accordinglly
+    window.onresize = function () {
+      setCanvasSize();
 
-        function draw(x, y, a, b) {
-            canvasContext.beginPath();
-            canvasContext.strokeStyle = 'black';
-            canvasContext.moveTo(x, y);
-            canvasContext.lineTo(a, b);
-            canvasContext.stroke();
-            canvasContext.closePath();
-        }
+    };
 
-    </script>
-    <style>
-        canvas#canvas {
-            position: relative;
-            background-color: #eeeeee;
-        }
+    //set canvas width and height
+    function setCanvasSize() {
+      //get height and width from "client"
+      var canvasHeight = document.documentElement.clientHeight;
+      var canvasWidth = document.documentElement.clientWidth;
+      //set this to canvas element
+      canvas.height = canvasHeight;
+      canvas.width = canvasWidth;
+    };
 
-        div.buttons {
-            position: absolute;
-            left: 20px;
-            bottom: 20px;
-        }
+    function draw(x, y, a, b) {
+      canvasContext.beginPath();
+      canvasContext.strokeStyle = 'black';
+      canvasContext.moveTo(x, y);
+      canvasContext.lineTo(a, b);
+      canvasContext.stroke();
+      canvasContext.closePath();
+    }
 
-        body {
-            margin: 0;
-        }
-    </style>
+  </script>
+  <style>
+    canvas#canvas {
+      position: relative;
+      background-color: #eeeeee;
+    }
+
+    div.buttons {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+    }
+
+    body {
+      margin: 0;
+    }
+  </style>
 </body>
 
 </html>

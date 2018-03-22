@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Joseph Jin Resume</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .topBanner {
+            width: 100%;
+            background: teal;
+        }
+
+        h1.name {
+            color: white;
+            width: 240px;
+            padding: 50px 40px 40px;
+            height: 60px;
+            position: relative;
+        }
+
+        h1.name::after {
+            content: "";
+            border: 90px solid transparent;
+            border-top-width: 0;
+            border-right-width: 0;
+            border-left-color: teal;
+            position: absolute;
+            right: -90px;
+            top: 59px;
+            z-index: 100;
+
+        }
+
+        h1.name,
+        ul.contact {
+            float: left;
+            height: 60px;
+            text-align: center;
+        }
+
+        ul.contact {
+            width: calc(100% - 320px);
+            border-top: 59px solid teal;
+            border-bottom: 1px solid teal;
+            background: white;
+            height: 90px;
+            text-align: center;
+        }
+
+        .contact>li {
+            padding: 50px 0 0 60px;
+            margin: 0 auto;
+            display: inline-block;
+        }
+        .contact>li>a{
+            font-weight: bold;            
+        }
+
+        h1.name>p {
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        aside.sideNav {
+            height: 1370px;
+            float: left;
+            width: 240px;
+            padding: 40px;
+            background-color: #dddddd;
+            text-align: center;
+        }
+
+        img#me {
+            width: 178px;
+            height: 178px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+        }
+
+        aside.sideNav h3 {
+            border-bottom: 3px solid black;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
+
+        aside.sideNav p,
+        aside.sideNav h3,
+        aside.sideNav li,
+        aside.sideNav dt {
+            text-align: left;
+        }
+
+        aside.sideNav dt {
+            padding: 10px 0;
+            float: left;
+            width: 40%;
+        }
+
+        aside.sideNav dd {
+            padding: 10px 0;
+            float: left;
+            width: 60%;
+        }
+
+        .progressBar {
+            background: #888;
+            border: 1px solid #888;
+        }
+
+        .curRate1 {
+            width: 75%;
+            background: #bbb;
+        }
+
+        .curRate2 {
+            width: 60%;
+            background: #bbb;
+        }
+
+        .curRate3 {
+            width: 65%;
+            background: #bbb;
+        }
+
+        .curRate4 {
+            width: 85%;
+            background: #bbb;
+        }
+
+        .curRate5 {
+            width: 40%;
+            background: #bbb;
+        }
+
+        .roundConner {
+            height: 19px;
+            border-radius: 15px;
+        }
+
+        .profile,
+        .skills,
+        .social {
+            padding-top: 80px;
+        }
+
+        dl.social dt {
+            width: 100%;
+            float: left;
+        }
+
+        dl.social>dt>a {
+            font-size: 17px;
+        }
+
+        main.content {
+            height: 1350px;
+            padding: 50px 100px;
+            border: 50px;
+            float: left;
+            width: calc(100% - 520px);
+            background-color: #fffcf7;
+        }
+        .experience>h2{
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eeeeee;
+        }
+        ul.detail {
+            margin-left: 10px;
+            border-left: 2px solid black;
+        }
+
+        ul.detail>li {
+            padding: 20px 30px;
+            position: relative;
+        }
+
+        ul.detail>li::before {
+            content: "";
+            display: inline-block;
+            padding: 10px;
+            background-color: black;
+            height: 0;
+            width: 0;
+            position: absolute;
+            left: -11px;
+        }
+
+        div.entry>div {
+            float: left;
+        }
+
+        div.entry>div.time {
+            width: 35%;
+        }
+
+        div.entry>div.content {
+            width: 65%;
+        }
+
+        ul.detail>li>div>div>h4,
+        ul.detail>li>div>div>h5 {
+            padding-bottom: 5px;
+        }
+
+        ul.detail>li>div>div>ul>li {
+            padding: 3px 0 0 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+        footer{
+            float: left;
+            background-color: teal;
+            text-align: center;
+            color:white;
+            padding: 5px 0;
+            height: 15px;
+            width: 100%;
+        }
+    </style>
+    <div class="topBanner clearfix">
+        <h1 class="name">
+            Joseph Jin
+            <p>Target: FE Devloper</p>
+        </h1>
+        <ul class="contact">
+            <li>
+                <a href="tel:+17787887888">
+                    <i class="fas fa-mobile"></i>
+                    7787887888
+                </a>
+            </li>
+            <li>
+                <a href="mailto:jinyuhui61@hotmail.com">
+                    <i class="fas fa-envelope"></i>
+                    jinyuhui61@hotmail.com
+                </a>
+            </li>
+            <li>
+                <a target="_blank" rel: "noopener" href="https://www.google.ca/maps/place/1120+Hamilton+St,+Vancouver,+BC+V6B+2S2/">
+                    <i class="fas fa-map-marker"></i>
+                    1120 Hamilton Street, Vancouver, BC, Canada V5J 6K1
+                </a>
+            </li>
+        </ul>
+    </div>
+    <aside class="sideNav">
+        <img src="avatar.jpg" alt="avatar" id="me">
+        <div class="profile">
+            <h3>
+                <i class="fas fa-user-circle"></i>
+                PROFILE
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque assumenda, sapiente tempore modi magni commodi.
+                Mollitia nesciunt sit pariatur repellat velit voluptate at architecto quis a magni, animi, assumenda impedit!</p>
+        </div>
+        <div class="skills clearfix">
+            <h3>
+                <i class="fas fa-flask"></i>
+                SKILLS
+            </h3>
+            <dl class="clearfix">
+                <dt>HTML</dt>
+                <dd>
+                    <div class="progressBar roundConner">
+                        <div class="curRate1 roundConner"></div>
+                    </div>
+                </dd>
+                <dt>JavaScript</dt>
+                <dd>
+                    <div class="progressBar roundConner">
+                        <div class="curRate2 roundConner"></div>
+                    </div>
+                </dd>
+                <dt>CSS</dt>
+                <dd>
+                    <div class="progressBar roundConner">
+                        <div class="curRate3 roundConner"></div>
+                    </div>
+                </dd>
+                <dt>MS Office</dt>
+                <dd>
+                    <div class="progressBar roundConner">
+                        <div class="curRate4 roundConner"></div>
+                    </div>
+                </dd>
+                <dt>PhotoShop</dt>
+                <dd>
+                    <div class="progressBar roundConner">
+                        <div class="curRate5 roundConner"></div>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <dl class="social clearfix">
+            <h3>
+                <i class="fas fa-comment"></i>
+                BLOG
+            </h3>
+            <dt>
+                <a href="">
+                    <i class="fab fa-github"></i>
+                    Github
+                </a>
+            </dt>
+            <dt>
+                <a href="">
+                    <i class="fab fa-codepen"></i>
+                    Codepen
+                </a>
+            </dt>
+            <dt>
+                <a href="">
+                    <i class="fab fa-weibo"></i>
+                    Blog
+                </a>
+            </dt>
+        </dl>
+    </aside>
+    <main class="content clearfix">
+        <section class="experience">
+            <h2>
+                <i class="fas fa-briefcase"></i>
+                EXPERIENCE
+            </h2>
+
+            <style>
+            </style>
+            <ul class="detail">
+                <li>
+                    <div class="entry clearfix">
+                        <div class="time">SEP 2011- MAY 2017</div>
+                        <div class="content">
+                            <h4>Bank of China</h4>
+                            <h5>Customer Service</h5>
+                            <ul>
+                                <li>Providing customer service including 7*24 ... ...</li>
+                                <li>Led Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Laborum, eum, porro quas hic pariatur earum</li>
+                                <li>Ratione soluta accusantium ut eveniet iure quia! </li>
+                                <li>Tenetur veritatis quod saepe,modi et magni nulla?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="entry clearfix">
+                        <div class="time">SEP 2011- MAY 2017</div>
+                        <div class="content">
+                            <h4>Bank of China</h4>
+                            <h5>Customer Service</h5>
+                            <ul>
+                                <li>Providing customer service including 7*24 ... ...</li>
+                                <li>Led Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Laborum, eum, porro quas hic pariatur earum</li>
+                                <li>Ratione soluta accusantium ut eveniet iure quia! </li>
+                                <li>Tenetur veritatis quod saepe,modi et magni nulla?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="entry clearfix">
+                        <div class="time">SEP 2011- MAY 2017</div>
+                        <div class="content">
+                            <h4>Bank of China</h4>
+                            <h5>Customer Service</h5>
+                            <ul>
+                                <li>Providing customer service including 7*24 ... ...</li>
+                                <li>Led Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Laborum, eum, porro quas hic pariatur earum</li>
+                                <li>Ratione soluta accusantium ut eveniet iure quia! </li>
+                                <li>Tenetur veritatis quod saepe,modi et magni nulla?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+        </section>
+        <section class="experience">
+            <h2>
+                <i class="fas fa-graduation-cap"></i>
+                EDUCATION
+            </h2>
+
+            <style>
+            </style>
+            <ul class="detail">
+                <li>
+                    <div class="entry clearfix">
+                        <div class="time">SEP 2011- MAY 2017</div>
+                        <div class="content">
+                            <h4>Bank of China</h4>
+                            <h5>Customer Service</h5>
+                            <ul>
+                                <li>Providing customer service including 7*24 ... ...</li>
+                                <li>Led Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Laborum, eum, porro quas hic pariatur earum</li>
+                                <li>Ratione soluta accusantium ut eveniet iure quia! </li>
+                                <li>Tenetur veritatis quod saepe,modi et magni nulla?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+        </section>
+        <section class="experience">
+            <h2>
+                <i class="fas fa-file-alt"></i>
+                 PROJECTS
+            </h2>
+
+            <style>
+            </style>
+            <ul class="detail">
+                <li>
+                    <div class="entry clearfix">
+                        <div class="time">MAY 2011</div>
+                        <div class="content">
+                            <h4>Bank of China</h4>
+                            <h5>Customer Service</h5>
+                            <ul>
+                                <li>Providing customer service including 7*24 ... ...</li>
+                                <li>Led Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                                <li>Laborum, eum, porro quas hic pariatur earum</li>
+                                <li>Ratione soluta accusantium ut eveniet iure quia! </li>
+                                <li>Tenetur veritatis quod saepe,modi et magni nulla?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+        </section>
+    </main>
+    <footer class="clearfix">
+        <div>Thank you for your time and consideration!</div>
+    </footer>
+</body>
+
+</html>

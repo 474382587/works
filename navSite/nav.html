@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Joseph的常用导航</title>
+</head>
+
+<body>
+    <header></header>
+    <main id="main">
+
+    </main>
+    <script>
+        var keys ={
+            '0':['q','w','e','r','t','y','u','i','o','p'],
+            '1':['a','s','d','f','g','h','j','k','l'],
+            '2':['z','x','c','v','b','n','m'],
+            'length':3
+        };
+       var hash ={
+           'q':'www.qq.com',
+           'w':'www.weibo.com',
+           'e':"www.ele.me",
+           'r':'www.renren.com',
+           't':'www.tianya.com',
+           'y':'www.youtube.com',
+           'u':'www.uc.com',
+           'i':'www.iqiyi.com',
+           'o':'www.oprea.com',
+           'p':'www.pingdom.com',
+           'a':'www.acfun.cn'
+       };
+    //    var line = document.createElement('div');
+       var main = document.getElementById('main');
+    //    x.appendChild(line);
+
+       var index = 0;
+       while(index<keys.length){
+           var row = keys[index];
+           var index2 = 0;
+           var line = document.createElement('div');
+           main.appendChild(line);
+           while(index2 < keys[index].length){
+               var link = document.createElement("kbd");
+               var edit = document.createElement("button");
+               edit.textContent="编辑";
+               edit.id = row[index2];
+               edit.onclick = function(e){
+                   console.log(e.target.id);
+                   var newUrl = "http://" + prompt("请输入网址：");
+                   hash[e.target.id] = newUrl;
+               };
+               link.textContent = keys[index][index2];
+
+
+               
+               line.appendChild(link);
+               link.appendChild(edit);
+               index2++;
+           }
+           index++;
+       }
+       document.onkeypress = function(e){
+
+           console.log(hash[e.key]);
+        //    location.href = "http://" + hash[e.key];
+           window.open("https://" + hash[e.key]);
+       };
+    </script>
+    <style>
+        div{
+            margin: 20px auto;
+            text-align: center;
+        }
+
+
+        kbd{
+            display: inline-block;
+            text-align: center;
+            line-height: 55px;
+            margin:5px;
+            height: 65px;
+            width: 65px;
+            border: 1px solid red;
+            position: relative;
+        }
+        kbd>button{
+            display: none;
+            position: absolute;
+            bottom: 2px;
+            right: 0px;
+        }
+        kbd:hover>button{
+            display: inline-block;
+        }
+
+    </style>
+</body>
+
+</html>

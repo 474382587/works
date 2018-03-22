@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P"
+        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas id="canvas">
+
+    </canvas>
+    <!-- <img id='image' src="" alt="Nothing"> -->
+    <div id ='actions' class="buttons">
+        <button id="draw">
+            <i class="fas fa-pencil-alt"></i>
+            Draw
+        </button>
+        <button id="wipe">
+            <i class="fas fa-eraser"></i>
+            Wipe
+        </button>
+        <button id="clear">
+            Clear
+        </button>
+        <button id="save">
+            <a id = "download" href="" download="canvas.png">
+                Save
+            </a>
+        </button> 
+    </div>
+    <div class='colors'>
+        <button id="black"></button>
+        <button id="red"></button>
+        <button id="yellow"></button>
+        <button id="blue"></button>
+        <button id="green"></button>
+    </div>
+    <script>
+        //initialize
+        var canvas = document.getElementById('canvas');
+        setCanvasSize();
+        var canvasContext = canvas.getContext('2d');
+        canvasContext.fillStyle = "#ffffff";
+        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        var enable = false;
+        var wipe = false;
+        var drawButton = document.getElementById('draw');
+        console.log(drawButton);
+        var wipeButton = document.getElementById('wipe');
+        var actions = document.getElementById('actions');
+        var color = "black";
+        
+        
+        //different colors
+        var black = document.getElementById('black');
+        var red = document.getElementById('red');
+        var yellow = document.getElementById('yellow');
+        var blue = document.getElementById('blue');
+        var green = document.getElementById('green');
+        black.addEventListener("click",function(e) {
+            color = "black";
+        });
+        red.addEventListener("click", function (e) {
+            color = "red";
+        });
+        yellow.addEventListener("click", function (e) {
+            color = "yellow";
+        });
+        blue.addEventListener("click", function (e) {
+            color = "blue";
+        });
+        green.addEventListener("click", function (e) {
+            color = "green";
+        });
+        
+        var clear = document.getElementById('clear');
+        clear.onclick = function(){
+            canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+            canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
+        };
+        var save = document.getElementById('save');
+        save.onclick = function() {
+            canvas = document.getElementById('canvas');
+            var image = canvas.toDataURL("image/png", 1);
+            // location = img;
+            // document.getElementById('image').src = image;
+            document.getElementById('download').href = image;
+            console.log(document.getElementById('download').href);
+        }
+
+        wipeButton.onclick = function (e) {
+            wipe=true;
+            actions.classList.toggle('eraser');
+        };
+        drawButton.onclick = function () { 
+            wipe = false;
+            actions.classList.toggle('eraser');
+        };
+        var currentPosition = {
+                x: undefined,
+                y: undefined
+            };
+        //check if screen size changes
+        window.onresize = function (e) {
+            setCanvasSize();
+        };
+
+        //Check if client supports touch action
+        if(document.body.ontouchstart !== undefined){
+            canvas.ontouchstart = function (e) {
+                //enable drawing/erasing
+                enable = true;
+                //get current position
+                currentPosition = {
+                    x: e.touches[0].clientX,
+                    y: e.touches[0].clientY
+                };
+                console.log(currentPosition);
+            };
+            //move
+            canvas.ontouchmove = function (e) {
+                if (enable) {
+                    var nextPosition = {
+                        x: e.touches[0].clientX,
+                        y: e.touches[0].clientY
+                    };
+                    var previousEraserPosition = currentPosition;
+                    if (wipe) {
+                        erase(currentPosition.x, currentPosition.y)
+                    }
+                    else {
+                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y,color);
+                    }
+                    //update current position
+                    currentPosition = nextPosition;
+                }
+
+            };
+            //release
+            canvas.ontouchend = function (e) {
+                //disable
+                enable = false;
+            }
+        }
+        else{
+            //press
+            canvas.onmousedown = function (e) {
+                //enable drawing/erasing
+                enable = true;
+                //get current position
+                currentPosition = {
+                    x: e.clientX,
+                    y: e.clientY
+                };
+                // console.log(currentPosition);
+            };
+            //move
+            canvas.onmousemove = function (e) {
+                if (enable) {
+                    var nextPosition = {
+                        x: e.clientX,
+                        y: e.clientY
+                    };
+                    var previousEraserPosition = currentPosition;
+                    if (wipe) {
+                        erase(currentPosition.x, currentPosition.y)
+                    }
+                    else {
+
+                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y,color);
+                    }
+                    //update current position
+                    currentPosition = nextPosition;
+                }
+
+            };
+            //release
+            canvas.onmouseup = function (e) {
+                //disable
+                enable = false;
+            }
+        }
+        
+// ################################################
+    // functions
+
+        //draw line
+        function drawLine(a,b,c,d,color) {
+            canvasContext.beginPath();
+            
+            canvasContext.moveTo(a,b);
+            canvasContext.lineTo(c,d);
+            canvasContext.closePath();
+            canvasContext.strokeStyle = color;
+            canvasContext.stroke();
+        }
+
+        //erase
+        function erase(x,y) {
+            canvasContext.clearRect(x-5,y-5,15,15);
+        }
+        
+        //erase my eraser
+
+
+        //get height and width of screen
+        function setCanvasSize(){
+            var canvasWidth = document.documentElement.clientWidth;
+            var canvasHeight = document.documentElement.clientHeight;
+            canvas.height = canvasHeight;
+            canvas.width = canvasWidth;
+        }
+
+    </script>
+    <style>
+
+        #canvas{
+            position: sticky;
+            display: block;  
+            background: white;
+        }
+        .colors{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        .buttons{
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            background-color: #eeeeee;
+        }
+        body{
+            margin: 0;
+            position: fixed;
+            background: white;
+        }
+        html{
+            background: white;
+        }
+        #actions{
+            display: inline-block;
+        }
+        #actions.eraser>#wipe,#actions>#draw{
+            display: none;
+        }
+        #actions>#wipe,#actions.eraser>#draw{
+            display: inline-block;
+        }
+
+        .colors>button{
+            display: inline-block;
+            height: 30px;
+            width: 40px;
+        }
+        #red{
+            background-color:red;
+        }
+        #yellow{
+            background-color:yellow;
+        }
+        #black{
+            background-color:black;
+        }
+        #blue{
+            background-color:blue;
+        }
+        #green{
+            background-color:green;
+        }
+        /* img{
+            display: block;
+            height: 500px;
+            width: 500px;
+
+            position: absolute;
+            top:0;
+            right: 0;
+        } */
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
+</body>
+</html>

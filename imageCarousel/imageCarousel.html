@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Image Carousel (jQuery)</title>
+    <style>
+        .images {
+            width: 900px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.5s;
+        }
+
+        .window {
+            box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+            width: 300px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+
+        .buttons {
+            width: 300px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .red {
+            box-shadow: 0 0 10px rgba(119, 129, 159, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window">
+        <div class="images">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVa9XoAtZad9VcRUhcGjRYYtvudqzWpfMxo2_ZecrJmvBBm3Eg" alt="图1"
+                width=300>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbg_pB84xuUXHsEUyKuMKNeUjn1sD_Y5biRVsAxxw49tcOPXcPTw" alt="图2"
+                width=300>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM_WcLul3E6wet8ONwPDg6BnjSxntbBlmsvn9BXYJQvsN33XyMLA" alt="图3"
+                width=300>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button id="p1">第1张</button>
+        <button id="p2">第2张</button>
+        <button id="p3">第3张</button>
+    </div>
+
+    <script>
+        var allButtons = $('button');
+        console.log(allButtons);
+
+        for (let i = 0; i < allButtons.length; i++) {
+            $(allButtons[i]).on("click", function (e) {
+                var index = $(e.currentTarget).index();
+                $(".images").css({
+                    transform: 'translate(' + index * (-300) + 'px)'
+                });
+                clearInterval(autoScroll);
+                n = index;
+                highlight(allButtons.eq(n % mod))
+                autoScroll = setTimer();
+            });
+        }
+
+        $(".window").on('mouseenter', function () {
+            clearInterval(autoScroll);
+        });
+        $(".window").on('mouseleave', function () {
+            autoScroll = setTimer();
+        });
+
+        function highlight($button) {
+            $button.addClass("red").siblings('.red').removeClass("red")
+        }
+        function setTimer() {
+            return setInterval(() => {
+                n++;
+                allButtons.eq(n % mod).trigger('click').addClass("red").siblings('.red').removeClass("red");
+            }, 2000);
+
+        }
+        var n = 0;
+        var mod = allButtons.length;
+        var autoScroll = setTimer();
+    </script>
+</body>
+
+</html>

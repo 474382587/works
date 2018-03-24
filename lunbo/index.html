@@ -60,24 +60,16 @@
     <script> 
         var images = $("img");
         initialize();
-        var index = 1;
         var n =0;
-        setInterval(() => {
-                $(`img:nth-child(${Math.abs(n%(-5)+1)})`).removeClass('current').addClass('right');
-                $(`img:nth-child(${(1 + (n - 5) % 5+ 1)%5+1})`).removeClass('right').addClass('waiting');
-                $(`img:nth-child(${5-n%5})`).removeClass('left').addClass('current');
-                $(`img:nth-child(${(n + 8) % 5 + 1})`).removeClass('waiting').addClass('left');
-                n++;
 
-            },111113000);
-        // setInterval(()=>{
-        //     $(`img:nth-child(${(n)%5+1})`).removeClass('current').addClass('left');
-        //     $(`img:nth-child(${(n + 1) % 5+1})`).removeClass('right').addClass('current');
-        //     $(`img:nth-child(${(n + 4) % 5+1})`).removeClass('left').addClass('waiting');
-        //     $(`img:nth-child(${(n + 2) % 5 + 1})`).removeClass('waiting').addClass('right');
-        //     n++;
+        setInterval(()=>{
+            $(`img:nth-child(${(n)%5+1})`).removeClass('current').addClass('left');
+            $(`img:nth-child(${(n + 1) % 5+1})`).removeClass('right').addClass('current');
+            $(`img:nth-child(${(n + 4) % 5+1})`).removeClass('left').addClass('waiting');
+            $(`img:nth-child(${(n + 2) % 5 + 1})`).removeClass('waiting').addClass('right');
+            n++;
 
-        // },500);
+        },1500);
 
 
 

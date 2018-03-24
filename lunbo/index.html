@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <title>Slide Show</title>
+
+    <style>
+        .window{
+            width: 300px;
+            height: 200px;
+            overflow:hidden;
+            margin: 20px auto;
+        }
+        .images{
+            width:300px;
+            height: 200px;
+            box-shadow: 0 0 20px rgba(111, 180, 188, 0.6);
+            position: relative;
+            display: flex;
+        }
+        img{
+            width: 100%;
+            position: absolute;
+            top:0;
+            transition: transform 0.4s;
+        }
+        .current{
+            left:0;
+            transform:translateX(0);
+            z-index: 20;
+        }
+        .left{
+            transform: translateX(-100%);
+            z-index: 10;
+        }
+        .right{
+            transform: translateX(100%);
+            /* z-index: 10; */
+        }
+        .waiting{
+            transform: translateY(200px);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="window">
+        <div class="images">
+            <img src="1.png" alt="1">
+            <img src="2.png" alt="2">
+            <img src="3.png" alt="3">
+            <img src="4.png" alt="4">
+            <img src="5.png" alt="5">
+        </div>
+    </div>
+    <script>
+        var images = $("img");
+        initialize();
+        var index = 1;
+        var n =0;
+        setInterval(() => {
+                $(`img:nth-child(${Math.abs(n%(-5)+1)})`).removeClass('current').addClass('right');
+                $(`img:nth-child(${(1 + (n - 5) % 5+ 1)%5+1})`).removeClass('right').addClass('waiting');
+                $(`img:nth-child(${5-n%5})`).removeClass('left').addClass('current');
+                $(`img:nth-child(${(n + 8) % 5 + 1})`).removeClass('waiting').addClass('left');
+                n++;
+
+            },111113000);
+        // setInterval(()=>{
+        //     $(`img:nth-child(${(n)%5+1})`).removeClass('current').addClass('left');
+        //     $(`img:nth-child(${(n + 1) % 5+1})`).removeClass('right').addClass('current');
+        //     $(`img:nth-child(${(n + 4) % 5+1})`).removeClass('left').addClass('waiting');
+        //     $(`img:nth-child(${(n + 2) % 5 + 1})`).removeClass('waiting').addClass('right');
+        //     n++;
+
+        // },500);
+
+
+
+
+        function initialize() {
+            $(images[0]).addClass("current");
+            $(images[images.length - 1]).addClass('left');
+            $(images[1]).addClass('right');
+            for(var i=2; i<images.length-1;i++){
+                $(images[i]).addClass('waiting');
+            }
+        }
+    </script>
+</body>
+</html>

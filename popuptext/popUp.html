@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POP UP</title>
+</head>
+
+<body>
+
+    <p class="word">DOM</p>
+    <div id="button">
+        点击获取详细信息
+
+        <p id="detail" class="hide">文档对象模型 (DOM)：将 web 页连接到脚本或编程语言。
+            <b></b>
+        </p>
+    </div>
+
+
+
+</body>
+<style>
+    .word {
+        margin: 20vh auto 0;
+        width: 200px;
+        text-align: center;
+    }
+
+    b {
+        position: absolute;
+        border: 5px solid transparent;
+        border-right-color: black;
+        width: 0;
+        height: 0;
+        top: 10px;
+        right: 100%;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #button {
+        width: 150px;
+        height: 30px;
+        border: 1px solid #cecece;
+        line-height: 30px;
+        text-align: center;
+        position: relative;
+        margin: 1vh auto;
+    }
+    #button:hover{
+        cursor: pointer;
+        background-color: #efeefe;
+    }
+    
+    .clicked{
+        background-color: #efeefe;
+    }
+    #button>p:hover{
+        cursor: default;
+    }
+
+    p#detail {
+        position: absolute;
+        width: 200px;
+        left: 155px;
+        top: 0;
+        border: 1px solid red;
+    }
+
+    .hide {
+        display: none;
+    }
+</style>
+<script>
+    var button = document.getElementById('button');
+    var detail = document.getElementById('detail');
+    var entireDocument = document.documentElement;
+    button.addEventListener('click', (e) => {
+        detail.classList.toggle('hide');
+        button.classList.toggle('clicked');
+        e.stopPropagation();
+
+    });
+    detail.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    entireDocument.addEventListener('click', (e) => {
+        detail.classList.add('hide');
+        button.classList.remove('clicked');
+    });
+</script>
+
+</html>

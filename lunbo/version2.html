@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>version 2</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="window">
+        <div class="images">
+            <img src='1.png' alt="">
+            <img src="2.png" alt="">
+            <img src="3.png" alt="">
+        </div>
+    </div>
+    <div class="buttons">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+    </div>
+    <script>
+        function cloneFirstAndLastImages(){
+            let firstImage = images.eq(0).clone(true);
+            let lastImage = images.eq(images.length - 1).clone(true);
+            let button = $('buttons>button');
+            $('.images').append(firstImage);
+            $('.images').prepend(lastImage);
+        }
+        
+
+        let current = 0;
+        let images = $('.images').children('img');
+        cloneFirstAndLastImages();
+        buttonClick();
+
+
+
+        function buttonClick(){
+            $('.buttons>button').eq(0).on('click', function () {
+
+                if (current === 2) {
+                    $('.images').css({ transform: "translateX(-1200px)" }).one('transitionend', function () {
+                        $('.images').hide().offset();
+                        $('.images').css({ transform: "translateX(-300px)" }).show();
+                    });
+                    current = 0;
+                }
+                else {
+                    $('.images').css({ transform: "translateX(-300px)" })
+                    current = 0;
+                    console.log(current)
+                }
+
+            });
+            $('.buttons>button').eq(1).on('click', function () {
+
+                $('.images').css({ transform: "translateX(-600px)" })
+                current = 1;
+            });
+            $('.buttons>button').eq(2).on('click', function () {
+                if (current === 0) {
+                    $('.images').css({ transform: "translateX(0px)" }).one('transitionend', function () {
+                        $('.images').hide().offset();
+                        $('.images').css({ transform: "translateX(-900px)" }).show();
+                    });
+                    current = 2;
+                }
+                else {
+                    $('.images').css({ transform: "translateX(-900px)" })
+                    current = 2;
+                }
+
+            });
+        }
+
+
+
+
+    </script>
+    <style>
+        .buttons {
+            text-align: center;
+        }
+
+        .window {
+            margin: 10vh auto 1vh;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .images {
+            display: flex;
+            width: 900px;
+            transform: translateX(-300px);
+            transition: all .3s;
+        }
+    </style>
+</body>
+
+</html>

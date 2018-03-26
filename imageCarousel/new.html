@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+        crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+        <div class="window">
+            <div id="images" class="images clearfix">
+                <img src="1.png" alt="">
+                <img src="2.png" alt="">
+                <img src="3.png" alt="">
+                <!-- <img src="4.png" alt="">
+                <img src="5.png" alt=""> -->
+            </div>
+        </div>
+        <ul class = 'buttons clearfix'>
+            <li class="active"><a ></a><i class="fas fa-dot-circle"></i><i class="far fa-dot-circle"></i></li>
+            <li><a></a><i class="fas fa-dot-circle"></i><i class="far fa-dot-circle"></i></li>
+            <li><a></a><i class="fas fa-dot-circle"></i><i class="far fa-dot-circle"></i></li>
+        </ul>
+</body>
+
+<style>
+    .window{
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        margin:50px auto 0px;
+        /* border: 1px solid red;   */
+        box-shadow: 0 0 12px gray;
+    }
+    .images{
+        width: 900px;
+        height: 200px;
+    }
+    img{
+        float: left;
+    }
+    .clearfix::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .buttons{
+        margin: 0 auto;
+        text-align: center;
+        list-style: none;
+        /* border:1px solid red; */
+        width: 300px;
+        box-shadow: 0 0 12px gray;
+        height: 40px;
+        display: block;
+    }
+
+    ul.buttons>li{
+        height: 100%;
+        float: left;
+        width: 33.333333333333%;
+        position: relative;
+        }
+    .fas{
+        display:none;
+    }
+    ul.buttons>li.active>.fas{
+        display: block;
+        position: absolute;
+        top:35%;
+        left:42%;
+        width: 8%;
+    }
+    .far{
+        display: block;
+        position: absolute;
+        top:35%;
+        left:42%;
+        width: 8%;
+    }
+    ul.buttons>li.active>.far{
+        display: none;
+    }
+    ul.buttons>li>a{
+        height: 100%;
+        background-color: #ededed;
+        display: inline-block;
+        padding:0px 10%;
+        border: none;
+        outline: none;
+        width: 80%;
+        position: relative;
+    }
+    li.active>a::after{
+        content: "";
+        border: 5px solid transparent;
+        border-top-color: #ededed;
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+        top:0;
+        left: 46%;
+    }
+    ul.buttons>li.active>a{
+        background-image:
+        radial-gradient(
+        circle at center,
+         #ededed,
+        #b4b4b4
+    );
+        color: rgb(124, 108, 108);
+        box-shadow: 0 0 5px 3px #b4b4b4 inset;
+    }
+</style>
+<script>
+    var images = document.getElementById("images");
+    var buttons = document.querySelectorAll("ul>li");
+    console.log(buttons);
+    for(var i =0;i<buttons.length;i++){
+        buttons[i].addEventListener("click",(e)=>{
+            console.log(e.currentTarget)
+            var node = e.currentTarget;
+            Array.from(buttons).indexOf(e.currentTarget) === '-1'? node = e.currentTarget.parentNode: e.currentTarget;
+            console.log(node)
+            console.log(Array.from(buttons).indexOf(e.currentTarget));
+            if(Array.from(buttons).indexOf(e.currentTarget) === -1){
+                console.log("I am Icon!")
+                e.preventDefault();
+            }
+            for(var j = 0; j < buttons.length; j++){
+                buttons[j].classList.remove("active")
+            }
+            e.currentTarget.classList.add("active")
+            images.style.transform = "translateX("+((-300)* Array.from(buttons).indexOf(e.currentTarget))+"px)";
+            images.style.transition = "transform .5s ease"
+        });
+    }
+</script>
+</html>

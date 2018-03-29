@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pop up</title>
+</head>
+
+<body>
+
+    <button id="button">点击获取更多讯息</button>
+
+    <p id="p" name="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque odit, minima officia repellat, cupiditate dolorum expedita
+        saepe totam fuga, facilis quia adipisci voluptatem. Placeat eveniet mollitia corporis nulla cumque itaque.</p>
+</body>
+
+
+<script>
+    var button = document.getElementById('button');
+    var paragraph = document.getElementById('p');
+
+    document.documentElement.addEventListener("click", function (e) {
+        e.target.id === "button" ? paragraph.classList.toggle('display') : e.target.id === "p" ? console.log("dont remove") : paragraph.classList.remove('display');
+    });
+</script>
+
+<style>
+    p {
+        display: none;
+        padding: 10px;
+        border: 1px solid gray;
+        width: 800px;
+    }
+
+    .display {
+        display: block;
+    }
+</style>
+
+</html>

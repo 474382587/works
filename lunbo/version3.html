@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>version 2</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="window">
+        <div class="images">
+            <img src='1.png' alt="">
+            <img src="2.png" alt="">
+            <img src="3.png" alt="">
+            <img src="4.png" alt="">
+            <img src="5.png" alt="">
+        </div>
+    </div>
+    <div class="buttons">
+        
+    </div>
+    <script>
+        function cloneFirstAndLastImages() {
+            let firstImage = images.eq(0).clone(true);
+            let lastImage = images.eq(images.length - 1).clone(true);
+            $('.images').append(firstImage);
+            $('.images').prepend(lastImage);
+            let numberOfButtons = images.length;
+            
+            for(let i =0; i< images.length;i++ ){
+                
+                let newButton = document.createElement('button');
+                newButton.innerText = i+1;
+                $('.buttons').append(newButton);
+            }
+        }
+
+
+        let current = 0;
+        let images = $('.images').children('img');
+        cloneFirstAndLastImages();
+        buttonClick();
+
+
+
+        function buttonClick() {
+            $('.buttons>button').eq(0).on('click', function () {
+                if (current === images.length) {
+                    $('.images').css({ transform: "translateX("+ (-300) * (images.length+1)+"px)" }).one('transitionend', function () {
+                        $('.images').hide().offset();
+                        $('.images').css({ transform: "translateX(-300px)" }).show();
+                    });
+                    current = 0;
+                }
+                
+                else {
+                    $('.images').css({ transform: "translateX(-300px)" })
+                    current = 0;
+                    console.log(current)
+                }
+
+            });
+
+            if(images.length>2){
+                for (let i = 1; i < images.length - 1; i++) {
+                    console.log(i);
+                    $('.buttons>button').eq(i).on('click', function () {
+                        $('.images').css({ transform: "translateX("+(-300-i*300)+"px)" })
+                        current = i;
+                        console.log(i);
+                    });
+                }
+            }
+            
+
+            $('.buttons>button').eq(images.length - 1).on('click', function () {
+                if (current === 0) {
+                    $('.images').css({ transform: "translateX(0px)" }).one('transitionend', function () {
+                        $('.images').hide().offset();
+                        $('.images').css({ transform: "translateX("+(-300)* images.length+"px)" }).show();
+                    });
+                    current = images.length;
+                }
+                else {
+                    $('.images').css({ transform: "translateX(" + (-300) * images.length + "px)" })
+                    current =  images.length;
+                }
+
+            });
+        }
+
+
+
+
+    </script>
+    <style>
+        .buttons {
+            text-align: center;
+        }
+
+        .window {
+            margin: 10vh auto 1vh;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .images {
+            display: flex;
+            width: 900px;
+            transform: translateX(-300px);
+            transition: all .3s;
+        }
+    </style>
+</body>
+
+</html>

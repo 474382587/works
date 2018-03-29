@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Beautiful Version</title>
+</head>
+
+<body>
+    <h1>Apple-like Gallery</h1>
+    <h2>Slideshow</h2>
+    <div class="window">
+        <div class="images">
+            <img src="images (1).jpg" alt="图1" width=300>
+            <img src="images (2).jpg" alt="图2" width=300>
+            <img src="images (3).jpg" alt="图3" width=300>
+            <img src="images (4).jpg" alt="图3" width=300>
+            <img src="images (5).jpg" alt="图3" width=300>
+        </div>
+    </div>
+    <div id="menu">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    h1,
+    h2 {
+        padding-top: 30px;
+        margin: 5px auto;
+        text-align: center;
+        color: #444444;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-weight: bold;
+        font-size: 38px;
+    }
+            .images {
+            width: 900px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.5s;
+        }
+
+        .window {
+            box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+            width: 300px;
+            overflow: hidden;
+            margin: 50px auto;
+        }
+</style>
+
+
+</html>

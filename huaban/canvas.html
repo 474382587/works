@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk"
         crossorigin="anonymous">
@@ -10,12 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Canvas</title>
 </head>
+
 <body>
     <canvas id="canvas">
 
     </canvas>
     <!-- <img id='image' src="" alt="Nothing"> -->
-    <div id ='actions' class="buttons">
+    <div id='actions' class="buttons">
         <button id="draw">
             <i class="fas fa-pencil-alt"></i>
             Draw
@@ -28,10 +30,10 @@
             Clear
         </button>
         <button id="save">
-            <a id = "download" href="" download="canvas.png">
+            <a id="download" href="" download="canvas.png">
                 Save
             </a>
-        </button> 
+        </button>
     </div>
     <div class='colors'>
         <button id="black"></button>
@@ -46,7 +48,7 @@
         setCanvasSize();
         var canvasContext = canvas.getContext('2d');
         canvasContext.fillStyle = "#ffffff";
-        canvasContext.fillRect(0,0,canvas.width,canvas.height);
+        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
         var enable = false;
         var wipe = false;
         var drawButton = document.getElementById('draw');
@@ -54,15 +56,15 @@
         var wipeButton = document.getElementById('wipe');
         var actions = document.getElementById('actions');
         var color = "black";
-        
-        
+
+
         //different colors
         var black = document.getElementById('black');
         var red = document.getElementById('red');
         var yellow = document.getElementById('yellow');
         var blue = document.getElementById('blue');
         var green = document.getElementById('green');
-        black.addEventListener("click",function(e) {
+        black.addEventListener("click", function (e) {
             color = "black";
         });
         red.addEventListener("click", function (e) {
@@ -77,15 +79,15 @@
         green.addEventListener("click", function (e) {
             color = "green";
         });
-        
+
         var clear = document.getElementById('clear');
-        clear.onclick = function(){
+        clear.onclick = function () {
             canvasContext.clearRect(0, 0, canvas.width, canvas.height);
             canvasContext.fillRect(0, 0, canvas.width, canvas.height);
 
         };
         var save = document.getElementById('save');
-        save.onclick = function() {
+        save.onclick = function () {
             canvas = document.getElementById('canvas');
             var image = canvas.toDataURL("image/png", 1);
             // location = img;
@@ -95,24 +97,24 @@
         }
 
         wipeButton.onclick = function (e) {
-            wipe=true;
+            wipe = true;
             actions.classList.toggle('eraser');
         };
-        drawButton.onclick = function () { 
+        drawButton.onclick = function () {
             wipe = false;
             actions.classList.toggle('eraser');
         };
         var currentPosition = {
-                x: undefined,
-                y: undefined
-            };
+            x: undefined,
+            y: undefined
+        };
         //check if screen size changes
         window.onresize = function (e) {
             setCanvasSize();
         };
 
         //Check if client supports touch action
-        if(document.body.ontouchstart !== undefined){
+        if (document.body.ontouchstart !== undefined) {
             canvas.ontouchstart = function (e) {
                 //enable drawing/erasing
                 enable = true;
@@ -135,7 +137,7 @@
                         erase(currentPosition.x, currentPosition.y)
                     }
                     else {
-                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y,color);
+                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y, color);
                     }
                     //update current position
                     currentPosition = nextPosition;
@@ -148,7 +150,7 @@
                 enable = false;
             }
         }
-        else{
+        else {
             //press
             canvas.onmousedown = function (e) {
                 //enable drawing/erasing
@@ -173,7 +175,7 @@
                     }
                     else {
 
-                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y,color);
+                        drawLine(currentPosition.x, currentPosition.y, nextPosition.x, nextPosition.y, color);
                     }
                     //update current position
                     currentPosition = nextPosition;
@@ -186,31 +188,31 @@
                 enable = false;
             }
         }
-        
-// ################################################
-    // functions
+
+        // ################################################
+        // functions
 
         //draw line
-        function drawLine(a,b,c,d,color) {
+        function drawLine(a, b, c, d, color) {
             canvasContext.beginPath();
-            
-            canvasContext.moveTo(a,b);
-            canvasContext.lineTo(c,d);
+
+            canvasContext.moveTo(a, b);
+            canvasContext.lineTo(c, d);
             canvasContext.closePath();
             canvasContext.strokeStyle = color;
             canvasContext.stroke();
         }
 
         //erase
-        function erase(x,y) {
-            canvasContext.clearRect(x-5,y-5,15,15);
+        function erase(x, y) {
+            canvasContext.clearRect(x - 5, y - 5, 15, 15);
         }
-        
+
         //erase my eraser
 
 
         //get height and width of screen
-        function setCanvasSize(){
+        function setCanvasSize() {
             var canvasWidth = document.documentElement.clientWidth;
             var canvasHeight = document.documentElement.clientHeight;
             canvas.height = canvasHeight;
@@ -219,61 +221,84 @@
 
     </script>
     <style>
+        
 
-        #canvas{
+        #canvas {
             position: sticky;
-            display: block;  
+            display: block;
             background: white;
         }
-        .colors{
+
+        .colors {
             position: absolute;
             right: 5px;
             bottom: 5px;
         }
-        .buttons{
+
+        .buttons {
             position: absolute;
             left: 0px;
             bottom: 0px;
             background-color: #eeeeee;
         }
-        body{
+        
+
+        body {
             margin: 0;
             position: fixed;
             background: white;
         }
-        html{
+
+        html {
             background: white;
         }
-        #actions{
-            display: inline-block;
-        }
-        #actions.eraser>#wipe,#actions>#draw{
-            display: none;
-        }
-        #actions>#wipe,#actions.eraser>#draw{
+
+        #actions {
             display: inline-block;
         }
 
-        .colors>button{
+        #actions.eraser>#wipe,
+        #actions>#draw {
+            display: none;
+        }
+
+        #actions>#wipe,
+        #actions.eraser>#draw {
+            display: inline-block;
+        }
+
+        .colors>button {
             display: inline-block;
             height: 30px;
             width: 40px;
         }
-        #red{
-            background-color:red;
+        @media screen and (max-width: 699px){
+            .colors>button {
+                height: 25px;
+                width: 30px;
+            }
         }
-        #yellow{
-            background-color:yellow;
+
+        #red {
+            background-color: red;
         }
-        #black{
-            background-color:black;
+
+        #yellow {
+            background-color: yellow;
         }
-        #blue{
-            background-color:blue;
+
+        #black {
+            background-color: black;
         }
-        #green{
-            background-color:green;
+
+        #blue {
+            background-color: blue;
         }
+
+        #green {
+            background-color: green;
+        }
+
         /* img{
             display: block;
             height: 500px;
@@ -283,11 +308,12 @@
             top:0;
             right: 0;
         } */
-        a{
+
+        a {
             text-decoration: none;
             color: black;
         }
-
     </style>
 </body>
+
 </html>

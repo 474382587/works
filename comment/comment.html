@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Comment</title>
+</head>
+<body>
+    
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyD7-kvILkzCcumydx0NoYYCQauRXTClm0k",
+            authDomain: "commenting-system-1.firebaseapp.com",
+            databaseURL: "https://commenting-system-1.firebaseio.com",
+            projectId: "commenting-system-1",
+            storageBucket: "",
+            messagingSenderId: "802854770736",
+            
+        };
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
+        var userId = 1;
+        var name = "Test";
+        var email = "";
+        var imageUrl ="";
+        writeUserData(userId, name, email, imageUrl);
+        function writeUserData(userId, name, email, imageUrl) {
+                firebase.database().ref('users/' + userId).set({
+                    username: name,
+                    email: email,
+                    profile_picture: imageUrl
+                });
+            }
+//https://firebase.google.com/docs/reference/js/firebase.database.Reference
+
+
+    </script>
+</body>
+</html>

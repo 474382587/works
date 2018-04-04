@@ -7,7 +7,11 @@
     <title>Comment</title>
 </head>
 <body>
-    
+
+    <input type="text" name="name" id="name" placeholder="Name">
+    <input type="text" name="comment" id="comment" placeholder="Comment">
+    <button id = "submit">Submit</button>
+
 
 
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
@@ -25,19 +29,45 @@
         firebase.initializeApp(config);
 
         var database = firebase.database();
-        var userId = 1;
-        var name = "Test";
-        var email = "";
-        var imageUrl ="";
-        writeUserData(userId, name, email, imageUrl);
-        function writeUserData(userId, name, email, imageUrl) {
-                firebase.database().ref('users/' + userId).set({
-                    username: name,
-                    email: email,
-                    profile_picture: imageUrl
-                });
-            }
+        // var userId = 1;
+        // var name = "Test";
+        // var email = "";
+        // var imageUrl ="";
+        // writeUserData(userId, name, email, imageUrl);
+        // function writeUserData(userId, name, email, imageUrl) {
+        //         firebase.database().ref('users/' + userId).set({
+        //             username: name,
+        //             email: email,
+        //             profile_picture: imageUrl
+        //         });
+        //     }
 //https://firebase.google.com/docs/reference/js/firebase.database.Reference
+
+        var name = "";
+        var comment = "";
+        var info = {};
+        var list = [];
+        document.getElementById('submit').addEventListener("click",function(){
+            name = document.getElementById("name").value;
+            comment = document.getElementById("comment").value;
+            console.log(name + " " + comment);
+            info.name = name;
+            // info.comment = comment;
+            // database.ref("count")
+            info.index = index;
+            console.log(info.name + " info " + info.comment);
+            console.log(JSON.stringify(info));
+            list.push(info.name);
+            writeUserData(info, list);
+        });
+        
+        
+        function writeUserData(info,list) {
+                firebase.database().ref("list/").set(list);
+                database.ref().set()
+            }
+        
+
 
 
     </script>

@@ -52,9 +52,9 @@
             comment = document.getElementById("comment").value;
             console.log(name + " " + comment);
             info.name = name;
-            // info.comment = comment;
+            info.comment = comment;
             // database.ref("count")
-            info.index = index;
+            // info.index = index;
             console.log(info.name + " info " + info.comment);
             console.log(JSON.stringify(info));
             list.push(info.name);
@@ -64,7 +64,7 @@
         
         function writeUserData(info,list) {
                 firebase.database().ref("list/").set(list);
-                database.ref().set()
+                // database.ref().set()
             }
         
 

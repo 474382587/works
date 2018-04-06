@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="comments">
+        <h2>留言板</h2>
+        <p>
+            <span>用户名</span>
+            <span>留言</span>
+        </p>
+
+        <ol id="savedComments">
+
+        </ol>
+        <form id="comments">
+            <input type="text" name="userName" id="userName" placeholder="昵称">
+            <input type="text" name="comment" id="comment" placeholder="留言">
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+    <style>
+        .comments {
+            width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        ol {
+            padding: 0;
+            list-style-position: inside;
+            width: 400px;
+            margin: 0 auto 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        li {
+            border-top: 1px solid #e3e3e3;
+            padding: 5px 0;
+        }
+
+        li:last-child {
+            border-bottom: 1px solid #e3e3e3;
+        }
+        p{
+            width: 400px;
+            margin: 20px auto 5px;
+            text-align: left;
+        }
+        span {
+            font-size: 18px;
+            margin-left: 6px;
+            display: inline-block;
+            width: 190px;
+            padding: 0;
+            /* margin: 0; */
+            text-align: left;
+        }
+
+        ol>li>span {
+            font-size: 14px;
+            display: inline-block;
+            width: 190px;
+            text-align: left;
+            margin: 0;
+        }
+    </style>
+
+
+
+    <!-- 存储服务 -->
+    <script src="//cdn1.lncld.net/static/js/3.6.4/av-min.js"></script>
+    <script src="commentCN.js"></script>
+</body>
+
+</html>

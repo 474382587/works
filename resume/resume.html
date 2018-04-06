@@ -241,6 +241,140 @@
         </div>
 
     </section>
+    <section class="comments">
+        <h2>留言板</h2>
+        <form id="comments">
+            <input type="text" name="userName" id="userName" placeholder="昵称">
+            <input type="text" name="comment" id="comment" placeholder="留言">
+            <input type="submit" value="Submit">
+        </form>
+        <p>
+            <span>用户名</span>
+            <span>留言</span>
+        </p>
+
+        <ol id="savedComments">
+
+        </ol>
+
+    </section>
+    <style>
+        .comments {
+            width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .comments>ol#savedComments {
+            padding: 0;
+            list-style-position: inside;
+            width: 400px;
+            margin: 0 auto 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .comments>ol>li {
+            border-top: 1px solid #c0b9b9;
+            padding: 5px 0;
+        }
+
+        .comments>ol>li:last-child {
+            border-bottom: 1px solid #c0b9b9;
+        }
+
+        .comments>p {
+            width: 410px;
+            margin: 20px auto 5px;
+            text-align: left;
+        }
+
+        .comments>p>span {
+            font-size: 18px;
+            margin-left: 0px;
+            display: inline-block;
+            width: 190px;
+            padding: 0;
+            /* margin: 0; */
+            text-align: left;
+        }
+
+        .comments>ol>li>span {
+            font-size: 14px;
+            display: inline-block;
+            width: 190px;
+            text-align: left;
+            margin: 0;
+        }
+    </style>
+
+
+
+    <!-- 存储服务 -->
+    <script src="//cdn1.lncld.net/static/js/3.6.4/av-min.js"></script>
+    <!-- <script src="commentCN.js"></script> -->
+    <script>
+        var APP_ID = 'XbpmBbqWlM1facxh938Bu6ml-MdYXbMMI';
+        var APP_KEY = '2eROdo9GLACuxInoNaluVeB1';
+
+        AV.init({
+            appId: APP_ID,
+            appKey: APP_KEY
+        });
+        // var TestObject = AV.Object.extend('TestObject');
+        // var testObject = new TestObject();
+        // testObject.save({
+        //     words: 'Hello World!'
+        // }).then(function (object) {
+        //     alert('LeanCloud Rocks!');
+        // });
+
+        var commentsForm = document.getElementById('comments');
+
+        commentsForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            console.log("Submit");
+            var userName = document.getElementById("userName").value;
+            var comment = document.getElementById("comment").value;
+            commentUpload(userName, comment);
+        });
+
+        var commentList = document.getElementById("savedComments");
+        var savedComments = new AV.Query("Comments");
+        savedComments.find().then(function (comments) {
+            comments.forEach((e) => {
+                var li = document.createElement('li');
+                var user = document.createElement('span');
+                var comment = document.createElement('span');
+                user.innerText = e.attributes.user;
+                comment.innerText = e.attributes.comment;
+                li.appendChild(user);
+                li.appendChild(comment);
+                commentList.appendChild(li);
+            });
+        });
+
+
+        function commentUpload(userName, comment) {
+            var CommentsObject = AV.Object.extend('Comments');
+            var commentsObject = new CommentsObject();
+            commentsObject.save({
+                user: userName,
+                comment: comment
+            }).then(function () {
+                console.log("Succuess");
+
+                var li = document.createElement('li');
+                var user = document.createElement('span');
+                var comment = document.createElement('span');
+                user.innerText = commentsObject.attributes.user;
+                comment.innerText = commentsObject.attributes.comment;
+                li.appendChild(user);
+                li.appendChild(comment);
+                commentList.appendChild(li);
+            });
+        }</script>
     <script src="js/swiper.js"></script>
     <script>
         var mySwiper = new Swiper('.swiper-container', {
@@ -265,7 +399,7 @@
             // },
         })
     </script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="resume.js"></script>
 </body>

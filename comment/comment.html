@@ -58,12 +58,12 @@
             console.log(info.name + " info " + info.comment);
             console.log(JSON.stringify(info));
             list.push(info.name);
-            writeUserData(info, list);
+            writeUserData(info);
         });
         
         
-        function writeUserData(info,list) {
-                firebase.database().ref("list/").set(list);
+        function writeUserData(info) {
+                firebase.database().ref("comments/").set(info);
                 // database.ref().set()
             }
         

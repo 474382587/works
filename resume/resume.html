@@ -335,7 +335,15 @@
             console.log("Submit");
             var userName = document.getElementById("userName").value;
             var comment = document.getElementById("comment").value;
-            commentUpload(userName, comment);
+            if(userName&&comment){
+                commentUpload(userName, comment);
+            }
+            else if(userName){
+                alert("Comment field cannot be empty!");
+            }
+            else{
+                alert("Username field cannot be empty!");
+            }
         });
 
         var commentList = document.getElementById("savedComments");

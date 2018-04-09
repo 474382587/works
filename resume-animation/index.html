@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="prism.css">
+    <script src="prism.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <style id="style"></style>
+</head>
+
+<body>
+<pre><code id ="code" class = "css"></code></pre>
+
+    <script>
+
+
+            // Returns a highlighted HTML string
+        // var css = Prism.highlight(cssContent, Prism.languages.css, 'css');
+        
+        // console.log(css)
+        var content = `/*
+- 面试官你好，我是XXX
+- 我将以动画的形式来介绍我自己
+- 因为只用文字介绍太枯燥了
+- 就用代码来做个自我介绍吧
+- 首先来准备一些样式
+*/
+*{
+  transition: all 1s;
+}
+html{
+  background-color:#e3e3e3;
+}
+pre{
+    border:1px solid black;
+    padding:20px;
+}
+
+/*
+- 接下来，让我们给这些代码一些高亮吧
+- 请看————
+*/
+.token.selector{
+    color:#690;
+}
+.token.property{
+    color:#905;
+}
+.token.function{
+    color:#DD4A68;
+}
+
+/*
+- 添加 3D 效果
+*/
+pre{
+    transform:rotate(360deg);
+}
+`;
+
+
+        var n = 0;
+        var timer = setInterval(() => {
+            n++;
+            code.innerHTML = content.substring(0, n);
+            code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
+            if(n >= content.length) {
+                window.clearInterval(timer);
+                addPaper();
+                editPaper(content);
+            }
+            var text = code.textContent;
+            style.innerHTML = text;
+        }, 10);
+
+        function addPaper() {
+            var paper = document.createElement('div');
+            paper.id = "paper";
+            document.body.appendChild(paper);
+        }
+
+        function editPaper(result) {
+            var content = `
+/*好了*/
+body{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#paper{
+    width:100px;
+    height:80vh;
+    border:1px solid red;
+}
+            `
+            var n = 0;
+            var timer2 = setInterval(() => {
+                n++;
+                code.innerHTML = result+content.substring(0, n);
+                console.log(code.innerHTML);
+                code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
+                if (n >= content.length) {
+                    window.clearInterval(timer2);
+                }
+                var text = code.textContent;
+                style.innerHTML = text;
+            }, 10);
+        }
+
+    </script>
+</body>
+
+</html>

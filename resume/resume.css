@@ -246,6 +246,53 @@
                         .topNavBar li.active>.submenu{
                             display: block;
                         }
+                        .comments {
+            width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .comments>ol#savedComments {
+            padding: 0;
+            list-style-position: inside;
+            width: 650px;
+            margin: 0 auto 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .comments>ol>li {
+            border-top: 1px solid #c0b9b9;
+            padding: 5px 0;
+        }
+
+        .comments>ol>li:last-child {
+            border-bottom: 1px solid #c0b9b9;
+        }
+
+        .comments>p {
+            width: 650px;
+            margin: 20px auto 5px;
+            text-align: left;
+        }
+
+        .comments>p>span {
+            font-size: 18px;
+            display: inline-block;
+            width: 322px;
+            padding: 0;
+            /* margin: 0; */
+            text-align: left;
+        }
+
+        .comments>ol>li>span {
+            font-size: 14px;
+            display: inline-block;
+            width: 316px;
+            text-align: left;
+            margin: 0;
+        }
                         
 body > main { margin-top: -340px; }
 body > main .downloadResume-wrapper { text-align: center; }

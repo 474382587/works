@@ -1,0 +1,17 @@
+.token.selector{
+    color:black;
+}
+.token.property{
+    color:black;
+}
+.token.function{
+    color:black;
+}
+
+body>pre,body>#paper{
+    width: 45%;
+    margin-top: 50px;
+}
+#paper{
+    height: 80vh;
+}

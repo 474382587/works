@@ -216,28 +216,30 @@
         </div> -->
 
         <!-- Slider main container -->
-        <div class=" swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <img src="navSite.png" alt="" width="600">
+        <div id="mySlides">
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <img src="navSite.png" alt="" width="600">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="canvas.png" alt="" width="600">
+                    </div>
+                    <!-- <div class="swiper-slide">Slide 3</div> -->
+                    <!-- ... -->
                 </div>
-                <div class="swiper-slide">
-                    <img src="canvas.png" alt="" width="600">
-                </div>
-                <!-- <div class="swiper-slide">Slide 3</div> -->
-                <!-- ... -->
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            
+                <!-- If we need scrollbar -->
+                <!-- <div class="swiper-scrollbar"></div> -->
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-            <!-- If we need scrollbar -->
-            <!-- <div class="swiper-scrollbar"></div> -->
         </div>
 
     </section>
@@ -257,55 +259,6 @@
         </ol>
 
     </section>
-    <style>
-        .comments {
-            width: 800px;
-            margin: 50px auto;
-            text-align: center;
-        }
-
-        .comments>ol#savedComments {
-            padding: 0;
-            list-style-position: inside;
-            width: 650px;
-            margin: 0 auto 20px;
-            text-align: left;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .comments>ol>li {
-            border-top: 1px solid #c0b9b9;
-            padding: 5px 0;
-        }
-
-        .comments>ol>li:last-child {
-            border-bottom: 1px solid #c0b9b9;
-        }
-
-        .comments>p {
-            width: 650px;
-            margin: 20px auto 5px;
-            text-align: left;
-        }
-
-        .comments>p>span {
-            font-size: 18px;
-            display: inline-block;
-            width: 322px;
-            padding: 0;
-            /* margin: 0; */
-            text-align: left;
-        }
-
-        .comments>ol>li>span {
-            font-size: 14px;
-            display: inline-block;
-            width: 316px;
-            text-align: left;
-            margin: 0;
-        }
-    </style>
 
 
 
@@ -320,13 +273,6 @@
             appId: APP_ID,
             appKey: APP_KEY
         });
-        // var TestObject = AV.Object.extend('TestObject');
-        // var testObject = new TestObject();
-        // testObject.save({
-        //     words: 'Hello World!'
-        // }).then(function (object) {
-        //     alert('LeanCloud Rocks!');
-        // });
 
         var commentsForm = document.getElementById('comments');
 
@@ -382,29 +328,8 @@
             });
         }</script>
     <script src="js/swiper.js"></script>
-    <script>
-        var mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: true,
+    <script src="swiperInit.js"></script>
 
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            // And if we need scrollbar
-            // scrollbar: {
-            //     el: '.swiper-scrollbar',
-            // },
-        })
-    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="resume.js"></script>

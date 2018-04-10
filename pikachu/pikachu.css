@@ -4,11 +4,27 @@
     padding: 0;
 }
 aside{
-    width: 20%;
+    width: 100%;
     float: left;
-    height: 100vh;
+    height: 200px;
 }
 pre{
-    margin:20px 5%;
-    width: 90%;
+    float:left;
+    width: 50%;
+    height: 200px;
+    overflow-y: auto;
+    background-color: #e3e3e3;
+    position: relative;
+}
+#body{
+    width: 100%;
+    float: left;
+}
+#body::before{
+    content: "";
+    display: table;
+}
+body{
+    margin: 0;
+    height: 100vh;
 }

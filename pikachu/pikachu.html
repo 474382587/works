@@ -7,31 +7,202 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="pikachu.css">
     <title>Document</title>
+    <style id="style"></style>
 </head>
 
 <body>
     <aside>
-        <pre id = "steps"></pre>
-        <pre id = "code"></pre>  
+        <pre id="steps">
+            
+        </pre>
+        <!-- <button id="button1">Speed1</button> -->
+        <pre id="code"></pre>
     </aside>
 
-
+    <div id="body">
+        <div class="face">
+            <div class="eye"></div>
+            <div class="eye right"></div>
+            <div class="nose"></div>
+            <div class="flush"></div>
+            <div class="flush right"></div>
+            <div class="container">
+                <div class="mouth">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script>
         var instruction = `/*
 - 今天，我来教大家用 CSS 画一只皮卡丘
-- 首先，我们来将脸的颜色染成黄色
+- 让我们开始吧！
 */`;
+var speed = 20;
+var code =`
+.nose{
+  border-radius:50%;
+  border:30px solid transparent;
+  border-top:30px solid black;
+  width:0px;
+  height:0px;
+  margin: 0 auto;
+}
+.face{
+  width:500px;
+  height:800px;
+  margin:150px auto;
+  position:relative;
+  padding: 56px 0;
+}
+.eye{
+  width:80px;
+  height:80px;
+  background-color:#2e2e2e;
+  border-radius:50%;
+  border: 5px solid black;
+  position:absolute;
+  top: 0;
+} 
+.eye.right{
+  right:0px;
+}
+.eye::before{
+  content:"";
+  display:block;
+  height:40px;
+  width:40px;
+  background-color:white;
+  border-radius:50%;
+  border:3px solid black;
+  position:absolute;
+  left:5px;
+}
+.mouth{
+  border:5px solid black;
+  border-top-color: transparent;
+  height:250px;
+  width:120px;
+  border-bottom-left-radius: 60px 250px;
+  border-bottom-right-radius: 60px 250px;
+  position:absolute;
+   background-color:#9c0100;
+  overflow:hidden;
+} 
+.mouth>div{
+  height:150px;
+  width:100%;
+/*   border:5px solid red; */
+  border-radius:50%;
+  position:absolute;
+  bottom:0;
+  background-color:#ff455c;
+  
+}
+.container::before{
+  content:"";
+  display:block;
+  width:155px;
+  height:50px;
+  border-bottom: 5px solid black;
+  border-left: 5px solid black;
+  border-bottom-left-radius: 60px 40px;
+  position:absolute;
+  top:-50px;
+  right:58px;
+  transform-origin: 100% 100%;
+  transform:rotate(-30deg);
+      z-index:1;
+  background-color:#fee800;
+
+}
+.container::after{
+    background-color:#fee800;
+
+  content:"";
+  display:block;
+  width:155px;
+  height:50px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+  border-bottom-right-radius: 60px 40px;
+  position:absolute;
+  top:-50px;
+  left:58px;
+  transform-origin: 0% 100%;
+  transform:rotate(30deg);
+    z-index:1;
+
+}
+.tongue{
+  width:120px;
+  height:150px;
+  border:1px solid black;
+  border-radius:50%;
+  
+  
+}
+.container{
+  height:300px;
+  width:120px;
+  margin: 200px auto;
+  position:relative;
+  margin:0 auto;
+}
+body{
+  height:100vh;
+  background-color:#fee800;
+}
+.flush{
+  background-color:#fe0000;
+  border:5px solid black;
+  height:120px;
+  width:120px;
+  border-radius:50%;
+  position:absolute;
+  top:250px;
+  right:450px;
+}
+.flush.right{
+  top: 250px;
+  left:450px;
+}        
+`;
+        
         var n = 0;
         var steps = document.querySelector("pre#steps");
-        var timer = setInterval(() => {
-            n++;
-            steps.innerHTML = instruction.substring(0, n);
-            if (n >= instruction.length) {
-                clearInterval(timer);
-            }
-        }, 0);
+        var codes = document.querySelector("#code");
+        introduction(writeCode);
+        var style = document.getElementById("style");
+
+        function introduction(writeCode) {
+            var timer = setInterval(() => {
+                n++;
+                steps.innerHTML = instruction.substring(0, n);
+                if (n >= instruction.length) {
+                    clearInterval(timer);
+                } 
+            }, speed);
+            writeCode();
+        }
+        function writeCode(){
+            console.log("done");
+            var timer = setInterval(() => {
+                n++;
+                codes.innerHTML = code.substring(0, n);
+                style.innerHTML = code.substring(0, n);
+                if (n >= code.length) {
+                    clearInterval(timer);
+                }
+                codes.scrollTop =codes.scrollHeight
+            }, speed);
+            console.log(codes.scrollHeight)
+            codes.scrollTop = codes.scrollHeight-codes.clientHeight;
+        }
+
+
     </script>
 </body>
 

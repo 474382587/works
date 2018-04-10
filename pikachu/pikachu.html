@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="pikachu.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <aside>
+        <pre id = "steps"></pre>
+        <pre id = "code"></pre>  
+    </aside>
+
+
+
+
+    <script>
+        var instruction = `/*
+- 今天，我来教大家用 CSS 画一只皮卡丘
+- 首先，我们来将脸的颜色染成黄色
+*/`;
+        var n = 0;
+        var steps = document.querySelector("pre#steps");
+        var timer = setInterval(() => {
+            n++;
+            steps.innerHTML = instruction.substring(0, n);
+            if (n >= instruction.length) {
+                clearInterval(timer);
+            }
+        }, 0);
+    </script>
+</body>
+
+</html>

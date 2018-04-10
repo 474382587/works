@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+aside{
+    width: 20%;
+    float: left;
+    height: 100vh;
+}
+pre{
+    margin:20px 5%;
+    width: 90%;
+}

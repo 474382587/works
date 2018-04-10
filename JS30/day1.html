@@ -5,74 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Drum Kit</title>
+    <title>Drum</title>
     <style>
-        * {
-            padding: 0;
+        *{
             margin: 0;
+            padding: 0;
             list-style: none;
             box-sizing: border-box;
         }
-
-        li {
-            border: 1px solid red;
+        li{
             float: left;
-            line-height: 0%;
-            height: 40px;
-            width: 9%;
+            width: 10%;
             text-align: center;
-            margin: 1%;
-            transition: all .1s;
-        }
-
-        ul {
-            margin: 20vh auto;
-            width: 60%;
-        }
-
-        li:hover {
-            background: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 0 2px red;
-        }
-
-        .animate {
-            background: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 0 2px red;
+            padding: 5px;
         }
         kbd{
             display: block;
-            height: 40%;
-            margin-bottom: 5%;
+        }
+        ul{
+            width: 50%;
+            margin: 20vh auto;
         }
     </style>
 </head>
 
 <body>
-    <div class="background">
-        <ul>
-            <li id="a"><kbd>A</kbd><span>s</span></li>
-            <li><kbd>S</kbd><span>s</span></li>
-            <li><kbd>D</kbd><span>s</span></li>
-            <li><kbd>F</kbd><span>s</span></li>
-            <li><kbd>G</kbd><span>s</span></li>
-            <li><kbd>H</kbd><span>s</span></li>
-            <li><kbd>J</kbd><span>s</span></li>
-            <li><kbd>K</kbd><span>s</span></li>
-            <li><kbd>L</kbd><span>s</span></li>
-        </ul>
-    </div>
+    <ul>
+        <li id="a">
+            <kbd>A</kbd>
+            <span>clap</span>
+        </li>
+        <li id="s">
+            <kbd>S</kbd>
+            <span>hihat</span>
+        </li>
+        <li id="d">
+            <kbd>D</kbd>
+            <span>kick</span>
+        </li>
+        <li id="f">
+            <kbd>F</kbd>
+            <span>openhat</span>
+        </li>
+        <li id="g">
+            <kbd>G</kbd>
+            <span>boom</span>
+        </li>
+        <li id="h">
+            <kbd>H</kbd>
+            <span>ride</span>
+        </li>
+        <li id="j">
+            <kbd>J</kbd>
+            <span>snare</span>
+        </li>
+        <li id="k">
+            <kbd>K</kbd>
+            <span>tom</span>
+        </li>
+        <li id="l">
+            <kbd>L</kbd>
+            <span>tink</span>
+        </li>
+    </ul>
     <script>
-        var keyA = document.getElementById("a");
-        document.addEventListener("keypress", () => {
-            console.log("A is pressed");
-            keyA.classList.add("animate");
-            console.log("asadas")
-            keyA.addEventListener("transitionend", () => {
-                keyA.classList.remove("animate");
-                console.log("asadas")
+        var source = {
+            a: "sounds/clap.wav",
+            s: "sounds/hihat.wav",
+            d: "sounds/kick.wav",
+            f: "sounds/openhat.wav",
+            g: "sounds/boom.wav",
+            h: "sounds/ride.wav",
+            j: "sounds/snare.wav",
+            k: "sounds/tom.wav",
+            l: "sounds/tink.wav",
+        };
+        window.onkeypress = function (e) {
+            console.log(e.key);
+            if (document.getElementById(e.key).classList.contains("active")) {
+                document.getElementById(e.key).classList.remove("active");
+                return;
+            }
+            document.getElementById(e.key).classList.add("active");
+            document.getElementById(e.key).addEventListener("transitionend", () => {
+                document.getElementById(e.key).classList.remove("active");
             });
-        });
+            console.log(source[e.key])
+            playSound(source[e.key]);
+        }
+
+        function playSound(a) {
+            let audio = new Audio(a);
+            audio.currentTime = 0;
+            audio.play();
+        }
     </script>
+    <style>
+        .active {
+            background-color: red;
+            transition: all .3s;
+        }
+    </style>
 </body>
 
 </html>

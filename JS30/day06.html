@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <form class="search-form">
+        <input type="text" class="search" placeholder="City or State">
+        <ul class="suggestions">
+            <li>Filter for a city</li>
+            <li>or a state</li>
+        </ul>
+    </form>
+    <script>
+        const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+        const cities = [];
+        fetch("https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json")
+            .then(
+                function (e) {
+                    return e.json();
+                },
+                function () {
+                    console.log("fail");
+                })
+            .then(
+                function (json) {
+                    cities.push(...json);
+                    // console.table(cities)
+                }
+            );
+
+        function findMatches(keyword, cities) {
+            return cities.filter((e) => {
+                const regex = new RegExp(keyword, 'gi');
+                // console.log(e.place)
+                return e.city.match(regex) || e.state.match(regex);
+            });
+        }
+
+        function displayResults() {
+            console.log("display matches")
+            //implementation
+            // console.log(this.value)
+            var results =  findMatches(this.value,cities);
+            
+            const regex = new RegExp(this.value,'gi');
+            news = results.map(e=>{
+                var city = e.city.replace(regex, `<span class = "hl">${this.value}</span>`);
+                var state = e.state.replace(regex, `<span class = "hl">${this.value}</span>`);
+                return `<div class ="row"><h1>${city}</h1><h2>${state}</h2></div>`;
+            }).join('');
+            
+
+            suggestions.innerHTML = news;
+        }
+
+        const searchInput = document.querySelector('.search');
+        const suggestions = document.querySelector('.suggestions');
+
+        searchInput.addEventListener('change', displayResults);
+        searchInput.addEventListener('keyup', displayResults);
+
+
+
+
+
+    </script>
+    <style>
+        .hl{
+            color:blue
+        }
+    </style>
+</body>
+
+</html>

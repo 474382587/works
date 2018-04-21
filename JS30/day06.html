@@ -5,8 +5,38 @@
     <meta charset="UTF-8">
     <title>Type Ahead 👀</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
+        *{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .hl {
+            color: blue
+        }
+        form{
+            margin: 2vh auto;
+            width: 40%;
+            border: 1px solid black;
+        }
+        input{
+            display: block;
+            width: 95%;
+            margin: 5px auto;
+        }
+        ul{
+            width:95%;
+            border: 1px solid black;
+            margin: 10px auto;
+        }
+        div.row{
+            padding: 5px 10px;
+            margin: 10px;
+        }
 
+    </style>
+</head>
+ 
 <body>
 
     <form class="search-form">
@@ -52,7 +82,7 @@
             news = results.map(e=>{
                 var city = e.city.replace(regex, `<span class = "hl">${this.value}</span>`);
                 var state = e.state.replace(regex, `<span class = "hl">${this.value}</span>`);
-                return `<div class ="row"><h1>${city}</h1><h2>${state}</h2></div>`;
+                return `<div class ="row">${city} ${state}</div>`;
             }).join('');
             
 
@@ -70,11 +100,7 @@
 
 
     </script>
-    <style>
-        .hl{
-            color:blue
-        }
-    </style>
+    
 </body>
 
 </html>

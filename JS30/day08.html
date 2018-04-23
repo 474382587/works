@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas</title>
+</head>
+
+<body>
+    <canvas id="draw" width="800" height="800">
+
+
+
+
+
+
+
+    </canvas>
+    <script>
+        var canvas = document.getElementById('draw');
+        var context = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        //判断是否处于绘画模式
+        canvas.addEventListener("mousedown", (e) => {
+            isDrawing = true; //开启
+
+            // lastX = e.offsetX;
+            // lastY = e.offsetY;
+
+            //ES6 写法 [Destructuring assignment/ 解构赋值](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+
+        //绘画的四步骤
+        /*
+        1. context.beginPath() 绘图模式启动
+        2. context.moveTo() 绘图的画笔移动
+        3. context.lineTo() 连接两点
+        4. context.stroke() 填充颜色
+
+        moveTo() lineTo() 需要坐标点
+        当前事件的坐标：e.offsetX/Y
+        
+        */
+
+        /*
+        变颜色：
+        hsl是一個色彩表示的方式hsl(hue, Saturation, Lightness)。
+
+            hue代表顏色的度數0-360，0是紅色 ，120是綠色，240是藍色；
+            Saturation代表灰階程度，0%為灰黑，100%為彩色，一般設置為100%。
+            Lightness為亮度，0%代表黑，100%代表白，一般設置為50%。
+        
+        strokeStyle 控制填充颜色 
+            - ctx.strokeStyle = color;
+            - ctx.strokeStyle = gradient;
+            - ctx.strokeStyle = pattern;
+        
+        */
+        let hue = 0;
+        let lineWidth = 1;
+        let increase = true;
+
+        
+        
+        function draw(e) {
+            if (!isDrawing) {
+                console.log("老子不干了！！！");
+                return;
+            }
+            // context.strokeStyle = `hsl(${hue}, Saturation, Lightness)`;
+            context.strokeStyle = `hsl(${hue}, 100%, 50%)`;	
+            context.lineWidth = lineWidth;
+
+            context.lineJoin = 'round'; //round為圓弧。
+            context.lineCap = 'round'; //round為圓弧。
+            context.beginPath();
+            
+            context.moveTo(lastX, lastY);//移到起始点儿
+            context.lineTo(e.offsetX, e.offsetY);//连接到现在的点儿
+            
+            console.log(`hsl(${hue}, Saturation, Lightness)`);
+            context.stroke();//画实线！
+            [lastX, lastY] = [e.offsetX, e.offsetY];//更新坐标！不然的话一直从初始连接到现在的地方
+            console.log("DRAWING!!!");
+            hue++;
+            if(increase){
+                lineWidth++;
+                if(lineWidth>90){
+                    increase = false;
+                }
+            }
+            else{
+                lineWidth--;
+                if (lineWidth < 1) {
+                    increase = true;
+                }
+            }
+
+            if(hue>360){
+                hue = 0;
+            }
+        }
+    </script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+    </style>
+
+</body>
+
+</html>

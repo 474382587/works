@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        body {
+            font-size: 18px;
+        }
+
+        button {
+            font-size: inherit;
+        }
+
+        @media (min-width: 500px) {
+            .page {
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+            }
+        }
+
+        .page>aside {
+            /* width: 200px; */
+            border-right: 1px solid blue;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            flex-shrink: 0;
+            box-shadow:  0 0 1px 0 rgba(0, 0, 0, .2)
+
+        }
+
+        .page>main {
+            border: 1px solid red;
+            flex-grow: 1;
+            overflow: auto;
+        }
+
+        .page>aside>.upper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page>aside .actions>li {
+            margin: 20px;
+        }
+
+        .page>aside>.down {
+            margin: 20px 0;
+
+        }
+
+        .button {
+            padding: 10px;
+        }
+
+        .resume {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .resume>section {
+            margin: 50px 0;
+        }
+
+        .resume>section>h1 {
+            text-align: center;
+            margin: 20px 20px;
+        }
+
+        .resume>section>h2 {
+            text-align: center;
+            margin: 20px 20px;
+        }
+
+        .resume>section>.profile {
+            text-align: center;
+        }
+
+        .resume>.skills>ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .resume>.skills>ul>li {
+            width: 48%;
+            border: 1px solid #e3e3e3;
+            margin-top: 10px;
+            padding: 10px;
+        }
+
+        .resume>.projects {}
+
+        .resume>.projects>ol {}
+
+        .resume>.projects>ol>li {
+            margin: 30px 0;
+            padding: 10px;
+        }
+
+        .resume>.projects header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .resume>.projects header .name {
+            margin-right: 1em;
+        }
+
+        .resume>.projects header>.start {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <aside>
+            <div class="upper">
+                <ul class="actions">
+                    <li>
+                        <button class="button">保存</button>
+                    </li>
+                    <li>
+                        <button class="button">打印</button>
+                    </li>
+                    <li>
+                        <button class="button">分享</button>
+                    </li>
+                    <li>
+                        <button class="button">换肤</button>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="down">
+                <button class="button">登出</button>
+            </div>
+        </aside>
+        <main>
+            <div class="resume">
+                <section>
+                    <h1>姓名</h1>
+                    <p class="profile">出生年月 | 应聘职位 | 性别 | 邮箱 | 手机</p>
+                </section>
+                <section class="skills">
+                    <h2>技能</h2>
+                    <ul>
+                        <li>
+                            <span class="name">静态页面制作</span>
+                            <div class="description">完美实现设计稿</div>
+                        </li>
+                        <li>
+                            <span class="name">静态页面制作</span>
+                            <div class="description">完美实现设计稿</div>
+                        </li>
+                        <li>
+                            <span class="name">静态页面制作</span>
+                            <div class="description">完美实现设计稿</div>
+                        </li>
+                        <li>
+                            <span class="name">静态页面制作</span>
+                            <div class="description">完美实现设计稿</div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="projects">
+                    <h2>项目经历</h2>
+                    <ol>
+                        <li>
+                            <header>
+                                <div class="start">
+                                    <h3 class="name">我的简历</h3>
+                                    <span class="link">链接</span>
+                                </div>
+                                <div class="end">
+                                    <span class="keywords">CSS3 jQuery 响应式</span>
+                                </div>
+                            </header>
+                            <p class="description">我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的</p>
+                            <span class="cover">covers</span>
+                        </li>
+                        <li>
+                            <header>
+                                <div class="start">
+                                    <h3 class="name">我的简历</h3>
+                                    <span class="link">链接</span>
+                                </div>
+                                <div class="end">
+                                    <span class="keywords">CSS3 jQuery 响应式</span>
+                                </div>
+                            </header>
+                            <p class="description">我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的</p>
+                            <span class="cover">covers</span>
+                        </li>
+                        <li>
+                            <header>
+                                <div class="start">
+                                    <h3 class="name">我的简历</h3>
+                                    <span class="link">链接</span>
+                                </div>
+                                <div class="end">
+                                    <span class="keywords">CSS3 jQuery 响应式</span>
+                                </div>
+                            </header>
+                            <p class="description">我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的</p>
+                            <span class="cover">covers</span>
+                        </li>
+                        <li>
+                            <header>
+                                <div class="start">
+                                    <h3 class="name">我的简历</h3>
+                                    <span class="link">链接</span>
+                                </div>
+                                <div class="end">
+                                    <span class="keywords">CSS3 jQuery 响应式</span>
+                                </div>
+                            </header>
+                            <p class="description">我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的我怎么做这个项目的</p>
+                            <span class="cover">covers</span>
+                        </li>
+                    </ol>
+                </section>
+            </div>
+        </main>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="//cdn1.lncld.net/static/js/3.6.7/av-min.js"></script>
+    <script src='av.js'></script>
+    <script>
+
+
+        // var TestObject = AV.Object.extend('TestObject');
+        //     var testObject = new TestObject();
+        //     testObject.save({
+        //         words: 'Hello World!'
+        //     }).then(function (object) {
+        //         alert('LeanCloud Rocks!');
+        //     })
+
+    </script>
+</body>
+
+</html>

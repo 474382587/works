@@ -70,6 +70,25 @@
                 video.currentTime += 25;
         }
 
+        //progress
+        var progress = document.querySelector('.progress__filled');
+
+        video.addEventListener('timeupdate',handleProgress);
+        function handleProgress(event) {
+            let portion = parseFloat(video.currentTime / video.duration) * 100;
+            progress.style.flexBasis =`${portion}%`
+        }
+        
+        var progressBar = document.querySelector(".progress");
+
+        progressBar.addEventListener('click',handleProgress1);
+        function handleProgress1(event) {
+            console.log(event.offsetX)
+            let pice = (event.offsetX / progressBar.offsetWidth) * video.duration;
+            // let pice = (e.offsetX / progressBar.clientWidth) * video.duration;
+            video.currentTime = pice;
+        }
+
 
     </script>
 

@@ -153,12 +153,32 @@
         </main>
         <div v-show='loginVisible' class="login">
             <form action="" class="form">
-                <span>登录</span>
+                <button @click='onCloseLogin'>关闭</button>
+                <h2>登录</h2>
+                <div class="row">
+                    <label for="">用户名</label>
+                    <input type="text" placeholder="username" id="username">
+                </div>
+                <div class="row">
+                    <label for="">密码</label>
+                    <input type="text" placeholder="password">                    
+                </div>
+                <div class="actions"></div>
+                <button>提交</button>
+                <a @click="registerClick">注册</a>
+
+
+
+
+
+
+
+                
             </form>
-
-            <button @click='onCloseLogin'>关闭</button>
         </div>
-
+        <div class="register" v-show="registerVisible">
+            注册
+        </div>
     </div>
     <style>
         #app {
@@ -208,6 +228,7 @@
         var app = new Vue({
             el: '#app',
             data: {
+                registerVisible:false,
                 editing: false,
                 loginVisible: false,
                 resume: {
@@ -236,6 +257,9 @@
                 },
                 onCloseLogin: function () {
                     this.loginVisible = false;
+                },
+                registerClick:function(){
+                    this.registerVisible = true;
                 }
             }
         });

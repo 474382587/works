@@ -77,6 +77,7 @@ var app = new Vue({
                 this.currentUser.id = loginedUser.id;
                 this.currentUser.email = loginedUser.attributes.email;
                 console.log('user email: ' + this.currentUser.email)
+                this.loginVisible = false;
             },(error)=> {
                 error.code === 211? alert('User does not exist.'):error.code === 210? alert('Username/Password does not match our records'):'';
             });

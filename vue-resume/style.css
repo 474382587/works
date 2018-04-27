@@ -130,3 +130,40 @@
             display: flex;
             align-items: center;
         }
+
+        .edit {
+        position: relative;
+    }
+
+    .edit>button {
+        display: none;
+        position: absolute;
+    }
+
+    .edit:hover button {
+        display: inline-block;
+        left: 0;
+        top: 100%;
+    }
+
+    .resume>section>div {
+        margin: 0 auto;
+        text-align: center;
+        ;
+    }
+    #app {
+            position: relative;
+        }
+
+        .login {
+            width: 300px;
+            height: 400px;
+            display: block;
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            background: rgb(228, 222, 222);
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }

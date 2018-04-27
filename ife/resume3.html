@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简历</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        width: 100%;
+        padding: 20px;
+        background-color: #666666;
+        color: white;
+        
+    }
+    .row {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #cccccc;
+    }
+    h3 {
+        float: left;
+        padding: 40px 20px;
+        background-color: #cccccc;
+        border-bottom: 1px solid #ffffff;
+    }
+    .row>p{
+        float: left;
+        padding: 10px;
+    }
+    .row>p>span{
+        padding: 10px 20px  0 20px;
+    }
+    
+    .container{
+        float: left;
+        width: calc(100% - 120px);
+        padding: 5px 30px 0px;
+    }
+    .container:nth-child(2){
+        padding-top: 10px;
+    }
+    .container>h4,.container>p{
+        float: left;
+    }
+
+</style>
+
+<body>
+    <div class="left-section">
+        <h2>简历</h2>
+    </div>
+    <div class="right-section">
+        <div class="row">
+            <h3>基本信息</h3>
+            <p>
+                <span>
+                    <strong>姓名 </strong>张三 </span>
+                <span>
+                    <strong>性别 </strong>男</span>
+                <span>
+                    <strong>应聘职位 </strong>Web前端工程师</span>
+            </p>
+        </div>
+        <div class="row">
+            <h3>联系方式</h3>
+            <p>
+                <span>
+                    <strong>手机 </strong>
+                    <a href="tel:12312341234">12312341234</a>
+                </span>
+                <span>
+                    <strong>Email</strong>
+                    <a href="mailto:joinefe.baidu.com">joinefe.baidu.com</a>
+                </span>
+                <span>
+                    <strong>个人主页 </strong>
+                    <a href="#" target="_blank">Github</a>
+                </span>
+            </p>
+        </div>
+        <div class="row">
+            <h3>能力描述</h3>
+            <div class="container">
+                <h4>技术能力</h4>
+                <p>熟练掌握HTML,CSS,JavaScript</p>
+            </div>
+            <div class="container">
+                <h4>综合能力</h4>
+                <p>良好的沟通，主动积极，努力勤奋</p>
+            </div>
+        </div>
+        <div class="row">
+            <h3>教育经历</h3>
+            <div class="container">
+                <h4>本科</h4>
+            <p>百度前端技术学院小薇学院</p>
+            </div>
+            <div class="container">
+                <h4>研究生</h4>
+            <p>百度前端技术学院大斌学院</p>
+            </div>
+            
+        </div>
+        <div class="row">
+            <h3>项目经历</h3>
+            <div class="container">
+                <h4>小度小度</h4>
+            <p>作为前端工程师角色参与了ABC组件的开发</p>
+            </div>
+            <div class="container">
+                <h4>SAN Doc</h4>
+            <p>作为文档工程师参与了SAN Doc编写</p>
+            </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

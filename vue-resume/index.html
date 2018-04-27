@@ -17,7 +17,7 @@
                         <button class="button" @click='saveClick'>保存</button>
                     </li>
                     <li>
-                        <button class="button">打印</button>
+                        <button class="button" >打印</button>
                     </li>
                     <li>
                         <button class="button">分享</button>
@@ -29,11 +29,12 @@
 
             </div>
             <div class="down">
-                <button class="button">登出</button>
+                <button class="button" @click ="onLogout" v-show='!!currentUser.id'>登出</button>
             </div>
         </aside>
         <main>
             <div class="resume">
+                <div>{{currentUser.email}}</div>
                 <section>
                     <h1>
                         <editable-span v-bind:value='resume.name' v-on:update="sync('name',$event)"></editable-span>
@@ -128,33 +129,40 @@
                 </section>
             </div>
         </main>
-        <div v-show='loginVisible' class="login">
-            <form action="" class="form">
-                <button @click='onCloseLogin'>关闭</button>
+        <div v-show='loginVisible' class="login" v-cloak>
+            <form action="" class="form" @submit.prevent = "onLogin">
+                <button @click='onCloseLogin' type="button">关闭</button>
                 <h2>登录</h2>
                 <div class="row">
                     <label for="">用户名</label>
-                    <input type="text" placeholder="username" id="username">
+                    <input type="text" placeholder="username" id="username" v-model="login.email">
                 </div>
                 <div class="row">
                     <label for="">密码</label>
-                    <input type="text" placeholder="password">                    
+                    <input type="text" placeholder="password" v-model="login.password">                    
                 </div>
                 <div class="actions"></div>
-                <button>提交</button>
+                <button type="submit">提交</button>
                 <a @click="registerClick">注册</a>
-
-
-
-
-
-
-
-                
             </form>
         </div>
-        <div class="register" v-show="registerVisible">
-            注册
+        <div class="register" v-show="registerVisible" v-cloak>
+            <!-- 事件修饰符 -->
+            <form action="" @submit.prevent = "onRegister">
+                <button @click='onCloseRegister'>关闭</button>
+                <h2>注册</h2>
+                <div class="row">
+                    <label for="">邮箱</label>
+                    <input type="text" placeholder="username" id="username" v-model ="signUp.email">
+                </div>
+                <div class="row">
+                    <label for="">密码</label>
+                    <input type="text" placeholder="password" v-model = 'signUp.password'>
+                </div>
+                <div class="actions"></div>
+                <button type="submit">注册</button>
+                <a @click="showLogin">登录</a>
+            </form>
         </div>
     </div>
     <!-- Script -->

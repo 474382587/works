@@ -65,10 +65,13 @@ var app = new Vue({
             user.setPassword(this.signUp.password);
             // 设置邮箱
             user.setEmail(this.signUp.email);
-            user.signUp().then(function (user) {
+            user.signUp().then((user)=> {
                 console.log(user);
+                this.registerVisible = false;
+                console.log(this.registerVisible)
+                window.location.reload();
             }, function (error) {
-                alert(error);
+                alert("Please enter a valid Email address");
             });
         },
         onLogin(){

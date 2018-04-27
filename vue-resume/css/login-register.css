@@ -1,0 +1,49 @@
+        .register {
+            position: absolute;   
+            top: 30%;
+            left: 30%;         
+            width: 400px;
+            height: 250px;
+            background-color: #e2ecf5;
+            border: 1px solid #336799;
+
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .register button:hover {
+            cursor: pointer;
+        }
+        .register>h2 {
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            background-color:  #336799;
+            display: flex;
+            justify-content: space-between;
+            color:white;
+        }
+        .register button{
+            font-size: 16px;
+            padding: 2px;
+        }
+        .register>form{
+            width: 80%;
+            flex:1;
+            padding:40px 20px;
+        }
+        .register>form>.row,
+        .register>form>.actions
+        {
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .register>form>.actions>a{
+            color: #336799
+        }
+        .register>form>.actions>a:hover{
+            color: #9dbad4;
+            cursor: pointer;
+        }

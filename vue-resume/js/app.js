@@ -6,6 +6,8 @@ var app = new Vue({
             id:'',
             email:'',
         },
+        shareVisible:'',
+        shareLink:'',
         editing: false,
         loginVisible: false,
         registerVisible:false,
@@ -15,7 +17,27 @@ var app = new Vue({
             birthday: "Birthday",
             position: 'Postion',
             email: 'Email',
-            phone: 'Tel'
+            phone: 'Tel',
+            skills: [
+                {
+                    name: 'Skill',
+                    description: 'Description',
+                },
+            ],
+            projects: [
+                {
+                    name: 'project1',
+                    link:'Link1',
+                    keywords:'keywords',
+                    description: 'Description',
+                },
+                {
+                    name: 'project2',
+                    link: 'Link',
+                    keywords: 'keywords',
+                    description: 'Description',
+                },
+            ]
         },
         signUp:{
             email:"",
@@ -29,6 +51,32 @@ var app = new Vue({
     methods: {
         sync: function (value, event) {
             this.resume[value] = event;
+        },
+        syncSkills:function (index,prop,event) {
+            this.resume.skills[index][prop] =event;  
+        },
+        syncProjects:function (index,prop,event) {
+            this.resume.projects[index][prop] = event;  
+        },
+        addProject:function () {
+            this.resume.projects.push({
+                name: 'project1',
+                link: 'Link1',
+                keywords: 'keywords',
+                description: 'Description',
+            });
+        },
+        addSkill:function() {
+            this.resume.skills.push({
+                name:'Skill',
+                description:'Description'
+            });
+        },
+        removeSkill:function (index) {
+            this.resume.skills.splice(index,1);
+        },
+        removeProject: function (index) {
+            this.resume.projects.splice(index, 1);
         },
         saveClick: function () {
             let currentUser =  AV.User.current();
@@ -69,7 +117,10 @@ var app = new Vue({
                 console.log(user);
                 this.registerVisible = false;
                 console.log(this.registerVisible)
-                window.location.reload();
+                // window.location.reload();
+                app.currentUser.email = AV.User.current().attributes.email;
+                app.currentUser.id = AV.User.current().id;
+                this.saveResume();
             }, function (error) {
                 alert("Please enter a valid Email address");
             });
@@ -81,6 +132,7 @@ var app = new Vue({
                 this.currentUser.email = loginedUser.attributes.email;
                 console.log('user email: ' + this.currentUser.email)
                 this.loginVisible = false;
+                this.getResume();
             },(error)=> {
                 error.code === 211? alert('User does not exist.'):error.code === 210? alert('Username/Password does not match our records'):'';
             });
@@ -89,6 +141,7 @@ var app = new Vue({
             // 第一个参数是 className，第二个参数是 objectId
             var user = AV.Object.createWithoutData('User', AV.User.current().id);
             console.log(AV.User.current().id);
+            console.log(this.resume);
             // 修改属性
             user.set('resume', this.resume);
             // 保存到云端
@@ -98,6 +151,18 @@ var app = new Vue({
             AV.User.logOut();   
             alert('Lougout!');
             window.location.reload();
+        },
+        getResume:function() {
+            var query = new AV.Query('User');
+            query.get(this.currentUser.id).then((resume)=> {
+                // 成功获得实例
+                // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
+                console.log(resume.attributes.resume);
+                Object.assign(this.resume,resume.attributes.resume);
+            }, function (error) {
+                // 异常处理
+                console.log('error')
+            });
         }
     }
 });
@@ -105,8 +170,9 @@ var app = new Vue({
 if (AV.User.current()){
     app.currentUser.email = AV.User.current().attributes.email;
     app.currentUser.id = AV.User.current().id;
-    
+    app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.id;
+    app.getResume();
 }
 else{
-    
+
 }

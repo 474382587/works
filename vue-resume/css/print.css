@@ -1,0 +1,10 @@
+.page>aside{
+    display: none;
+}
+main{
+    overflow: visible !important;
+    border:none !important;
+}
+.disappearPrint{
+    display: none;
+}

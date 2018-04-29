@@ -144,6 +144,10 @@ var app = new Vue({
         },
         onShare:function() {
                 this.shareVisible = true;  
+                app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.id;
+        },
+        onPrint:function() {
+            window.print();
         },
         saveResume:function() {
             // 第一个参数是 className，第二个参数是 objectId
@@ -192,7 +196,6 @@ let userId;
 if (AV.User.current()){
     app.currentUser.email = AV.User.current().attributes.email;
     app.currentUser.id = AV.User.current().id;
-    app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.id;
     app.getResume();
 }
 else{

@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/login-register.css">
+    <link rel="stylesheet" href="./css/print.css" media="print">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
                         <button class="button" @click='saveClick'>Save</button>
                     </li>
                     <li>
-                        <button class="button">Print</button>
+                        <button class="button" @click="onPrint">Print</button>
                     </li>
                     <li>
                         <button class="button" @click="onShare">Share</button>
@@ -30,7 +31,7 @@
                 </ul>
             </div>
             <div class="down" v-show='!!currentUser.id' v-cloak>
-                <button class="button" @click="onLogout" >登出</button>
+                <button class="button" @click="onLogout" >Logout</button>
             </div>
         </aside>
 
@@ -69,10 +70,10 @@
                             <div class="description">
                                 <editable-span v-bind:preview='preview':value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
                             </div>
-                            <span v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
+                            <span class="disappearPrint" v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
                         </li>
-                        <li>
-                            <span v-on:click="addSkill" v-show='!preview'>添加</span>
+                        <li v-show='!preview' class="disappearPrint">
+                            <span v-on:click="addSkill" >添加</span>
                         </li>
 
                     </ul>
@@ -96,10 +97,10 @@
                             <p class="description">
                                 <editable-span v-bind:preview='preview':value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span>
                             </p>
-                            <p v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
+                            <p class="disappearPrint" v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
                         </li>
-                        <li>
-                            <span @click="addProject" v-show='!preview'>Add</span>
+                        <li class="disappearPrint" v-show='!preview'>
+                            <span @click="addProject">Add</span>
                         </li>
                     </ol>
                 </section>

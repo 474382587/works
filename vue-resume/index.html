@@ -12,7 +12,7 @@
 
 <body>
     <div class="page" id="app">
-        <aside>
+        <aside v-show='!!currentUser.id && !preview' v-cloak>
             <div class="upper">
                 <ul class="actions">
                     <li>
@@ -22,32 +22,39 @@
                         <button class="button">Print</button>
                     </li>
                     <li>
-                        <button class="button" @click="shareVisible=true">Share</button>
+                        <button class="button" @click="onShare">Share</button>
                     </li>
                     <li>
                         <button class="button">Theme</button>
                     </li>
                 </ul>
+            </div>
+            <div class="down" v-show='!!currentUser.id' v-cloak>
+                <button class="button" @click="onLogout" >登出</button>
+            </div>
+        </aside>
 
+        <aside v-show='!currentUser.id && !preview' v-cloak>
+            <div class="upper">
             </div>
             <div class="down">
-                <button class="button" @click="onLogout" v-show='!!currentUser.id'>登出</button>
+                <button class="button" @click="showLogin">Login</button>
             </div>
         </aside>
         <main>
             <div class="resume">
-                <div>{{currentUser.email}}</div>
+                <div v-show='preview'>wanna build your own? click <a v-bind:href="url">here</a></div>
                 <section>
                     <h1>
-                        <editable-span v-bind:value='resume.name' v-on:update="sync('name',$event)"></editable-span>
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.name' v-on:update="sync('name',$event)"></editable-span>
                     </h1>
 
                     <div>
-                        <editable-span v-bind:value='resume.gender' v-on:update="sync('gender',$event)"></editable-span> |
-                        <editable-span v-bind:value='resume.birthday' v-on:update="sync('birthday',$event)"></editable-span>|
-                        <editable-span v-bind:value='resume.position' v-on:update="sync('position',$event)"></editable-span>|
-                        <editable-span v-bind:value='resume.email' v-on:update="sync('email',$event)"></editable-span>|
-                        <editable-span v-bind:value='resume.phone' v-on:update="sync('phone',$event)"></editable-span>
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.gender' v-on:update="sync('gender',$event)"></editable-span> |
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.birthday' v-on:update="sync('birthday',$event)"></editable-span>|
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.position' v-on:update="sync('position',$event)"></editable-span>|
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.email' v-on:update="sync('email',$event)"></editable-span>|
+                        <editable-span v-bind:preview='preview'v-bind:value='resume.phone' v-on:update="sync('phone',$event)"></editable-span>
                     </div>
 
                 </section>
@@ -55,15 +62,17 @@
                     <h2>技能</h2>
                     <ul>
                         <li v-for='skill,index in resume.skills'>
-                            <h3><editable-span class="name" :value="skill.name" @update='syncSkills(`${index}`,"name",$event)'></editable-span></h3>
+                            <h3>
+                                <editable-span v-bind:preview='preview'class="name" :value="skill.name" @update='syncSkills(`${index}`,"name",$event)'></editable-span>
+                            </h3>
                             <br>
                             <div class="description">
-                                <editable-span :value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
+                                <editable-span v-bind:preview='preview':value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
                             </div>
-                            <span v-if="index>0" @click='removeSkill(index)'>delete</span>
+                            <span v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
                         </li>
                         <li>
-                            <span v-on:click="addSkill">添加</span>
+                            <span v-on:click="addSkill" v-show='!preview'>添加</span>
                         </li>
 
                     </ul>
@@ -75,20 +84,22 @@
                             <header>
                                 <div class="start">
                                     <h3 class="name">
-                                        <editable-span :value="project.name" @update="syncProjects(`${index}`,'name',$event)"></editable-span>
+                                        <editable-span v-bind:preview='preview':value="project.name" @update="syncProjects(`${index}`,'name',$event)"></editable-span>
                                     </h3>
-                                   <editable-span :value="project.link" @update="syncProjects(`${index}`,'link',$event)"></editable-span>
-                                    
+                                    <editable-span v-bind:preview='preview':value="project.link" @update="syncProjects(`${index}`,'link',$event)"></editable-span>
+
                                 </div>
                                 <div class="end">
-                                    <editable-span :value="project.keywords" @update="syncProjects(`${index}`,'keywords',$event)"></editable-span>
+                                    <editable-span v-bind:preview='preview':value="project.keywords" @update="syncProjects(`${index}`,'keywords',$event)"></editable-span>
                                 </div>
                             </header>
-                            <p class="description"><editable-span :value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span></p>
-                            <p v-if="index>0" @click="removeProject(index)">delete</p>
+                            <p class="description">
+                                <editable-span v-bind:preview='preview':value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span>
+                            </p>
+                            <p v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
                         </li>
                         <li>
-                            <span @click="addProject">Add</span>
+                            <span @click="addProject" v-show='!preview'>Add</span>
                         </li>
                     </ol>
                 </section>
@@ -115,6 +126,7 @@
 
             </form>
         </div>
+        
         <div class="register" v-show="registerVisible" v-cloak>
             <!-- 事件修饰符 -->
             <h2>Register
@@ -138,7 +150,7 @@
             </form>
         </div>
         <div v-show="shareVisible" class="share">
-            <textarea readonly>shareLink</textarea>
+            <textarea readonly>{{shareLink}}</textarea>
         </div>
     </div>
     <!-- Script -->
@@ -147,12 +159,7 @@
     <script src='js/av.js'></script>
     <script src='js/component.js'></script>
     <script src='js/app.js'></script>
-    <script>
-
-
-
-
-    </script>
+    <script></script>
 </body>
 
 </html>

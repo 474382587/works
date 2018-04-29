@@ -6,7 +6,8 @@ var app = new Vue({
             id:'',
             email:'',
         },
-        shareVisible:'',
+        preview:false,
+        shareVisible:false,
         shareLink:'',
         editing: false,
         loginVisible: false,
@@ -46,9 +47,11 @@ var app = new Vue({
         login:{
             email:'',
             password:''
-        }
+        },
+        url:'',
     },
     methods: {
+        //Resume DOM functions
         sync: function (value, event) {
             this.resume[value] = event;
         },
@@ -60,8 +63,8 @@ var app = new Vue({
         },
         addProject:function () {
             this.resume.projects.push({
-                name: 'project1',
-                link: 'Link1',
+                name: 'project',
+                link: 'Link',
                 keywords: 'keywords',
                 description: 'Description',
             });
@@ -78,6 +81,8 @@ var app = new Vue({
         removeProject: function (index) {
             this.resume.projects.splice(index, 1);
         },
+
+        //Login/Utility DOM functions
         saveClick: function () {
             let currentUser =  AV.User.current();
             console.log(currentUser);
@@ -137,6 +142,9 @@ var app = new Vue({
                 error.code === 211? alert('User does not exist.'):error.code === 210? alert('Username/Password does not match our records'):'';
             });
         },
+        onShare:function() {
+                this.shareVisible = true;  
+        },
         saveResume:function() {
             // 第一个参数是 className，第二个参数是 objectId
             var user = AV.Object.createWithoutData('User', AV.User.current().id);
@@ -163,10 +171,24 @@ var app = new Vue({
                 // 异常处理
                 console.log('error')
             });
+        },
+        getPreviewResume:function(id) {
+            var query = new AV.Query('User');
+            query.get(id).then((resume) => {
+                // 成功获得实例
+                // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
+                console.log(resume.attributes.resume);
+                Object.assign(this.resume, resume.attributes.resume);
+            }, function (error) {
+                // 异常处理
+                console.log('error')
+            });
+            this.preview = true;
         }
     }
 });
-
+app.url = location.origin + location.pathname;
+let userId;
 if (AV.User.current()){
     app.currentUser.email = AV.User.current().attributes.email;
     app.currentUser.id = AV.User.current().id;
@@ -174,5 +196,12 @@ if (AV.User.current()){
     app.getResume();
 }
 else{
-
+    let searchParameter = location.search;
+    let regex = /user_id=([^&]+)/;
+    let matches = searchParameter.match(regex);
+    if(matches){
+        userId = matches[1];
+        console.log(userId)
+        app.getPreviewResume(userId);
+    }
 }

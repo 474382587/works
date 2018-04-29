@@ -1,10 +1,10 @@
 Vue.component('editable-span', {
-    props: ['value'],
+    props: ['preview','value'],
     template: `
             <span class="edit">
                 <span>{{value}}</span>
                 <input v-show="editing" type="text" @input='notify'></input>
-                <button v-on:click="editing = !editing">Edit</button>
+                <button v-show='!preview' v-on:click="editing = !editing">Edit</button>
             </span>
             `,
     data: function () {

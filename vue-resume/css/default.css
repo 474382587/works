@@ -62,16 +62,21 @@ body.default .resume {
         body.default .edit {
         position: relative;
     }
-
+/*
+    edit button
+*/
     body.default .edit>button {
         display: none;
         position: absolute;
+        z-index:1;
+        left: calc(100% + 1px);
+        bottom: 0;
+        padding: 4px;
+        font-size: 16px;
     }
 
     body.default .edit:hover button {
         display: inline-block;
-        left: 0;
-        top: 100%;
     }
 
     body.default .resume>section>div {

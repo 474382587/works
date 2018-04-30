@@ -72,4 +72,13 @@
             padding: 10px;
         }
 
-        
+        span.addNew{
+            font-family: cursive;
+            text-decoration: underline; 
+            cursor: pointer;
+            color: orange;
+        }
+        .delete{
+            color: red;
+            cursor: pointer;
+        }

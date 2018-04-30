@@ -66,12 +66,15 @@ body.dark .resume {
     body.dark .edit>button {
         display: none;
         position: absolute;
+        z-index:1;
+        left: calc(100% + 1px);
+        bottom: 0;
+        padding: 4px;
+        font-size: 16px;
     }
 
     body.dark .edit:hover button {
         display: inline-block;
-        left: 0;
-        top: 100%;
     }
 
     body.dark .resume>section>div {

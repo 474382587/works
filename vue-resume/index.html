@@ -73,10 +73,10 @@
                             <div class="description">
                                 <editable-span v-bind:preview='preview':value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
                             </div>
-                            <span class="disappearPrint" v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
+                            <span class="disappearPrint delete" v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
                         </li>
                         <li v-show='!preview' class="disappearPrint">
-                            <span v-on:click="addSkill" >添加</span>
+                            <span v-on:click="addSkill" class="addNew">Add</span>
                         </li>
 
                     </ul>
@@ -100,10 +100,10 @@
                             <p class="description">
                                 <editable-span v-bind:preview='preview':value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span>
                             </p>
-                            <p class="disappearPrint" v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
+                            <p class="disappearPrint delete" v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
                         </li>
                         <li class="disappearPrint" v-show='!preview'>
-                            <span @click="addProject">Add</span>
+                            <span @click="addProject" class="addNew">Add</span>
                         </li>
                     </ol>
                 </section>

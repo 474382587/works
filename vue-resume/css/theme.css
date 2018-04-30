@@ -1,0 +1,22 @@
+.theme{
+    border:1px solid rgb(83, 151, 204);
+    position: absolute;
+    left: 5%;
+    top:5%;
+    width: 10%;
+    min-width: 240px;
+    min-height: 2em;
+    display: flex;
+    padding: 5px;
+    justify-content: space-around;
+    background-color: #DFEBF4;
+    box-shadow: 0 0 100px 0 rgba(0,0,0,0.8);
+}
+.theme > button{
+    padding: 4px;
+    flex:1;
+}
+.theme>button:nth-child(2){
+    background: black;
+    color:white;
+}

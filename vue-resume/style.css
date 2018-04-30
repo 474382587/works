@@ -157,65 +157,7 @@
             position: relative;
         }
 
-        .login {
-            position: absolute;   
-            top: 30%;
-            left: 30%;         
-            width: 400px;
-            height: 250px;
-            background-color: #e2ecf5;
-            border: 1px solid #336799;
-
-            display:flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .login button:hover {
-            cursor: pointer;
-        }
-        .login>h2 {
-            padding: 10px;
-            width: 100%;
-            text-align: center;
-            background-color:  #336799;
-            display: flex;
-            justify-content: space-between;
-            color:white;
-        }
-        .login button{
-            font-size: 16px;
-            padding: 2px;
-        }
-        .login>form{
-            width: 80%;
-            flex:1;
-            padding:40px 20px;
-        }
-        .login>form>.row,
-        .login>form>.actions
-        {
-            margin: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .login>form>.actions>a{
-            color: #336799
-        }
-        .login>form>.actions>a:hover{
-            color: #9dbad4;
-            cursor: pointer;
-        }
-
-        .register {
-            width: 300px;
-            height: 400px;
-            display: block;
-            position: absolute;
-            top: 30%;
-            left: 40%;
-            background: rgb(228, 222, 222);
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
+main.dark {
+    background-color:#3e3e3e;
+    color: white;
+}

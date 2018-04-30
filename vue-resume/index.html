@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/login-register.css">
+    <link rel="stylesheet" href="./css/theme.css">
     <link rel="stylesheet" href="./css/print.css" media="print">
 </head>
 
@@ -26,7 +27,7 @@
                         <button class="button" @click="onShare">Share</button>
                     </li>
                     <li>
-                        <button class="button">Theme</button>
+                        <button class="button" @click='onTheme'>Theme</button>
                     </li>
                 </ul>
             </div>
@@ -42,7 +43,7 @@
                 <button class="button" @click="showLogin">Login</button>
             </div>
         </aside>
-        <main>
+        <main :class="themeClass">
             <div class="resume">
                 <div v-show='preview'>wanna build your own? click <a v-bind:href="url">here</a></div>
                 <section>
@@ -152,6 +153,11 @@
         </div>
         <div v-show="shareVisible" class="share">
             <textarea readonly>{{shareLink}}</textarea>
+        </div>
+        <div v-show="themeVisible" class="theme">
+            <button @click="onDefaultTheme">Default</button>
+            <button @click="onDarkTheme">Dark</button>
+            <button @click='onCloseTheme'>Close</button>
         </div>
     </div>
     <!-- Script -->

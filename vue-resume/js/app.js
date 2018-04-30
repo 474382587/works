@@ -6,12 +6,14 @@ var app = new Vue({
             id:'',
             email:'',
         },
+        themeClass:'',
         preview:false,
         shareVisible:false,
         shareLink:'',
         editing: false,
         loginVisible: false,
         registerVisible:false,
+        themeVisible: true,
         resume: {
             name: 'Name',
             gender: 'Gender',
@@ -149,6 +151,18 @@ var app = new Vue({
         onPrint:function() {
             window.print();
         },
+        onTheme:function() {
+            this.themeVisible = true;
+        },
+        onCloseTheme:function() {
+            this.themeVisible = false;
+        },
+        onDefaultTheme:function () {
+            this.themeClass = '';
+        },
+        onDarkTheme:function () {
+            this.themeClass="dark";
+        },
         saveResume:function() {
             // 第一个参数是 className，第二个参数是 objectId
             var user = AV.Object.createWithoutData('User', AV.User.current().id);
@@ -188,7 +202,7 @@ var app = new Vue({
                 console.log('error')
             });
             this.preview = true;
-        }
+        },
     }
 });
 app.url = location.origin + location.pathname;

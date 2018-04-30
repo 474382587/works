@@ -39,7 +39,7 @@
 
         .page>aside {
             /* width: 200px; */
-            border-right: 1px solid blue;
+            border-right: 1px solid rgb(175, 175, 179);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -49,7 +49,7 @@
         }
 
         .page>main {
-            border: 1px solid red;
+            /* border: 1px solid red; */
             flex-grow: 1;
             overflow: auto;
         }
@@ -72,92 +72,4 @@
             padding: 10px;
         }
 
-        .resume {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .resume>section {
-            margin: 50px 0;
-        }
-
-        .resume>section>h1 {
-            text-align: center;
-            margin: 20px 20px;
-        }
-
-        .resume>section>h2 {
-            text-align: center;
-            margin: 20px 20px;
-        }
-
-        .resume>section>.profile {
-            text-align: center;
-        }
-
-        .resume>.skills>ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .resume>.skills>ul>li {
-            width: 48%;
-            border: 1px solid #e3e3e3;
-            margin-top: 10px;
-            padding: 10px;
-        }
-
-        .resume>.projects {}
-
-        .resume>.projects>ol {}
-
-        .resume>.projects>ol>li {
-            margin: 30px 0;
-            padding: 10px;
-        }
-
-        .resume>.projects header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .resume>.projects header .name {
-            margin-right: 1em;
-        }
-
-        .resume>.projects header>.start {
-            display: flex;
-            align-items: center;
-        }
-
-        .edit {
-        position: relative;
-    }
-
-    .edit>button {
-        display: none;
-        position: absolute;
-    }
-
-    .edit:hover button {
-        display: inline-block;
-        left: 0;
-        top: 100%;
-    }
-
-    .resume>section>div {
-        margin: 0 auto;
-        text-align: center;
-        ;
-    }
-    #app {
-            position: relative;
-        }
-
-main.dark {
-    background-color:#3e3e3e;
-    color: white;
-}
+        

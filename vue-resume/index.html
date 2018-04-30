@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./css/login-register.css">
     <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/dark.css">
+    <link rel="stylesheet" href="./css/default.css">
     <link rel="stylesheet" href="./css/print.css" media="print">
 </head>
 
@@ -43,7 +45,7 @@
                 <button class="button" @click="showLogin">Login</button>
             </div>
         </aside>
-        <main :class="themeClass">
+        <main>
             <div class="resume">
                 <div v-show='preview'>wanna build your own? click <a v-bind:href="url">here</a></div>
                 <section>

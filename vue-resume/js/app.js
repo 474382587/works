@@ -6,7 +6,6 @@ var app = new Vue({
             id:'',
             email:'',
         },
-        themeClass:'',
         preview:false,
         shareVisible:false,
         shareLink:'',
@@ -158,10 +157,10 @@ var app = new Vue({
             this.themeVisible = false;
         },
         onDefaultTheme:function () {
-            this.themeClass = '';
+            document.body.className = 'default';
         },
         onDarkTheme:function () {
-            this.themeClass="dark";
+            document.body.className ="dark";
         },
         saveResume:function() {
             // 第一个参数是 className，第二个参数是 objectId

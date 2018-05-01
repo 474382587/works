@@ -1,0 +1,26 @@
+*,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: montserrat;
+        font-weight: 200;
+    }
+
+    input {
+        background-color: inherit;
+    }
+
+    h1 {
+        font-size: 82px;
+        font-weight: 300;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }

@@ -1,0 +1,67 @@
+header.masthead {
+        background-image: url('../images/top-banner.jpg');
+        background-size: cover;
+        height: 990px;
+        position: relative;
+        box-shadow: 0 0 0 900px rgba(0, 0, 0, .65) inset;
+        padding: 150px;
+        color: white;
+    }
+
+    header>h1 {
+        padding-top: 50px;
+        margin: 0 auto;
+        text-align: center;
+        font-weight: 200;
+    }
+
+    header>h2 {
+        width: 960px;
+        text-align: center;
+        padding: 30px;
+        margin: 50px auto 70px;
+        font-family: montserrat;
+        font-weight: 200;
+    }
+
+    header>.register {
+        width: 970px;
+        margin: 20px auto;
+        border: 1px solid #d3d3d3;
+        padding: 60px 0 10px;
+    }
+
+    header>.register>h3 {
+        margin: 0 auto;
+        text-align: center;
+        font-weight: 300;
+    }
+
+    header>.register>p {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    header>.register>form {
+        text-align: center;
+        margin: 30px auto;
+    }
+
+    header>.register>form>button {
+        height: 50px;
+        width: 125px;
+        font-weight: 300;
+        text-shadow: 2px;
+    }
+
+    header>.register>form>input {
+        font-size: 18px;
+        padding: 2px 20px;
+        color: white;
+        height: 50px;
+        width: 290px;
+        margin-right: 25px;
+        outline: none;
+        border:1px solid #d3d3d3;
+
+    }

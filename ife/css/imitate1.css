@@ -1,6 +1,4 @@
-*,
-    *::before,
-    *::after {
+* {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -23,4 +21,9 @@
 
     h3 {
         font-size: 22px;
+    }
+    hr {
+        border: 0; 
+        height: 1px;
+        background-color: #e3e3e3;
     }

@@ -12,27 +12,57 @@
 
 </head>
 <style>
-    main{
+    main {
         text-align: center;
+    }
+
+    main>section.intro {
+        padding: 80px 0;
+        margin: 0 auto;
         width: 960px;
     }
-    main>section.intro{
-        padding:80px 0;
-        
-    }
-    main>section.intro>h2{
-        font-size: 52px;
 
+    main>section.intro>h2 {
+        font-weight: 300;
+        font-size: 52px;
         margin: 40px auto 0;
     }
 
+    main>section.intro>.properties {
+        margin-top: 80px;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: left;
+    }
+
+    main>section.intro>.properties>.property {
+        width: 50%;
+        display: flex;
+        margin: 30px 0;
+        padding-right: 40px;
+    }
+    main>section.intro>.properties>.property p{
+        padding: 4px;
+        line-height: 1.2;
+        margin-top: 14px;
+    }
+
+    main>section.intro>.properties>img {
+        height: 60px;
+    }
+
+    main>section.intro>.properties>.property>div.text {
+        padding: 0 20px 0 0;
+        flex:1;
+    }
 </style>
 
 <body>
     <header class="masthead">
         <table></table>
         <h1>Hello World</h1>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, dignissimos natus neque dolorem architecto errorasd wdfdhdsd
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, dignissimos natus neque dolorem architecto errorasd
+            wdfdhdsd
         </h2>
 
         <div class="register">
@@ -50,6 +80,44 @@
         <section class="intro">
             <p>BOATLOADS OF AWESOME</p>
             <h2>Ready-made customizable, HTML landing page sections</h2>
+            <div class="properties">
+                <div class="property">
+                    <div>
+                        <img src="./images/01.jpg" alt="01">
+                    </div>
+                    <div class="text">
+                        <h2>Mobile First</h2>
+                        <p>All modulz are built mobile first for maximum device compatibility</p>
+                    </div>
+                </div>
+                <div class="property">
+                    <div>
+                        <img src="./images/02.jpg" alt="02">
+                    </div>
+                    <div class="text">
+                        <h2>Accessibility</h2>
+                        <p>Support for IE8, mobile and tablet devices, screenreaders and color blind</p>
+                    </div>
+                </div>
+                <div class="property">
+                    <div>
+                        <img src="./images/03.jpg" alt="03">
+                    </div>
+                    <div class="text">
+                        <h2>Fluid Typography</h2>
+                        <p>On different screen sizes, fonts automagtically scale with the viewport</p>
+                    </div>
+                </div>
+                <div class="property">
+                    <div>
+                        <img src="./images/04.jpg" alt="04">
+                    </div>
+                    <div class="text">
+                        <h2>Customazation</h2>
+                        <p>Make any desugb you own using the style editor. Personalize fonts, colors, and layouts to create the custom look you want</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 

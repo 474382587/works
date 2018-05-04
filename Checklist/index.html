@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checklist</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        div.register{
+            border: 1px solid red;
+            min-width: 400px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;    
+        }
+        div.register>button{
+        }
+    </style>
+</head>
+<div id = "app">
+    <ul>
+        <li v-for='item,index in items'>
+            <checkbox :checked='item.isChecked' :task='item.message' @update='show(index,$event)' @updates='display(index,$event)' @delete-me='deleteOne(index)'></checkbox>
+            
+        </li>
+        <li class = "add">
+            <button @click='saveList'>save</button>
+            <button @click = 'addOne'>Add item</button>
+        </li>
+    </ul>
+    <div class="login">
+        <button class="register" @click='registerVisible=true'>
+            register
+        </button>
+        <button>close</button>
+    </div>
+    <div class="register" v-show='registerVisible'>
+        email<input type="email" class="email" v-model='userRegister.email'>
+        password<input type="password" class="password" v-model='userRegister.password'>
+        <button @click='signUp'>sign up</button>
+        <button @click='registerVisible=false'>Close</button>
+    </div>
+</div>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBboVmMUWpvMJguKsiVx2NexWbueciDDvA",
+            authDomain: "checklist-60ef5.firebaseapp.com",
+            databaseURL: "https://checklist-60ef5.firebaseio.com",
+            projectId: "checklist-60ef5",
+            storageBucket: "checklist-60ef5.appspot.com",
+            messagingSenderId: "893586939073"
+        };
+        firebase.initializeApp(config);
+    </script>
+        
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/component.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

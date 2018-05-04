@@ -1,0 +1,46 @@
+ul{
+            list-style-type:none; 
+            max-width:800px;
+            border:1px solid #e3e3e3;
+            margin: 40px auto;
+            padding: 40px;
+        }
+        ul>li>.checklist>span{
+            font-size: 24px;
+        }
+        .checklist>span{
+            position: relative;
+            min-width:calc(100% - 100px);     
+            display: inline-block;
+        }
+        input[type='text']{
+            display: inline-block;
+            min-width:calc(100% - 100px);
+            /* overflow: scroll; */
+            font-size: 20px;
+        }
+        li:hover>div>span>.edit-button{
+            display: inline-block;
+        }
+        .edit-button{
+            position: absolute;
+            left: calc(100% + 10px);
+            bottom: 0;
+            display: none;
+        }
+        .delete{
+            position: absolute;
+            left: calc(100% + 60px);
+            bottom: 0;
+            display: none;
+        }
+        li:hover >div>span> .delete{
+            display: block;
+        }
+        .checklist{
+            margin: 10px 0;
+        }
+        .add{
+            padding: 20px 100px;
+            text-align: right;
+        }

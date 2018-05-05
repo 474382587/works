@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+
+
+    <style>
+        @media screen and (max-width: 680px) {
+            body>main>div.user {
+                display: none;
+            }
+        }
+        
+        /*右边*/
+
+        main {
+            flex: 1;
+            background-color: cornflowerblue;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* max-height: 100vh; */
+            /* flex-wrap: wrap; */
+        }
+
+
+        main>.bottom>section.actions {
+            max-width: 65%;
+            background-color: white;
+            max-height: 100px;
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+            border-left: 1px solid rgb(206, 208, 218);
+        }
+         main>.bottom>section.actions *{
+             align-self: center;
+            white-space: nowrap;
+}
+
+        main>.bottom>section.actions>h3 {
+            padding-right: 30px;
+            position: relative;
+        }
+
+        main>.bottom>section.actions>h3::after {
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            position: absolute;
+            border: 5px solid rgb(43, 190, 75);
+            border-radius: 50%;
+            right: 5px;
+            top: 40%;
+        }
+
+        main>.bottom>section.actions>.wrapper {
+            display: flex;
+        }
+
+        main>.bottom>section.actions>.wrapper>div {
+            border: 1px solid rgb(206, 208, 218);
+            display: flex;
+            border-radius: 6px;
+            background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(233, 233, 230) 100%);
+        }
+
+        main>.bottom>section.actions>.wrapper>div>img {
+            border-left: 1px solid rgb(206, 208, 218);
+            height: 30px;
+            width: 30px;
+            align-self: center;
+        }
+
+        main>.bottom>section.actions>.wrapper>div>img:first-child {
+            border-left: none;
+        }
+
+        main>.bottom>section.actions>.wrapper>p{
+            border-left: 1px solid rgb(206, 208, 218);
+            margin: 0 20px 0;
+            padding-left: 20px;
+            align-self: center;
+            color: rgb(86,104,138);
+        }
+        main>.bottom>section.actions>.wrapper>div>.arrow-right{
+            height: 30px;
+            width: 35px;
+            position: relative;
+        }
+        main>.bottom>section.actions>.wrapper>div>.arrow-right::after{
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            border: 7px solid transparent;
+            border-left-color: rgb(206, 208, 218);
+            position: absolute;
+            top: 8px;
+            left: 15px;
+        }
+        main>.bottom>section.actions>.wrapper>div>.arrow-left{
+            height: 30px;
+            width: 35px;
+            border-right: 1px solid rgb(206, 208, 218);
+            position: relative;
+        }
+        main>.bottom>section.actions>.wrapper>div>.arrow-left::after{
+            content: '';
+            display: block;
+            height: 0;
+            width: 0;
+            border: 7px solid transparent;
+            border-right-color: rgb(206, 208, 218);
+            position: absolute;
+            top: 8px;
+            right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="apps">
+            <div class="top">
+                <div class="app"></div>
+                <div class="app"></div>
+                <div class="app"></div>
+                <div class="app"></div>
+            </div>
+            <div class="bottom">
+                <div class="setting"></div>
+                <div class="setting"></div>
+            </div>
+        </div>
+        <div class="overview">
+            <div class="blocks">
+                <div class="block">
+                    <h3>
+                        <span>MENU</span>
+                        <img src="./images/3.png" alt="">
+                    </h3>
+                    <ul>
+                        <li>Overview</li>
+
+                        <li>Sales
+                            <span>54</span>
+                        </li>
+
+                        <li>Your Stuff</li>
+
+                        <li>Analytics & Targeting</li>
+
+                        <li>What's New</li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <h3>
+                        <span>YOUR PRODUCTS</span>
+                        <img src="./images/3.png" alt="">
+                    </h3>
+                    <ul>
+                        <li>Overview</li>
+
+                        <li>Sales
+                        </li>
+
+                        <li>Your Stuff</li>
+
+                        <li>Analytics & Targeting</li>
+
+                        <li>What's New</li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <h3>
+                        <span>DASHBOARD</span>
+                        <img src="./images/3.png" alt="">
+                    </h3>
+                    <ul>
+                        <li class="highlight">Messages
+                            <span>21</span>
+                        </li>
+
+                        <li>Connections
+                        </li>
+
+                        <li>Integrations
+                            <span class="warning">!</span>
+                        </li>
+
+                        <li>Account Settings</li>
+
+                        <li>App Settings</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="status">
+                <p>
+                    <span>Monthly Goals</span>
+                    <span>
+                        <b>$580</b>/$3200</span>
+                </p>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <div class="top">
+
+            <section class="title">
+                <h2>Messages</h2>
+                <div class="user">
+                    <img src="./images/avatar6.png" alt="">
+                    <div class="info">
+                        <h4>Jordan J.</h4>
+                        <p>Administrator</p>
+                    </div>
+                    <img src="./images/down_arrow.png" alt="">
+                </div>
+            </section>
+        </div>
+        <div class="bottom">
+            <section class="search">
+                <div class="wrapper">
+                    <input type="text" placeholder="Search">
+                    <img src="./images/search.png" alt="">
+                </div>
+            </section>
+            <section class="actions">
+                <h3>
+                    Bessie berry
+                </h3>
+                <div class="wrapper">
+                    <div>
+                        <img src="./images/person.png" alt="">
+                        <img src="./images/upload.png" alt="">
+                        <img src="./images/trash.png" alt="">
+                    </div>
+                    <p>
+                        1 of 28
+                    </p>
+                    <div>
+                        <div class="arrow-left"></div>
+                        <div class="arrow-right"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
+
+
+    </main>
+</body>
+
+</html>

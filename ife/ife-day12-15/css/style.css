@@ -1,0 +1,261 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+}
+    /* 左边 */
+aside{
+    display: flex;
+}
+aside>div.apps{
+    background-color: rgb(29,37,49);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* height: 100%; */
+}
+aside>div.apps>.top{
+    /* 删掉 */    
+    min-width: 100px;
+}
+aside>div.apps>.top>.app{
+    margin: 20px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    /* text-align: center; */
+}
+aside>div.apps>.top>.app:nth-child(1){
+        background-image: url('../images/mail.png'), linear-gradient( to top, rgb(27,147,237) 0%,rgb(46,161,247) 100%);
+        position: relative;
+    
+}
+aside>div.apps>.top>.app:nth-child(1)::before{
+    content: "";
+    display:block;
+    border: 5px solid transparent;
+    border-left:5px solid rgb(46,161,247);
+    height: 0%;
+    width: 0;
+    position: absolute;
+    top:calc(50% - 5px);
+    left:-20px;
+}
+aside>div.apps>.top>.app:nth-child(2){
+    background-image: url('../images/rocket.png'),linear-gradient( to top, rgb(128,92,230) 0%,rgb(157,143,227) 100%);
+}
+aside>div.apps>.top>.app:nth-child(3){
+    background-image: url('../images/console.png'),linear-gradient( to top, rgb(204,40,12) 0%,rgb(246,83,55) 100%);
+}
+aside>div.apps>.top>.app:nth-child(4){
+    border:2px solid rgb(45,56,72);
+    background-image: url('../images/add.png');
+    background-size: cover;
+}
+aside>div.apps>.bottom{
+    display: flex;
+}
+aside>div.apps>.bottom>.setting:nth-child(1){
+    background-image: url("../images/1.png");
+    height: 16px;
+    width: 16px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+aside>div.apps>.bottom>.setting:nth-child(2){
+    background-image: url("../images/2.png");
+    height: 16px;
+    width: 16px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+
+        aside>div.overview {
+            /* 删掉 */
+            min-width: 300px;
+            background-color: rgb(34, 44, 60);
+            overflow: auto;
+
+            padding: 25px 0;
+            max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+aside>div.overview>*{
+    padding-left: 25px;
+}
+aside>div.overview>.status{
+    box-sizing: content-box;
+    height: 60px;
+    padding: 20px 0px 20px 25px;
+    color: white;
+    width: 250px;
+}
+aside>div.overview>.status>p{
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+aside>div.overview>.status>div.progress-bar{
+    width: 100%;
+    height: 5px;
+    background-color: rgb(91, 103, 121);;
+    border-radius: 5px;
+}
+aside>div.overview>.status>div.progress-bar>.progress{
+    width: 20%;
+    height: 100%;
+    background:linear-gradient(to right,rgb(170, 93, 243) 0%, rgb(156,142,227) 100%);
+    border-radius: 5px;
+}
+aside>div.overview>.blocks{
+    overflow: auto;
+}
+        aside>div.overview>.blocks>.block {
+            /* border-bottom: 1px solid rgba(91,103,121,.3);  */
+            padding-bottom: 5px;
+        }
+
+        aside>div.overview>.blocks>.block>h3 {
+            padding-top: 25px;
+            border-top: 1px solid rgba(91, 103, 121, .3);
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
+            align-items: center;
+            color: rgb(91, 103, 121);
+        }
+
+        aside>div.overview>.blocks>.block:first-child>h3 {
+            padding-top: 0;
+            border: none;
+        }
+
+        aside>div.overview>.blocks>.block>ul {
+            width: 250px;
+            list-style: none;
+        }
+
+        aside>div.overview>.blocks>.block>ul>li {
+            height: 24px;
+            margin: 20px 0;
+            color: rgb(183, 192, 205);
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            
+        }
+        aside>div.overview>.blocks>.block:last-child>ul>li:first-child::before{
+            content: "";
+            display:block;
+            height: 0%;
+            width: 0;
+            border: 5px solid transparent;
+            border-left:5px solid rgb(46,161,247);
+            position: absolute;
+            top:calc(50% - 6px);
+            left:-25px;
+        }
+        aside>div.overview>.blocks>.block>ul>li>span:last-child {
+            background-color: rgb(40, 157, 244);
+            color: white;
+            line-height: 18px;
+            height: 24px;
+            font-size: 14px;
+            border-radius: 16px;
+            padding: 4px 10px;
+            text-align: center;
+        }
+
+        aside>div.overview>.blocks>.block>ul>li>span.warning {
+            background-color: rgb(219, 57, 28);
+            font-size: 14px;
+        }
+
+        aside>div.overview>.blocks>.block>ul>li.highlight {
+            color: #fff;
+        }
+
+                main>.top>section.title {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        main>.top>section.title>h2 {
+            padding: 0 10px
+        }
+
+        main>.top>section.title>div.user {
+            min-width: 240px;
+            display: flex;
+            background-color: white;
+            justify-content: space-between;
+        }
+
+        main>.top>section.title>div.user>img {
+            width: 50px;
+            height: 50px;
+        }
+
+        main>.top>section.title>div.user>img:last-child {
+            width: 20px;
+            height: 20px;
+            align-self: center;
+        }
+
+        main>.top>section.title>div.user>div.info>h4 {
+            color: rgb(108, 187, 246);
+        }
+
+        main>.top>section.title>div.user>div.info>p {
+            color: #a3a3a3;
+        }
+
+        main>.bottom{
+            flex:1;
+            display: flex;
+        }
+
+
+        main>.bottom>section.search {
+            min-width: 400px;
+            width: 35%;
+            background-color: white;
+            max-height: 100px;
+            padding: 30px;
+        }
+
+        main>.bottom>section.search>.wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            height: 40px;
+            border: 1px solid #e3e3e3;
+            border-radius: 5px;
+            padding: 0 5px 0 15px;
+        }
+
+        main>.bottom>section.search>.wrapper>input {
+            border: none;
+            outline: none;
+            font-size: 20px;
+            flex: 1;
+        }
+
+        main>.bottom>section.search>.wrapper>img {
+            align-self: center;
+        }

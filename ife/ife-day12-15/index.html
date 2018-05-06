@@ -11,120 +11,15 @@
 
 
     <style>
-        @media screen and (max-width: 680px) {
-            body>main>div.user {
-                display: none;
-            }
-        }
-        
-        /*右边*/
-
-        main {
-            flex: 1;
-            background-color: cornflowerblue;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            /* max-height: 100vh; */
-            /* flex-wrap: wrap; */
-        }
-
-
-        main>.bottom>section.actions {
-            max-width: 65%;
+        /*右边
+        border-top: 1px solid #e3e3e3; 
+            min-width: 400px;
             background-color: white;
             max-height: 100px;
-            flex: 1;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 30px;
-            border-left: 1px solid rgb(206, 208, 218);
-        }
-         main>.bottom>section.actions *{
-             align-self: center;
-            white-space: nowrap;
-}
+        */
 
-        main>.bottom>section.actions>h3 {
-            padding-right: 30px;
-            position: relative;
-        }
 
-        main>.bottom>section.actions>h3::after {
-            content: '';
-            display: block;
-            height: 0;
-            width: 0;
-            position: absolute;
-            border: 5px solid rgb(43, 190, 75);
-            border-radius: 50%;
-            right: 5px;
-            top: 40%;
-        }
-
-        main>.bottom>section.actions>.wrapper {
-            display: flex;
-        }
-
-        main>.bottom>section.actions>.wrapper>div {
-            border: 1px solid rgb(206, 208, 218);
-            display: flex;
-            border-radius: 6px;
-            background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(233, 233, 230) 100%);
-        }
-
-        main>.bottom>section.actions>.wrapper>div>img {
-            border-left: 1px solid rgb(206, 208, 218);
-            height: 30px;
-            width: 30px;
-            align-self: center;
-        }
-
-        main>.bottom>section.actions>.wrapper>div>img:first-child {
-            border-left: none;
-        }
-
-        main>.bottom>section.actions>.wrapper>p{
-            border-left: 1px solid rgb(206, 208, 218);
-            margin: 0 20px 0;
-            padding-left: 20px;
-            align-self: center;
-            color: rgb(86,104,138);
-        }
-        main>.bottom>section.actions>.wrapper>div>.arrow-right{
-            height: 30px;
-            width: 35px;
-            position: relative;
-        }
-        main>.bottom>section.actions>.wrapper>div>.arrow-right::after{
-            content: '';
-            display: block;
-            height: 0;
-            width: 0;
-            border: 7px solid transparent;
-            border-left-color: rgb(206, 208, 218);
-            position: absolute;
-            top: 8px;
-            left: 15px;
-        }
-        main>.bottom>section.actions>.wrapper>div>.arrow-left{
-            height: 30px;
-            width: 35px;
-            border-right: 1px solid rgb(206, 208, 218);
-            position: relative;
-        }
-        main>.bottom>section.actions>.wrapper>div>.arrow-left::after{
-            content: '';
-            display: block;
-            height: 0;
-            width: 0;
-            border: 7px solid transparent;
-            border-right-color: rgb(206, 208, 218);
-            position: absolute;
-            top: 8px;
-            right: 15px;
-        }
     </style>
 </head>
 
@@ -232,31 +127,216 @@
             </section>
         </div>
         <div class="bottom">
-            <section class="search">
-                <div class="wrapper">
-                    <input type="text" placeholder="Search">
-                    <img src="./images/search.png" alt="">
-                </div>
-            </section>
-            <section class="actions">
-                <h3>
-                    Bessie berry
-                </h3>
-                <div class="wrapper">
-                    <div>
-                        <img src="./images/person.png" alt="">
-                        <img src="./images/upload.png" alt="">
-                        <img src="./images/trash.png" alt="">
+            <div class="left">
+                <section class="search">
+                    <div class="wrapper">
+                        <input type="text" placeholder="Search">
+                        <img src="./images/search.png" alt="">
                     </div>
-                    <p>
-                        1 of 28
-                    </p>
-                    <div>
-                        <div class="arrow-left"></div>
-                        <div class="arrow-right"></div>
+                </section>
+                <section class="messages">
+                    <ul>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar2.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                                <div>4</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar1.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar2.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar4.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar3.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <img src="./images/avatar1.png" alt="">
+                                <div class="name">
+                                    <h4 class="name">Dusting Benson</h4>
+                                    <p>Facebook</p>
+                                </div>
+                                <h5>Yesterday</h5>
+                            </div>
+                            <div class="excerpt">
+                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis quisquam inventore sit
+                                    nemo neque iusto maxime accusamus, corrupti delectus iure obcaecati at aut culpa eos
+                                    laborum, impedit non quia temporibus.</p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+            </div>
+            <div class="right">
+                <section class="actions">
+                    <h3>
+                        Dusting Benson
+                    </h3>
+                    <div class="wrapper">
+                        <div>
+                            <img src="./images/person.png" alt="">
+                            <img src="./images/upload.png" alt="">
+                            <img src="./images/trash.png" alt="">
+                        </div>
+                        <p>
+                            1 of 28
+                        </p>
+                        <div>
+                            <div class="arrow-left"></div>
+                            <div class="arrow-right"></div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                <section class="chat">
+                    <div class="top">
+                        <div class="message">
+                            <img src="./images/avatar2.png" alt="">
+                            <div class="content">
+                                <div class="name">
+                                    Dusting Benson
+                                    <span>8:31 AM</span>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, rem laudantium qui provident quaerat nihil voluptates ipsum
+                                    perferendis minima facere quae est illum aut mollitia sint sapiente obcaecati debitis
+                                    ex.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-divider">
+                            <hr>
+                            <div>Tuesday</div>
+                        </div>
+                        <div class="message">
+                            <img src="./images/avatar2.png" alt="">
+                            <div class="content">
+                                <div class="name">
+                                    Dusting Benson
+                                    <span>9:31 AM</span>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, rem laudantium qui provident quaerat nihil voluptates ipsum
+                                    perferendis minima facere quae est illum aut mollitia sint sapiente obcaecati debitis
+                                    ex.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <img src="./images/avatar6.png" alt="">
+                            <div class="content">
+                                <div class="name">
+                                    Jordan Jackson
+                                    <span>10:13 AM</span>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, rem laudantium qui provident quaerat nihil voluptates ipsum
+                                    perferendis minima facere quae est illum aut mollitia sint sapiente obcaecati debitis
+                                    ex.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message-divider new" >
+                            <hr>
+                            <div>New Message</div>
+                        </div>
+                        <div class="message">
+                            <img src="./images/avatar2.png" alt="">
+                            <div class="content">
+                                <div class="name">
+                                    Dusting Benson
+                                    <span>8:31 AM</span>
+                                </div>
+                                <div class="text">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, rem laudantium qui provident quaerat nihil voluptates ipsum
+                                </div>
+                                <div class="image">
+                                    <div class="wrapper">
+                                        <img src="./images/a.jpg" alt="">
+                                    </div>
+                                    <div class="wrapper">
+                                        <img src="./images/b.jpeg" alt="">
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="send">
+                                <img src="./images/add.png" alt="" class="append">
+                                <input type="text" value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, officiis recusandae">
+
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
         </div>
 
 

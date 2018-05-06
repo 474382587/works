@@ -649,7 +649,7 @@ aside>div.overview>.blocks{
         
 
         main>.bottom>.right>section.chat>.bottom>.send{
-            border: 1px solid black;
+            border: 1px solid rgb(206, 208, 218);
             border-radius: 5px;
             display: flex;
         }
@@ -658,7 +658,7 @@ aside>div.overview>.blocks{
             background: radial-gradient(#f1f1f1, #f9f9f9);
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
-            border-right: 1px solid rgb(206, 208, 218);;
+            border-right: 1px solid rgb(206, 208, 218);
         }
         main>.bottom>.right>section.chat>.bottom>.send>input{
             padding: 0 20px;

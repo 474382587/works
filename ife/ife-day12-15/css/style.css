@@ -602,9 +602,9 @@ aside>div.overview>.blocks{
             justify-content:left;
         }
         main>.bottom>.right>section.chat>div.top>div.message>.content>.image>.wrapper>img{
-            
+            display: inline-block;
             height: 100%;
-            width:100%;
+            width:50px;
             border-radius: 5px;
             position: relative;
             display: block;

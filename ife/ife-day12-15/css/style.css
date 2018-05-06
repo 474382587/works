@@ -574,6 +574,7 @@ aside>div.overview>.blocks{
         }
 
         main>.bottom>.right>section.chat>div.top>div.message>img {
+            display: inline-block;
             height: 50px;
             width: 50px;
         }
@@ -604,7 +605,7 @@ aside>div.overview>.blocks{
         main>.bottom>.right>section.chat>div.top>div.message>.content>.image>.wrapper>img{
             display: inline-block;
             height: 100%;
-            width:50px;
+            width:100%;
             border-radius: 5px;
             position: relative;
             display: block;

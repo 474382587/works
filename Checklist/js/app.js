@@ -62,7 +62,13 @@ var app = new Vue({
                 alert('Error Code: ' + errorCode + 'Error Message: ' + errorMessage);
             });
         },
-        
+        signOut:function () {
+            firebase.auth().signOut().then(function () {
+                // Sign-out successful.
+            }).catch(function (error) {
+                // An error happened.
+            });
+        }
 
     }
 });

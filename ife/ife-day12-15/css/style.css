@@ -669,3 +669,9 @@ aside>div.overview>.blocks{
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
         }
+
+/* ::-webkit-scrollbar is non-standard and is not on a standards track.  */
+/* ::-webkit-scrollbar is only available in WebKit-based browsers (e.g., Safari, all browsers on iOS, and others). */
+        *::-webkit-scrollbar{
+            display: none;
+        }

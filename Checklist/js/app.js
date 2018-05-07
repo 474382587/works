@@ -13,6 +13,10 @@ var app = new Vue({
             email:'',
             password:''
         },
+        userLogin:{
+            email: '',
+            password: ''
+        },
         registerVisible:false,
     },
     methods: {
@@ -45,6 +49,20 @@ var app = new Vue({
                 // ...
                 alert('Error Code: ' + errorCode + 'Error Message: ' + errorMessage);
             });
-        }
+        },
+        signIn:function() {
+            firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).then(function() {
+                alert('Sign In Successful!');
+                console.log(this);
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ...
+                alert('Error Code: ' + errorCode + 'Error Message: ' + errorMessage);
+            });
+        },
+        
+
     }
 });

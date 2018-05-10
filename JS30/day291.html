@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="DAY29.css">
+</head>
+
+<body>
+    <div class="timer">
+        <div class="timer__controls">
+            <button data-time="20" class="timer__button">20 Secs</button>
+            <button data-time="300" class="timer__button">Work 5</button>
+            <button data-time="900" class="timer__button">Quick 15</button>
+            <button data-time="1200" class="timer__button">Snack 20</button>
+            <button data-time="3600" class="timer__button">Lunch Break</button>
+            <form name="customForm" id="custom">
+                <input type="text" name="minutes" placeholder="Enter Minutes">
+            </form>
+        </div>
+        <div class="display">
+            <h1 class="display__time-left"></h1>
+            <p class="display__end-time"></p>
+        </div>
+    </div>
+    <script>
+        const timeLeft = document.querySelector('h1.display__time-left');
+        console.log(timeLeft)
+        const endTime = document.querySelector('.display__end-time');
+        // const p20s = document.getElementsByClassName('timer__button')['0'];
+        // const p300s = document.getElementsByClassName('timer__button')['0'];
+        // const p900s = document.getElementsByClassName('timer__button')['0'];
+        // const p1200s = document.getElementsByClassName('timer__button')['0'];
+        // const p3600s = document.getElementsByClassName('timer__button')['0'];
+        const buttons = document.querySelectorAll('button.timer__button');
+        var countDown;
+        var leftTime=0;
+        console.log(buttons);
+        buttons.forEach(e => {
+            e.addEventListener('click', e => {
+                calEnd(e.target.dataset.time-0)
+                end()
+            });
+        });
+        
+
+
+        function end(){
+            let date = new Date().getTime();
+            let endDate = new Date(date + leftTime*1000).toLocaleTimeString();
+            console.log(endDate);
+            endTime.innerHTML = endDate;
+        }
+        function calEnd(seconds) {
+            leftTime = leftTime +   seconds;
+            timeLeft.textContent = leftTime + 's left' ;
+            console.log(countDown)
+            if (countDown) {
+                clearInterval(countDown);
+            }
+
+            countDown = setInterval(function () {
+                console.log(leftTime)
+                timeLeft.textContent = --leftTime + 's left';
+                if (leftTime <= 0) {
+                    clearInterval(countDown);
+                }
+            }, 1000);
+
+
+        }
+        function getCurrentDate() {
+            let date = {
+                hours: (new Date()).getHours() - 0,
+                minutes: (new Date()).getMinutes() - 0,
+                seconds: (new Date()).getSeconds() - 0,
+            };
+            return date;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // const endTime = document.querySelector(".display__end-time");
+        //     const leftTime = document.querySelector(".display__time-left");
+        //     const buttons = document.querySelectorAll("button");
+        //     const date = new Date();
+        //     var left = 0;//剩余时间
+        //     var end = 0;//结束时间
+        //     var timer;//interval计时器
+        //     leftTime.innerHTML = left;//未操作时，剩余时间显示0
+
+        //     //为button绑定点击事件
+        //     const arr = Array.from(buttons);
+        //     arr.map(function (item) {
+        //         item.addEventListener('click', clickAction);
+        //     });
+
+        //     //监听自定义输入
+        //     document.customForm.addEventListener('submit', function (e) {
+        //         e.preventDefault();
+        //         updateTime(this.minutes.value * 60);
+        //         updateTimer();
+        //     });
+
+        //     //定义点击后的回调
+        //     function clickAction(e) {
+        //         let deltaTime;
+        //         deltaTime = this.dataset.time;
+        //         updateTime(deltaTime);
+
+        //         //点击后更新计时器
+        //         updateTimer();
+        //     }
+
+
+
+        //     //updateTime
+        //     function updateTime(delta) {
+        //         left = left + parseInt(delta, 0);
+        //         end = date.getTime() + left * 1000;
+        //         leftTime.innerHTML = left;
+        //         endTime.innerHTML = new Date(end).toLocaleTimeString();
+        //     }
+
+        //     //每秒刷新时间
+        //     function updateTimer() {
+        //         //清除以前的timer
+        //         if (timer) {
+        //             clearInterval(timer);
+        //         }
+
+        //         // 设置新的Timer
+        //         timer = setInterval(function () {
+        //             if (left == 0) {
+        //                 endTime.innerHTML = 'End';
+        //                 clearInterval(timer);
+        //             } else {
+        //                 left -= 1;
+        //                 leftTime.innerHTML = left;
+        //             }
+        //         }, 1000);
+        //     }
+
+    </script>
+    <!-- <script src="scripts-START.js"></script> -->
+</body>
+
+</html>

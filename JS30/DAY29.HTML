@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Countdown Timer</title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="DAY29.css">
+</head>
+
+<body>
+    <div class="timer">
+        <div class="timer__controls">
+            <button data-time="20" class="timer__button">20 Secs</button>
+            <button data-time="300" class="timer__button">Work 5</button>
+            <button data-time="900" class="timer__button">Quick 15</button>
+            <button data-time="1200" class="timer__button">Snack 20</button>
+            <button data-time="3600" class="timer__button">Lunch Break</button>
+            <form name="customForm" id="custom">
+                <input type="text" name="minutes" placeholder="Enter Minutes">
+            </form>
+        </div>
+        <div class="display">
+            <h1 class="display__time-left"></h1>
+            <p class="display__end-time"></p>
+        </div>
+    </div>
+    <script>
+        const timeLeft = document.querySelector('p.display__time-left');
+        const endTime = document.querySelector('display__end-time');
+        // const p20s = document.getElementsByClassName('timer__button')['0'];
+        // const p300s = document.getElementsByClassName('timer__button')['0'];
+        // const p900s = document.getElementsByClassName('timer__button')['0'];
+        // const p1200s = document.getElementsByClassName('timer__button')['0'];
+        // const p3600s = document.getElementsByClassName('timer__button')['0'];
+        const buttons = document.querySelectorAll('button.timer__button');
+        console.log(buttons );
+        buttons.forEach(e=>{
+            e.addEventListener('click',e=>{
+                console.log(calEnd(e.target.dataset.time - 0));
+            });
+        });
+        // setInterval(function(){
+        //     console.log(getCurrentDate())
+        // },1000);
+        function calEnd(seconds) {
+            let date = getCurrentDate();
+            let carry = 0;
+            date.seconds = (parseInt((seconds % 3600) % 60) + date.seconds) % 60;
+            carry = parseInt((parseInt((seconds % 3600) % 60) + date.seconds)/60)
+            console.log(carry);
+            
+            date.minutes = (parseInt((seconds % 3600)/60) + date.minutes + carry) % 60;
+            carry = parseInt((parseInt((seconds % 3600) / 60) + date.minutes + carry) / 60);
+            console.log(carry);
+            
+            
+            date.hours = (parseInt(seconds / 3600) + date.hours) % 24;
+            console.log(date);
+            
+        }
+        function getCurrentDate(){
+            let date = {
+                hours:(new Date()).getHours()-0,
+                minutes:(new Date()).getMinutes()-0,
+                seconds: (new Date()).getSeconds()-0,
+            };
+            return date;
+        }
+    </script>
+    <!-- <script src="scripts-START.js"></script> -->
+</body>
+
+</html>

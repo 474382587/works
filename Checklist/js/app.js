@@ -18,6 +18,8 @@ var app = new Vue({
             password: ''
         },
         registerVisible:false,
+        loginVisible:false,
+        loginStatus:true,
     },
     methods: {
         show: function (index,e) {
@@ -41,6 +43,9 @@ var app = new Vue({
         signUp:function() {
             firebase.auth().createUserWithEmailAndPassword(this.userRegister.email, this.userRegister.password).then((function() {
                 alert('Sign Up Successful!');
+                this.registerVisible = false;
+                this.loginStatus = true;
+                
                 console.log(this);
             }).bind(app)).catch(function (error) {
                 // Handle Errors here.
@@ -51,10 +56,12 @@ var app = new Vue({
             });
         },
         signIn:function() {
-            firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).then(function() {
+            firebase.auth().signInWithEmailAndPassword(this.userLogin.email, this.userLogin.password).then((function() {
                 alert('Sign In Successful!');
+                this.loginVisible = false;
+                this.loginStatus = true;
                 console.log(this);
-            }).catch(function (error) {
+            }).bind(app)).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -63,7 +70,8 @@ var app = new Vue({
             });
         },
         signOut:function () {
-            firebase.auth().signOut().then(function () {
+            firebase.auth().signOut().then(()=> {
+                this.loginStatus = false;
                 // Sign-out successful.
             }).catch(function (error) {
                 // An error happened.

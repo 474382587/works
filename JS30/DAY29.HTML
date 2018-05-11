@@ -26,47 +26,67 @@
         </div>
     </div>
     <script>
-        const timeLeft = document.querySelector('p.display__time-left');
-        const endTime = document.querySelector('display__end-time');
-        // const p20s = document.getElementsByClassName('timer__button')['0'];
-        // const p300s = document.getElementsByClassName('timer__button')['0'];
-        // const p900s = document.getElementsByClassName('timer__button')['0'];
-        // const p1200s = document.getElementsByClassName('timer__button')['0'];
-        // const p3600s = document.getElementsByClassName('timer__button')['0'];
-        const buttons = document.querySelectorAll('button.timer__button');
-        console.log(buttons );
-        buttons.forEach(e=>{
-            e.addEventListener('click',e=>{
-                console.log(calEnd(e.target.dataset.time - 0));
+        const endTime = document.querySelector(".display__end-time");
+            const leftTime = document.querySelector(".display__time-left");
+            const buttons = document.querySelectorAll("button");
+            const date = new Date();
+            var left = 0;//剩余时间
+            var end = 0;//结束时间
+            var timer;//interval计时器
+            leftTime.innerHTML = left;//未操作时，剩余时间显示0
+
+            //为button绑定点击事件
+            const arr = Array.from(buttons);
+            arr.map(function (item) {
+                item.addEventListener('click', clickAction);
             });
-        });
-        // setInterval(function(){
-        //     console.log(getCurrentDate())
-        // },1000);
-        function calEnd(seconds) {
-            let date = getCurrentDate();
-            let carry = 0;
-            date.seconds = (parseInt((seconds % 3600) % 60) + date.seconds) % 60;
-            carry = parseInt((parseInt((seconds % 3600) % 60) + date.seconds)/60)
-            console.log(carry);
-            
-            date.minutes = (parseInt((seconds % 3600)/60) + date.minutes + carry) % 60;
-            carry = parseInt((parseInt((seconds % 3600) / 60) + date.minutes + carry) / 60);
-            console.log(carry);
-            
-            
-            date.hours = (parseInt(seconds / 3600) + date.hours) % 24;
-            console.log(date);
-            
-        }
-        function getCurrentDate(){
-            let date = {
-                hours:(new Date()).getHours()-0,
-                minutes:(new Date()).getMinutes()-0,
-                seconds: (new Date()).getSeconds()-0,
-            };
-            return date;
-        }
+
+            //监听自定义输入
+            document.customForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                updateTime(this.minutes.value * 60);
+                updateTimer();
+            });
+
+            //定义点击后的回调
+            function clickAction(e) {
+                let deltaTime;
+                deltaTime = this.dataset.time;
+                updateTime(deltaTime);
+
+                //点击后更新计时器
+                updateTimer();
+            }
+
+
+
+            //updateTime
+            function updateTime(delta) {
+                left = left + parseInt(delta, 0);
+                end = date.getTime() + left * 1000;
+                leftTime.innerHTML = left;
+                endTime.innerHTML = new Date(end).toLocaleTimeString();
+            }
+
+            //每秒刷新时间
+            function updateTimer() {
+                //清除以前的timer
+                if (timer) {
+                    clearInterval(timer);
+                }
+
+                // 设置新的Timer
+                timer = setInterval(function () {
+                    if (left == 0) {
+                        endTime.innerHTML = 'End';
+                        clearInterval(timer);
+                    } else {
+                        left -= 1;
+                        leftTime.innerHTML = left;
+                    }
+                }, 1000);
+            }
+
     </script>
     <!-- <script src="scripts-START.js"></script> -->
 </body>

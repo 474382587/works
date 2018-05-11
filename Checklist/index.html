@@ -53,6 +53,56 @@
             font-size: 18px;
             outline: none;
         }
+        
+
+
+
+
+            div.login {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, .7);
+            min-width: 400px;
+            min-height: 200px;
+
+        }
+
+        div.login>.wrapper {
+            border-radius: 10px;
+            margin: 200px auto;
+            background-color: #f9f9f9;
+            width: 375px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div.login>.wrapper>button {
+            border-radius: 8px;
+            height: 36px;
+            font-size: 18px;
+            color: #d3f8ff;
+            margin: 6px;
+            background: linear-gradient(to top, #2e6da3 0%, #4489c2 100%);
+            width: 200px;
+            outline: none;
+        }
+
+        div.login>.wrapper>input {
+            width: 60%;
+            padding: 4px 12px;
+            border: 1px solid #cdcdcd;
+            height: 36px;
+            margin: 6px;
+            border-radius: 5px;
+            font-size: 18px;
+            outline: none;
+        }
     </style>
 </head>
 <div id="app">
@@ -66,26 +116,32 @@
             <button @click='addOne'>Add item</button>
         </li>
     </ul>
-    <div class="login">
+    <div class="buttons">
+        <button class="register" @click='registerVisible=true' v-show="!loginStatus">
+            Register
+        </button>
+        <button class="login" @click='loginVisible=true' v-show="!loginStatus">
+            Login
+        </button>
+        <button class="logout" @click='signOut' v-show="loginStatus">
+            Logout
+        </button>
+    </div>
+    <div class="login" v-cloak v-show='loginVisible'>
         <div class="wrapper">
             <h3>Login</h3>
             <input type="email" class="email" v-model='userLogin.email' placeholder="Email">
             <input type="password" class="password" v-model='userLogin.password' placeholder="Password">
             <button @click='signIn'>Login</button>
-            <button @click='registerVisible=false'>Close</button>
+            <button @click='loginVisible=false'>Close</button>
         </div>
-
-        <button class="register" @click='registerVisible=true'>
-            register
-        </button>
-        <button>close</button>
     </div>
-    <div class="register" v-show='registerVisible'>
+    <div class="register" v-show='registerVisible' v-cloak>
         <div class="wrapper">
             <h3>Register</h3>
             <input id="register-email" type="email" class="email" v-model='userRegister.email' placeholder="Email">
             <input type="password" class="password" v-model='userRegister.password' placeholder="Password">
-            <button @click='signUp'>sign up</button>
+            <button @click='signUp'>Sign up</button>
             <button @click='registerVisible=false'>Close</button>
         </div>
     </div>

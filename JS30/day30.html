@@ -43,31 +43,77 @@
         var previous;
         var hit = false;
         var count = 0;
-        moles.forEach(e=>{
-            e.addEventListener('click',e=>{
-                if(!hit){
-                    count = count+1;
-                    hit = true;
+        // moles.forEach(e=>{
+        //     e.addEventListener('click',e=>{
+        //         if(!hit){
+        //             count = count+1;
+        //             hit = true;
+        //         }
+        //         scoreBoard.textContent = count;
+        //     })
+        // });
+
+
+
+
+        // var start = setInterval(function() {
+        //     if(typeof(previous)==="number"){
+        //         holes[previous].classList.remove('up');
+        //     }
+        //     let number = randomNumber();
+        //     console.log(typeof(number))
+        //     number === previous? number = (number+1)%6 : '';
+        //     holes[number].classList.add('up');
+        //     hit = false;
+        //     previous = number;
+        //     console.log(previous)
+        // },500);
+
+
+        moles.forEach(e => {
+            e.addEventListener('click', e => {
+                if (!e.currentTarget.hit) {
+                    count = count + 1;
+                    e.currentTarget.hit = true;
                 }
                 scoreBoard.textContent = count;
             })
         });
-
-        var start = setInterval(function() {
-            if(typeof(previous)==="number"){
-                holes[previous].classList.remove('up');
-            }
+        var index = 0;
+        function startGame() {
             let number = randomNumber();
-            console.log(typeof(number))
-            number === previous? number = (number+1)%6 : '';
-            holes[number].classList.add('up');
-            hit = false;
-            previous = number;
-            console.log(previous)
-        },500);
+            console.log(typeof (number))
+            number === previous ? number = (number + 1) % 6 : '';
+            setTimeout(() => {
+                holes[number].classList.add('up');
+                if (previous) {
+                    moles[previous].hit = false;
+                }
+            }, 100);
 
-        function randomNumber(){
-           return Math.ceil(Math.random()*7658)%6;
+            previous = number;
+            setTimeout(() => {
+                if (typeof (previous) === "number") {
+                    holes[previous].classList.remove('up');
+                }
+                console.log(index)
+                if (index < 210) {
+                    index++;
+                    startGame();
+                }
+            }, randomTime());
+
+
+
+        }
+
+        function randomTime() {
+            // console.log(Math.floor(Math.random() * 200) + 400)
+            return Math.floor(Math.random() * 500) + 4000;
+        }
+
+        function randomNumber() {
+            return Math.ceil(Math.random() * 7658) % 6;
         }
 
 

@@ -1,0 +1,7 @@
+div#wrapper {
+    height: 480px;
+    width: 480px;
+    overflow: hidden;
+    background-image: url("../day20/imgs/erik_ce204002.jpg");
+    /* background-position-y: 960px; */
+}

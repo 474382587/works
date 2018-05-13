@@ -12,8 +12,10 @@ button.addEventListener('click', e => {
                 clearInterval(interval1);
                 button.innerText = "淡入";
                 fadeIn = true;
+                button.disabled = false;
             } else {
                 fadeObj.style.opacity = opacity + '';
+                button.disabled = true;
             }
 
         }, 50);
@@ -24,9 +26,11 @@ button.addEventListener('click', e => {
             if (opacity > 1) {
                 clearInterval(interval2);
                 button.innerText = "淡出";
+                button.disabled = false;
                 fadeIn = false;
             } else {
                 fadeObj.style.opacity = opacity + '';
+                button.disabled = true;
             }
         }, 50);
     }
@@ -53,10 +57,12 @@ function fadeOuts() {
         fadeObj2.style.opacity = count / 10 + '';
         if (count > 0) {
             fadeOuts();
+            button2.disabled = true;
         } else {
             fadeOut = false;
             console.log('finished')
             button2.innerText = "淡入";
+            button2.disabled = false;
         }
     }, 50);
 }
@@ -67,10 +73,12 @@ function fadeIns() {
         fadeObj2.style.opacity = count / 10 + '';
         if (count < 10) {
             fadeIns();
+            button2.disabled = true;
         } else {
             fadeOut = true;
             console.log('finished')
             button2.innerText = "淡出";
+            button2.disabled = false;
         }
     }, 50);
 }

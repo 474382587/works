@@ -15,7 +15,7 @@ var mySwiper = new Swiper('.swiper-container', {
 })
 
 
-requestPosts(0, 0);
+requestPosts(0, null);
 
 function updatePosts(arr) {
     let posts = document.querySelector('ul.posts');
@@ -37,8 +37,7 @@ tabs.forEach((el,index)=>{
         el.classList.add('active');
         previous = el;
         console.log(index);
-        requestPosts(index, 0);
-        currentType = index;
+        requestPosts(index, null);
     });
 });
 
@@ -49,7 +48,7 @@ function requestPosts(type,pageNum){
         params: {
             "type": type,
             "sort": "new",
-            "page": null,
+            "page": pageNum+1,
             "index": true,
         }
     }).then(function (response) {
@@ -59,6 +58,7 @@ function requestPosts(type,pageNum){
         console.log(listCount);
         updatePosts(arr);
         updatePagination(listCount);
+        currentType = type;
     });
 }
 
@@ -73,4 +73,14 @@ function updatePagination(total) {
         span.innerText = i;
         pagination.appendChild(span);
     }
+    var numbers = document.querySelectorAll("div.pagination span");
+    numbers.forEach((e,index)=>{
+        e.addEventListener('click',e=>{
+            console.log(currentType)
+            console.log(index)
+            requestPosts(currentType,index);
+        })
+    })
+    console.log(numbers);
+    
 }

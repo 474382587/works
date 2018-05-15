@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="stylesheet" href="./vendor/swiper-4.2.6/dist/css/swiper.css">
+    <link rel="stylesheet" href="./css/loadig.css">
 </head>
 <style>
     .hide {
@@ -100,6 +101,8 @@
         max-width: 1200px;
         width: 80%;
         margin: 30px auto;
+        padding: 10px;
+        border-bottom: 1px solid black;
     }
 
     .tab>li {
@@ -118,6 +121,37 @@
         max-width: 1200px;
         width: 80%;
         margin: 15px auto;
+    }
+
+    img {
+        /* max-width: 100%; */
+        max-width: 100%;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination-container>button {
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .pagination-container>div>span {
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+        background-color: #f4f4f5;
+    }
+    .pagination-container>div>span:hover{
+        cursor: pointer;
+        color: #409eff;
+    }
+    .pagination-container>div>span.active {
+        color: white;
+        background-color: #409eff;
     }
 </style>
 
@@ -157,20 +191,19 @@
     </header>
     <main>
         <section class="banner">
-
             <!-- Slider main container -->
             <div class="swiper-container">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
                     <div class="swiper-slide">
-                        <img src="" alt="1">
+                        <img src="./static/img/banner1.jpg" alt="1">
                     </div>
                     <div class="swiper-slide">
-                        <img src="" alt="2">
+                        <img src="./static/img/banner2.jpg" alt="2">
                     </div>
                     <div class="swiper-slide">
-                        <img src="" alt="3">
+                        <img src="./static/img/banner3.jpg" alt="3">
                     </div>
                 </div>
                 <!-- If we need pagination -->
@@ -182,17 +215,21 @@
 
         </section>
         <section class="artiles">
+
             <ul class="tab">
                 <li class="active">全部</li>
                 <li>HTML</li>
                 <li>PHP</li>
                 <li>JAVA</li>
             </ul>
+            <div class="loader hide"></div>
             <ul class='posts'>
 
             </ul>
-            <div class="pagination">
-
+            <div class="pagination-container">
+                <button class="previous">&lt;</button>
+                <div class="pagination"></div>
+                <button class="next">&gt;</button>
             </div>
         </section>
     </main>

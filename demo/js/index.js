@@ -33,6 +33,9 @@ var previous = document.querySelectorAll('ul.tab>li')[0];
 console.log(tabs);
 tabs.forEach((el,index)=>{
     el.addEventListener('click',(event)=>{
+        //加载中
+        let posts = document.querySelector('ul.posts');
+        posts.innerHTML = '';
         previous.classList.remove('active');
         el.classList.add('active');
         previous = el;
@@ -42,6 +45,8 @@ tabs.forEach((el,index)=>{
 });
 
 function requestPosts(type,pageNum){
+    let loading = document.querySelector('div.loader');
+    loading.classList.remove('hide');
     axios({
         method: 'post',
         url: 'http://www.ftusix.com/static/data/topicList.php',
@@ -56,13 +61,16 @@ function requestPosts(type,pageNum){
         let arr = response.data.data;
         let listCount = response.data.listCount[0] - '';
         console.log(listCount);
+        let loading = document.querySelector('div.loader');
+        loading.classList.add('hide');
         updatePosts(arr);
-        updatePagination(listCount);
+        updatePagination(listCount,pageNum);
         currentType = type;
     });
 }
 
-function updatePagination(total) {
+function updatePagination(total,index) {
+    index === null? index = 0:'';
     let count = Math.ceil(total/10);
     
     console.log("count "+count)
@@ -73,14 +81,21 @@ function updatePagination(total) {
         span.innerText = i;
         pagination.appendChild(span);
     }
+    console.log(index);
+    // if(index === 0){
+    // console.log(document.querySelector('button.previous'));
+    //     document.querySelector('button.previous').setAttribute('disabled',"disabled")
+    // }
+    //button 还没写好 ^
+    document.querySelector('div.pagination').querySelectorAll('span')[index].classList.add('active');
     var numbers = document.querySelectorAll("div.pagination span");
-    numbers.forEach((e,index)=>{
-        e.addEventListener('click',e=>{
+    numbers.forEach((el,index)=>{
+        el.addEventListener('click',e=>{
+            let posts = document.querySelector('ul.posts');
+            posts.innerHTML = '';
             console.log(currentType)
             console.log(index)
             requestPosts(currentType,index);
         })
     })
-    console.log(numbers);
-    
 }

@@ -3,8 +3,12 @@ var mySwiper = new Swiper('.swiper-container', {
     // Optional parameters
     direction: 'horizontal',
     loop: true,
-
-    // If we need pagination
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    autoHeight: true, //enable auto height
+    spaceBetween: 20,    // If we need pagination
     pagination: {
         el: '.swiper-pagination',
     },

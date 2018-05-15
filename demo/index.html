@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="GB2312">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
@@ -100,7 +100,7 @@
         justify-content: flex-start;
         max-width: 1200px;
         width: 80%;
-        margin: 30px auto;
+        margin: 30px auto 10px;
         padding: 10px;
         border-bottom: 1px solid black;
     }
@@ -121,11 +121,19 @@
         max-width: 1200px;
         width: 80%;
         margin: 15px auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    img {
+    .banner img {
         /* max-width: 100%; */
-        max-width: 100%;
+        /* height: 300px; */
+        /* max-width: 100%; */
+        height: 100%;
+        width: 100%;
     }
 
     .pagination-container {
@@ -133,29 +141,63 @@
         justify-content: center;
     }
 
+    .pagination-container.hide {
+        display: none;
+    }
+
     .pagination-container>button {
+        font-size: 18px;
         margin: 10px;
-        padding: 10px;
+        padding: 10px 20px;
         cursor: pointer;
+        border: none;
+        outline: none;
+        background-color: #f4f4f5;
     }
 
     .pagination-container>div>span {
         display: inline-block;
         margin: 10px;
-        padding: 10px;
+        padding: 10px 20px;
         background-color: #f4f4f5;
     }
-    .pagination-container>div>span:hover{
+
+    .pagination-container>div>span:hover {
         cursor: pointer;
         color: #409eff;
     }
+
     .pagination-container>div>span.active {
         color: white;
         background-color: #409eff;
     }
+
+    .left>p {
+        color: #a3a3a3;
+        margin-bottom: 6px;
+    }
+
+    .left>p>span {
+        padding-left: 10px;
+        font-size: 14px;
+        color: #222;
+    }
+    .right{
+        min-width:120px; 
+        display: flex;
+        justify-content: space-around;
+    }
+ .right>span{
+     cursor: pointer;
+     display: flex;
+ }
+ .right img{
+     padding-right: 4px;
+ }
 </style>
 
 <body>
+    
     <header>
         <nav>
             <a href="#">
@@ -235,6 +277,7 @@
     </main>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./vendor/swiper-4.2.6/dist/js/swiper.js"></script>
+    <script src="./vendor/momentjs/moment.js"></script>
     <script src="./js/index.js"></script>
 </body>
 

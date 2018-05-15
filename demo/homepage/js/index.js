@@ -19,13 +19,8 @@ moment.locale('zh-cn');
 //計算相對時間
 function calculateTime(millSec) {
     var date = new Date(millSec * 1000);
-    console.log(moment(date).fromNow());
-    console.log(date);
     return moment(date).fromNow();
 }
-// 1526308894
-
-// console.log(moment("12212121").fromNow());
 
 requestPosts(0, null);
 //更新文章
@@ -34,7 +29,7 @@ function updatePosts(arr) {
     posts.innerHTML = '';
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
-        li.innerHTML = `<div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="./static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="./static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div>`
+        li.innerHTML = `<a href='./blog/post.html?topic_id=${arr[i].topic_id}&user_id=${arr[i].user_id}'><div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="./static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="./static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div></a>`
         posts.appendChild(li);
     }
 }

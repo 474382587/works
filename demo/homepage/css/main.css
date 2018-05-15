@@ -103,7 +103,7 @@ nav li {
     color: red;
 }
 
-.posts>li {
+.posts>li>a {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;

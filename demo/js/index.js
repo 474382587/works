@@ -18,7 +18,7 @@ var mySwiper = new Swiper('.swiper-container', {
 moment.locale('zh-cn');
 //計算相對時間
 function calculateTime(millSec) {
-    var date = new Date(millSec*1000);
+    var date = new Date(millSec * 1000);
     console.log(moment(date).fromNow());
     console.log(date);
     return moment(date).fromNow();
@@ -115,7 +115,10 @@ function updatePagination(total, index) {
         previous.classList.remove('hide');
         next.classList.remove('hide');
     }
-
+    if (count === 1) {
+        previous.classList.add('hide');
+        next.classList.add('hide');
+    }
     let pagination = document.querySelector('div.pagination');
     pagination.innerHTML = '';
     for (let i = 1; i < count + 1; i++) {

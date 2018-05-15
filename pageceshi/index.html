@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<body>
+    <div id="m"></div>
+    <script src="./q/q.js"></script>
+    <script>
+        console.log("sss");
+        Q.reg('home', function () {
+            document.getElementById('m').innerHTML = 'Hello World';
+            console.log('chenggong')
+        });
+        Q.init({
+            index: 'home' /* 首页地址 */
+        });
+    </script>
+</body>
+
+
+
+</html>

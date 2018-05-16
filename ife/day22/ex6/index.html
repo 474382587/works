@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex6</title>
+</head>
+
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple&lt;-pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+    <script>
+    const input = document.getElementById("queue-input");
+    const content = document.getElementById("queue-cont");
+    const btn_in = document.getElementById("in-btn");
+    const btn_out = document.getElementById("out-btn");
+    const btn_font = document.getElementById("font-btn");
+    const btn_empty = document.getElementById("empty-btn");
+    var queue = ["apple", "pear"];
+        btn_in.addEventListener("click", () => {
+            queue.push(input.value || `""`);
+            content.innerText = "队列内容：" + queue.join(" <- ");
+        });
+
+        btn_out.addEventListener("click", () => {
+            queue.shift();
+            content.innerText = "队列内容：" + queue.join(" <- ");
+        });
+
+        btn_font.addEventListener("click", () => {
+            let temp = queue.shift();
+            content.innerText = temp
+            queue.unshift(temp);
+        });
+        btn_empty.addEventListener("click", () => {
+            content.innerText = queue.length > 0 ? "不空" : "空";
+        });
+
+    </script>
+</body>
+
+</html>

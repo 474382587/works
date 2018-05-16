@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="../homepage/css/loadig.css">
+</head>
+<body>
+        <header>
+            <nav>
+                <a href="../">
+                    <img src="../static/img/logo.png" alt="Logo"> 猿计划
+                </a>
+                <ul>
+                    <li>
+                        <a href="">未读消息</a>
+                    </li>
+                    <li>
+                        <a href="../" >首页</a>
+                    </li>
+                    <li>
+                        <a href="">知识体系</a>
+                    </li>
+                    <li>
+                        <a href="">活动中心</a>
+                    </li>
+                    <li>
+                        <a href="../article/" class="active">文章</a>
+                    </li>
+                    <li class="before-login">
+                        <a href="">登录</a>
+                    </li>
+                    <li class="before-login">
+                        <a href="">注册</a>
+                    </li>
+                    <li class="after-login hide">
+                        <a href="">写文章</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="artiles">
+                <ul class="tab">
+                    <li class="active">全部</li>
+                    <li>经验分享</li>
+                    <li>入门学习</li>
+                    <li>成果分享</li>
+                </ul>
+                <div class="sort">
+                    <div id="new" class="active" >最新</div>
+                    <div id="hot">最热</div>
+                </div>
+                <div class="loader hide"></div>
+                <ul class='posts'>
+        
+                </ul>
+                <div class="pagination-container">
+                    <button class="previous">&lt;</button>
+                    <div class="pagination"></div>
+                    <button class="next">&gt;</button>
+                </div>
+            </section>
+        </main>
+        <script src="../vendor/momentjs/moment.js"></script>
+        <script src="../vendor/axios/axios.min.js"></script>
+        <script src="./js/main.js"></script>
+</body>
+</html>

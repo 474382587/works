@@ -71,3 +71,30 @@ nav>ul {
 nav li {
     margin: 10px;
 }
+
+.wrapper {
+    width: 80%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.wrapper>* {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.wrapper>h1{
+    font-weight: 500;
+}
+#author,div.data{
+    font-size: 14px;
+}
+.wrapper>div>span {
+    padding: 0 6px;
+}
+.wrapper>#content{
+    text-align: left;
+    padding: 40px 0 20px;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+}

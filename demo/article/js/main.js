@@ -1,24 +1,3 @@
-//初始化SWIPER插件
-var mySwiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    autoHeight: true, //enable auto height
-    spaceBetween: 20,    // If we need pagination
-    pagination: {
-        el: '.swiper-pagination',
-    },
-    // Navigation arrows
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-})
-
 moment.locale('zh-cn');
 //計算相對時間
 function calculateTime(millSec) {
@@ -26,7 +5,7 @@ function calculateTime(millSec) {
     return moment(date).fromNow();
 }
 
-requestPosts(0, null);
+
 //更新文章
 function updatePosts(arr) {
     let posts = document.querySelector('ul.posts');
@@ -34,27 +13,32 @@ function updatePosts(arr) {
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
         // ${arr[i].user_id}
-        li.innerHTML = `<a href='./blog/post.html?topic_id=${arr[i].topic_id}&user_id=${arr[i].user_id}'><div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="./static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="./static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div></a>`
+        li.innerHTML = `<a href='../blog/post.html?topic_id=${arr[i].topic_id}&user_id=${arr[i].user_id}'><div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="../static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="../static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div></a>`
         posts.appendChild(li);
     }
 }
 var currentType;
 const tabs = document.querySelectorAll('ul.tab>li');
+const sort = document.querySelectorAll('div.sort>div');
 var previousNode = document.querySelectorAll('ul.tab>li')[0];
 var currentPageNumber = 0;
 const previous = document.querySelector('button.previous');
 const next = document.querySelector('button.next');
+var previousSort = document.querySelectorAll('div.sort>div')[0];
 
+
+console.log(previousSort.id);
+requestPosts(0, null, previousSort.id);
 //監聽前後頁腳點擊
 previous.addEventListener('click', e => {
     let posts = document.querySelector('ul.posts');
     posts.innerHTML = '';
-    requestPosts(currentType, currentPageNumber - 1);
+    requestPosts(currentType, currentPageNumber - 1, previousSort.id);
 });
 next.addEventListener('click', e => {
     let posts = document.querySelector('ul.posts');
     posts.innerHTML = '';
-    requestPosts(currentType, currentPageNumber + 1);
+    requestPosts(currentType, currentPageNumber + 1, previousSort.id);
 });
 //文章分類
 tabs.forEach((el, index) => {
@@ -65,12 +49,23 @@ tabs.forEach((el, index) => {
         previousNode.classList.remove('active');
         el.classList.add('active');
         previousNode = el;
-        requestPosts(index, null);
+        requestPosts(index, null, previousSort.id);
     });
+});
+//sort、排序
+sort.forEach(el=>{
+    el.addEventListener('click',event=>{
+        let posts = document.querySelector('ul.posts');
+        posts.innerHTML = '';
+        previousSort.classList.remove('active');
+        el.classList.add('active');
+        previousSort = el;
+        requestPosts(currentType, null, el.id);
+    })
 });
 
 //獲取文章
-function requestPosts(type, pageNum) {
+function requestPosts(type, pageNum, sort) {
     let loading = document.querySelector('div.loader');
     loading.classList.remove('hide');
     let paginationContainer = document.querySelector('div.pagination-container');
@@ -81,9 +76,9 @@ function requestPosts(type, pageNum) {
         url: 'http://www.ftusix.com/static/data/topicList.php',
         params: {
             "type": type,
-            "sort": "new",
+            "sort": sort,
             "page": pageNum + 1,
-            "index": true,
+            "index": false,
         }
     }).then(function (response) {
         let arr = response.data.data;
@@ -133,7 +128,7 @@ function updatePagination(total, index) {
         el.addEventListener('click', e => {
             let posts = document.querySelector('ul.posts');
             posts.innerHTML = '';
-            requestPosts(currentType, index);
+            requestPosts(currentType, index, previousSort.id);
         })
     })
 }

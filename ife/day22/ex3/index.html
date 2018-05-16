@@ -37,10 +37,12 @@
         */
         function removeRepetition(str) {
             var result = "";
-
             // do something
-
-            return result;
+            result = str.split('');
+            result = result.map((e,index,arr)=>{
+                return e !== arr[index+1]? e: "";
+            });
+            return result.join('');
         }
 
         // 测试用例

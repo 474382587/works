@@ -5,78 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id = "meta">文章</title>
+    <title id="meta">文章</title>
     <link rel="stylesheet" href="./css/blog.css">
 </head>
 
 <body>
-<header>
-    <nav>
-        <a href="../">
-            <img src="../static/img/logo.png" alt="Logo"> 猿计划
-        </a>
-        <ul>
-            <li>
-                <a href="">未读消息</a>
-            </li>
-            <li>
-                <a href="../">首页</a>
-            </li>
-            <li>
-                <a href="">知识体系</a>
-            </li>
-            <li>
-                <a href="">活动中心</a>
-            </li>
-            <li>
-                <a href="">文章</a>
-            </li>
-            <li class="before-login">
-                <a href="">登录</a>
-            </li>
-            <li class="before-login">
-                <a href="">注册</a>
-            </li>
-            <li class="after-login hide">
-                <a href="">写文章</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h1 id="title"></h1>
-    <h2 id="author"></h2>
-    <h3 id="timestamp"></h3>
-    <div id="content"></div>
-</main>
-    
+    <header>
+        <nav>
+            <a href="../">
+                <img src="../static/img/logo.png" alt="Logo"> 猿计划
+            </a>
+            <ul>
+                <li>
+                    <a href="">未读消息</a>
+                </li>
+                <li>
+                    <a href="../">首页</a>
+                </li>
+                <li>
+                    <a href="">知识体系</a>
+                </li>
+                <li>
+                    <a href="">活动中心</a>
+                </li>
+                <li>
+                    <a href="../article/">文章</a>
+                </li>
+                <li class="before-login">
+                    <a href="">登录</a>
+                </li>
+                <li class="before-login">
+                    <a href="">注册</a>
+                </li>
+                <li class="after-login hide">
+                    <a href="">写文章</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="loader"></div>
+        <div class="wrapper">
+            <h1 id="title"></h1>
+            <div id="author"></div>
+            <div class="data">
+                <span id="timestamp"></span>
+                <span id="views"></span>
+                <span id="comments"></span>
+            </div>
+            <div id="content"></div>
+        </div>
+        <div class="comments">
+
+        </div>
+
+    </main>
+
 
     <script src="../vendor/momentjs/moment.js"></script>
     <script src="../vendor/axios/axios.min.js"></script>
+    <script src="./js/post.js"></script>
     <script>
 
-moment.locale('zh-cn');
-//計算相對時間
-function calculateTime(millSec) {
-    var date = new Date(millSec * 1000);
-    console.log(moment(date).fromNow());
-    console.log(date);
-    return moment(date).fromNow();
-}
-
- const title = document.getElementById('title');
- const author = document.getElementById('author');
- const timestamp = document.getElementById('timestamp');
- const content = document.getElementById('content');
-        var search = window.location.search;
-        axios.get('http://www.ftusix.com/static/data/content.php' + search).then(response => {
-            console.log(response);
- document.getElementById('meta').innerText = `文章 - ${response.data.data.title} `;
-  title.innerText = response.data.data.title;
- author.innerText = response.data.data.nick_name;
- timestamp.innerText = new Date(response.data.data.modify_time*1000).toLocaleString();
- content.innerHTML = response.data.data.content;
-        });
+        
     </script>
 
 </body>

@@ -9,6 +9,24 @@
 </head>
 
 <body>
+    <button id="findIdByName">findIdByName</button>
+    <br>
+    <br>
+    <button id="findNameById">findNameById</button>
+    <br>
+    <br>
+    <button id="getListWithDLR">getListWithDLR</button>
+    <br>
+    <br>
+    <button id="getListWithLDR">getListWithLDR</button>
+    <br>
+    <br>
+    <button id="getListWithLRD">getListWithLRD</button>
+    <br>
+    <br>
+    <br>
+    <pre id="result"></pre>
+
     <script>
         var tree = {
             "id": 0,
@@ -66,38 +84,108 @@
 
 
 
-        // console.log(JSON.stringify(tree));
-        var a = JSON.stringify(tree);
-        var c;
-        var index = a.indexOf("Kai");
-        console.log(index);
-        c = a.slice(index-18,index-9);
-        console.log(c);
-        
-        
-        function findIdByName(name) {
 
+        const btn_findIdByName = document.getElementById("findIdByName");
+        const btn_findNameById = document.getElementById("findNameById");
+        const btn_getListWithDLR = document.getElementById("getListWithDLR");
+        const btn_getListWithLDR = document.getElementById("getListWithLDR");
+        const btn_getListWithLRD = document.getElementById("getListWithLRD");
+
+
+        btn_findIdByName.addEventListener('click', () => {
+            document.getElementById('result').innerText =
+                `
+                findIdByName('Kai') = ${findIdByName('Kai')}
+`
+        });
+        btn_findNameById.addEventListener('click', () => {
+            document.getElementById('result').innerText =
+                `
+                findNameById(10) =  ${findNameById('10')}
+`
+        });
+        btn_getListWithDLR.addEventListener('click', () => {
+            if (document.getElementById('result').innerText !== "") {
+                document.getElementById('result').innerText = "";
+            }
+            getListWithDLR(tree)
+        });
+        btn_getListWithLDR.addEventListener('click', () => {
+            if (document.getElementById('result').innerText !== "") {
+                document.getElementById('result').innerText = "";
+            }
+            getListWithLDR(tree)
+        });
+        btn_getListWithLRD.addEventListener('click', () => {
+            if (document.getElementById('result').innerText !== "") {
+                document.getElementById('result').innerText = "";
+            }
+            getListWithLRD(tree);
+        });
+
+
+
+        function findIdByName(name) {
+            let str = JSON.stringify(tree);
+            let arr = str.split("{");
+            str = arr.filter(e => {
+                return e.includes(name);
+            }).toString();
+            return str.replace(/}|"|/g, '').split(',')[0];
         }
 
 
         // 假设id和name均不会重复，根据输入id找到对应的name
         function findNameById(id) {
-
+            let str = JSON.stringify(tree);
+            let arr = str.split("{");
+            str = arr.filter(e => {
+                return e.includes(id);
+            }).toString();
+            return str.replace(/}|"|/g, '').split(',')[1];
         }
 
         // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
         function getListWithDLR() {
+            var node = arguments[0];
+            if (!(node == null)) {
+                console.log(node.name);
+                if (document.getElementById('result').innerText === "") {
+                    document.getElementById('result').innerText = "Start"
+                }
+                document.getElementById('result').innerText = document.getElementById('result').innerText + " -> " + node.name;
+                getListWithDLR(node.left);
+                getListWithDLR(node.right);
+            }
 
         }
 
         // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
         function getListWithLDR() {
-
+            var node = arguments[0];
+            if (!(node == null)) {
+                getListWithLDR(node.left);
+                console.log(node.name);
+                if (document.getElementById('result').innerText === "") {
+                    document.getElementById('result').innerText = "Start"
+                }
+                document.getElementById('result').innerText = document.getElementById('result').innerText + " -> " + node.name;
+                getListWithLDR(node.right);
+            }
         }
 
         // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
         function getListWithLRD() {
-
+            var node = arguments[0];
+            if (!(node == null)) {
+                getListWithLRD(node.left);
+                getListWithLRD(node.right);
+                console.log(node.name);
+                if (document.getElementById('result').innerText === "") {
+                    document.getElementById('result').innerText = "Start"
+                }
+                document.getElementById('result').innerText = document.getElementById('result').innerText + " -> " + node.name;
+            }
         }
     </script>
 

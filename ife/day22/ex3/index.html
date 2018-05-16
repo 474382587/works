@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-32">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
+    <button id="trim">掐头去尾(空格)</button>
+    <button id="deduplication">去重</button>
+    <pre id="result">
+
+    </pre>
     <script>
-    /*
-    实现一个字符串头尾去除空格的函数
-    注意需要去除的空格，包括全角、半角空格
-    暂时不需要学习和使用正则表达式的方式
-    */
+        /*
+        实现一个字符串头尾去除空格的函数
+        注意需要去除的空格，包括全角、半角空格
+        暂时不需要学习和使用正则表达式的方式
+        */
+       const btn_deduplication = document.getElementById("deduplication");
+        const btn_trim = document.getElementById('trim');
+        btn_trim.addEventListener('click', () => {
+                document.getElementById('result').innerText =
+                    `
+                diyTrim(' a f b    ') =>${diyTrim(' a f b    ')}
+                diyTrim('    ffdaf    ') =>${diyTrim('    ffdaf    ')}
+                diyTrim('1    ') =>${diyTrim('1    ')}
+                diyTrim('　　f') =>${diyTrim('　　f')}
+                diyTrim('  　  a f b 　　 ') =>${diyTrim('  　  a f b 　　 ')}
+                diyTrim(' ') =>${diyTrim(' ')}
+                diyTrim('　') =>${diyTrim('　')}
+                diyTrim('') =>${diyTrim('')}
+       `
+            });
+        btn_deduplication.addEventListener('click', () => {
+            document.getElementById('result').innerText =
+                `
+                removeRepetition("aaa") =>${removeRepetition("aaa")}
+                removeRepetition("abbba") =>${removeRepetition("abbba")}
+                removeRepetition("aabbaabb") =>${removeRepetition("aabbaabb")}
+                removeRepetition("") =>${removeRepetition("")}
+                removeRepetition("abc") =>${removeRepetition("abc")}
+       `
+        });
         function diyTrim(str) {
             var result = "";
             result = str.trim();
@@ -23,6 +55,7 @@
         var arr = diyTrim("dsad 金 \u3000")
         console.log(arr)
         // 测试用例
+
         console.log(diyTrim(' a f b    ')); // ->a f b
         console.log(diyTrim('    ffdaf    ')); // ->ffdaf
         console.log(diyTrim('1    ')); // ->1
@@ -39,8 +72,8 @@
             var result = "";
             // do something
             result = str.split('');
-            result = result.map((e,index,arr)=>{
-                return e !== arr[index+1]? e: "";
+            result = result.map((e, index, arr) => {
+                return e !== arr[index + 1] ? e : "";
             });
             return result.join('');
         }
@@ -51,6 +84,7 @@
         console.log(removeRepetition("aabbaabb")); // ->abab
         console.log(removeRepetition("")); // ->
         console.log(removeRepetition("abc")); // ->abc
-</script>
+    </script>
 </body>
+
 </html>

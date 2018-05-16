@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex1</title>
+</head>
+
+<body>
+    <div>
+        <label>Number A:
+            <input id="radio-a" type="radio" name="math-obj" value="a">
+        </label>
+        <input id="num-a" type="text">
+        <label>Number B:
+            <input id="radio-b" type="radio" name="math-obj" value="b">
+        </label>
+        <input id="num-b" type="text">
+    </div>
+    <br>
+    <div>
+        <button id="isNumber">判断当前选中的输入框输入内容是否为数字</button>
+        <br>
+        <br>
+        <button id="fixed">把 A 四舍五入为 B 个小数位数的数字</button>
+        <br>
+        <br>
+        <button id="abs">当前选中数字的绝对值</button>
+        <br>
+        <br>
+        <button id="ceil">对当前选中的数字进行上舍入</button>
+        <br>
+        <br>
+        <button id="floor">对当前选中的数字进行下舍入</button>
+        <br>
+        <br>
+        <button id="round">把当前选中的数字四舍五入为最接近的整数</button>
+        <br>
+        <br>
+        <button id="max">返回 A 和 B 中的最高值</button>
+        <br>
+        <br>
+        <button id="min">返回 A 和 B 中的最低值</button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        const radioButtons = document.querySelectorAll('input[type = "radio"]');
+        var currentNumber = null;
+
+        //判断现在选定的是哪个数字输入
+        radioButtons.forEach(e => {
+            e.addEventListener('change', e => {
+                currentNumber = document.getElementById("num-" + e.target.value);
+                console.log(currentNumber);
+
+            });
+        })
+
+        const isNumber = document.getElementById("isNumber");
+        const fixed = document.getElementById("fixed");
+        const abs = document.getElementById("abs");
+        const ceil = document.getElementById("ceil");
+        const floor = document.getElementById("floor");
+        const round = document.getElementById("round");
+        const max = document.getElementById("max");
+        const min = document.getElementById("min");
+        const result = document.getElementById("result")
+
+        isNumber.addEventListener('click', e => {
+            if (currentNumber !== null) {
+                result.innerText = (!isNaN(currentNumber.value));
+            }
+            else {
+                result.innerText = "请先选择要进行判断的数字输入框"
+            }
+        });
+
+        fixed.addEventListener('click', e => {
+            let a = document.getElementById('num-a').value - '';
+
+            // console.log(digit);
+
+            let b = document.getElementById('num-b').value - '';
+            if (isNaN(a) || isNaN(b)) {
+                result.innerText = ("你在逗我吗？");
+            }
+            else {
+                if (a == '') {
+                    result.innerText = ('不可以四舍五入空字符串')
+                }
+                else {
+                    let digit = document.getElementById('num-a').value.split('.');
+                    digit = digit[1].length;
+                    if (b == '') {
+                        result.innerText = a;
+                    }
+                    else {
+                        b = b > digit ? digit : b;
+                        result.innerText = a.toFixed(parseInt(b));
+                    }
+                }
+            }
+        });
+
+        abs.addEventListener('click', e => {
+            if (currentNumber !== null) {
+                result.innerText = (Math.abs(currentNumber.value - ''));
+            }
+            else {
+                result.innerText = "请先选择要进行绝对值计算的数字输入框"
+            }
+        });
+
+        ceil.addEventListener('click', e => {
+            if (currentNumber !== null) {
+                result.innerText = (Math.ceil(currentNumber.value - ''));
+            }
+            else {
+                result.innerText = "请先选择要进行舍入的数字输入框"
+            }
+        });
+
+        floor.addEventListener('click', e => {
+            if (currentNumber !== null) {
+                result.innerText = (Math.floor(currentNumber.value - ''));
+            }
+            else {
+                result.innerText = "请先选择要进行舍入的数字输入框"
+            }
+        });
+        round.addEventListener('click', e => {
+            if (currentNumber !== null) {
+                result.innerText = (Math.round(currentNumber.value - ''));
+            }
+            else {
+                result.innerText = "请先选择要进行舍入的数字输入框"
+            }
+        });
+        max.addEventListener('click', e => {
+            let a = document.getElementById('num-a').value;
+            let b = document.getElementById('num-b').value;
+            if (a === "" && b === "") {
+                result.innerText = "请至少输入一个数比较";
+            }
+            else if (a === "") {
+                if(!isNaN(b)){
+                    result.innerText = b;
+                }
+                else{
+                    result.innerText = "输入值无效";
+                }
+            }
+            else if (b === "") {
+                if (!isNaN(a)) {
+                    result.innerText = a;
+                }
+                else {
+                    result.innerText = "输入值无效";
+                }
+            }
+            else {
+                if(isNaN(a) || isNaN(b)){
+                    result.innerText = "输入值无效";
+                }
+                else{
+                    result.innerText = Math.max(a - '', b - '');
+                }
+            }
+        });
+        min.addEventListener('click', e => {
+                        let a = document.getElementById('num-a').value;
+            let b = document.getElementById('num-b').value;
+            if (a === "" && b === "") {
+                result.innerText = "请至少输入一个数比较";
+            }
+            else if (a === "") {
+                if (!isNaN(b)) {
+                    result.innerText = b;
+                }
+                else {
+                    result.innerText = "输入值无效";
+                }
+            }
+            else if (b === "") {
+                if (!isNaN(a)) {
+                    result.innerText = a;
+                }
+                else {
+                    result.innerText = "输入值无效";
+                }
+            }
+            else {
+                if (isNaN(a) || isNaN(b)) {
+                    result.innerText = "输入值无效";
+                }
+                else {
+                    result.innerText = Math.min(a - '', b - '');
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ex2</title>
+</head>
+
+<body>
+    <div>
+        <label>String A:
+            <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+        </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+            <input id="radio-b" type="radio" name="str-obj" value="b">
+        </label>
+        <textarea id="str-b"></textarea>
+        <label>Num A：
+            <input id="num-a" type="number" value="0">
+        </label>
+        <label>Num B：
+            <input id="num-b" type="number" value="1">
+        </label>
+    </div>
+    <br>
+    <br>
+    <div>
+        <button id="length">获取当前选中输入的内容长度</button>
+        <br>
+        <br>
+        <button id="third">当前选中输入中的第3个字符</button>
+        <br>
+        <br>
+        <button id="concat">把两个输入框的文字连接在一起输出（concat）</button>
+        <br>
+        <br>
+        <button id="indexOf">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+        <br>
+        <br>
+        <button id="lastIndexOf">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+        <br>
+        <br>
+        <button id="slice">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+        <br>
+        <br>
+        <button id="rows">当前选中输入框的行数</button>
+        <br>
+        <br>
+        <button id="substr">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+        <br>
+        <br>
+        <button id="Upper">把所选输入框中的内容全部转为大写</button>
+        <br>
+        <br>
+        <button id="Lower">把所选输入框中的内容全部转为小写</button>
+        <br>
+        <br>
+        <button id="space">把所选输入框中内容的半角空格全部去除</button>
+        <br>
+        <br>
+        <button id="replace">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    <p id="result"></p>
+    <script>
+        //1
+
+        const btn_length = document.getElementById("length");
+        const btn_third = document.getElementById("third");
+        const btn_concat = document.getElementById("concat");
+        const btn_indexOf = document.getElementById("indexOf");
+        const btn_lastIndexOf = document.getElementById("lastIndexOf");
+        const btn_slice = document.getElementById("slice");
+        const btn_rows = document.getElementById("rows");
+        const btn_substr = document.getElementById("substr");
+        const btn_upper = document.getElementById("Upper");
+        const btn_lower = document.getElementById("Lower");
+        const btn_space = document.getElementById("space");
+        const btn_replace = document.getElementById("replace");
+        const result = document.getElementById('result');
+
+        const radioButtons = document.querySelectorAll('input[type = "radio"]');
+
+        var currentStr = document.getElementById("str-a");
+        const stra = document.getElementById('str-a');
+        const strb = document.getElementById('str-b');
+        const numa = document.getElementById('num-a');
+        const numb = document.getElementById('num-b');
+        //判断现在选定的是哪个数字输入
+        radioButtons.forEach(e => {
+            e.addEventListener('change', e => {
+                currentStr = document.getElementById("str-" + e.target.value);
+            });
+        })
+
+        btn_length.addEventListener('click', e => {
+
+            result.innerText = currentStr.value.length;
+        });
+
+        //2
+        btn_third.addEventListener('click', e => {
+            let arr = currentStr.value.split('');
+            if (arr.length >= 3) {
+                result.innerText = arr[2];
+            }
+            else {
+                result.innerText = "String 不够长";
+            }
+        });
+
+        //3 
+        btn_concat.addEventListener('click', e => {
+            result.innerText = stra.value.concat(strb.value);
+        });
+
+        //4
+        btn_indexOf.addEventListener('click', e => {
+            let index = stra.value.indexOf(strb.value);
+            if (index < 0) {
+                index = "找不到";
+            }
+            result.innerText = "index: " + index;
+        });
+
+        //5
+        btn_lastIndexOf.addEventListener('click', e => {
+            let index = stra.value.lastIndexOf(strb.value);
+            if (index < 0) {
+                index = "找不到";
+            }
+            result.innerText = "index: " + index;
+        });
+
+        //6
+        btn_slice.addEventListener('click', e => {
+            let str = currentStr.value;
+            let start = numa.value - '';
+            let end = numb.value;
+            end = end === "" ? str.length : end - '';
+            result.innerText = str.slice(start, end) || "参数错误，1. 第二个数不能大于等于第一个数 2. 第一个数不能超过 string.length-1";
+        });
+
+        //7
+        btn_rows.addEventListener('click', e => {
+            let message = currentStr.value.split('\n');
+            result.innerText = "行数（回车断行）："+message.length;
+        });
+
+        //8
+        btn_substr.addEventListener('click', e => {
+            let str = currentStr.value;
+            let start = numa.value - '';
+            let end = numb.value;
+            end = end === "" ? str.length : end - '';
+            result.innerText = str.substr(start, end) || "参数错误";
+        }); 
+
+        //9
+        btn_upper.addEventListener('click', e => {
+            result.innerText = currentStr.value.toUpperCase();
+        });
+        //10
+        btn_lower.addEventListener('click', e => {
+                result.innerText = currentStr.value.toLowerCase();
+            });
+
+        //11
+        btn_space.addEventListener('click', e => {
+            result.innerText = currentStr.value.split(" ").join("");
+        });
+        //12
+        btn_replace.addEventListener('click', e => {
+            if(currentStr === stra){
+                result.innerText = currentStr.value.replace(/a/g, strb.value);
+            }
+            else{
+                result.innerText = currentStr.value.replace(/a/g, stra.value);
+            }
+            
+        });
+    </script>
+</body>
+
+</html>

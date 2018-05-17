@@ -19,7 +19,7 @@
             
             <button>显示结果</button>
         </pre>
-<hr>
+            <hr>
             <pre>
             var arr = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
             
@@ -27,7 +27,7 @@
             
             <button>显示结果</button>
         </pre>
-<hr>
+            <hr>
             <br>
             <pre>
             var arr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
@@ -38,7 +38,7 @@
             
             <button>显示结果</button>
         </pre>
-<hr>
+            <hr>
             <pre>
             var arr = [ { id: 1, name: 'candy', value: 40 }, 
             { id: 2, name: 'Simon', value: 50 }, 
@@ -50,7 +50,7 @@
             <button>显示结果</button>
         </pre>
 
-<hr>
+            <hr>
             <pre>
             对象转数组
             var scoreObject = {
@@ -73,8 +73,8 @@
             
             <button>显示结果</button>
         </pre>
-        <hr>
-        <pre>
+            <hr>
+            <pre>
             数组转为对象：
 
             var menuArr = [
@@ -120,21 +120,23 @@
         <div class="right">
             <pre id="result"></pre>
         </div>
-        
+
     </div>
 
     <style>
-        div.container{
+        div.container {
             display: flex;
         }
-        div.right{
+
+        div.right {
             flex: 1;
-            color:darkcyan;
+            color: darkcyan;
         }
-        #result{
+
+        #result {
             padding-left: 200px;
             position: fixed;
-            top:40%;
+            top: 40%;
         }
     </style>
     <script>
@@ -181,7 +183,16 @@
                 "Music": 88
             }
         }
-
+        var menuArr = [
+            [1, "Area1", -1],
+            [2, "Area2", -1],
+            [3, "Area1-1", 1],
+            [4, "Area1-2", 1],
+            [5, "Area2-1", 2],
+            [6, "Area2-2", 2],
+            [7, "Area1-2-3", 4],
+            [8, "Area2-2-1", 6],
+        ];
         buttons[0].addEventListener('click', e => {
             result.innerText = arr.sort((a, b) => {
                 return a < b;
@@ -231,6 +242,52 @@
             }
             return list;
         }
+        // arrToObj(menuArr)
+
+        // function arrToObj(arr) {
+        //     var temp = arr;
+        //     var obj ={};
+        //     var b = JSON.stringify(arr)
+        //     // temp.map(e => {
+        //     //         let parent;
+        //     //         if (e[2] === -1) {
+        //     //             parent = null;
+        //     //         }
+        //     //         else {
+        //     //             parent = e[2] - 1;
+        //     //         }
+        //     //         return JSON.parse(`{"${e[0]}" :{"name" :"${e[1]}", "parent" :"${parent}"}}`)
+        //     //     });
+        //     console.log( (b));
+        //     // for(let i = 0; i<b.length; i++){
+        //     //     if
+        //     // }
+        // }
+        arrToObj(menuArr);
+        function arrToObj(arr) {
+            var temp = arr;
+            var obj = {};
+            for(var i = temp.length-1; i>-1; i--){
+                if(temp[i][2]>0){
+                    let obj = new Object()
+                    obj.id = temp[i][0];
+                    obj.name = temp[i][1];
+                    temp[temp[i][2]-1].push(obj)
+                    delete temp[i];
+                }
+                else{
+                    temp[i].splice(2,1);
+                }
+            }
+            
+
+
+
+console.dir(temp)
+
+        }
+
+
     </script>
 </body>
 

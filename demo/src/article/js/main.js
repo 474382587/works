@@ -13,7 +13,7 @@ function updatePosts(arr) {
     for (let i = 0; i < arr.length; i++) {
         let li = document.createElement('li');
         // ${arr[i].user_id}
-        li.innerHTML = `<a href='../blog/post.html?topic_id=${arr[i].topic_id}&user_id=${arr[i].user_id}'><div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="../static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="../static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div></a>`
+        li.innerHTML = `<a href='../blog/post.html?topic_id=${arr[i].topic_id}&user_id=${arr[i].user_id}'><div class="left"><p>${arr[i].nick_name} <span>${calculateTime(arr[i].modify_time)}</span></p>${arr[i].title}</div><div class="right"><span><img src="/demo/static/img/comment-alt.svg" alt="" height="20px">${arr[i].comment_num}</span><span><img src="/demo/static/img/thumbs-up.svg" alt="" height="20px">${arr[i].like_num}</span></div></a>`
         posts.appendChild(li);
     }
 }

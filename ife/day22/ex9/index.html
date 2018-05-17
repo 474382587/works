@@ -118,7 +118,8 @@
         </pre>
         </div>
         <div class="right">
-            <pre id="result"></pre>
+            <p id="result"></p>
+
         </div>
 
     </div>
@@ -242,49 +243,42 @@
             }
             return list;
         }
-        // arrToObj(menuArr)
 
-        // function arrToObj(arr) {
-        //     var temp = arr;
-        //     var obj ={};
-        //     var b = JSON.stringify(arr)
-        //     // temp.map(e => {
-        //     //         let parent;
-        //     //         if (e[2] === -1) {
-        //     //             parent = null;
-        //     //         }
-        //     //         else {
-        //     //             parent = e[2] - 1;
-        //     //         }
-        //     //         return JSON.parse(`{"${e[0]}" :{"name" :"${e[1]}", "parent" :"${parent}"}}`)
-        //     //     });
-        //     console.log( (b));
-        //     // for(let i = 0; i<b.length; i++){
-        //     //     if
-        //     // }
-        // }
+
+
+        // JSON.stringify(arrToObj(menuArr));
+        buttons[5].addEventListener('click', e => {
+            result.innerText = JSON.stringify(arrToObj(menuArr)) + "         看 console";
+        });
         arrToObj(menuArr);
         function arrToObj(arr) {
             var temp = arr;
-            var obj = {};
-            for(var i = temp.length-1; i>-1; i--){
-                if(temp[i][2]>0){
-                    let obj = new Object()
-                    obj.id = temp[i][0];
-                    obj.name = temp[i][1];
-                    temp[temp[i][2]-1].push(obj)
-                    delete temp[i];
+
+            var result = {};
+
+            temp.forEach((e, index) => {
+                let obj = new Object();
+                obj.name = e[1];
+                obj.parent = e[2];
+                obj.subMenu = new Object();
+                // console.log(index)
+                result[e[0]] = obj;
+            });
+
+            for (key in result) {
+                if (result[key]["parent"] !== -1) {
+                    let obj = new Object();
+                    let parent = result[key]["parent"];
+                    delete result[key]["parent"];
+                    // console.log(result[parent].subMenu[key] = result[key])
                 }
-                else{
-                    temp[i].splice(2,1);
+                else {
+                    delete result[key].parent;
                 }
             }
-            
-
-
-
-console.dir(temp)
-
+            console.log(result);
+            console.dir(result);
+            return result;
         }
 
 

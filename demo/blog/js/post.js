@@ -14,8 +14,11 @@ const content = document.getElementById('content');
 const views = document.getElementById('views');
 const comments = document.getElementById('comments');
 var search = window.location.search;
+
 axios.get('http://www.ftusix.com/static/data/content.php' + search).then(response => {
     console.log(response);
+    let loading = document.querySelector('div.loader');
+    loading.classList.add('hide');
     document.getElementById('meta').innerText = `文章 - ${response.data.data.title} `;
     title.innerText = response.data.data.title;
     author.innerText = response.data.data.nick_name;

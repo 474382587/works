@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ex9</title>
+    <style>
+        span.hide>b {
+            display: none;
+        }
+
+        span>strong {
+            display: none;
+        }
+        span.hide>strong {
+            display: inline;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +37,7 @@
             
             将上面数组分别按字母顺序a-z及z-a进行排序，在console中输出
             
-            <button>显示结果</button>
+            <button>显示结果 <span class="hide"><b> 正序 </b> <strong> 倒叙 </strong></span></button>
         </pre>
             <hr>
             <br>
@@ -200,6 +212,7 @@
             });
         });
         buttons[1].addEventListener('click', e => {
+            document.querySelector("span").classList.toggle('hide');
             if (buttons[1].className === "a") {
                 result.innerText = "A-Z: " + arr2.sort((a, b) => {
                     return a > b;

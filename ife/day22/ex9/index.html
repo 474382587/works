@@ -14,6 +14,7 @@
         span>strong {
             display: none;
         }
+
         span.hide>strong {
             display: inline;
         }
@@ -265,19 +266,25 @@
         });
         arrToObj(menuArr);
         function arrToObj(arr) {
-            var temp = arr;
+            let temp = (arr);
+            arr.forEach((e, index) => {
+                var tempArr = new Array();
+                e.push(tempArr)
+                if(e[2] !== -1){
+                    temp[e[2]-1][3].push(index)
+                }
+            });
 
-            var result = {};
-
+            let result = {};
             temp.forEach((e, index) => {
                 let obj = new Object();
                 obj.name = e[1];
                 obj.parent = e[2];
-                obj.subMenu = new Object();
-                // console.log(index)
+                if(e[3].length>0){
+                    obj.subMenu = new Object();
+                }
                 result[e[0]] = obj;
             });
-
             for (key in result) {
                 if (result[key]["parent"] !== -1) {
                     let obj = new Object();
@@ -287,19 +294,22 @@
                     // console.log(result[parent].subMenu[key] = result[key])
                 }
             }
-            for(key in result){
-                if(result[key].parent){
-                     delete result[key]["parent"];
+            for (key in result) {
+                if (result[key].parent) {
+                    delete result[key]["parent"];
                 }
-                else{
+                else {
                     delete result[key];
                 }
             }
+            
+
             console.log(result);
-            console.dir(result);
             return result;
         }
+        
 
+    
 
     </script>
 </body>

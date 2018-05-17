@@ -283,10 +283,16 @@
                     let obj = new Object();
                     let parent = result[key]["parent"];
                     delete result[key]["parent"];
+                    result[parent].subMenu[key] = result[key];
                     // console.log(result[parent].subMenu[key] = result[key])
                 }
-                else {
-                    delete result[key].parent;
+            }
+            for(key in result){
+                if(result[key].parent){
+                     delete result[key]["parent"];
+                }
+                else{
+                    delete result[key];
                 }
             }
             console.log(result);

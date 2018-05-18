@@ -58,6 +58,9 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
+        if(i === new Date().getFullYear()){
+            opt.selected ="selected"
+        }
         yearSelect.appendChild(opt);
     }
     const monthSelect = document.getElementById("month-select");
@@ -65,6 +68,9 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
+        if (i === new Date().getMonth()+1) {
+            opt.selected = "selected"
+        }
         monthSelect.appendChild(opt);
     }
     const daySelect = document.getElementById("day-select");
@@ -72,6 +78,9 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
+        if (i === new Date().getDate()) {
+            opt.selected = "selected"
+        }
         daySelect.appendChild(opt);
     }
     const hourSelect = document.getElementById("hour-select");
@@ -79,6 +88,9 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
+        if (i === new Date().getHours()) {
+            opt.selected = "selected"
+        }
         hourSelect.appendChild(opt);
     }
     const minuteSelect = document.getElementById("minute-select");
@@ -87,6 +99,9 @@
         opt.value = i;
         opt.innerText = i;
         minuteSelect.appendChild(opt);
+        if (i === new Date().getMinutes()) {
+            opt.selected = "selected"
+        }
     }
 
     const secondSelect = document.getElementById("second-select");
@@ -94,6 +109,9 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
+        if (i === new Date().getSeconds()) {
+            opt.selected = "selected"
+        }
         secondSelect.appendChild(opt);
     }
 

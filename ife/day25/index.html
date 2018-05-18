@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="year-select">
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        ……
+        <option value="2032">2032</option>
+    </select>
+
+    <select id="month-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="12">12</option>
+    </select>
+
+    <select id="day-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        ……
+        <option value="31">31</option>
+    </select>
+
+    <select id="hour-select">
+        <option value="0">00</option>
+        <option value="1">01</option>
+        ……
+        <option value="23">23</option>
+    </select>
+
+    <select id="minite-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+
+    <select id="second-select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        ……
+        <option>59</option>
+    </select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+</body>
+<script>
+    var selections = document.querySelectorAll("select");
+    console.log(selections);
+    
+    selections.forEach(e=>{
+        e.addEventListener('change', updateDOM);
+    });
+    function getSelectValue(id) {
+        let element = document.getElementById(id);
+        return element.value;
+    }
+
+    function updateDOM(event) {
+        let unit = event.target.id.replace("-select",'');
+        let value = event.target.value-'';
+        // console.log(unit);
+        // console.log(value);
+        
+        let endDate = endTime();
+        
+        // console.log(endDate);
+        
+    }
+    function endTime(){
+        let timeList = [];
+        let selected = document.querySelectorAll("select");
+        selected.forEach(e=>{
+            timeList.push(e.value)
+        });
+        let endString = `现在距离 ${timeList[0]}年${timeList[1]}月${timeList[2]}日 `
+        let endDate = new Array();
+        endDate.push(endString);
+        endDate.push(`${timeList[0]}-${timeList[0]}`)
+        console.log(endDate)
+        // return timeList;
+    }
+    function timeRemain(endDate) {
+        let endTime = endDate[1];
+        let currentTime = new Date().getTime();
+    }
+
+</script>
+</html>

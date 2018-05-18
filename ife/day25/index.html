@@ -68,10 +68,11 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i < new Date().getMonth()+1) {
-            opt.classList.add("inactive")
-        }
-        else if (i === new Date().getMonth()+1) {
+        // if (i < new Date().getMonth()+1) {
+        //     opt.classList.add("inactive")
+        // }
+        // else 
+        if (i === new Date().getMonth()+1) {
             opt.selected = "selected"
         }
         monthSelect.appendChild(opt);
@@ -81,10 +82,11 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i < new Date().getDate()) {
-            opt.classList.add("inactive")
-        }
-        else if (i === new Date().getDate()) {
+        // if (i < new Date().getDate()) {
+        //     opt.classList.add("inactive")
+        // }
+        // else 
+        if (i === new Date().getDate()) {
             opt.selected = "selected"
         }
         daySelect.appendChild(opt);
@@ -94,10 +96,11 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i < new Date().getHours()) {
-            opt.classList.add("inactive")
-        }
-        else if (i === new Date().getHours()) {
+        // if (i < new Date().getHours()) {
+        //     opt.classList.add("inactive")
+        // }
+        // else 
+        if (i === new Date().getHours()) {
             opt.selected = "selected"
         }
         hourSelect.appendChild(opt);
@@ -108,10 +111,11 @@
         opt.value = i;
         opt.innerText = i;
         minuteSelect.appendChild(opt);
-        if (i < new Date().getMinutes()) {
-            opt.classList.add("inactive")
-        }
-        else if (i === new Date().getMinutes()) {
+        // if (i < new Date().getMinutes()) {
+        //     opt.classList.add("inactive")
+        // }
+        // else 
+        if (i === new Date().getMinutes()) {
             opt.selected = "selected"
         }
     }
@@ -121,10 +125,11 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if(i< new Date().getSeconds()){
-            opt.classList.add("inactive")
-        }
-        else if (i === new Date().getSeconds()) {
+        // if(i< new Date().getSeconds()){
+        //     opt.classList.add("inactive")
+        // }
+        // else 
+        if (i === new Date().getSeconds()) {
             opt.selected = "selected"
         }
         secondSelect.appendChild(opt);

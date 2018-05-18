@@ -50,7 +50,7 @@
         <option value="" disabled selected>请选择</option>
     </select>
 
-    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+    <p id="result-wrapper">现在距离 &nbsp&nbsp&nbsp&nbsp年&nbsp&nbsp月&nbsp&nbsp日星期&nbsp &nbsp&nbsp:&nbsp&nbsp:&nbsp&nbsp 还有 &nbsp 天 &nbsp 小时 &nbsp 分 &nbsp 秒</p>
 </body>
 <script>
     const yearSelect = document.getElementById("year-select");
@@ -68,7 +68,10 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i === new Date().getMonth()+1) {
+        if (i < new Date().getMonth()+1) {
+            opt.classList.add("inactive")
+        }
+        else if (i === new Date().getMonth()+1) {
             opt.selected = "selected"
         }
         monthSelect.appendChild(opt);
@@ -78,7 +81,10 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i === new Date().getDate()) {
+        if (i < new Date().getDate()) {
+            opt.classList.add("inactive")
+        }
+        else if (i === new Date().getDate()) {
             opt.selected = "selected"
         }
         daySelect.appendChild(opt);
@@ -88,7 +94,10 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i === new Date().getHours()) {
+        if (i < new Date().getHours()) {
+            opt.classList.add("inactive")
+        }
+        else if (i === new Date().getHours()) {
             opt.selected = "selected"
         }
         hourSelect.appendChild(opt);
@@ -99,7 +108,10 @@
         opt.value = i;
         opt.innerText = i;
         minuteSelect.appendChild(opt);
-        if (i === new Date().getMinutes()) {
+        if (i < new Date().getMinutes()) {
+            opt.classList.add("inactive")
+        }
+        else if (i === new Date().getMinutes()) {
             opt.selected = "selected"
         }
     }
@@ -109,7 +121,10 @@
         let opt = document.createElement('option');
         opt.value = i;
         opt.innerText = i;
-        if (i === new Date().getSeconds()) {
+        if(i< new Date().getSeconds()){
+            opt.classList.add("inactive")
+        }
+        else if (i === new Date().getSeconds()) {
             opt.selected = "selected"
         }
         secondSelect.appendChild(opt);
@@ -199,13 +214,19 @@
     function getEndTime() {
         //获取selection选中值
         console.log(" getEndTime()")
+        let weekday = ['一','二','三','四','五','六','日'];
         let selected = Array.from(document.getElementsByTagName("select"));
         let day = new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getDay();
         let difference =
             new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getTime() - new Date().getTime();
         finished = difference === 0 ? true : false;
+        
         let timeObj = getTimeValues(difference);
-        let endString = `现在距离 ${selected[0].value}年${selected[1].value}月${selected[2].value}日 星期${day} ${selected[3].value}:${selected[4].value}${selected[5].value} 还有 ${timeObj.days} 天 ${timeObj.hours} 小时 ${timeObj.minutes} 分 ${timeObj.seconds} 秒`
+        let endString = `现在距离 ${selected[0].value}年${selected[1].value}月${selected[2].value}日 星期${weekday[day]} ${selected[3].value}:${selected[4].value}:${selected[5].value} 还有 ${timeObj.days} 天 ${timeObj.hours} 小时 ${timeObj.minutes} 分 ${timeObj.seconds} 秒`;
+        if (difference<0){
+            finished = true;
+            endString = `${selected[0].value}年${selected[1].value}月${selected[2].value}日 星期${weekday[day]} ${selected[3].value}:${selected[4].value}:${selected[5].value} 已经是过去式了`
+        }
         return endString;
     }
 

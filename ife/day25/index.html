@@ -214,7 +214,7 @@
     function getEndTime() {
         //获取selection选中值
         console.log(" getEndTime()")
-        let weekday = ['一','二','三','四','五','六','日'];
+        let weekday = ['日','二','三','四','五','六','一'];
         let selected = Array.from(document.getElementsByTagName("select"));
         let day = new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getDay();
         let difference =

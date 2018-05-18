@@ -6,84 +6,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .leap + #day-select.feb.short>option:nth-child(29) {
+            display: block;
+        }
+        .inactive{
+            display: none;
+        }
+        .feb>option:nth-child(29),
+        .feb>option:nth-child(30),
+        .feb>option:nth-child(31) {
+            display: none;
+        }
+
+        .short>option:nth-child(31) {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
     <select id="year-select">
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
+        <option value="" disabled selected>请选择</option>
     </select>
 
     <select id="month-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
+        <option value="" disabled selected>请选择</option>        
     </select>
 
     <select id="day-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="31">31</option>
+        <option value="" disabled selected>请选择</option>
     </select>
 
     <select id="hour-select">
-        <option value="0">00</option>
-        <option value="1">01</option>
-        <option value="23">23</option>
+        <option value="" disabled selected>请选择</option>
     </select>
 
-    <select id="minite-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option>59</option>
+    <select id="minute-select">
+        <option value="" disabled selected>请选择</option>
     </select>
 
     <select id="second-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option>59</option>
+        <option value="" disabled selected>请选择</option>
     </select>
 
     <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
 </body>
 <script>
-    const result_wrapper = document.getElementById("result-wrapper"); 
-    var selections = document.querySelectorAll("select");
+    const yearSelect = document.getElementById("year-select");
+    for (let i = 2018; i < 2033; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        yearSelect.appendChild(opt);
+    }
+    const monthSelect = document.getElementById("month-select");
+    for (let i = 1; i < 13; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        monthSelect.appendChild(opt);
+    }
+    const daySelect = document.getElementById("day-select");
+    for (let i = 1; i < 32; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        daySelect.appendChild(opt);
+    }
+    const hourSelect = document.getElementById("hour-select");
+    for (let i = 0; i < 24; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        hourSelect.appendChild(opt);
+    }
+    const minuteSelect = document.getElementById("minute-select");
+    for (let i = 1; i < 61; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        minuteSelect.appendChild(opt);
+    }
+
+    const secondSelect = document.getElementById("second-select");
+    for (let i = 1; i < 61; i++) {
+        let opt = document.createElement('option');
+        opt.value = i;
+        opt.innerText = i;
+        secondSelect.appendChild(opt);
+    }
+
+    yearSelect.addEventListener('change', (e) => {
+        console.log(e.target.value);
+        (e.target.value - '') % 4 === 0 ? monthSelect.classList.add("leap") : monthSelect.classList.remove("leap");
+        if(e.target.value-'' === new Date().getFullYear()-''){
+            let month = Array.from(monthSelect.children)
+            month.forEach(e=>{
+                e.value <= new Date().getMonth()? e.classList.add("inactive"):"";
+            });
+        }
+        else{
+            Array.from(monthSelect.children).forEach(e => {
+                e.classList.remove("inactive");
+            });
+        }
+    });
+    monthSelect.addEventListener('change', e => {
+        if (e.target.value - "" === 2 || e.target.value - "" === 4 || e.target.value - "" === 6 || e.target.value - "" === 9 || e.target.value - "" === 11) {
+            if (e.target.value - '' === 2) {
+                daySelect.classList.add("feb")
+            }
+            else {
+                daySelect.classList.remove("feb");
+            }
+            daySelect.classList.add('short');
+        }
+        else {
+            daySelect.classList.remove("feb");
+            daySelect.classList.remove('short');
+        }
+        console.log("year " + new Date().getFullYear());
+        console.log( new Date().getMonth()+1);
+        console.log(e.target.value);
+        
+        
+        if (yearSelect.value - '' === new Date().getFullYear()&& e.target.value-'' === new Date().getMonth()+1) {
+            console.log(daySelect.children);
+            let day = Array.from(daySelect.children)
+            day.forEach(e => {
+                console.log(e);
+                e.value <= new Date().getDate() ? e.classList.add("inactive") : "";
+            });
+        }
+        else {
+            Array.from(daySelect.children).forEach(e => {
+                e.classList.remove("inactive");
+            });
+        }
+
+
+
+    });
+
+
+    const result_wrapper = document.getElementById("result-wrapper");
+    var selections = Array.from(document.getElementsByTagName("select"));
     console.log(selections);
     //计时器
     var countdown;
-    
+    var finished = false;
     //监听下拉列表内容变更事件
-    selections.forEach(e=>{
-        e.addEventListener('change', event=>{
-            updateDOM(getEndTime());
+    selections.forEach(e => {
+        e.addEventListener('change', event => {
+            countdown ? clearInterval(countdown) : '';
+            countdown = setInterval(function () {
+                console.log(" getEndTime()")
+                updateDOM(getEndTime());
+                finished ? clearInterval(countdown) : '';
+            }, 1000);
         });
     });
 
@@ -96,27 +177,30 @@
     function updateDOM(content) {
         result_wrapper.innerText = content;
     }
-    
-    function getEndTime(){
+
+    function getEndTime() {
         //获取selection选中值
-        let selected = document.querySelectorAll("select");
+        console.log(" getEndTime()")
+        let selected = Array.from(document.getElementsByTagName("select"));
         let day = new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getDay();
-        let difference = 
-        new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getTime() - new Date().getTime();        
+        let difference =
+            new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getTime() - new Date().getTime();
+        finished = difference === 0 ? true : false;
         let timeObj = getTimeValues(difference);
         let endString = `现在距离 ${selected[0].value}年${selected[1].value}月${selected[2].value}日 星期${day} ${selected[3].value}:${selected[4].value}${selected[5].value} 还有 ${timeObj.days} 天 ${timeObj.hours} 小时 ${timeObj.minutes} 分 ${timeObj.seconds} 秒`
         return endString;
     }
 
     function getTimeValues(difference) {
-        let timeObj ={
-            days : Math.floor(difference / 1000 / 24 / 60 / 60),
-            hours : Math.floor(difference % (1000 * 24 * 60 * 60) / 1000 / 60 / 60),
-            minutes : Math.floor((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) / 60 / 1000),
-            seconds : Math.floor(((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) % (60 * 1000) / 1000)),
+        let timeObj = {
+            days: Math.floor(difference / 1000 / 24 / 60 / 60),
+            hours: Math.floor(difference % (1000 * 24 * 60 * 60) / 1000 / 60 / 60),
+            minutes: Math.floor((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) / 60 / 1000),
+            seconds: Math.floor(((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) % (60 * 1000) / 1000)),
         }
         return timeObj;
     }
 
 </script>
+
 </html>

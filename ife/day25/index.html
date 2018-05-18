@@ -13,86 +13,109 @@
         <option value="2000">2000</option>
         <option value="2001">2001</option>
         <option value="2002">2002</option>
-        ……
-        <option value="2032">2032</option>
+        <option value="2003">2003</option>
+        <option value="2004">2004</option>
+        <option value="2005">2005</option>
+        <option value="2006">2006</option>
+        <option value="2007">2007</option>
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
     </select>
 
     <select id="month-select">
         <option value="1">1</option>
         <option value="2">2</option>
-        ……
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
         <option value="12">12</option>
     </select>
 
     <select id="day-select">
         <option value="1">1</option>
         <option value="2">2</option>
-        ……
         <option value="31">31</option>
     </select>
 
     <select id="hour-select">
         <option value="0">00</option>
         <option value="1">01</option>
-        ……
         <option value="23">23</option>
     </select>
 
     <select id="minite-select">
         <option value="0">0</option>
         <option value="1">1</option>
-        ……
         <option>59</option>
     </select>
 
     <select id="second-select">
         <option value="0">0</option>
         <option value="1">1</option>
-        ……
         <option>59</option>
     </select>
 
     <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
 </body>
 <script>
+    const result_wrapper = document.getElementById("result-wrapper"); 
     var selections = document.querySelectorAll("select");
     console.log(selections);
+    //计时器
+    var countdown;
     
+    //监听下拉列表内容变更事件
     selections.forEach(e=>{
-        e.addEventListener('change', updateDOM);
+        e.addEventListener('change', event=>{
+            updateDOM(getEndTime());
+        });
     });
+
+    //获取元素的值
     function getSelectValue(id) {
         let element = document.getElementById(id);
         return element.value;
     }
 
-    function updateDOM(event) {
-        let unit = event.target.id.replace("-select",'');
-        let value = event.target.value-'';
-        // console.log(unit);
-        // console.log(value);
-        
-        let endDate = endTime();
-        
-        // console.log(endDate);
-        
+    function updateDOM(content) {
+        result_wrapper.innerText = content;
     }
-    function endTime(){
-        let timeList = [];
+    
+    function getEndTime(){
+        //获取selection选中值
         let selected = document.querySelectorAll("select");
-        selected.forEach(e=>{
-            timeList.push(e.value)
-        });
-        let endString = `现在距离 ${timeList[0]}年${timeList[1]}月${timeList[2]}日 `
-        let endDate = new Array();
-        endDate.push(endString);
-        endDate.push(`${timeList[0]}-${timeList[0]}`)
-        console.log(endDate)
-        // return timeList;
+        let day = new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getDay();
+        let difference = 
+        new Date(`${selected[0].value},${selected[1].value},${selected[2].value},${selected[3].value}:${selected[4].value}:${selected[5].value}`).getTime() - new Date().getTime();        
+        let timeObj = getTimeValues(difference);
+        let endString = `现在距离 ${selected[0].value}年${selected[1].value}月${selected[2].value}日 星期${day} ${selected[3].value}:${selected[4].value}${selected[5].value} 还有 ${timeObj.days} 天 ${timeObj.hours} 小时 ${timeObj.minutes} 分 ${timeObj.seconds} 秒`
+        return endString;
     }
-    function timeRemain(endDate) {
-        let endTime = endDate[1];
-        let currentTime = new Date().getTime();
+
+    function getTimeValues(difference) {
+        let timeObj ={
+            days : Math.floor(difference / 1000 / 24 / 60 / 60),
+            hours : Math.floor(difference % (1000 * 24 * 60 * 60) / 1000 / 60 / 60),
+            minutes : Math.floor((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) / 60 / 1000),
+            seconds : Math.floor(((difference % (1000 * 24 * 60 * 60) % (1000 * 60 * 60)) % (60 * 1000) / 1000)),
+        }
+        return timeObj;
     }
 
 </script>

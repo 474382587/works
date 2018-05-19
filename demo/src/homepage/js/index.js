@@ -26,6 +26,27 @@ function calculateTime(millSec) {
     return moment(date).fromNow();
 }
 
+window.onload = function () {
+    let cookieArr = document.cookie;
+    if (cookieArr !== "") {
+        document.querySelectorAll(".before-login").forEach(e=>{
+            e.classList.add('hide');
+        });
+        document.querySelectorAll(".after-login").forEach(e => {
+            e.classList.remove('hide');
+        });
+    }
+    else{
+        document.querySelectorAll(".after-login").forEach(e => {
+            e.classList.add('hide');
+        });
+        document.querySelectorAll(".before-login").forEach(e => {
+            e.classList.remove('hide');
+        });
+    }
+}
+
+
 requestPosts(0, null);
 //更新文章
 function updatePosts(arr) {

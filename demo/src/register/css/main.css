@@ -72,7 +72,130 @@ nav li {
     margin: 10px;
 }
 
-.banner {
-    padding: 60px 0;
-    margin: 0 auto;
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.wrapper {
+    flex: 1;
+    background-color: rgb(236, 236, 236);
+    padding: 50px 80px;
+}
+
+form>ul {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 30px 80px;
+    background-color: rgb(255, 255, 255);
+}
+
+form>ul>li {
+    height: 50px;
+    width: 350px;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+form>ul>li:first-child {
+    border-bottom: 1px solid black;
+}
+
+form input,
+form span {
+    line-height: 50px;
+    display: block;
+    font-size: 16px;
+    padding: 0px 5px;
+    flex: 1;
+}
+
+form span {
+    font-size: 24px;
+}
+
+form input.aleart {
+    border-color: red;
+}
+
+li>button {
+    width: 140px;
+    margin: 0 auto;
+    height: 30px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(255, 14, 44);
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+li>button:active {
+    background-color: rgb(211, 39, 59);
+    box-shadow: 0 2px #999;
+    transform: translateY(2px);
+}
+
+li>button:hover {
+    cursor: pointer;
+}
+
+li>div {
+    flex: 1;
+    background: repeating-radial-gradient(ellipse at 100%, #a98aaf, rgba(81, 72, 202, 0.212) 10px, #eee 10px, #eee 20px);
+    color: rgb(28, 88, 90);
+    line-height: 50px;
+    font-size: 24px;
+    word-spacing: 10px;
+    margin-left: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+li>div::before {
+    top: 20px;
+    right: 10px;
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 40px;
+    border-bottom: 2px solid yellow;
+    border-radius: 20%;
+    transform: rotateZ(-80deg);
+}
+
+li>div::after {
+    top: -10px;
+    left: 10px;
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 80px;
+    border-bottom: 2px solid red;
+    border-radius: 10px;
+    transform: rotateZ(30deg);
+}
+
+input+span {
+    background-color: rgb(0, 171, 71);
+    color: white;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 1px 0 #666;
+}
+
+input+span:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+ul>li>input.alert {
+    border: 1px solid red;
+}
+

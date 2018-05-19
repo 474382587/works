@@ -7,135 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>注册</title>
     <link rel="stylesheet" href="./css/main.css">
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wrapper {
-            flex: 1;
-            background-color: rgb(236, 236, 236);
-            padding: 50px 80px;
-        }
-
-        form>ul {
-            box-sizing: border-box;
-            margin: 0 auto;
-            max-width: 600px;
-            padding: 30px 80px;
-            background-color: rgb(255, 255, 255);
-
-        }
-
-        form>ul>li {
-            height: 50px;
-            width: 350px;
-            margin: 20px auto;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        form>ul>li:first-child {
-            border-bottom: 1px solid black;
-        }
-
-        form input,
-        form span {
-            line-height: 50px;
-            display: block;
-            font-size: 16px;
-            padding: 0px 5px;
-            flex: 1;
-        }
-
-        form span {
-            font-size: 24px;
-        }
-
-        form input.aleart {
-            border-color: red;
-        }
-
-        li>button {
-            width: 140px;
-            margin: 0 auto;
-            height: 30px;
-            font-size: 16px;
-            color: white;
-            background-color: rgb(255, 14, 44);
-            border-radius: 30px;
-            border: none;
-            outline: none;
-        }
-
-        li>button:active {
-            background-color: rgb(211, 39, 59);
-            box-shadow: 0 2px #999;
-            transform: translateY(2px);
-        }
-
-        li>button:hover {
-            cursor: pointer;
-        }
-
-        li>div {
-            flex: 1;
-            background: repeating-radial-gradient(ellipse at 100%, #a98aaf, rgba(81, 72, 202, 0.212) 10px, #eee 10px, #eee 20px);
-            color: rgb(28, 88, 90);
-            line-height: 50px;
-            font-size: 24px;
-            word-spacing: 10px;
-            margin-left: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        li>div::before {
-            top: 20px;
-            right: 10px;
-            position: absolute;
-            content: "";
-            height: 30px;
-            width: 40px;
-            border-bottom: 2px solid yellow;
-            border-radius: 20%;
-            transform: rotateZ(-80deg);
-        }
-
-        li>div::after {
-            top: -10px;
-            left: 10px;
-            position: absolute;
-            content: "";
-            height: 40px;
-            width: 80px;
-            border-bottom: 2px solid red;
-            border-radius: 10px;
-            transform: rotateZ(30deg);
-        }
-
-        input+span {
-            background-color: rgb(0, 171, 71);
-            color: white;
-            margin-left: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 0 1px 0 #666;
-        }
-
-        input+span:active {
-            background-color: #3e8e41;
-            box-shadow: 0 2px #666;
-            transform: translateY(2px);
-        }
-
-        ul>li>input.alert {
-            border: 1px solid red;
-        }
-    </style>
 </head>
 
 <body>
@@ -149,7 +20,7 @@
                     <a href="">未读消息</a>
                 </li>
                 <li>
-                    <a href="./">首页</a>
+                    <a href="../../">首页</a>
                 </li>
                 <li>
                     <a href="">知识体系</a>
@@ -161,7 +32,7 @@
                     <a href=".././article/">文章</a>
                 </li>
                 <li class="before-login">
-                    <a href="">登录</a>
+                    <a href=".././login/index.html">登录</a>
                 </li>
                 <li class="before-login">
                     <a href="./" class="active">注册</a>
@@ -205,107 +76,7 @@
         </form>
     </div>
     <script src="../../vendor/axios/axios.min.js"></script>
-    <script>
-        const veriCode = document.getElementById("veri-code");
-        const verification = document.getElementById("verification");
-        const celNum = document.getElementById("tel");
-        const username = document.getElementById("username");
-        const password = document.getElementById("password");
-        const rePassword = document.getElementById("re-password");
-        const msgCode = document.getElementById("msg-code");
-        const getMsg = document.getElementById("get-msg");
-
-        var verificationCode = codeGenerator();
-        var msgVeri = "123456";
-        verification.innerText = `${verificationCode}`;
-
-        //四位随机数生成
-        function codeGenerator() {
-            let result = " ";
-            for (let i = 0; i < 4; i++) {
-                result += (parseInt(Math.random() * (new Date().getTime()) % 10)) + " ";
-            }
-            return result;
-        }
-        document.addEventListener("submit", e => {
-            if (!validatePhone(celNum.value)) {
-                celNum.classList.add("alert");
-                e.preventDefault();
-            }
-            else if (!validateName(username.value)) {
-                username.classList.add("alert");
-                e.preventDefault();
-            }
-            else if (!validatePassword(password.value, rePassword.value)) {
-                password.classList.add("alert");
-                rePassword.classList.add("alert");
-                e.preventDefault();
-            }
-            else if (!validateVeriCode(veriCode.value, verificationCode.replace(/\s/, ""))) {
-                veriCode.classList.add("alert");
-                e.preventDefault();
-            }
-            // else if (!validateMsg(msgCode, msgVeri)) {
-            //     msgCode.classList.add("alert");
-            //     e.preventDefault();
-            // }
-            else {
-                register(celNum.value,password.value,msgVeri);
-                e.preventDefault();
-            }
-        });
-
-        function register(number,passcode,smsCode) {
-            axios.post("http://www.ftusix.com/static/data/register.php", {
-                mobile: number,
-                pwd:passcode,
-                sms_code: smsCode
-            })
-                .then(function (response) {
-                    response.data.status === 0? alert('该手机号已经被注册过了'):"";
-                    response.data.status === 1 ? alert('注册成功！') : "";
-                    if(response.data.token){
-                        console.log(response.data.token);
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });;
-
-        }
-
-        // getMsgCode("123");
-        function getMsgCode(number) {
-            axios.post('http://www.ftusix.com/static/data/sendsms.php', {
-                mobile: number
-            })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-
-        function validatePhone(number) {
-            return (number.match(/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/));
-        }
-        function validateName(name) {
-            //不包括空格
-            return !name.match(/\s/) && name.length > 2 && name.length < 21;
-        }
-        function validatePassword(first, second) {
-            return first.match(/^[0-9A-Za-z]{8,16}$/) ? first === second ? true : false : false;
-        }
-        function validateVeriCode(code, veri) {
-            return code === veri.split(" ").join("");
-        }
-        //没验证 不需要
-        // function validateMsg(msg, msgVeri) {
-        //     return msg === msgVeri;
-        // }
-    </script>
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js"></script>   
 </body>
 
 </html>

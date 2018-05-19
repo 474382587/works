@@ -11,6 +11,16 @@ var verificationCode = codeGenerator();
 var msgVeri = "123456";
 verification.innerText = `${verificationCode}`;
 
+
+//判断用户是否登录
+window.onload = function () {
+    let cookieArr = document.cookie;
+    if (cookieArr !== "") {
+        console.log(cookieArr);
+        window.location.href = "../../";
+    }
+}
+
 //四位随机数生成
 function codeGenerator() {
     let result = " ";

@@ -1,6 +1,7 @@
 const number = document.getElementById("tel");
 const password = document.getElementById("password");
 const remember = document.getElementById("remember");
+//判断用户是否登录
 window.onload = function () {
     let cookieArr = document.cookie;
     if (cookieArr !== "") {
@@ -8,6 +9,7 @@ window.onload = function () {
         window.location.href = "../../";
     }
 }
+
 document.addEventListener("submit", (e) => {
     let loginNumber = number.value;
     let loginPassword = password.value;

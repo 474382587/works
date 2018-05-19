@@ -26,6 +26,7 @@ function calculateTime(millSec) {
     return moment(date).fromNow();
 }
 
+//判断用户是否登录
 window.onload = function () {
     let cookieArr = document.cookie;
     if (cookieArr !== "") {

@@ -6,7 +6,26 @@ function calculateTime(millSec) {
     console.log(date);
     return moment(date).fromNow();
 }
-
+//判断用户是否登录
+window.onload = function () {
+    let cookieArr = document.cookie;
+    if (cookieArr !== "") {
+        document.querySelectorAll(".before-login").forEach(e => {
+            e.classList.add('hide');
+        });
+        document.querySelectorAll(".after-login").forEach(e => {
+            e.classList.remove('hide');
+        });
+    }
+    else {
+        document.querySelectorAll(".after-login").forEach(e => {
+            e.classList.add('hide');
+        });
+        document.querySelectorAll(".before-login").forEach(e => {
+            e.classList.remove('hide');
+        });
+    }
+}
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const timestamp = document.getElementById('timestamp');

@@ -106,7 +106,7 @@ function validateName(name) {
     return !name.match(/\s/) && name.length > 2 && name.length < 21;
 }
 function validatePassword(first, second) {
-    return first.match(/^[0-9A-Za-z]{8,16}$/) ? first === second ? true : false : false;
+    return first.match(/^[0-9A-Za-z]{6,10}$/) ? first === second ? true : false : false;
 }
 function validateVeriCode(code, veri) {
     return code === veri.split(" ").join("");

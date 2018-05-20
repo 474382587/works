@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Day28</title>
+    <style>
+        .hide {
+            display: none;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .wrapper {
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            outline: none;
+            padding: 5px;
+            max-width: 500px;
+        }
+
+        li {
+            max-width: 500px;
+            padding: 5px;
+            border: 1px solid #e3e3e3;
+            border-top: none;
+        }
+
+        li:hover {
+            background-color: #B8DDEB;
+        }
+
+        li.selected {
+            background-color: #FFC4CD;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug hide"></ul>
+    </div>
+    <script>
+        var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+        const emailInput = document.getElementById("email-input");
+        const hint = document.getElementById("email-sug-wrapper");
+        var index = 0;
+        var previousNode;
+
+        function moveAndSelect(keycode) {
+            let lists = Array.from(document.getElementsByTagName("li"));
+            if (lists.length !== 0) {
+                if (keycode === 13) {
+                    emailInput.value = document.querySelector(".selected").innerText;
+                    hint.classList.add("hide");
+                    index = 0;
+                }
+                else {
+                    if (keycode === 38) {
+                        index = index === 0 ? lists.length - 1 : index - 1;
+                        previousNode.classList.remove("selected")
+
+                    }
+                    else if (keycode === 40) {
+                        index = index === lists.length - 1 ? 0 : index + 1;
+                        previousNode.classList.remove("selected")
+                    }
+                    lists[index].classList.add("selected")
+                    previousNode = lists[index];
+                }
+
+            }
+
+        }
+
+        //监听键入
+        emailInput.addEventListener("keyup", event => {
+            if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) {
+                moveAndSelect(event.keyCode);
+            }
+            else {
+                let processedInput = processInput(event.target.value);
+                let hintsArr = generateHints(processedInput, postfixList);
+                appendHints(hintsArr);
+                isEmpty(event.target.value)
+                selectListItems(event.target)
+            }
+
+        });
+
+        //用户输入是不是kong
+        function isEmpty(input) {
+            if (input === "") {
+                hint.classList.add("hide");
+            }
+            else {
+                hint.classList.remove("hide");
+            }
+        }
+
+
+        //添加提示内容到提示框
+        function appendHints(hints) {
+            hint.innerHTML = ""
+            if (hints) {
+                hints.forEach(e => {
+                    let li = document.createElement("li");
+                    li.innerText = e;
+                    // li.tabIndex = 0;
+                    hint.appendChild(li);
+                });
+            }
+        }
+
+        //生成hints
+        function generateHints(prefix, arr) {
+
+            if (prefix[0] !== "") {
+                if (prefix[1] || prefix[1] === "") {
+                    return arr.filter(e => {
+                        return e.includes(prefix[1]);
+                    }).map(e => {
+                        return prefix[0] + "@" + e;
+                    }).length === 0 ? arr.map(e => {
+                        return prefix[0] + "@" + e;
+                    }) : arr.filter(e => {
+                        return e.includes(prefix[1]);
+                    }).map(e => {
+                        return prefix[0] === "" ? "" : prefix[0] + "@" + e;
+                    });
+                }
+                else {
+                    return arr.map(e => {
+                        return prefix + "@" + e;
+                    });
+                }
+            }
+            else {
+                return false;
+            }
+
+
+        }
+        //select all list items
+        function selectListItems(node) {
+            index = 0;
+            let lists = Array.from(document.getElementsByTagName("li"));
+            if (lists.length>0) {
+                previousNode = lists[index];
+                previousNode.classList.add("selected")
+            }
+            lists.forEach(e => {
+                e.addEventListener("click", event => {
+                    node.value = event.target.innerText;
+                    hint.classList.add("hide");
+                });
+            });
+        }
+        //处理用户input
+        function processInput(str) {
+            return str.replace(/\s/g, "").replace(/@@*/g, ",").split(",");
+        }
+    </script>
+</body>
+
+</html>

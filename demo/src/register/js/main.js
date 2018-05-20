@@ -72,9 +72,6 @@ function register(number, passcode, smsCode) {
                 alert('注册成功！即将为您跳转至登录页~ ');
                 window.location.href = '../../';
             }
-            // if(response.data.token){
-            //     console.log(response.data.token);
-            // }
         })
         .catch(function (error) {
             console.log(error);

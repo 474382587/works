@@ -7,111 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>登录</title>
     <link rel="stylesheet" href="./css/main.css">
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wrapper {
-            flex: 1;
-            background-color: rgb(236, 236, 236);
-            padding: 50px 80px;
-        }
-
-        form>ul {
-            box-sizing: border-box;
-            margin: 0 auto;
-            max-width: 600px;
-            padding: 30px 80px;
-            background-color: rgb(255, 255, 255);
-        }
-
-        form>ul>li {
-            height: 50px;
-            width: 350px;
-            margin: 20px auto;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        form>ul>li:first-child {
-            border-bottom: 1px solid black;
-        }
-
-        form>ul>li>input,
-        form span {
-            line-height: 50px;
-            display: block;
-            font-size: 16px;
-            padding: 0px 5px;
-            flex: 1;
-        }
-
-        form input.aleart {
-            border-color: red;
-        }
-
-        li>button {
-            word-spacing: 12px;
-            width: 140px;
-            margin: 0 auto;
-            height: 30px;
-            font-size: 16px;
-            color: white;
-            background-color: rgb(255, 14, 44);
-            border-radius: 30px;
-            border: none;
-            outline: none;
-        }
-
-        li>button:active {
-            background-color: rgb(211, 39, 59);
-            box-shadow: 0 2px #999;
-            transform: translateY(2px);
-        }
-
-        li>button:hover {
-            cursor: pointer;
-        }
-
-        div>a+a {
-            text-decoration: none;
-            color: red;
-        }
-
-        input+span:active {
-            background-color: #3e8e41;
-            box-shadow: 0 2px #666;
-            transform: translateY(2px);
-        }
-
-        ul>li>input.alert {
-            border: 1px solid red;
-        }
-
-        li>div {
-            display: flex;
-            flex: 1;
-            justify-content: space-around;
-            line-height: 50px;
-        }
-
-        label {
-            text-align: left;
-            flex: 1;
-            line-height: 50px;
-            /* padding: 0 10px; */
-        }
-    </style>
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="./">
+            <a href="../../">
                 <img src="../../static/img/logo.png" alt="Logo"> 猿计划
             </a>
             <ul>
@@ -159,7 +60,7 @@
                     <label>
                         <input id="remember" type="checkbox">下次自动登录</label>
                     <div>
-                        <a href="#">忘记密码</a>
+                        <a href="../reset/index.html">忘记密码</a>
                         <a href="../register/index.html">立即注册</a>
                     </div>
                 </li>

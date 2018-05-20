@@ -58,6 +58,10 @@
         const hint = document.getElementById("email-sug-wrapper");
         var index = 0;
         var previousNode;
+        
+        window.onload = function() {
+            emailInput.focus();
+        }
 
         function moveAndSelect(keycode) {
             let lists = Array.from(document.getElementsByTagName("li"));
@@ -66,6 +70,7 @@
                     emailInput.value = document.querySelector(".selected").innerText;
                     hint.classList.add("hide");
                     index = 0;
+                    emailInput.focus();
                 }
                 else {
                     if (keycode === 38) {
@@ -80,14 +85,16 @@
                     lists[index].classList.add("selected")
                     previousNode = lists[index];
                 }
-
+            }
+            if(keycode === 27){
+                emailInput.select()
             }
 
         }
 
         //监听键入
         emailInput.addEventListener("keyup", event => {
-            if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13) {
+            if (event.keyCode === 38 || event.keyCode === 40 || event.keyCode === 13 || event.keyCode === 27) {
                 moveAndSelect(event.keyCode);
             }
             else {
@@ -165,6 +172,7 @@
                 e.addEventListener("click", event => {
                     node.value = event.target.innerText;
                     hint.classList.add("hide");
+                    emailInput.focus();
                 });
             });
         }

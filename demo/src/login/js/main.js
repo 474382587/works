@@ -29,6 +29,7 @@ document.addEventListener("submit", (e) => {
         else {
             let token = response.data.data[0].token;
             let userId = response.data.data[0].user_id;
+            console.log(response.data.data[0])
             if (saveCookie) {
                 console.log("Use Cookie" + " token = " + token + " userid = " + userId)
                 setCookie('user_id', userId);

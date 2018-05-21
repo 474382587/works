@@ -110,7 +110,8 @@ function requestPosts(type, pageNum) {
     }).then(function (response) {
         let arr = response.data.data;
         let listCount = response.data.listCount[0] - '';
-
+        console.log(response);
+        
         let loading = document.querySelector('div.loader');
         loading.classList.add('hide');
         updatePosts(arr);

@@ -42,6 +42,10 @@ nav li>a {
     position: relative;
 }
 
+ul>li>span:first-child {
+    font-size: 24px;
+}
+
 nav li>a.active {
     color: red;
 }
@@ -78,3 +82,80 @@ body {
     flex-direction: column;
 }
 
+.wrapper {
+    flex: 1;
+    background-color: rgb(236, 236, 236);
+    padding: 50px 80px;
+}
+
+form>ul {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 30px 80px;
+    background-color: rgb(255, 255, 255);
+}
+
+form>ul>li {
+    height: 50px;
+    width: 350px;
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+form>ul>li:first-child {
+    border-bottom: 1px solid black;
+}
+
+form>ul>li>input,
+form span {
+    line-height: 50px;
+    display: block;
+    font-size: 16px;
+    padding: 0px 5px;
+    flex: 1;
+}
+
+li>button {
+    word-spacing: 12px;
+    width: 140px;
+    margin: 0 auto;
+    height: 30px;
+    font-size: 16px;
+    color: white;
+    background-color: rgb(255, 14, 44);
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+li>button:active {
+    background-color: rgb(211, 39, 59);
+    box-shadow: 0 2px #999;
+    transform: translateY(2px);
+}
+
+li>button:hover {
+    cursor: pointer;
+}
+
+input+span {
+    background-color: rgb(0, 171, 71);
+    color: white;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 1px 0 #666;
+}
+
+input+span:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+
+ul>li>input.alert {
+    border: 1px solid red;
+}

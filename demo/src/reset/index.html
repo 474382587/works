@@ -8,83 +8,7 @@
     <title>密码重置</title>
     <link rel="stylesheet" href="./css/main.css">
     <style>
-        .wrapper {
-            flex: 1;
-            background-color: rgb(236, 236, 236);
-            padding: 50px 80px;
-        }
 
-        form>ul {
-            box-sizing: border-box;
-            margin: 0 auto;
-            max-width: 600px;
-            padding: 30px 80px;
-            background-color: rgb(255, 255, 255);
-        }
-
-        form>ul>li {
-            height: 50px;
-            width: 350px;
-            margin: 20px auto;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        form>ul>li:first-child {
-            border-bottom: 1px solid black;
-        }
-
-        form>ul>li>input,
-        form span {
-            line-height: 50px;
-            display: block;
-            font-size: 16px;
-            padding: 0px 5px;
-            flex: 1;
-        }
-
-        li>button {
-            word-spacing: 12px;
-            width: 140px;
-            margin: 0 auto;
-            height: 30px;
-            font-size: 16px;
-            color: white;
-            background-color: rgb(255, 14, 44);
-            border-radius: 30px;
-            border: none;
-            outline: none;
-        }
-
-        li>button:active {
-            background-color: rgb(211, 39, 59);
-            box-shadow: 0 2px #999;
-            transform: translateY(2px);
-        }
-
-        li>button:hover {
-            cursor: pointer;
-        }
-
-        input+span {
-            background-color: rgb(0, 171, 71);
-            color: white;
-            margin-left: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 0 1px 0 #666;
-        }
-
-        input+span:active {
-            background-color: #3e8e41;
-            box-shadow: 0 2px #666;
-            transform: translateY(2px);
-        }
-
-        ul>li>input.alert {
-            border: 1px solid red;
-        }
     </style>
 </head>
 
@@ -126,7 +50,7 @@
         <form class="registerBox">
             <ul>
                 <li>
-                    <span>欢迎回到猿计划</span>
+                    <span>密码找回</span>
                 </li>
                 <li>
                     <input id="tel" type="tel" placeholder="请输入注册时填写的手机号码">
@@ -150,53 +74,7 @@
     <script src="../../vendor/axios/axios.min.js"></script>
     <script src="./js/main.js"></script>
     <script>
-        // 判断用户是否登录
-        window.onload = function () {
-            let cookieArr = document.cookie;
-            if (cookieArr !== "") {
-                console.log(cookieArr);
-                window.location.href = "../../";
-            }
-        }
-        const celNum = document.getElementById("tel");
-        const password = document.getElementById("password");
-        const rePassword = document.getElementById("re-password");
-        const msgCode = document.getElementById("msg-code");
-        const getMsg = document.getElementById("get-msg");
-
-        document.addEventListener("submit", e => {
-            // if(!validateMsg(msgCode, msgVeri)) {
-            //     msgCode.classList.add("alert");
-            //     e.preventDefault();
-            // }
-            let number = celNum.value || "!";
-            let passcode = password.value || "!";
-            let passcode2 = rePassword.value || "!";
-            let smsCode = msgCode.value || "123456";
-            console.log(number + passcode + passcode2 + smsCode);
-                
-            axios.post('http://www.ftusix.com/static/data/reset.php', {
-                "mobile": number,     //  注册手机号
-                "pwd": passcode,            //  注册密码
-                "pwd2": passcode2,            //  确认密码，如果两次不统一会返回失败
-                "sms_code": smsCode,
-            }).then(function (response) { 
-                console.log(response);
-                if(response.data.status === 0){
-                    alert(response.data.info);
-                    document.querySelector('.registerBox').reset();
-                }
-                else{
-                    alert(response.data.info);
-                    window.location.href = "../login";
-                }    
-            })
-            
-            e.preventDefault();
-
-
-
-        });
+        
     </script>
 </body>
 

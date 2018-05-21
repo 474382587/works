@@ -149,6 +149,9 @@ div>a+a {
 ul>li>input.alert {
     border: 1px solid red;
 }
+ul>li>span{
+    font-size: 24px;
+}
 
 li>div {
     display: flex;

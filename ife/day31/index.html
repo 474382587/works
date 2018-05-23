@@ -43,7 +43,7 @@
                 <input type="checkbox" name="product" value="智能音箱" class="single"> 智能音箱
             </label>
         </div>
-    </div>  
+    </div>
     <div id="table-wrapper">
 
     </div>
@@ -91,34 +91,34 @@
         const checkall = document.querySelectorAll("input[value='全部']");
         console.log(checkall);
 
-        checkall.forEach(e=>{
-            e.addEventListener("input",e=>{
+        checkall.forEach(e => {
+            e.addEventListener("input", e => {
                 let checked = e.target.checked;
-                if(checked){
-                    document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(e=>{
-                        e.checked =true;
-                    });                    
+                if (checked) {
+                    document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(e => {
+                        e.checked = true;
+                    });
                 }
                 e.target.checked = true;
             })
         });
-        
+
         const checkboxes = document.querySelectorAll("input.single");
-        checkboxes.forEach(e=>{
-            e.addEventListener("input",el=>{
+        checkboxes.forEach(e => {
+            e.addEventListener("input", el => {
                 //判断是否全部已经被选中
-                if([...document.querySelectorAll(`input.single[name="${el.target.name}"]`)].every(e => {
+                if ([...document.querySelectorAll(`input.single[name="${el.target.name}"]`)].every(e => {
                     return e.checked === true;
-                })){
+                })) {
                     document.querySelector(`input[name="${el.target.name}"]`).checked = true;
                 }
-                else{
+                else {
                     document.querySelector(`input[name="${el.target.name}"]`).checked = false;
                 }
                 //判断是否全部都没被选中
-                if([...document.querySelectorAll(`input.single[name="${el.target.name}"]`)].every(e => {
+                if ([...document.querySelectorAll(`input.single[name="${el.target.name}"]`)].every(e => {
                     return !e.checked === true;
-                })){
+                })) {
                     el.target.checked = true;
                 }
             });
@@ -149,17 +149,30 @@
             return filterByProduct(filterByRegion(data, region), product);
         }
 
-        //filter by Product
-        function filterByProduct(data, product) {
-            return data.filter(e => {
-                return e.product === product;
+        //filter by Product 
+        console.log(filterByProduct(sourceData, ['手机', '笔记本']));
+        
+        function filterByProduct(data, productList) {
+            let result = [];
+            productList.forEach(e => {
+                result.push(data.filter(el => {
+                    return el.product === e;
+                }));
             });
+            result = [].concat(...result)
+            return result;
         }
         // filter by region
-        function filterByRegion(data, region) {
-            return data.filter(e => {
-                return e.region === region;
+        console.log(filterByRegion(sourceData, ['华北', '华南']));
+        function filterByRegion(data, regionList) {
+            let result = [];
+            regionList.forEach(e => {
+                result.push(data.filter(el => {
+                    return el.region === e;
+                }));
             });
+            result = [].concat(...result)
+            return result;
         }
 
 

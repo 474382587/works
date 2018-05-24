@@ -34,7 +34,7 @@
                     <a href="">未读消息</a>
                 </li>
                 <li>
-                    <a href="../../" class="active">首页</a>
+                    <a href="../../">首页</a>
                 </li>
                 <li>
                     <a href="">知识体系</a>
@@ -97,14 +97,17 @@
         </aside>
         <style>
             div#messages {
+                padding-top: 50px;
                 flex: 1;
-                padding: 80px 120px;
             }
-
+            #messages>*{
+                margin: 0 50px;
+            }
             .row {
                 display: flex;
                 padding: 20px 0 20px 0;
                 border-top: 1px solid #333;
+                
             }
 
             .row>.wrapper {
@@ -117,12 +120,23 @@
             }
 
             .content>* {
+                color: #a3a3a3;
                 margin: 10px;
+            }
+            .content>p>span{
+                color: #a3a3a3;
+            }
+            .content>p{
+                color: #333;
             }
 
             .content>div>a {
                 padding: 0 10px 0 0;
-                margin: 10px 0;
+                margin: 10px 5px 10px 0;
+                color: #a3a3a3;
+            }
+            .content>div>a>img{
+                margin: 0 10px 0 0;
             }
 
             .content .userName {
@@ -142,7 +156,7 @@
                 </div>
                 <div class="content">
                     <p>
-                        <a href="" class="userName">嘻嘻哈哈</a> 评论了你的文章
+                        <a href="" class="userName">嘻嘻哈哈</a> <span>评论了你的文章</span>
                         <a href="" class="title">《APP性能优化方案》</a>
                     </p>
                     <p>
@@ -151,19 +165,28 @@
                     </p>
                     <p>优化优化控制不住自己</p>
                     <div>
-                        <a href="" class="reply">回复</a>
-                        <a href="" class="thread">查看对话</a>
+                        <a href="" class="reply"><img src="../../static/img/comment-alt.svg" width="20px">回复</a>
+                        <a href="" class="thread"><img src="../../static/img/edit.svg" width="20px">查看对话</a>
                     </div>
                 </div>
             </div>
 
         </div>
         <script>
+            window.onload = function () {
+                    let cookieArr = document.cookie;
+                    if (cookieArr === "") {
+                        window.location.href = "../../";
+                    }
+            }
+
+
+
             const logout = document.getElementById("logout");
             logout.addEventListener("click", e => {
                 clearCookie();
-                // window.location.href = "../../"
-                window.location.reload();
+                // window.location.reload();
+                window.location.href = "../../";
             });
 
             function clearCookie() {

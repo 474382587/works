@@ -76,6 +76,7 @@ nav>ul {
 
 nav li {
     margin: 10px;
+    position: relative;
 }
 
 body {
@@ -99,6 +100,18 @@ nav li>a>img {
     background-color: #C4C4C4;
     border-radius: 50%;
 }
+
+li>ul>li{
+    border-bottom: 1px solid #e3e3e3;
+    padding: 4px;
+    cursor: pointer;
+}
+li>ul>li>a::after{
+    display: none;
+}
+
+
+
 
 main {
     width: 80%;

@@ -41,7 +41,7 @@ const display_table = document.getElementById("table-wrapper");
         // console.log(checkall);
 
         checkall.forEach(e => {
-            e.addEventListener("click", e => {
+            e.addEventListener("change", e => {
                 let checked = e.target.checked;
                 if (checked) {
                     document.querySelectorAll(`input[name="${e.target.name}"]`).forEach(e => {
@@ -55,7 +55,7 @@ const display_table = document.getElementById("table-wrapper");
 
         const checkboxes = document.querySelectorAll("input.single");
         checkboxes.forEach(e => {
-            e.addEventListener("click", el => {
+            e.addEventListener("change", el => {
                 //判断是否全部已经被选中
                 if ([...document.querySelectorAll(`input.single[name="${el.target.name}"]`)].every(e => {
                     return e.checked === true;

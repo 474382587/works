@@ -8,88 +8,7 @@
     <title>我的收藏</title>
     <link rel="stylesheet" href="./css/main.css">
     <style>
-        nav ul>li:last-child {
-            margin-top: 14px;
-        }
 
-        nav ul>li:last-child>a::after {
-            border: none;
-        }
-
-        nav li>a>img {
-            width: 24px;
-            height: 24px;
-            padding: 1px;
-            background-color: #C4C4C4;
-            border-radius: 50%;
-        }
-
-        main {
-            width: 80%;
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        main>aside {
-            height: calc(100vh - 70px);
-            border-right: 1px solid #e3e3e3;
-            box-shadow: 1px 2px 1px 1px rgb(221, 219, 219);
-            width: 240px;
-            padding: 30px 30px;
-            text-align: center;
-        }
-
-        aside>.info {
-            border-bottom: 1px solid #C4C4C4;
-        }
-
-        aside>.info>* {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        aside>ul {
-            margin: 40px auto;
-            font-size: 20px;
-        }
-
-        aside>ul>li {
-            margin: 10px 0;
-            padding: 10px;
-            border-bottom: 1px solid black;
-        }
-
-        aside>.info>.wrapper {
-            height: 60px;
-            width: 60px;
-            background-color: #C4C4C4;
-            padding: 5px;
-            border-radius: 50%;
-            margin: 10px auto;
-            overflow: hidden;
-        }
-
-        div#collection {
-            flex: 1;
-            padding: 100px 0 0 120px;
-
-        }
-
-        .row:first-child {
-            text-align: center;
-            border-bottom: 2px solid black;
-            padding-bottom: 8px;
-        }
-
-        .row {
-            display: table;
-            width: 100%;
-        }
-
-        .row>* {
-            display: table-cell;
-        }
     </style>
 </head>
 
@@ -149,7 +68,7 @@
                     <a href="">我的文章</a>
                 </li>
                 <li>
-                    <a href="">我的收藏</a>
+                    <a href="" class="active">我的收藏</a>
                 </li>
                 <li>
                     <a href="">我的消息</a>
@@ -172,29 +91,82 @@
     <script src="../../vendor/axios/axios.min.js"></script>
     <script src="../../vendor/momentjs/moment.js"></script>
     <script>
-        //判断用户是否登录
-        // window.onload = function () {
-        //     let cookieArr = document.cookie;
-        //     if (cookieArr === "") {
-        //         window.location.href = "../../";
-        //     }
-        // else{
-        //     getCollection();
-        // }
-        // }
 
-        getCollection("79");
-        function getCollection() {
-            axios.get("http://www.ftusix.com/static/data/myColl.php",{
-                params: {
-                    "user_id": 173,
-                    "page": null,
-                }
-            }).then(response => {
-                console.log(response)
-            });
+        moment.locale('zh-cn');
+        //計算相對時間
+        function calculateTime(millSec) {
+            var date = new Date(millSec * 1000);
+            return moment(date).fromNow();
+        }
+        // 判断用户是否登录
+        window.onload = function () {
+            let cookieArr = document.cookie;
+            if (cookieArr === "") {
+                window.location.href = "../../";
+            }
+            else {
+
+                let user = getCurrentUser();
+                console.log(user.userId);
+                getCollection(user.userId, null)
+                    .then(response => {
+                        total = response.data.data.length;
+                        collection = response.data.data;
+                        console.log(collection);
+                        return {
+                            total: total,
+                            collection: collection
+                        }
+                    })
+                    .then(el => {
+                        console.log(el);
+                        let div = '';
+                        el.collection.forEach(e => {
+                            console.log(e)
+                            div += `<a href='../blog/post.html?topic_id=${e.topic_id}&user_id=${user.userId}' class="row"><span>${e.title}</span><span>${numToCategory(e.type)}</span><span>${calculateTime(e.modify_time)}</span><span>${e.browser_num}</span><span>${e.like_num}</span></a>`;
+                        });
+                        document.getElementById("collection").innerHTML += (div);
+                    })
+
+
+            }
         }
 
+
+
+        function getCurrentUser() {
+            let user = {
+                userId: document.cookie.split(";")[0].split("=")[1] - "",
+                token: document.cookie.split(";")[1].split("=")[1]
+            }
+            return user;
+        }
+
+        function getCollection(id, pageNum) {
+            let result = axios.get("http://www.ftusix.com/static/data/myColl.php", {
+                params: {
+                    "user_id": id,
+                    "page": pageNum,
+                }
+            });
+            return result;
+        }
+
+        function numToCategory(num) {
+            switch (num) {
+                case "1":
+                    return "经验分享";
+                    break;
+                case "2":
+                    return "入门学习";
+                    break;
+                case "3":
+                    return "成果分享";
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
     </script>

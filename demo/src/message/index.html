@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的消息</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="../../">
+                <img src="../../static/img/logo.png" alt="Logo"> 猿计划
+            </a>
+            <ul>
+                <li>
+                    <a href="">未读消息</a>
+                </li>
+                <li>
+                    <a href="../../" class="active">首页</a>
+                </li>
+                <li>
+                    <a href="">知识体系</a>
+                </li>
+                <li>
+                    <a href="">活动中心</a>
+                </li>
+                <li>
+                    <a href="../article/">文章</a>
+                </li>
+                <li class="before-login hide">
+                    <a href="../login/">登录</a>
+                </li>
+                <li class="before-login hide">
+                    <a href="../register/">注册</a>
+                </li>
+                <li class="after-login">
+                    <a href="../center/">
+                        <img src="../../static/img/data@2x.png" alt="">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside>
+            <div class="info">
+                <div class="wrapper">
+                    <img src="../../static/img/data@3x.png" alt="">
+                </div>
+                <h3>xiaoyao</h3>
+                <p>这个人很懒，什么都没留下</p>
+            </div>
+            <ul>
+                <li>
+                    <a href="">我的信息</a>
+                </li>
+                <li>
+                    <a href="">修改密码</a>
+                </li>
+                <li>
+                    <a href="">我的文章</a>
+                </li>
+                <li>
+                    <a href="">我的收藏</a>
+                </li>
+                <li>
+                    <a href="" class="active">我的消息</a>
+                </li>
+                <li>
+                    <a href="">我的任务</a>
+                </li>
+            </ul>
+        </aside>
+        <style>
+            div#messages {
+                flex: 1;
+                padding: 80px 120px;
+            }
+            .row{
+                display: flex;
+                padding: 20px 0  20px 0;
+                border-top: 1px solid #333;
+            }
+            .row>.wrapper{
+                height: 45px;
+                width: 45px;
+                overflow: hidden;
+                margin-right:20px; 
+                border-radius: 50%;
+                background-color: #e3e3e3;
+            }
+            .content>*{
+                margin: 10px;
+            }
+            .content>div>a{
+                padding: 0 10px 0 0;
+                margin: 10px 0;
+            }
+            .content .userName{
+                font-weight:800;
+                margin-right: 10px;
+            }
+            .content .title{
+                color: red;
+            }
+        </style>
+        <div id="messages">
+            <p>收到评论</p>
+            <div class="row">
+                <div class="wrapper">
+                    <img src="../../static/img/data@3x.png" alt="" class="profile">
+                </div>
+                <div class="content">
+                    <p><a href="" class="userName">嘻嘻哈哈</a> 评论了你的文章 <a href="" class="title">《APP性能优化方案》</a></p>
+                    <p><span>2017-10-30</span><span>8:20</span></p>
+                    <p>优化优化控制不住自己</p>
+                    <div>
+                        <a href="" class="reply">回复</a> <a href="" class="thread">查看对话</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</body>
+
+</html>

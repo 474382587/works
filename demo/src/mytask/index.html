@@ -124,7 +124,8 @@
 
                 .row>.right>span {
                     display: block;
-                    width: 100px;
+                    padding: 0 20px;
+                    /* width: 100px; */
                     border: 1px solid red;
                     color: red;
                     border-radius: 10px;
@@ -184,31 +185,37 @@
                     flex: 1;
                     padding: 80px 0;
                 }
-                .confirmation>.wrapper{
+
+                .confirmation>.wrapper {
                     padding: 20px 0 0;
                     box-shadow: 0 0 2px 0 #b3b3b3;
                     width: 360px;
                     margin: 0 auto;
                 }
-                .confirmation>.wrapper>.textcontent{
+
+                .confirmation>.wrapper>.textcontent {
                     padding: 20px;
                 }
-                .confirmation>.wrapper>.textcontent>h2{
+
+                .confirmation>.wrapper>.textcontent>h2 {
                     color: red;
                     font-weight: 600;
                     font-size: 30px;
                     margin-bottom: 20px;
                 }
-                .confirmation>.wrapper>div:last-child{
+
+                .confirmation>.wrapper>div:last-child {
                     background-color: #e3e3e3;
-                    margin: 0;  
+                    margin: 0;
                     padding: 10px;
                     text-align: center;
                 }
-                .confirmation>.wrapper>div>span{
+
+                .confirmation>.wrapper>div>span {
                     margin: 0 auto;
                     display: block;
-                    border:1px solid red;
+                    border: 1px solid red;
+
                     width: 80px;
                     border-radius: 10px;
                     color: red;
@@ -217,9 +224,9 @@
             </style>
             <div class="wrapper">
                 <ul class="tabs">
-                    <li class="active">进行中</li>
-                    <li>已完成</li>
-                    <li>未通过</li>
+                    <li class="active" id="tab1">进行中</li>
+                    <li id="tab2">已完成</li>
+                    <li id="tab3">未通过</li>
                 </ul>
                 <div class="tasks">
                     <div class="in-progress">
@@ -230,7 +237,7 @@
                                         2017-10-30
                                     </span>
                                     <span>
-                                        HTML 初级一
+                                        HTML 初级三
                                     </span>
                                 </div>
                                 <div class="right">
@@ -261,7 +268,7 @@
                                 <button type="submit" id="test2">提 交 </button>
                             </div>
                         </form>
-                        <div class="confirmation hide" id="ongoing3" >
+                        <div class="confirmation hide" id="ongoing3">
                             <div class="wrapper">
                                 <div class="textcontent">
                                     <h2>Permissions</h2>
@@ -271,21 +278,165 @@
 您的答案等待猿计划教研组评审，具体通知
 在我的任务里查看结果</pre>
                                 </div>
-                                <div><span id="test3">完成</span></div>
+                                <div>
+                                    <span id="test3">完成</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="completed">
+                    <div class="completed hide">
+                        <div class="list" id="completed1">
+                            <div class="row">
+                                <div class="left">
+                                    <span>
+                                        HTML 初级一
+                                    </span>
+                                </div>
+                                <div class="right">
+                                    <span id="test21">查看评价建议</span>
+                                </div>
+                            </div>
+                        </div>
+                        <style>
+                            div.comment {
+                                width: 95%;
+                                margin: 40px auto 0;
+                                box-shadow: 0 0 2px 1px #dddbdb;
+                                /* border: 1px solid rebeccapurple; */
+                                padding-bottom: 20px;
+                            }
 
+                            div.comment>h2 {
+                                width: 100%;
+                                background-color: #f0eded;
+                                padding: 10px;
+                                text-align: center;
+                            }
+
+                            div.comment>pre {
+                                margin: 30px;
+                            }
+
+                            div.comment>span {
+                                margin: 0 auto;
+                                display: block;
+                                border: 1px solid red;
+
+                                width: 80px;
+                                border-radius: 10px;
+                                color: red;
+                                cursor: pointer;
+                                text-align: center;
+                            }
+                        </style>
+                        <div class="comment hide" id="completed2">
+                            <h2>评价建议</h2>
+                            <pre>
+建议1
+建议2
+建议3
+建议4
+建议5
+                            </pre>
+                            <span id="test22">OK</span>
+                        </div>
                     </div>
-                    <div class="revise">
-
+                    <div class="revise hide">
+                        <div class="list" id="revise1">
+                            <div class="row">
+                                <div class="left">
+                                    <span>
+                                        2017-10-30
+                                    </span>
+                                    <span>
+                                        HTML 初级二
+                                    </span>
+                                </div>
+                                <div class="right">
+                                    <span id="test31">查看原因</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment hide" id="revise2">
+                            <h2>未通过原因</h2>
+                            <pre>
+原因1
+原因2
+原因3
+原因4
+原因5
+                            </pre>
+                            <span id="test32">OK</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </main>
         <script>
+
+            var prevTab = document.getElementById("tab1");
+            //tabs
+            document.getElementById("tab1").addEventListener("click", e => {
+                console.log(!prevTab);
+
+                if (!prevTab) {
+                    prevTab = e.target;
+                }
+                else {
+                    prevTab.classList.remove("active");
+                    prevTab = e.target;
+                }
+
+                e.target.classList.add("active");
+                document.querySelector(".in-progress").classList.remove("hide");
+                document.querySelector(".completed").classList.add("hide");
+                document.querySelector(".revise").classList.add("hide");
+
+                document.getElementById("ongoing1").classList.remove("hide");
+                document.getElementById("ongoing2").classList.add("hide");
+                document.getElementById("ongoing3").classList.add("hide");
+            });
+
+            document.getElementById("tab2").addEventListener("click", e => {
+                if (!prevTab) {
+                    prevTab = e.target;
+                }
+                else {
+                    prevTab.classList.remove("active");
+                    prevTab = e.target;
+                }
+
+                e.target.classList.add("active");
+                document.querySelector(".in-progress").classList.add("hide");
+                document.querySelector(".completed").classList.remove("hide");
+                document.querySelector(".revise").classList.add("hide");
+
+
+                document.getElementById("completed1").classList.remove("hide");
+                document.getElementById("completed2").classList.add("hide");
+            });
+
+            document.getElementById("tab3").addEventListener("click", e => {
+                if (!prevTab) {
+                    prevTab = e.target;
+                }
+                else {
+                    prevTab.classList.remove("active");
+                    prevTab = e.target;
+                }
+
+                e.target.classList.add("active");
+                document.querySelector(".in-progress").classList.add("hide");
+                document.querySelector(".completed").classList.add("hide");
+                document.querySelector(".revise").classList.remove("hide");
+
+
+                document.getElementById("revise1").classList.remove("hide");
+                document.getElementById("revise2").classList.add("hide");
+            });
+
+            //part 1
             document.getElementById("test1").addEventListener("click", e => {
                 document.getElementById("ongoing1").classList.add("hide");
                 document.getElementById("ongoing2").classList.remove("hide");
@@ -298,10 +449,31 @@
                 document.getElementById("ongoing3").classList.remove("hide");
             });
             document.getElementById("test3").addEventListener("click", e => {
-                    document.getElementById("ongoing3").classList.add("hide");
-                    document.getElementById("ongoing2").classList.add("hide");
-                    document.getElementById("ongoing1").classList.remove("hide");
-                });
+                document.getElementById("ongoing3").classList.add("hide");
+                document.getElementById("ongoing2").classList.add("hide");
+                document.getElementById("ongoing1").classList.remove("hide");
+            });
+            //part 2
+            document.getElementById("test21").addEventListener("click", e => {
+                document.getElementById("completed1").classList.add("hide");
+                document.getElementById("completed2").classList.remove("hide");
+            });
+            document.getElementById("test22").addEventListener("click", e => {
+                e.preventDefault();
+                document.getElementById("completed1").classList.remove("hide");
+                document.getElementById("completed2").classList.add("hide");
+            });
+            //part3
+            document.getElementById("test31").addEventListener("click", e => {
+                document.getElementById("revise1").classList.add("hide");
+                document.getElementById("revise2").classList.remove("hide");
+            });
+            document.getElementById("test32").addEventListener("click", e => {
+                e.preventDefault();
+                document.getElementById("revise1").classList.remove("hide");
+                document.getElementById("revise2").classList.add("hide");
+            });
+
         </script>
     </body>
 

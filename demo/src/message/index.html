@@ -100,14 +100,16 @@
                 padding-top: 50px;
                 flex: 1;
             }
-            #messages>*{
+
+            #messages>* {
                 margin: 0 50px;
             }
+
             .row {
                 display: flex;
                 padding: 20px 0 20px 0;
                 border-top: 1px solid #333;
-                
+
             }
 
             .row>.wrapper {
@@ -123,10 +125,12 @@
                 color: #a3a3a3;
                 margin: 10px;
             }
-            .content>p>span{
+
+            .content>p>span {
                 color: #a3a3a3;
             }
-            .content>p{
+
+            .content>p {
                 color: #333;
             }
 
@@ -135,7 +139,8 @@
                 margin: 10px 5px 10px 0;
                 color: #a3a3a3;
             }
-            .content>div>a>img{
+
+            .content>div>a>img {
                 margin: 0 10px 0 0;
             }
 
@@ -156,7 +161,8 @@
                 </div>
                 <div class="content">
                     <p>
-                        <a href="" class="userName">嘻嘻哈哈</a> <span>评论了你的文章</span>
+                        <a href="" class="userName">嘻嘻哈哈</a>
+                        <span>评论了你的文章</span>
                         <a href="" class="title">《APP性能优化方案》</a>
                     </p>
                     <p>
@@ -165,8 +171,10 @@
                     </p>
                     <p>优化优化控制不住自己</p>
                     <div>
-                        <a href="" class="reply"><img src="../../static/img/comment-alt.svg" width="20px">回复</a>
-                        <a href="" class="thread"><img src="../../static/img/edit.svg" width="20px">查看对话</a>
+                        <a href="" class="reply">
+                            <img src="../../static/img/comment-alt.svg" width="20px">回复</a>
+                        <a href="" class="thread">
+                            <img src="../../static/img/edit.svg" width="20px">查看对话</a>
                     </div>
                 </div>
             </div>
@@ -174,10 +182,10 @@
         </div>
         <script>
             window.onload = function () {
-                    let cookieArr = document.cookie;
-                    if (cookieArr === "") {
-                        window.location.href = "../../";
-                    }
+                let cookieArr = document.cookie;
+                if (cookieArr === "") {
+                    window.location.href = "../../";
+                }
             }
 
 
@@ -205,6 +213,7 @@
                 return sDir + sPath.substr(nStart);
             }
         </script>
+    </main>
 </body>
 
 

@@ -110,9 +110,6 @@ li>ul>li>a::after{
     display: none;
 }
 
-
-
-
 main {
     width: 80%;
     display: flex;
@@ -158,3 +155,15 @@ aside>.info>.wrapper {
     margin: 10px auto;
     overflow: hidden;
 }
+.after-login>ul {
+        display: none;
+        position: absolute;
+        width: 100px;
+        left: -20px;
+    }
+
+    .after-login:hover>ul {
+        display: block;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 1px 1px #e3e3e3;
+    }

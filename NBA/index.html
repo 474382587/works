@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NBA STATS</title>
+</head>
+
+<body>
+    <div id="games">
+
+    </div>
+    <button id="refresh">Refresh</button>
+
+
+    <script src="./node_modules/nba/dist/nba.js"></script>
+    <script>
+        const refresh = document.getElementById("refresh");
+        const games = document.getElementById("games");
+        Date.prototype.formatMMDDYYYY = function () {
+            return (this.getMonth() + 1) +
+                "/" + this.getDate() +
+                "/" + this.getFullYear();
+        }
+        
+        refresh.addEventListener("click", e => {
+            loadGames().then(e => {
+                console.log(e.available);
+
+            });
+        });
+
+
+        var date = new Date().formatMMDDYYYY();
+        function loadGames() {
+            return nba.stats.scoreboard({ gameDate: `${date}` });
+        }
+
+
+    </script>
+</body>
+
+</html>

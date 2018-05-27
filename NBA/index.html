@@ -6,11 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NBA STATS</title>
+    <style>
+        button{
+            margin: 0 200px;
+        }
+        #games{
+            margin: 100px;
+            width: 200px;
+            text-align: center;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 0 2px 1px #d3d3d3;
+            padding:30px;
+        }
+        h2{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        #games > div{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
     <div id="games">
-
+        
     </div>
     <button id="refresh">Refresh</button>
 
@@ -24,11 +47,22 @@
                 "/" + this.getDate() +
                 "/" + this.getFullYear();
         }
-        
+
         refresh.addEventListener("click", e => {
             loadGames().then(e => {
-                console.log(e.available);
-
+                let gameHeader = e.gameHeader;
+                let homeTeam = e.lineScore[1];
+                let awayTeam = e.lineScore[0];
+                let title = document.createElement("h2");
+                let score = document.createElement("div");
+                let status = document.createElement("h4");
+                status.innerHTML = gameHeader[0].gameStatusText;
+                title.innerHTML = `<span>${awayTeam.teamAbbreviation}</span><span>${homeTeam.teamAbbreviation}</span>`;
+                score.innerHTML = `<span>${awayTeam.pts}</span><span>${homeTeam.pts}</span>`;
+                document.getElementById("games").innerHTML = "";
+                document.getElementById("games").appendChild(status);
+                document.getElementById("games").appendChild(title);
+                document.getElementById("games").appendChild(score);
             });
         });
 

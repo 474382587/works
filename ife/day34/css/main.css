@@ -1,0 +1,14 @@
+        table{
+            padding: 20px;
+            margin: 50px auto;
+            border-collapse: collapse;
+            box-sizing: border-box;
+        }
+        td{
+            text-align: center;
+            width:70px;
+            padding: 10px 0;
+        }
+        td{
+            border: 1px solid black;
+        }

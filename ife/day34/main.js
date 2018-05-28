@@ -44,7 +44,7 @@ let dummy = {
 };
 
 const chart = document.getElementById("chart");
-var n =60;
+var n = 60;
 
 
 
@@ -57,21 +57,21 @@ function createAxis(data) {
     lineY.setAttribute("y2", 330)
     lineY.setAttribute("stroke", "#666")
     chart.appendChild(lineY);
-    var y = Math.max(...data); 
-    let count = Math.ceil(y/50);
-    for(let i=0; i<count+1; i++){
+    var y = Math.max(...data);
+    let count = Math.ceil(y / 50);
+    for (let i = 0; i < count + 1; i++) {
         let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", "30")
         line.setAttribute("x2", "640")
-        line.setAttribute("y1", i*50+30)
-        line.setAttribute("y2", i*50+30)
-        line.setAttribute("stroke","#b3b3b3")
+        line.setAttribute("y1", i * 50 + 30)
+        line.setAttribute("y2", i * 50 + 30)
+        line.setAttribute("stroke", "#b3b3b3")
         chart.appendChild(line);
         // label
         let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        label.textContent = i*50;
+        label.textContent = i * 50;
         label.setAttribute("x", 25);
-        label.setAttribute("y", 330 -i*50+5)
+        label.setAttribute("y", 330 - i * 50 + 5)
         label.setAttribute("text-anchor", "end")
         chart.appendChild(label);
     }
@@ -285,6 +285,7 @@ function createTable(result, colspan, merge) {
             <td>${sale[11]}</td>
         </tr>`: `
         <tr>
+            <td style="display:none">${e.region}</td>
             <td>${e.product}</td>
             <td>${sale[0]}</td>
             <td>${sale[1]}</td>
@@ -340,6 +341,7 @@ function createTable(result, colspan, merge) {
             <td>${sale[11]}</td>
         </tr>`: `
         <tr>
+            <td style="display:none">${e.product}</td>
             <td>${e.region}</td>
             <td>${sale[0]}</td>
             <td>${sale[1]}</td>

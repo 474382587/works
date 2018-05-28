@@ -42,35 +42,82 @@ let dummy = {
     region: "华东",
     sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
 };
+
 const chart = document.getElementById("chart");
-var n =10;
-dummy.sale.forEach(e=>{
-    let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    height = (e-"")*0.45;
-    rect.setAttribute("y", 130 - height);
-    rect.setAttribute("width", "10");
-    // <rect x="120" y="0" width="100" height="100" rx="15" ry="15" />
-    rect.setAttribute("height", height);
-    rect.setAttribute("x", n+'');
-    
-    n += 20; 
-    chart.appendChild(rect)
-});
+var n =60;
 
 
 
-let title = document.createElementNS("http://www.w3.org/2000/svg","text");
-title.innerHTML = "华东";
-title.setAttribute("x","100")
-title.setAttribute("y","152");
-chart.appendChild(title);
-console.dir(title);
+function createAxis(data) {
+    // every 50 - y-axis
+    let lineY = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    lineY.setAttribute("x1", "30")
+    lineY.setAttribute("x2", "30")
+    lineY.setAttribute("y1", 30)
+    lineY.setAttribute("y2", 330)
+    lineY.setAttribute("stroke", "#666")
+    chart.appendChild(lineY);
+    var y = Math.max(...data); 
+    let count = Math.ceil(y/50);
+    for(let i=0; i<count+1; i++){
+        let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", "30")
+        line.setAttribute("x2", "640")
+        line.setAttribute("y1", i*50+30)
+        line.setAttribute("y2", i*50+30)
+        line.setAttribute("stroke","#b3b3b3")
+        chart.appendChild(line);
+        // label
+        let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.textContent = i*50;
+        label.setAttribute("x", 25);
+        label.setAttribute("y", 330 -i*50+5)
+        label.setAttribute("text-anchor", "end")
+        chart.appendChild(label);
+    }
+    // xAxis
+    let lineX = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    lineX.setAttribute("x1", "30")
+    lineX.setAttribute("x2", "640")
+    lineX.setAttribute("y1", 330)
+    lineX.setAttribute("y2", 330)
+    lineX.setAttribute("stroke", "#666")
+    chart.appendChild(lineX);
+
+}
 
 
 
 
-function createBarChart(data) {
-    
+
+
+
+
+createBarChart();
+
+function createBarChart() {
+    createAxis([120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]);
+    let title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    title.textContent = "华东 - 手机";
+    title.setAttribute("x", "290")
+    title.setAttribute("y", "370");
+    chart.appendChild(title);
+    console.dir(title);
+    dummy.sale.forEach((e, index) => {
+        let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.textContent = index + 1 + " 月";
+        label.setAttribute("x", n - 5 + "");
+        label.setAttribute("y", "350")
+        height = (e - "");
+        rect.setAttribute("y", 330 - height);
+        rect.setAttribute("width", "20");
+        rect.setAttribute("height", height);
+        rect.setAttribute("x", n + '');
+        n += 50;
+        chart.appendChild(rect)
+        chart.appendChild(label)
+    });
 }
 
 

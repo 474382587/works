@@ -122,6 +122,25 @@ function createBarChart() {
 
 
 
+var rows = document.querySelectorAll(".rows");
+if(rows.length !== 0){
+    console.log(rows);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------
+
+
 const checkall = document.querySelectorAll("input[value='全部']");
 // console.log(checkall);
 
@@ -157,8 +176,13 @@ checkboxes.forEach(e => {
             el.target.checked = true;
         }
         renderTable();
+        // var rows = document.querySelectorAll(".rows");
+        // if (rows.length !== 0) {
+        //     console.log(rows);
+        // }
     });
 });
+
 
 
 
@@ -268,7 +292,7 @@ function createTable(result, colspan, merge) {
         result.forEach((e, index) => {
             let sale = e.sale;
             let rowContent = index % colspan === 0 ? `
-        <tr>
+        <tr class="rows">
             <td rowspan=${colspan}>${e.region}</td>
             <td>${e.product}</td>
             <td>${sale[0]}</td>
@@ -284,7 +308,7 @@ function createTable(result, colspan, merge) {
             <td>${sale[10]}</td>
             <td>${sale[11]}</td>
         </tr>`: `
-        <tr>
+        <tr class="rows">
             <td style="display:none">${e.region}</td>
             <td>${e.product}</td>
             <td>${sale[0]}</td>
@@ -324,7 +348,7 @@ function createTable(result, colspan, merge) {
         result.forEach((e, index) => {
             let sale = e.sale;
             let rowContent = index % colspan === 0 ? `
-        <tr>
+        <tr class="rows">
             <td rowspan=${colspan}>${e.product}</td>
             <td>${e.region}</td>
             <td>${sale[0]}</td>
@@ -340,7 +364,7 @@ function createTable(result, colspan, merge) {
             <td>${sale[10]}</td>
             <td>${sale[11]}</td>
         </tr>`: `
-        <tr>
+        <tr class="rows">
             <td style="display:none">${e.product}</td>
             <td>${e.region}</td>
             <td>${sale[0]}</td>

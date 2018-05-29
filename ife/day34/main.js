@@ -37,19 +37,88 @@ let sourceData = [{
     sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
 }];
 
+
 let dummy = {
     product: "手机",
     region: "华东",
-    sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 230]
+    sale: [120, 110, 140, 160, 180, 185, 190, 210, 230, 245, 255, 230]
 };
+
+
+function clearCanvas(){
+    var c=document.getElementById("canvas");  
+    var cxt=c.getContext("2d");  
+    c.height=c.height;  
+}
+function createLineTable(data) {
+    clearCanvas();
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    let titleData = data[0] + ' - ' + data[1];
+    console.dir(data);
+    
+    let monthlyResult = data.splice(2)
+    console.dir(monthlyResult);
+    // console.log("dsads");
+    
+
+    monthlyResult.forEach((e,index) => {
+        var circle = new Path2D();
+        if (index !== 0) {
+            ctx.lineTo(20 * index, 400 - e);
+        }
+        else {
+            ctx.strokeStyle = 'blue';
+            ctx.beginPath();
+            ctx.moveTo(20 * index, 400 - e);
+        }
+        circle.moveTo(20 * index, 400 - e);
+        circle.arc(20 * index, 400 - e, 5, 0, 2 * Math.PI);
+        ctx.fill(circle);
+        if (index === dummy.sale.length - 1) {
+            ctx.stroke();
+        }
+    });
+
+}
+
+// dummy.sale.forEach((e, index) => {
+//     var circle = new Path2D();
+//     if (index !== 0) {
+//         ctx.lineTo(20 * index, 400 - e);
+//     }
+//     else {
+//         ctx.strokeStyle = 'blue';
+//         ctx.beginPath();
+//         ctx.moveTo(20 * index, 400 - e);
+//     }
+//     circle.moveTo(20 * index, 400 - e);
+//     circle.arc(20 * index, 400 - e, 5, 0, 2 * Math.PI);
+//     ctx.fill(circle);
+//     if (index === dummy.sale.length - 1) {
+//         ctx.stroke();
+//     }
+// }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //chart svg
 const chart = document.getElementById("chart");
-
 // var n = 60;
 function createBarChart(data) {
     chart.innerHTML = "";
-    let titleData = data[0]+' - ' +data[1];
+    let titleData = data[0] + ' - ' + data[1];
     let monthlyResult = data.splice(2)
     // console.log(monthlyResult);
 
@@ -69,9 +138,9 @@ function createBarChart(data) {
         label.setAttribute("y", "320")
 
         height = (e - "");
-        rect.setAttribute("y", 300 - height/2);
+        rect.setAttribute("y", 300 - height / 2);
         rect.setAttribute("width", "20");
-        rect.setAttribute("height", height/2);
+        rect.setAttribute("height", height / 2);
         rect.setAttribute("x", n + '');
         n += 50;
         chart.appendChild(rect)
@@ -79,7 +148,7 @@ function createBarChart(data) {
     });
 
 
-       
+
 }
 
 
@@ -94,19 +163,19 @@ function createAxis(data) {
     let lineY = document.createElementNS("http://www.w3.org/2000/svg", "line");
     lineY.setAttribute("x1", "30")
     lineY.setAttribute("x2", "30")
-    lineY.setAttribute("y1", 350-50)
-    lineY.setAttribute("y2", 350-50-count*25)
+    lineY.setAttribute("y1", 350 - 50)
+    lineY.setAttribute("y2", 350 - 50 - count * 25)
     lineY.setAttribute("stroke", "#666")
     chart.appendChild(lineY);
-    
+
     // 绘制 Y轴 上的数据单位 还有标记线
     for (let i = 0; i < count + 1; i++) {
         // 标记线
         let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", "30")
         line.setAttribute("x2", "680")
-        line.setAttribute("y1", 350-i * 25-50)
-        line.setAttribute("y2", 350-i * 25-50)
+        line.setAttribute("y1", 350 - i * 25 - 50)
+        line.setAttribute("y2", 350 - i * 25 - 50)
         line.setAttribute("stroke", "#b3b3b3")
         chart.appendChild(line);
 
@@ -148,14 +217,17 @@ checkall.forEach(e => {
         let rows = document.querySelectorAll(".rows");
         if (rows.length !== 0) {
             // console.log(rows);
-            rows.forEach(e=>{
+            rows.forEach(e => {
                 console.log(rows);
-                
-                e.addEventListener("mouseover",e=>{
+
+                e.addEventListener("mouseover", e => {
                     console.log(e.currentTarget);
-                    let arr = Array.from(e.currentTarget.children).map(e=>e.innerText);
+                    let arr = Array.from(e.currentTarget.children).map(e => e.innerText);
+                    let arr2 = Array.from(e.currentTarget.children).map(e => e.innerText);
+                    console.log("This is arr");
                     console.dir(arr);
                     createBarChart(arr);
+                    createLineTable(arr2);
                 });
             });
         }
@@ -184,14 +256,17 @@ checkboxes.forEach(e => {
         let rows = document.querySelectorAll(".rows");
         if (rows.length !== 0) {
             // console.log(rows);
-            rows.forEach(e=>{
+            rows.forEach(e => {
                 console.log(rows);
-                
-                e.addEventListener("mouseover",e=>{
+
+                e.addEventListener("mouseover", e => {
                     console.log(e.currentTarget);
-                    let arr = Array.from(e.currentTarget.children).map(e=>e.innerText);
+                    let arr = Array.from(e.currentTarget.children).map(e => e.innerText);
+                    let arr2 = Array.from(e.currentTarget.children).map(e => e.innerText);
+                    console.log("This is arr");
                     console.dir(arr);
                     createBarChart(arr);
+                    createLineTable(arr2);
                 });
             });
         }

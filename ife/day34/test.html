@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div height=200 width=400>
+        dasdasda
+    </div>
+    <canvas id="canvas" width=660 height=400>
+
+    </canvas>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        let dummy = {
+            product: "手机",
+            region: "华东",
+            sale: [120, 110, 140, 160, 180, 185, 190, 210, 230, 245, 255, 230]
+        };
+
+        dummy.sale.forEach((e, index) => {
+            var circle = new Path2D();
+            if (index !== 0) {
+                ctx.lineTo(20 * index, 400 - e);
+            }
+            else {
+                ctx.strokeStyle = 'blue';
+                ctx.beginPath();
+                ctx.moveTo(20 * index, 400 - e);
+            }
+            circle.moveTo(20 * index, 400 - e);
+            circle.arc(20 * index, 400 - e, 5, 0, 2 * Math.PI);
+            ctx.fill(circle);
+            if (index === dummy.sale.length - 1) {
+                ctx.stroke();
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

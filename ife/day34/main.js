@@ -43,9 +43,9 @@ let dummy = {
     sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
 };
 
+//chart svg
 const chart = document.getElementById("chart");
 var n = 60;
-
 
 
 function createAxis(data) {
@@ -88,14 +88,16 @@ function createAxis(data) {
 
 
 
+function createBarChart(data) {
+    
+}
 
 
 
 
 
-createBarChart();
 
-function createBarChart() {
+// function createBarChart() {
     createAxis([120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]);
     let title = document.createElementNS("http://www.w3.org/2000/svg", "text");
     title.textContent = "华东 - 手机";
@@ -118,7 +120,7 @@ function createBarChart() {
         chart.appendChild(rect)
         chart.appendChild(label)
     });
-}
+// }
 
 
 
@@ -176,10 +178,19 @@ checkboxes.forEach(e => {
             el.target.checked = true;
         }
         renderTable();
-        // var rows = document.querySelectorAll(".rows");
-        // if (rows.length !== 0) {
-        //     console.log(rows);
-        // }
+        var rows = document.querySelectorAll(".rows");
+        if (rows.length !== 0) {
+            // console.log(rows);
+            rows.forEach(e=>{
+                console.log(rows);
+                
+                e.addEventListener("mouseover",e=>{
+                    console.log(e.currentTarget);
+                    let arr = Array.from(e.currentTarget.children).map(e=>e.innerText);
+                    console.dir(arr);
+                });
+            });
+        }
     });
 });
 

@@ -40,38 +40,81 @@ let sourceData = [{
 let dummy = {
     product: "手机",
     region: "华东",
-    sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+    sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 230]
 };
 
 //chart svg
 const chart = document.getElementById("chart");
-var n = 60;
+
+// var n = 60;
+function createBarChart(data) {
+    chart.innerHTML = "";
+    let titleData = data[0]+' - ' +data[1];
+    let monthlyResult = data.splice(2)
+    // console.log(monthlyResult);
+
+    createAxis(monthlyResult);//data
+    let n = 60;
+    let title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    title.textContent = titleData;
+    title.setAttribute("x", "290")
+    title.setAttribute("y", "340");
+    chart.appendChild(title);
+
+    monthlyResult.forEach((e, index) => {
+        let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.textContent = index + 1 + " 月";
+        label.setAttribute("x", n - 5 + "");
+        label.setAttribute("y", "320")
+
+        height = (e - "");
+        rect.setAttribute("y", 300 - height/2);
+        rect.setAttribute("width", "20");
+        rect.setAttribute("height", height/2);
+        rect.setAttribute("x", n + '');
+        n += 50;
+        chart.appendChild(rect)
+        chart.appendChild(label)
+    });
+
+
+       
+}
+
+
 
 
 function createAxis(data) {
     // every 50 - y-axis
+    var y = Math.max(...data);
+    let count = Math.ceil(y / 50);
+
+    // 绘制Y轴
     let lineY = document.createElementNS("http://www.w3.org/2000/svg", "line");
     lineY.setAttribute("x1", "30")
     lineY.setAttribute("x2", "30")
-    lineY.setAttribute("y1", 30)
-    lineY.setAttribute("y2", 330)
+    lineY.setAttribute("y1", 350-50)
+    lineY.setAttribute("y2", 350-50-count*25)
     lineY.setAttribute("stroke", "#666")
     chart.appendChild(lineY);
-    var y = Math.max(...data);
-    let count = Math.ceil(y / 50);
+    
+    // 绘制 Y轴 上的数据单位 还有标记线
     for (let i = 0; i < count + 1; i++) {
+        // 标记线
         let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", "30")
-        line.setAttribute("x2", "640")
-        line.setAttribute("y1", i * 50 + 30)
-        line.setAttribute("y2", i * 50 + 30)
+        line.setAttribute("x2", "680")
+        line.setAttribute("y1", 350-i * 25-50)
+        line.setAttribute("y2", 350-i * 25-50)
         line.setAttribute("stroke", "#b3b3b3")
         chart.appendChild(line);
+
         // label
         let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
         label.textContent = i * 50;
         label.setAttribute("x", 25);
-        label.setAttribute("y", 330 - i * 50 + 5)
+        label.setAttribute("y", 300 - i * 25 + 5)
         label.setAttribute("text-anchor", "end")
         chart.appendChild(label);
     }
@@ -79,65 +122,11 @@ function createAxis(data) {
     let lineX = document.createElementNS("http://www.w3.org/2000/svg", "line");
     lineX.setAttribute("x1", "30")
     lineX.setAttribute("x2", "640")
-    lineX.setAttribute("y1", 330)
-    lineX.setAttribute("y2", 330)
+    lineX.setAttribute("y1", 300)
+    lineX.setAttribute("y2", 300)
     lineX.setAttribute("stroke", "#666")
     chart.appendChild(lineX);
-
 }
-
-
-
-function createBarChart(data) {
-    
-}
-
-
-
-
-
-
-// function createBarChart() {
-    createAxis([120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]);
-    let title = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    title.textContent = "华东 - 手机";
-    title.setAttribute("x", "290")
-    title.setAttribute("y", "370");
-    chart.appendChild(title);
-    console.dir(title);
-    dummy.sale.forEach((e, index) => {
-        let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        label.textContent = index + 1 + " 月";
-        label.setAttribute("x", n - 5 + "");
-        label.setAttribute("y", "350")
-        height = (e - "");
-        rect.setAttribute("y", 330 - height);
-        rect.setAttribute("width", "20");
-        rect.setAttribute("height", height);
-        rect.setAttribute("x", n + '');
-        n += 50;
-        chart.appendChild(rect)
-        chart.appendChild(label)
-    });
-// }
-
-
-
-var rows = document.querySelectorAll(".rows");
-if(rows.length !== 0){
-    console.log(rows);
-}
-
-
-
-
-
-
-
-
-
-
 
 
 // ------------------------------------------------------------------
@@ -156,6 +145,20 @@ checkall.forEach(e => {
         }
         e.target.checked = true;
         renderTable();
+        let rows = document.querySelectorAll(".rows");
+        if (rows.length !== 0) {
+            // console.log(rows);
+            rows.forEach(e=>{
+                console.log(rows);
+                
+                e.addEventListener("mouseover",e=>{
+                    console.log(e.currentTarget);
+                    let arr = Array.from(e.currentTarget.children).map(e=>e.innerText);
+                    console.dir(arr);
+                    createBarChart(arr);
+                });
+            });
+        }
     })
 });
 
@@ -178,7 +181,7 @@ checkboxes.forEach(e => {
             el.target.checked = true;
         }
         renderTable();
-        var rows = document.querySelectorAll(".rows");
+        let rows = document.querySelectorAll(".rows");
         if (rows.length !== 0) {
             // console.log(rows);
             rows.forEach(e=>{
@@ -188,6 +191,7 @@ checkboxes.forEach(e => {
                     console.log(e.currentTarget);
                     let arr = Array.from(e.currentTarget.children).map(e=>e.innerText);
                     console.dir(arr);
+                    createBarChart(arr);
                 });
             });
         }

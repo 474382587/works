@@ -46,59 +46,57 @@ let dummy = {
 
 
 function clearCanvas(){
-    var c=document.getElementById("canvas");  
-    var cxt=c.getContext("2d");  
+    let c=document.getElementById("canvas");  
+    let cxt=c.getContext("2d");  
     c.height=c.height;  
 }
 function createLineTable(data) {
     clearCanvas();
+
+    
+
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
     let titleData = data[0] + ' - ' + data[1];
     console.dir(data);
-    
+
     let monthlyResult = data.splice(2)
     console.dir(monthlyResult);
     // console.log("dsads");
+    let count = Math.ceil(Math.max(...monthlyResult) / 50);
+    console.log(count);
+    ctx.beginPath();
+    for(let i =0; i<count+1;i++){
+        ctx.font = "10px Arial";
+        ctx.textAlign = "right";
+        ctx.fillText(`${50 * i}`, 60, 500 - 25 * i);
+        ctx.strokeStyle = 'gray';
+        ctx.moveTo(70,500-25*i);
+        ctx.lineTo(660, 500 -25*i);
+        ctx.stroke();
+    }
     
-
     monthlyResult.forEach((e,index) => {
         var circle = new Path2D();
+        ctx.font = "10px Arial";
+        ctx.textAlign = "left";
+        ctx.fillText(`${index+1}月`, 60*index+70, 520);
         if (index !== 0) {
-            ctx.lineTo(20 * index, 400 - e);
+            ctx.lineTo(50 * index+80, 500 - e/2);
         }
         else {
             ctx.strokeStyle = 'blue';
             ctx.beginPath();
-            ctx.moveTo(20 * index, 400 - e);
+            ctx.moveTo(50 * index+80, 500 - e/2);
         }
-        circle.moveTo(20 * index, 400 - e);
-        circle.arc(20 * index, 400 - e, 5, 0, 2 * Math.PI);
+        circle.moveTo(50 * index+80, 500 - e/2);
+        circle.arc(50 * index+80, 500 - e/2, 5, 0, 2 * Math.PI);
         ctx.fill(circle);
-        if (index === dummy.sale.length - 1) {
             ctx.stroke();
-        }
     });
 
 }
 
-// dummy.sale.forEach((e, index) => {
-//     var circle = new Path2D();
-//     if (index !== 0) {
-//         ctx.lineTo(20 * index, 400 - e);
-//     }
-//     else {
-//         ctx.strokeStyle = 'blue';
-//         ctx.beginPath();
-//         ctx.moveTo(20 * index, 400 - e);
-//     }
-//     circle.moveTo(20 * index, 400 - e);
-//     circle.arc(20 * index, 400 - e, 5, 0, 2 * Math.PI);
-//     ctx.fill(circle);
-//     if (index === dummy.sale.length - 1) {
-//         ctx.stroke();
-//     }
-// }); 
 
 
 

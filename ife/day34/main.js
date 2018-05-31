@@ -53,8 +53,6 @@ function clearCanvas(){
 function createLineTable(data) {
     clearCanvas();
 
-    
-
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
     let titleData = data[0] + ' - ' + data[1];

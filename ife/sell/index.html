@@ -28,6 +28,11 @@
         .row:hover {
             background-color: rgb(193, 255, 187);
         }
+
+        .flex {
+            display: flex;
+            justify-content: space-around;
+        }
     </style>
 </head>
 
@@ -39,8 +44,13 @@
     <div id="table-container">
 
     </div>
-    <div id="svg-container">
+    <div class="flex">
+        <div id="svg-container">
 
+        </div>
+        <div id="canvas-container">
+
+        </div>
     </div>
 
     <script src="checkbox.js"></script>
@@ -56,6 +66,7 @@
         const container1 = document.getElementById("container1")
         const tables = document.getElementById("table-container")
         const svgContainer = document.getElementById("svg-container");
+        const canvasContainer = document.getElementById("canvas-container");
         // 创建两个选择
         // 1 
         var product = new Checkbox(container1, [{
@@ -119,14 +130,21 @@
             rows.forEach(e => {
                 e.addEventListener("mouseenter", event => {
                     let arr = Array.from(event.target.querySelectorAll("td"));
-                    arr = arr.map(e => e.textContent)
-
+                    let arr1 = arr.map(e => e.textContent)
+                    let arr2 = arr.map(e => e.textContent)
                     //bar chart
                     svgContainer.innerHTML = "";
-                    let barchart = new Barchart(arr);
+                    let barchart = new Barchart(arr1);
                     svgContainer.appendChild(barchart.createChart());
+                    canvasContainer.innerHTML = "";
+                    let lineChart = new Linechart(arr2);
+                    canvasContainer.appendChild(lineChart.createLineChart())
                 })
             });
+
+
+            // let line
+
         })
 
 

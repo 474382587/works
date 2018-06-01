@@ -5,15 +5,23 @@ class Filter {
     }
 
     filterAll() {
-        let data = this.filterByProduct(this.filterByRegion(this.data, this.params.region), this.params.product);
-        let order = this.params.product.length < this.params.region.length ?
-            {
+        let data, order;
+        if (this.params.product.length < this.params.region.length) {
+            order = {
                 "product": this.params.region.length
-            }
-            :
-            {
+            };
+            data = this.filterByProduct(this.filterByRegion(this.data, this.params.region), this.params.product).sort((a, b) => {
+                return a.product > b.product;
+            });
+        }
+        else {
+            order = {
                 "region": this.params.product.length
             };
+            data = this.filterByProduct(this.filterByRegion(this.data, this.params.region), this.params.product).sort((a, b) => {
+                return a.region > b.region;
+            });
+        }
         return {
             order: order,
             data: data

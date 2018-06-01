@@ -22,11 +22,11 @@
         }
 
         tbody:hover td[rowspan='3'] {
-            background-color: rgb(221, 94, 94);
+            background-color: rgb(193, 255, 187);
         }
 
         .row:hover {
-            background-color: red;
+            background-color: rgb(193, 255, 187);
         }
     </style>
 </head>
@@ -112,11 +112,21 @@
             table.createTableHead();
             tables.innerHTML = "";
             tables.appendChild(table.createTable())
-            
 
-            //bar chart
-            let barchart = new Barchart();
-            svgContainer.appendChild(barchart.createChart());
+
+            //event listener when hover
+            let rows = document.querySelectorAll(".row");
+            rows.forEach(e => {
+                e.addEventListener("mouseenter", event => {
+                    let arr = Array.from(event.target.querySelectorAll("td"));
+                    arr = arr.map(e => e.textContent)
+
+                    //bar chart
+                    svgContainer.innerHTML = "";
+                    let barchart = new Barchart(arr);
+                    svgContainer.appendChild(barchart.createChart());
+                })
+            });
         })
 
 

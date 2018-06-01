@@ -29,7 +29,7 @@ class Linechart {
             context.beginPath();
             context.font = "10px Arial";
             context.textAlign = "right";
-            context.fillText(`${i * Math.round(max / 5)}`, 25, 215 - 35 * i+5);
+            context.fillText(`${i * Math.round(max / 5)}`, 25, 215 - 35 * i + 5);
             context.strokeStyle = 'black';
             context.stroke();
             // auxiliary line
@@ -41,10 +41,10 @@ class Linechart {
         }
         let plotStart = 40;
         // line and x-labels
-        this.data.forEach((e,index)=>{
+        this.data.forEach((e, index) => {
             //create lines
             if (index !== 0) {
-                context.lineTo(plotStart+ 8, 215  - (e - "") * scaleFactor)
+                context.lineTo(plotStart + 8, 215 - (e - "") * scaleFactor)
             }
             else {
                 context.strokeStyle = 'blue';
@@ -63,10 +63,10 @@ class Linechart {
             context.fillText(`${index + 1}月`, plotStart + 1, 225);
             context.strokeStyle = 'black';
             context.stroke();
-            
+
             let circle = new Path2D();
             circle.moveTo(plotStart, 215 - (e - "") * scaleFactor);
-            circle.arc(plotStart+8, 215 - (e - "") * scaleFactor, 5, 0, 2 * Math.PI);
+            circle.arc(plotStart + 8, 215 - (e - "") * scaleFactor, 5, 0, 2 * Math.PI);
             context.fill(circle);
             plotStart += 30;
         });

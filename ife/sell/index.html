@@ -96,17 +96,8 @@
             name: "华南"
         }], "region");
 
-        // initialize()
-        // function initialize() {
-        //     let data = sourceData;
-        //     let params = {
-        //         product: product.getValue(),
-        //         region: region.getValue()
-        //     }
-        //     let filter = new Filter(data, params);
-        //     console.log(filter.filterAll());
-        // }
-        selections.addEventListener("change", e => {
+        initialize()
+        function initialize() {
             //每当发生变化时 获取值
             let data = sourceData;
             let params = {
@@ -141,7 +132,10 @@
                     canvasContainer.appendChild(lineChart.createLineChart())
                 })
             });
+        }
+        selections.addEventListener("change", e => {
 
+            initialize()
 
             // let line
 

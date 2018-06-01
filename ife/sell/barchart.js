@@ -1,11 +1,11 @@
 // create SVG bar chart
 class Barchart {
     constructor(data) {
-        this.title = data[0]+' - '+data[1] ; // array contains region, product, sale amount 
+        this.title = data[0] + ' - ' + data[1]; // array contains region, product, sale amount 
         this.data = data.splice(2);
     }
 
-    createStatic(){
+    createStatic() {
         let yAxis = this.createSVG("line", {
             x1: 30,
             x2: 30,
@@ -27,14 +27,14 @@ class Barchart {
         });
         title.innerHTML = this.title;
         return {
-            x:xAxis,
-            y:yAxis,
-            title:title
+            x: xAxis,
+            y: yAxis,
+            title: title
         }
     }
 
 
-    createChart() {        
+    createChart() {
         let width = window.innerWidth / 2.5,
             height = window.innerWidth / 4;
         let svg = this.createSVG("svg", {
@@ -73,14 +73,14 @@ class Barchart {
         }
         let scaleFactor = 175 / max;
         let plotStart = 40;
-        this.data.forEach((e,index) => {
+        this.data.forEach((e, index) => {
             //create x-labels
             let text = this.createSVG("text", {
-                x: plotStart+1,
+                x: plotStart + 1,
                 y: 225,
-                "font-size":10,
+                "font-size": 10,
             });
-            text.textContent = `${index+1}月`
+            text.textContent = `${index + 1}月`
             //create bars
             let rect = this.createSVG("rect", {
                 x: plotStart,

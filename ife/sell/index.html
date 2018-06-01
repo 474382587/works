@@ -7,10 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .hide{
+        .hide {
             display: none;
         }
-    
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid black;
+
+        }
+
+        tbody:hover td[rowspan='3'] {
+            background-color: rgb(221, 94, 94);
+        }
+
+        .row:hover {
+            background-color: red;
+        }
     </style>
 </head>
 
@@ -22,16 +39,23 @@
     <div id="table-container">
 
     </div>
+    <div id="svg-container">
+
+    </div>
 
     <script src="checkbox.js"></script>
     <script src="sourceData.js"></script>
     <script src="filter.js"></script>
     <script src="table.js"></script>
+    <script src="barchart.js"></script>
+    <script src="linechart.js"></script>
+
     <script>
         const selections = document.getElementById("selections");
         const container2 = document.getElementById("container2")
         const container1 = document.getElementById("container1")
         const tables = document.getElementById("table-container")
+        const svgContainer = document.getElementById("svg-container");
         // 创建两个选择
         // 1 
         var product = new Checkbox(container1, [{
@@ -83,10 +107,18 @@
             let filter = new Filter(data, params);
             // console.log(filter);
             console.log(filter.filterAll());
-            let table = new Table(filter.filterAll());
+            let processedData = filter.filterAll()
+            let table = new Table(processedData);
             table.createTableHead();
+            tables.innerHTML = "";
             tables.appendChild(table.createTable())
+            
+
+            //bar chart
+            let barchart = new Barchart();
+            svgContainer.appendChild(barchart.createChart());
         })
+
 
 
     </script>

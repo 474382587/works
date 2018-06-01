@@ -43,9 +43,13 @@ class Table {
             first = "product";
             second = "region";
         }
+        let tbody = document.createElement("tbody");
         this.data.forEach((e, index) => {
             let tr = document.createElement("tr");
+            
+            tr.classList.add("row");
             if (index % length === 0) {
+                tr.classList.add("first")
                 tr.innerHTML = `<td rowspan=${length}>${e[first]}</td>
                                 <td>${e[second]}</td>`
             }
@@ -65,11 +69,19 @@ class Table {
                 <td>${e.sale[9]}</td>
                 <td>${e.sale[10]}</td>
                 <td>${e.sale[11]}</td>`
-            arr.push(tr);
+            if(index % length === length-1){
+                tbody.appendChild(tr);
+                arr.push(tbody)
+                tbody = document.createElement("tbody");
+            }
+            else{
+                tbody.appendChild(tr);
+            }
         });
         console.log(arr);
         return arr;
     }
+
 
 
 

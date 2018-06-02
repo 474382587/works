@@ -58,18 +58,18 @@ class Table {
                                 <td><span>${e[second]}</span></td>`
             }
             // why not use type="number"?
-            tr.innerHTML += `<td><span>${e.sale[0]}</span><input type="text"></td>
-                <td><span>${e.sale[1]}</span><input type="text"></td>
-                <td><span>${e.sale[2]}</span><input type="text"></td>
-                <td><span>${e.sale[3]}</span><input type="text"></td>
-                <td><span>${e.sale[4]}</span><input type="text"></td>
-                <td><span>${e.sale[5]}</span><input type="text"></td>
-                <td><span>${e.sale[6]}</span><input type="text"></td>
-                <td><span>${e.sale[7]}</span><input type="text"></td>
-                <td><span>${e.sale[8]}</span><input type="text"></td>
-                <td><span>${e.sale[9]}</span><input type="text"></td>
-                <td><span>${e.sale[10]}</span><input type="text"></td>
-                <td><span>${e.sale[11]}</span><input type="text"></td>`
+            tr.innerHTML += `<td><span>${e.sale[0]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[1]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[2]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[3]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[4]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[5]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[6]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[7]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[8]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[9]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[10]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>
+                <td><span>${e.sale[11]}</span><div class="hide"><input type="text"><b>ok</b><b>x</b></div></td>`
             if(index % length === length-1){
                 tbody.appendChild(tr);
                 arr.push(tbody)

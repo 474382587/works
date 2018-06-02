@@ -16,7 +16,7 @@
         }
 
         td {
-            padding: 10px;
+            padding: 10px 20px;
             border: 1px solid black;
 
         }
@@ -38,28 +38,63 @@
             position: relative;
         }
 
-        td>input {
-            display: none;
+
+        td:hover {
+            cursor: pointer;
+        }
+
+        td>div {
+            display: flex;
             position: absolute;
             height: 100%;
-            width: 100%;
+            width: 200%;
             background-color: white;
             top: 0;
             left: 0%;
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            z-index: 1;
         }
 
-        input+span:last-child {
-            display: none;
-            position: absolute;
-            height: 100%;
+        td>div>input {
             width: 100%;
-            background-color: white;
-            top: 0;
-            left: 0%;
         }
+
+        div>b:nth-child(2) {
+            text-align: center;
+            display: block;
+            height: 100%;
+            width: 50%;
+            background-color: aliceblue;
+        }
+
+        div>b:nth-child(3) {
+            text-align: center;
+            display: block;
+            width: 50%;
+            height: 100%;
+
+            background-color: aliceblue;
+        }
+
+
+        td:hover::after {
+            content: "编辑";
+            display: block;
+            font-size: 2px;
+            position: absolute;
+            background-color: beige;
+            left: 80%;
+            top: 0;
+        }
+
+        td.active:hover::after,
+        td:nth-child(1)::after,
+        td:nth-child(2)::after {
+            display: none;
+        }
+
 
         td:hover>.edit {
             display: flex;
@@ -175,42 +210,57 @@
             available = true;
             tds.forEach(el => {
                 el.addEventListener("click", event => {
+                    el.classList.add("active");
                     let edit = event.currentTarget.querySelector("input");
+                    let div = event.currentTarget.querySelector("div");
+
                     if (edit && available) {
                         edit.value = "";
-
                         available = false;
-                        edit.style.display = "flex";
+                        div.classList.remove("hide")
                         edit.focus();
                         edit.addEventListener("blur", e => {
                             if (Number.isInteger(e.target.value - "") && (e.target.value - "" >= 0) && e.target.value !== "") {
                                 el.querySelector('span').innerText = e.target.value;
                                 available = true;
-                                edit.style.display = "none";
+                                div.classList.add("hide")
                             }
                             else if (e.target.value === "") {
                                 available = true;
-                                edit.style.display = "none";
+                                div.classList.add("hide")
                             }
                             else {
                                 alert("请输入有效数字（整数）");
                                 edit.value = "";
+                                available = true;
+                                div.classList.add("hide")
                             }
+                            el.classList.remove("active");
+
                         });
                         edit.addEventListener("keydown", e => {
                             if (e.keyCode === 27) {
-                                // edit.value = el.querySelector('span').innerText;
+                                edit.value = "";
                                 available = true;
-                                edit.style.display = "none";
+                                div.classList.add("hide")
                             }
                             else if (e.keyCode === 13) {
                                 e.preventDefault();
                                 edit.blur()
                             }
-                            console.log(e.keyCode);
+                            el.classList.remove("active");
+                        })
+                        div.querySelector("b:nth-child(2)").addEventListener("mousedown", e => {
+                            edit.blur()
+                            e.preventDefault();
+                        })
+                        div.querySelector("b:nth-child(3)").addEventListener("mousedown", e => {
+                            edit.value = "";
+                            available = true;
+                            div.classList.add("hide")
+                            e.preventDefault();
                         })
                     }
-
                 });
             });
 

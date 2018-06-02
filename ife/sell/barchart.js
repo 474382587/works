@@ -77,7 +77,7 @@ class Barchart {
             //create x-labels
             let text = this.createSVG("text", {
                 x: plotStart + 1,
-                y: 225,
+                y: 227,
                 "font-size": 10,
             });
             text.textContent = `${index + 1}月`

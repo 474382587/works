@@ -50,25 +50,25 @@ class Table {
             tr.classList.add("row");
             if (index % length === 0) {
                 tr.classList.add("first")
-                tr.innerHTML = `<td rowspan=${length}>${e[first]}</td>
-                                <td>${e[second]}</td>`
+                tr.innerHTML = `<td rowspan=${length}><span>${e[first]}</span></td>
+                                <td><span>${e[second]}</span></td>`
             }
             else {
-                tr.innerHTML = `<td class="hide">${e[first]}</td>
-                                <td>${e[second]}</td>`
+                tr.innerHTML = `<td class="hide"><span>${e[first]}</span></td>
+                                <td><span>${e[second]}</span></td>`
             }
-            tr.innerHTML += `<td>${e.sale[0]}</td>
-                <td>${e.sale[1]}</td>
-                <td>${e.sale[2]}</td>
-                <td>${e.sale[3]}</td>
-                <td>${e.sale[4]}</td>
-                <td>${e.sale[5]}</td>
-                <td>${e.sale[6]}</td>
-                <td>${e.sale[7]}</td>
-                <td>${e.sale[8]}</td>
-                <td>${e.sale[9]}</td>
-                <td>${e.sale[10]}</td>
-                <td>${e.sale[11]}</td>`
+            tr.innerHTML += `<td><span>${e.sale[0]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[1]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[2]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[3]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[4]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[5]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[6]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[7]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[8]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[9]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[10]}</span><input type="number"><span class="edit">编辑</span></td>
+                <td><span>${e.sale[11]}</span><input type="number"><span class="edit">编辑</span></td>`
             if(index % length === length-1){
                 tbody.appendChild(tr);
                 arr.push(tbody)
@@ -78,7 +78,7 @@ class Table {
                 tbody.appendChild(tr);
             }
         });
-        console.log(arr);
+        // console.log(arr);
         return arr;
     }
 

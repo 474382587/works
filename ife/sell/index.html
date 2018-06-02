@@ -33,6 +33,34 @@
             display: flex;
             justify-content: space-around;
         }
+
+        td {
+            position: relative;
+        }
+
+        td>input {
+            display: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        input+span:last-child {
+            display: none;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: white;
+            top: 0;
+            left: 0%;
+        }
+
+        td:hover>.edit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -108,7 +136,7 @@
             // console.log(params)
             let filter = new Filter(data, params);
             // console.log(filter);
-            console.log(filter.filterAll());
+            // console.log(filter.filterAll());
             let processedData = filter.filterAll()
             let table = new Table(processedData);
             table.createTableHead();
@@ -120,7 +148,8 @@
             let rows = document.querySelectorAll(".row");
             rows.forEach(e => {
                 e.addEventListener("mouseenter", event => {
-                    let arr = Array.from(event.target.querySelectorAll("td"));
+                    let arr = Array.from(event.target.querySelectorAll("td>span:first-child"));
+                    // arr.forEach(e=>console.dir(e) )
                     let arr1 = arr.map(e => e.textContent)
                     let arr2 = arr.map(e => e.textContent)
                     //bar chart
@@ -132,12 +161,25 @@
                     canvasContainer.appendChild(lineChart.createLineChart())
                 })
             });
+
+
+            // td hover
+            let tds = document.querySelectorAll("td");
+            console.log(tds);
+
+            tds.forEach(e => {
+                e.addEventListener("mouseenter", event => {
+                    let edit = event.target.querySelector("span.edit");
+                    if (edit) {
+                        
+                    }
+
+                });
+            });
         }
         selections.addEventListener("change", e => {
 
             initialize()
-
-            // let line
 
         })
 

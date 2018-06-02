@@ -43,6 +43,12 @@
             position: absolute;
             height: 100%;
             width: 100%;
+            background-color: white;
+            top: 0;
+            left: 0%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         input+span:last-child {
@@ -166,13 +172,13 @@
             // td hover
             let tds = document.querySelectorAll("td");
             console.log(tds);
-
+            available = true;
             tds.forEach(e => {
                 e.addEventListener("click", event => {
                     let edit = event.currentTarget.querySelector("input");
-                    if (edit) {
+                    if (edit && available) {
                         console.log(edit);
-                        
+                        available = false;
                         edit.style.display = "flex";
                         edit.style.zIndex = "1";
                     }

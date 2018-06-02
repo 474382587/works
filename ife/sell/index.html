@@ -179,8 +179,55 @@
             name: "华南"
         }], "region");
 
+        let hash = window.location.hash.replace("#", "").split("&");
+        let data = { region: "", product: "" };
+        hash.forEach((e, index) => {
+            let a = e.split("=");
+            a[1] = decodeURI(a[1]).split("+")
+            if (index === 0) {
+                data.product = a[1];
+            }
+            else {
+                data.region = a[1];
+            }
+        });
+        console.log(data);
+        let productArr =Array.from(document.querySelectorAll(`#product input[checkbox-type='single']`));
+        let pAll = true;
+        productArr.forEach(e=>{
+            if(data.product.includes(e.value)){
+                e.checked =true;
+            }
+            else{
+                e.checked = false;
+                pAll =false;
+            }
+        });
+        document.querySelector(`#product input[checkbox-type='all']`).checked = pAll;
+        
+        let regionArr =Array.from(document.querySelectorAll(`#region input[checkbox-type='single']`));
+        let rAll = true;
+        regionArr.forEach(e=>{
+            if(data.region.includes(e.value)){
+                e.checked =true;
+            }
+            else{
+                e.checked = false;
+                rAll =false;
+            }
+        });
+        document.querySelector(`#region input[checkbox-type='all']`).checked = rAll;
+
+
+
         initialize()
+
+
+
         function initialize() {
+            // console.log(product.getSelection());
+
+
             //每当发生变化时 获取值
             let localData = JSON.parse(window.localStorage.getItem("sourceData")) || null;
             let data = localData || sourceData;
@@ -287,7 +334,7 @@
         function saveToLocal(data) {
             data = JSON.stringify(data);
             console.log(data);
-            window.localStorage.setItem("sourceData",data);
+            window.localStorage.setItem("sourceData", data);
         }
         function gatherData() {
             let th = document.querySelector("th").id;
@@ -323,6 +370,9 @@
         selections.addEventListener("change", e => {
 
             initialize()
+            // console.log(product.getSelection());
+            history.pushState('stateChange', null, window.location.origin + window.location.pathname + "#" + product.getSelection() + "&" + region.getSelection())
+
 
         })
 

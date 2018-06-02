@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <button id="c">C</button>
+    <div id="cont"></div>
+    <script>
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        const c = document.getElementById("c");
+        const cont = document.getElementById("cont");
+        
+        window.onload = function(){
+            if(window.location.hash){
+                console.log(window.location.hash);
+                
+            }
+
+
+        }
+
+        a.addEventListener("click",e=>{
+            cont.innerHTML = "a";
+            console.log(window.location.pathname);
+            console.log(window.location.href);
+            
+            
+            history.pushState("a", null, window.location+"#a");
+            // window.location.hash = "a"
+        })
+        b.addEventListener("click",e=>{
+            cont.innerHTML = "b";
+            history.pushState("b", null, window.location+"#b");
+            // window.location.hash = "b"
+        })
+        c.addEventListener("click",e=>{
+            cont.innerHTML = "c";
+            history.pushState("c", null, window.location+"#c");
+            // window.location.hash = "c"
+        })
+    </script>
+</body>
+
+</html>

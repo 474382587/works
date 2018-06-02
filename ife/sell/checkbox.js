@@ -8,6 +8,7 @@ class Checkbox {
     //初始化
     init() {
         let container = document.createElement("div");
+        container.id = this.name;
         this.options.forEach((e, index) => {
             console.log(index);
             let type = index === 0 ? "all" : "single";
@@ -20,6 +21,10 @@ class Checkbox {
 
     generateHTML(label, value, type) {
         return `<label>${label}<input type="checkbox" value=${value} checkbox-type=${type}></label>`
+    }
+
+    getSelection(){
+        return this.name+'='+Array.from(this.parentNode.querySelectorAll("input[checkbox-type='single']:checked")).map(e=>e.value).join("+")
     }
 
     eventListener() {

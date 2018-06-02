@@ -57,18 +57,19 @@ class Table {
                 tr.innerHTML = `<td class="hide"><span>${e[first]}</span></td>
                                 <td><span>${e[second]}</span></td>`
             }
-            tr.innerHTML += `<td><span>${e.sale[0]}</span><input type="number"></td>
-                <td><span>${e.sale[1]}</span><input type="number"></td>
-                <td><span>${e.sale[2]}</span><input type="number"></td>
-                <td><span>${e.sale[3]}</span><input type="number"></td>
-                <td><span>${e.sale[4]}</span><input type="number"></td>
-                <td><span>${e.sale[5]}</span><input type="number"></td>
-                <td><span>${e.sale[6]}</span><input type="number"></td>
-                <td><span>${e.sale[7]}</span><input type="number"></td>
-                <td><span>${e.sale[8]}</span><input type="number"></td>
-                <td><span>${e.sale[9]}</span><input type="number"></td>
-                <td><span>${e.sale[10]}</span><input type="number"></td>
-                <td><span>${e.sale[11]}</span><input type="number"></td>`
+            // why not use type="number"?
+            tr.innerHTML += `<td><span>${e.sale[0]}</span><input type="text"></td>
+                <td><span>${e.sale[1]}</span><input type="text"></td>
+                <td><span>${e.sale[2]}</span><input type="text"></td>
+                <td><span>${e.sale[3]}</span><input type="text"></td>
+                <td><span>${e.sale[4]}</span><input type="text"></td>
+                <td><span>${e.sale[5]}</span><input type="text"></td>
+                <td><span>${e.sale[6]}</span><input type="text"></td>
+                <td><span>${e.sale[7]}</span><input type="text"></td>
+                <td><span>${e.sale[8]}</span><input type="text"></td>
+                <td><span>${e.sale[9]}</span><input type="text"></td>
+                <td><span>${e.sale[10]}</span><input type="text"></td>
+                <td><span>${e.sale[11]}</span><input type="text"></td>`
             if(index % length === length-1){
                 tbody.appendChild(tr);
                 arr.push(tbody)

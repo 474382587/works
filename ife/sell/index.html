@@ -171,20 +171,51 @@
 
             // td hover
             let tds = document.querySelectorAll("td");
-            console.log(tds);
+            // console.log(tds);
             available = true;
-            tds.forEach(e => {
-                e.addEventListener("click", event => {
+            tds.forEach(el => {
+                el.addEventListener("click", event => {
                     let edit = event.currentTarget.querySelector("input");
                     if (edit && available) {
-                        console.log(edit);
+                        edit.value = "";
+
                         available = false;
                         edit.style.display = "flex";
-                        edit.style.zIndex = "1";
+                        edit.focus();
+                        edit.addEventListener("blur", e => {
+                            if (Number.isInteger(e.target.value - "") && (e.target.value - "" >= 0) && e.target.value !== "") {
+                                el.querySelector('span').innerText = e.target.value;
+                                available = true;
+                                edit.style.display = "none";
+                            }
+                            else if (e.target.value === "") {
+                                available = true;
+                                edit.style.display = "none";
+                            }
+                            else {
+                                alert("请输入有效数字（整数）");
+                                edit.value = "";
+                            }
+                        });
+                        edit.addEventListener("keydown", e => {
+                            if (e.keyCode === 27) {
+                                // edit.value = el.querySelector('span').innerText;
+                                available = true;
+                                edit.style.display = "none";
+                            }
+                            else if (e.keyCode === 13) {
+                                e.preventDefault();
+                                edit.blur()
+                            }
+                            console.log(e.keyCode);
+                        })
                     }
 
                 });
             });
+
+
+
         }
         selections.addEventListener("change", e => {
 

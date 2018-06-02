@@ -17,10 +17,10 @@ class Table {
     createTableHead() {
         let tr = document.createElement("tr");
         if (this.order.product) {
-            tr.innerHTML = `<th>产品</th><th>地区</th>`;
+            tr.innerHTML = `<th id= "product" >产品</th><th>地区</th>`;
         }
         else {
-            tr.innerHTML = `<th>地区</th><th>产品</th>`;
+            tr.innerHTML = `<th id= "region">地区</th><th>产品</th>`;
         }
         this.data[0].sale.forEach((e, index) => {
             tr.innerHTML += `<th>${index + 1}月</th>`

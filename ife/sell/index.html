@@ -21,8 +21,17 @@
 
         }
 
+        body>div {
+            margin-top: 10px;
+        }
+
         tbody:hover td[rowspan='3'] {
             background-color: rgb(193, 255, 187);
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
         }
 
         .row:hover {
@@ -113,6 +122,11 @@
     <div id="table-container">
 
     </div>
+    <br>
+    <div>
+        <button id="save">Save</button>
+    </div>
+    <br>
     <div class="flex">
         <div id="svg-container">
 
@@ -168,7 +182,8 @@
         initialize()
         function initialize() {
             //每当发生变化时 获取值
-            let data = sourceData;
+            let localData = JSON.parse(window.localStorage.getItem("sourceData")) || null;
+            let data = localData || sourceData;
             let params = {
                 product: product.getValue(),
                 region: region.getValue()
@@ -264,8 +279,46 @@
                 });
             });
 
+            let button = document.getElementById("save");
+            button.addEventListener("click", e => {
+                saveToLocal(gatherData());
+            });
+        }
+        function saveToLocal(data) {
+            data = JSON.stringify(data);
+            console.log(data);
+            window.localStorage.setItem("sourceData",data);
+        }
+        function gatherData() {
+            let th = document.querySelector("th").id;
+            let rows = document.querySelectorAll(".row");
+            let data = [];
+            console.log(th);
 
-
+            if (th === "region") {
+                rows.forEach(e => {
+                    let list = Array.from(e.querySelectorAll("td>span:first-child")).map(e => e.textContent);
+                    let obj = {
+                        region: list.shift(),
+                        product: list.shift(),
+                        sale: list
+                    };
+                    data.push(obj);
+                });
+            }
+            else {
+                rows.forEach(e => {
+                    let list = Array.from(e.querySelectorAll("td>span:first-child")).map(e => e.textContent);
+                    let obj = {
+                        product: list.shift(),
+                        region: list.shift(),
+                        sale: list
+                    };
+                    data.push(obj);
+                });
+            }
+            console.log(data);
+            return data;
         }
         selections.addEventListener("change", e => {
 

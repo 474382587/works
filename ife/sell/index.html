@@ -168,10 +168,13 @@
             console.log(tds);
 
             tds.forEach(e => {
-                e.addEventListener("mouseenter", event => {
-                    let edit = event.target.querySelector("span.edit");
+                e.addEventListener("click", event => {
+                    let edit = event.currentTarget.querySelector("input");
                     if (edit) {
+                        console.log(edit);
                         
+                        edit.style.display = "flex";
+                        edit.style.zIndex = "1";
                     }
 
                 });

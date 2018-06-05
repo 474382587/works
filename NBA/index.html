@@ -7,6 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NBA STATS</title>
     <style>
+        ol{
+            padding: 0;
+            margin: 0;
+            list-style-position: inside;
+        }
+        .row{
+            /* display: flex;
+            justify-content:flex-start; */
+            padding: 6px;
+        }
+        #standings{
+            display: flex;
+            justify-content: center;
+        }
+        div#east,div#west{
+            margin: 20px;
+        }
         button {
             margin: 0 200px;
         }
@@ -19,7 +36,9 @@
             box-shadow: 0 0 2px 1px #d3d3d3;
             padding: 30px;
         }
-
+    h3{
+        text-align: center;
+    }
         h2 {
             display: flex;
             justify-content: space-between;
@@ -35,15 +54,15 @@
 </head>
 
 <body>
+    <div id=standings>
+        <div id="east"></div>
+        <div id="west"></div>
+    </div>
     <div id="games">
 
     </div>
     <button id="refresh">Refresh</button>
-    <div id="east">
-    
-    </div><div id="west">
-    
-    </div>
+
 
     <script src="./node_modules/nba/dist/nba.js"></script>
     <script src="./standings.js"></script>
@@ -62,7 +81,7 @@
         refresh.addEventListener("click", e => {
             loadGames().then(e => {
                 console.log(e);
-                
+
                 // let westStandings = e.westConfStandingsByDay;
                 // let eastStandings = e.eastConfStandingsByDay;
                 let gameHeader = e.gameHeader;
@@ -72,10 +91,10 @@
 
                 east.appendChild(eastStand.generateStanding()[0]);
                 west.appendChild(westStand.generateStanding()[0]);
-                
+
                 east.appendChild(eastStand.generateStanding()[1]);
                 west.appendChild(westStand.generateStanding()[1]);
-                
+
                 // if (e.available.length !== 0) {
                 //     let gameHeader = e.gameHeader;
                 //     let homeTeam = e.lineScore[1];
@@ -102,7 +121,7 @@
 
         var date = new Date().formatMMDDYYYY();
         function loadGames() {
-            return nba.stats.scoreboard({ gameDate: `12/11/09` });
+            return nba.stats.scoreboard({ gameDate: `${date}` });
         }
 
 // ${date}

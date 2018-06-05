@@ -39,12 +39,20 @@
 
     </div>
     <button id="refresh">Refresh</button>
-
+    <div id="east">
+    
+    </div><div id="west">
+    
+    </div>
 
     <script src="./node_modules/nba/dist/nba.js"></script>
+    <script src="./standings.js"></script>
     <script>
         const refresh = document.getElementById("refresh");
         const games = document.getElementById("games");
+        const east = document.getElementById("east");
+        const west = document.getElementById("west");
+
         Date.prototype.formatMMDDYYYY = function () {
             return (this.getMonth() + 1) +
                 "/" + this.getDate() +
@@ -54,24 +62,38 @@
         refresh.addEventListener("click", e => {
             loadGames().then(e => {
                 console.log(e);
-                if (e.available.length !== 0) {
-                    let gameHeader = e.gameHeader;
-                    let homeTeam = e.lineScore[1];
-                    let awayTeam = e.lineScore[0];
-                    let title = document.createElement("h2");
-                    let score = document.createElement("div");
-                    let status = document.createElement("h4");
-                    status.innerHTML = gameHeader[0].gameStatusText;
-                    title.innerHTML = `<span>${awayTeam.teamAbbreviation}</span><span>${homeTeam.teamAbbreviation}</span>`;
-                    score.innerHTML = `<span>${awayTeam.pts}</span><span>${homeTeam.pts}</span>`;
-                    document.getElementById("games").innerHTML = "";
-                    document.getElementById("games").appendChild(status);
-                    document.getElementById("games").appendChild(title);
-                    document.getElementById("games").appendChild(score);
-                }
-                else{
-                    alert("No game today!");
-                }
+                
+                // let westStandings = e.westConfStandingsByDay;
+                // let eastStandings = e.eastConfStandingsByDay;
+                let gameHeader = e.gameHeader;
+                // let westStand = new Standings(e.westConfStandingsByDay, "West");
+                let eastStand = new Standings(e.eastConfStandingsByDay, "East");
+                let westStand = new Standings(e.westConfStandingsByDay, "West");
+
+                east.appendChild(eastStand.generateStanding()[0]);
+                west.appendChild(westStand.generateStanding()[0]);
+                
+                east.appendChild(eastStand.generateStanding()[1]);
+                west.appendChild(westStand.generateStanding()[1]);
+                
+                // if (e.available.length !== 0) {
+                //     let gameHeader = e.gameHeader;
+                //     let homeTeam = e.lineScore[1];
+                //     let awayTeam = e.lineScore[0];
+                //     let title = document.createElement("h2");
+                //     let score = document.createElement("div");
+                //     let status = document.createElement("h4");
+                //     status.innerHTML = gameHeader[0].gameStatusText;
+                //     title.innerHTML = `<span>${awayTeam.teamAbbreviation}</span><span>${homeTeam.teamAbbreviation}</span>`;
+                //     score.innerHTML = `<span>${awayTeam.pts}</span><span>${homeTeam.pts}</span>`;
+                //     document.getElementById("games").innerHTML = "";
+                //     document.getElementById("games").appendChild(status);
+                //     document.getElementById("games").appendChild(title);
+                //     document.getElementById("games").appendChild(score);
+                // }
+                // else{
+                //     alert("No game today!");
+                // }
 
 
             });
@@ -80,10 +102,10 @@
 
         var date = new Date().formatMMDDYYYY();
         function loadGames() {
-            return nba.stats.scoreboard({ gameDate: `${date}` });
+            return nba.stats.scoreboard({ gameDate: `12/11/09` });
         }
 
-
+// ${date}
     </script>
 </body>
 

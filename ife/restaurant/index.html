@@ -16,7 +16,7 @@
     <script src="./customer.js"></script>
     <script src="./dish.js"></script>
     <script>
-        const menu = ["Big Mac", "McChicken", "Snack Wrap", "McFish", "Cheeseburger", "Quater Pounder", "Fries", "Diet Coke", "Milk", "Ranch-Chicken Wrap"];
+        const menu = [{name:"Big Mac",price:Math.random()*10}, {name:"McChicken",price:Math.random()*10}, {name:"Snack Wrap",price:Math.random()*10}, {name:"McFish",price:Math.random()*10}, {name:"Cheeseburger",price:Math.random()*10}, {name:"Quater Pounder",price:Math.random()*10}, {name:"Fries",price:Math.random()*10}, {name:"Diet Coke",price:Math.random()*10}, {name:"Milk",price:Math.random()*10}, {name:"Ranch-Chicken Wrap",price:Math.random()*10}];
         const customers =[1,2,3,4,5,6,7,8,9,10];
         customers.forEach(e=>{
             let servingCustomer = new Customer();

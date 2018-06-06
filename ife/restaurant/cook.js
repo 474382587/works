@@ -4,6 +4,6 @@ class Cook extends Staff {
         super(id, name, salary);
     }
     completeTask(dish) {
-        console.log("Cooking {"+dish+"} !");
+        console.log("Cooking {"+dish.name+"} !");
     }
 }

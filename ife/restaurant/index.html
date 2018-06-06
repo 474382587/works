@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Restaurant</title>
+</head>
+
+<body>
+    <script src="./restaurant.js"></script>
+    <script src="./staff.js"></script>
+    <script src="./waiter.js"></script>
+    <script src="./cook.js"></script>
+    <script src="./customer.js"></script>
+    <script src="./dish.js"></script>
+    <script>
+        const menu = ["Big Mac", "McChicken", "Snack Wrap", "McFish", "Cheeseburger", "Quater Pounder", "Fries", "Diet Coke", "Milk", "Ranch-Chicken Wrap"];
+        const customers =[1,2,3,4,5,6,7,8,9,10];
+        customers.forEach(e=>{
+            let servingCustomer = new Customer();
+            let waiter = new Waiter(123,312,123456);
+            let chef = new Cook(121,322,123432)
+            dishes = servingCustomer.order(menu);
+            waiter.completeTask(dishes);
+            chef.completeTask(dishes);
+            waiter.completeTask();
+            servingCustomer.eat();
+        });
+    
+    
+    
+    </script>
+    
+</body>
+
+</html>

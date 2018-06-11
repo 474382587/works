@@ -138,7 +138,6 @@
                             }
                         })
                     }
-
                 })
             }
         }
@@ -150,18 +149,23 @@
                 console.log("开始吃 " + onTable[0].name)
                 let p = new Promise(resolve => {
                     setTimeout(() => {
-                        resolve(onTable[0].name)
+                        resolve(onTable[0])
                     }, onTable[0].time * 1000);
                 })
                 p.then((e) => {
-                    console.log("吃完了 " + e)
+                    console.log("吃完了 " + e.name)
                     onTable.shift()
                     if (onTable.length > 0) {
                         eat(true)
                     }
                     else {
                         eating = false;
-                        console.log("没东西吃了目前")
+                        if(e.lastOne){
+                            console.log("吃饱付账");
+                        }
+                        else{
+                            console.log("没东西吃了目前")
+                        }
                     }
                 })
             }

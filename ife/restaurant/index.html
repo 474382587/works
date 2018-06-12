@@ -64,14 +64,16 @@
         })
         p.then(e => console.log(e))
         */
-
-
-
         let ready = [];
         let onTable = [];
         let eating = false;
         let available = true;
         let p = Promise.resolve('Start')
+        for(let i =0; i<3; i++){
+
+        }
+
+        
         dataset.forEach((e, index) => {
             p = p.then(el => {
                 if (index > 0) {

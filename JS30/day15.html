@@ -97,13 +97,13 @@
 
 
 
-        // // 在关闭浏览器之后清除缓存
-        //     window.onbeforeunload = function (e) {
-        //         localStorage.removeItem('items');
-        //         let confirmationMessage = "\o/";
-        //          e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+
-        //         return confirmationMessage; // 如果有返回值的话，就会弹出确认框。
-        //     };
+        // 在关闭浏览器之后清除缓存
+            window.onbeforeunload = function (e) {
+                localStorage.removeItem('items');
+                let confirmationMessage = "\o/";
+                 e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+
+                return confirmationMessage; // 如果有返回值的话，就会弹出确认框。
+            };
 
 
     </script>

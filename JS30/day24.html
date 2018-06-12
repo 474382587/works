@@ -173,20 +173,20 @@
     </div>
 
     <script>
-        let nav = document.querySelector('nav#main');
-        let navTop = nav.offsetTop;
-
-
-    function fixNav() {
-     if (window.scrollY >= navTop) {
-                document.body.style.paddingTop = `${nav.offsetHeight}px`;
-                document.body.classList.add('fixed-nav');
-        } else {
-                documentbody.style.paddingTop = 0;
-                document.body.classList.remove('fixed-nav');
-        }
-    }
-        document.addEventListener('scroll', fixNav);
+          let nav = document.querySelector('nav#main');
+            // 导航栏距离document顶部的距离
+            let navTop = nav.offsetTop;
+            function fixNav() {
+                // window.scrollY 是当前窗口的滚动距离
+                if (window.scrollY >= navTop) {
+                    document.body.style.paddingTop = `${nav.offsetHeight}px`;
+                    document.body.classList.add('fixed-nav');
+                } else {
+                    document.body.style.paddingTop = 0;
+                    document.body.classList.remove('fixed-nav');
+                }
+            }
+            document.addEventListener('scroll', fixNav);
     </script>
 
 </body>

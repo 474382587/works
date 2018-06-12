@@ -19,6 +19,29 @@ Here is the preview list:
 4. [Yuan Ji Hua](http://josephjin.site/works/demo)     
   A forum like website
 
-5. Resume: [Version 1](http://josephjin.site/works/resume/resume.html) [Version 2](http://josephjin.site/works/resume/resume2.html) [Version 3 Animated version](http://josephjin.site/works/resume-animation/)    
+5. **Resume:**      
+  [Version 1](http://josephjin.site/works/resume/resume.html)     
+  [Version 2](http://josephjin.site/works/resume/resume2.html)    
+  [Version 3 Animated version](http://josephjin.site/works/resume-animation/)        
 
-6. 
+6. **Image Crousel:**       
+   [Version 1](http://josephjin.site/works/lunbo/version1.html)      
+   [Version 2](http://josephjin.site/works/lunbo/version2.html)    
+   [Version 3 swiper.js](http://josephjin.site/works/swiper/swiper.html)
+   
+7. [Navigation Website](http://josephjin.site/works/navSite/secondNav.html)    
+   Users are able to save their collections and use keyboard to open their fav sites in a new tab
+
+8. [CSS Pikachu](http://josephjin.site/works/pikachu/pikachu.html)    
+   Use CSS to draw a Pikachu. Animated version
+   [CSS Taichi](http://josephjin.site/works/taichi/taichi.html)    
+   
+9. **[Online Resume Editor](http://josephjin.site/works/vue-resume/)**    
+   A online resume editor, implemented with Vue.js and Axios. Use leanCloud for data storage
+ 
+10. **[Vue-Qunar](http://josephjin.site/vue-qunar/dist/)**     
+   A travel agency site imitation
+   
+11. [Static flex H5 page](http://josephjin.site/works/ife/ife-day12-15/)    
+
+12. **[Data Visualization](http://josephjin.site/works/ife/sell/)**

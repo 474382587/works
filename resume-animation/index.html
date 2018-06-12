@@ -13,62 +13,53 @@
 </head>
 
 <body>
-<pre><code id ="code" class = "css"></code></pre>
-
+    <pre><code id ="code" class = "css"></code></pre>
     <script>
+        var content = `        /*
+        - 面试官你好，我是 Joseph
+        - 我将以动画的形式来介绍我自己
+        - 因为只用文字介绍太枯燥了
+        - 就用代码来做个自我介绍吧
+        - 首先来准备一些样式
+        */
+        *{
+        transition: all 1s;
+        }
+        html{
+        background-color:#e3e3e3;
+        }
+        pre{
+            border:1px solid #666;
+            padding:20px;
+        }
 
-
-            // Returns a highlighted HTML string
-        // var css = Prism.highlight(cssContent, Prism.languages.css, 'css');
-        
-        // console.log(css)
-        var content = `/*
-- 面试官你好，我是XXX
-- 我将以动画的形式来介绍我自己
-- 因为只用文字介绍太枯燥了
-- 就用代码来做个自我介绍吧
-- 首先来准备一些样式
-*/
-*{
-  transition: all 1s;
-}
-html{
-  background-color:#e3e3e3;
-}
-pre{
-    border:1px solid black;
-    padding:20px;
-}
-
-/*
-- 接下来，让我们给这些代码一些高亮吧
-- 请看————
-*/
-.token.selector{
-    color:#690;
-}
-.token.property{
-    color:#905;
-}
-.token.function{
-    color:#DD4A68;
-}
+        /*
+        - 接下来，让我们给这些代码一些高亮吧
+        - 请看————
+        */
+        .token.selector{
+            color:#690;
+        }
+        .token.property{
+            color:#905;
+        }
+        .token.function{
+            color:#DD4A68;
+        }
 
 /*
-- 添加 3D 效果
+- 添加一个 3D 旋转效果
 */
 pre{
     transform:rotate(360deg);
 }
 `;
-
-
         var n = 0;
         var timer = setInterval(() => {
             n++;
             code.innerHTML = content.substring(0, n);
             code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
-            if(n >= content.length) {
+            if (n >= content.length) {
                 window.clearInterval(timer);
                 addPaper();
                 editPaper(content);
@@ -85,32 +76,106 @@ pre{
 
         function editPaper(result) {
             var content = `
-/*好 了*/
+/*好了,请看右边 -----*/
 body{
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 #paper{
-    width:100px;
-    height:80vh;
-    border:1px solid red;
+    background-color: white;
+    flex: 1;
+    margin-left: 10px;
+    height:90vh;
+    border:1px solid #666;
 }
-            `
+`
             var n = 0;
-            var timer2 = setInterval(() => { 
+            var timer2 = setInterval(() => {
                 n++;
-                code.innerHTML = result+content.substring(0, n);
+                code.innerHTML = result + content.substring(0, n);
                 console.log(code.innerHTML);
                 code.innerHTML = Prism.highlight(code.innerHTML, Prism.languages.css, 'css');
                 if (n >= content.length) {
                     window.clearInterval(timer2);
+                    let intro = document.createElement('pre');
+                    intro.style.border = "none"
+                    intro.innerText = `我叫Joseph，毕业于 SFU (Computer Engineering)。
+目前在一家 Digital Marketing & Web Development 公司做 QA Engineer(2017-8 - 现在)
+
+工作职责有：
+    1. 对开发好的网站进行 functional test 和 cross broser/device test
+
+    2. 给 FE Dev 提供帮助（参与需求分析并划分前端功能模块，
+       切图、前端静态资源优化，修改网站样式，修改网站内容 - Wordpress/JavaScript/CSS）
+
+    3. 向客户提供技术支持及Bug修复
+
+    4. 通过 DoneDone 管理、增添 ticket、分发给前端及后端开发解决， 以及二次测试
+
+    5. 创建测试用例文档、完善测试流程文档、定期更新已有的 Support Document
+    
+技能掌握：
+    1. HTML5 & CSS3 
+        可以搭建符合 HTML5 语义化的页面结构
+        熟悉常见布局、盒模型、Flex、响应示、移动端适配
+        熟悉 CSS3 动画，可快速根据设计稿开 发页面，熟悉开发调试。 
+        熟悉 SCSS 及 Stylus
+
+    2. JavaScript
+        熟悉原生 JavaScript，理解事件模型、原型、闭包、异步、面向对象、封装等。
+        熟悉AJAX、JSONP、跨域、 UI组件、插件使用，了解 ES6 语法、继承、类、Promise等。 
+        熟悉 jQuery 以及 其常用 API
+        熟悉 Vue 前端框架，如 Vuex、Vue Router
+
+    3. 工具
+        熟悉 git 的使用进行版本管理，了解 Linux 命令行，了解 Webpack、Vue-cli，可对工程文件进行打包编译
+
+个人项目：
+`
+                    document.getElementById('paper').appendChild(intro)
+                    let projects = [
+                        {
+                            name: 'Vue 仿写“去哪儿网”',
+                            description: '（进行中）利用Vue框架仿写“去哪儿”手机网站。用到了Vue router, vuex, Stylus, axios 等知识',
+                            url: 'http://josephjin.site/vue-qunar/dist/'
+                        },
+                        {
+                            name: '在线简历编辑器',
+                            description: '（进行中）Vue写的在线简历编辑器，用户登陆后可以储存数据到 ClenaCloud，登录时自动获取并填充，并且拥有换肤、打印的功能',
+                            url: 'http://josephjin.site/works/vue-resume'
+                        },
+                        {
+                            name: '猿计划',
+                            description: '用原生JavaScript写的多个论坛类网站页面(注册登录、首页、文章列表页)',
+                            url: 'http://josephjin.site/works/demo'
+                        },
+                        {
+                            name: '画一个皮卡丘(动画版)',
+                            url: 'http://josephjin.site/works/pikachu/pikachu.html',
+                            description: '可以用代码展现用 CSS3画一个皮卡丘的有趣过程'
+                        },
+                        {
+                            name: '键盘导航',
+                            url: 'http://127.0.0.1:5500/navSite/secondNav.html',
+                            description: '一个可以利用localStroage来储存用户信息的收藏夹网页'
+                        },
+
+                    ];
+                    let projectList = document.createElement('div')
+                    projectList.classList.add('project')
+                    projectList.innerHTML = ''
+                    projects.forEach(e=>{
+                        projectList.innerHTML += `<h3>${e.name}</h3><p>${e.description}</p><a target='_blank' href=${e.url}>预览地址</a>`
+                    })
+
+                    document.getElementById('paper').appendChild(projectList)
+
                 }
                 var text = code.textContent;
                 style.innerHTML = text;
             }, 10);
         }
-
     </script>
 </body>
 

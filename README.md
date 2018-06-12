@@ -45,3 +45,5 @@ Here is the preview list:
 11. [Static flex H5 page](http://josephjin.site/works/ife/ife-day12-15/)    
 
 12. **[Data Visualization](http://josephjin.site/works/ife/sell/)**
+
+13. [Vanilla JS](https://github.com/jerkjoe/works/tree/master/JS30)

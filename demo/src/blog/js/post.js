@@ -34,15 +34,24 @@ const views = document.getElementById('views');
 const comments = document.getElementById('comments');
 var search = window.location.search;
 
-axios.get('http://www.ftusix.com/static/data/content.php' + search).then(response => {
-    console.log(response);
-    let loading = document.querySelector('div.loader');
-    loading.classList.add('hide');
-    document.getElementById('meta').innerText = `文章 - ${response.data.data.title} `;
-    title.innerText = response.data.data.title;
-    author.innerText = response.data.data.nick_name;
-    views.innerText = "浏览: " + response.data.data.browser_num;
-    comments.innerText = "评论: " + response.data.data.comment_num;
-    timestamp.innerText = new Date(response.data.data.modify_time * 1000).toLocaleString();
-    content.innerHTML = response.data.data.content;
-});
+axios
+  .get(
+    'https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/content.php' +
+      search
+  )
+  .then(response => {
+    console.log(response)
+    let loading = document.querySelector('div.loader')
+    loading.classList.add('hide')
+    document.getElementById('meta').innerText = `文章 - ${
+      response.data.data.title
+    } `
+    title.innerText = response.data.data.title
+    author.innerText = response.data.data.nick_name
+    views.innerText = '浏览: ' + response.data.data.browser_num
+    comments.innerText = '评论: ' + response.data.data.comment_num
+    timestamp.innerText = new Date(
+      response.data.data.modify_time * 1000
+    ).toLocaleString()
+    content.innerHTML = response.data.data.content
+  })

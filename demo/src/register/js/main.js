@@ -58,7 +58,7 @@ document.addEventListener("submit", e => {
 });
 
 function register(number, passcode, smsCode) {
-    axios.post("http://www.ftusix.com/static/data/register.php", {
+  axios.post("https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/register.php", {
         mobile: number,
         pwd: passcode,
         sms_code: smsCode
@@ -94,7 +94,7 @@ function removeAlertClass(e) {
 
 // getMsgCode("123");
 function getMsgCode(number) {
-    axios.post('http://www.ftusix.com/static/data/sendsms.php', {
+  axios.post('https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/sendsms.php', {
         mobile: number
     })
         .then(function (response) {

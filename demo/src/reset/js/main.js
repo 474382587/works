@@ -23,7 +23,7 @@
             let smsCode = msgCode.value || "123456";
             console.log(number + passcode + passcode2 + smsCode);
                 
-            axios.post('http://www.ftusix.com/static/data/reset.php', {
+          axios.post('https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/reset.php', {
                 "mobile": number,     //  注册手机号
                 "pwd": passcode,            //  注册密码
                 "pwd2": passcode2,            //  确认密码，如果两次不统一会返回失败

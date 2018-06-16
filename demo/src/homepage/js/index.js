@@ -100,7 +100,7 @@ function requestPosts(type, pageNum) {
     paginationContainer.classList.add('hide');
     axios({
         method: 'post',
-        url: 'http://www.ftusix.com/static/data/topicList.php',
+      url: 'https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/topicList.php',
         params: {
             "type": type,
             "sort": "new",

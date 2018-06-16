@@ -2,179 +2,142 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Restaurant</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Restaurant</title>
 </head>
 
 <body>
-    <script src="./restaurant.js"></script>
-    <script src="./staff.js"></script>
-    <script src="./waiter.js"></script>
-    <script src="./cook.js"></script>
-    <script src="./customer.js"></script>
-    <script src="./dish.js"></script>
-    <script>
-        // const menu = [{name:"Big Mac",price:Math.random()*10}, {name:"McChicken",price:Math.random()*10}, {name:"Snack Wrap",price:Math.random()*10}, {name:"McFish",price:Math.random()*10}, {name:"Cheeseburger",price:Math.random()*10}, {name:"Quater Pounder",price:Math.random()*10}, {name:"Fries",price:Math.random()*10}, {name:"Diet Coke",price:Math.random()*10}, {name:"Milk",price:Math.random()*10}, {name:"Ranch-Chicken Wrap",price:Math.random()*10}];
-        // const customers =[1,2,3,4,5,6,7,8,9,10];
-        // customers.forEach(e=>{
-        //     let servingCustomer = new Customer();
-        //     let waiter = new Waiter(123,312,123456);
-        //     let chef = new Cook(121,322,123432)
-        //     dishes = servingCustomer.order(menu);
-        //     waiter.completeTask(dishes);
-        //     chef.completeTask(dishes);
-        //     waiter.completeTask();
-        //     servingCustomer.eat();
-        // });
-        let dataset = [
-            {
-                name: '11',
-                time: 4
-            },
-            {
-                name: '22',
-                time: 2
-            },
-            {
-                name: '33',
-                time: 3
-            },
-        ]
-        // var promiseList = []
-        // dataset.forEach(e => {
-        //     promiseList.push(createPromiseList(e))
-        // })
-        // console.dir(promiseList)
-        /*
-        let data = []
-        let p = Promise.resolve('Start')
-        dataset.forEach((e,index) => {
-            p = p.then(el => {
-                console.log(el)
-                data.push()
-                return new Promise(resolve => {
-                    setTimeout(() => {
-                        console.log("开始做 " + e.name);
-                        resolve(e.name)
-                    }, e.time * 1000);
-                })
-            })
-        })
-        p.then(e => console.log(e))
-        */
-        let ready = [];
-        let onTable = [];
-        let eating = false;
-        let available = true;
-        let p = Promise.resolve('Start')
-        for(let i =0; i<3; i++){
+  <script src="./restaurant.js"></script>
+  <script src="./staff.js"></script>
+  <script src="./waiter.js"></script>
+  <script src="./cook.js"></script>
+  <script src="./customer.js"></script>
+  <script src="./dish.js"></script>
+  <script>
+    let dataset = [
+      {
+        name: '11',
+        time: 5
+      },
+      {
+        name: '22',
+        time: 7
+      },
+      {
+        name: '33',
+        time: 8
+      },
+    ]
 
-        }
-
-        
-        dataset.forEach((e, index) => {
-            p = p.then(el => {
-                if (index > 0) {
-                    console.log(el)
-                    ready.push({
-                        name: el.name,
-                        time: el.time
-                    })
-                    // eat(false)
-                    pass(false)
-                    console.log("call pass");
-
-                }
-                return new Promise(resolve => {
-                    // console.log("开始做 " + e.name);
-                    setTimeout(() => {
-                        console.log("做完了 " + e.name);
-                        resolve(e)
-                    }, e.time * 1000);
-                })
-            })
-        })
-        p.then(el => {
-            ready.push({
-                name: el.name,
-                time: el.time,
-                lastOne: true
-            })
-            pass(false)
-        })
-
-        function pass(moving) {
-            if (available || moving) {
-                available = false
-                let p
-                p = new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve(ready[0])
-                    }, 500)
-                })
-                p.then(e => {
-                    onTable.push(e)
-                    console.log("传到桌子");
-                    eat(false)
-                    ready.shift()
-                    return e.lastOne
-                }).then(e => {
-                    let p
-                    if (e) {
-                        console.log("准备收钱");
-                    }
-                    else{
-                        p = new Promise(resolve => {
-                            setTimeout(() => {
-                                resolve(ready[0])
-                            }, 500)
-                        })
-                        p.then(e => {
-                            if (ready.length > 0) {
-                                pass(true)
-                            }
-                            else {
-                                available = true
-                            }
-                        })
-                    }
-                })
-            }
-        }
+    let ready = [];
+    let onTable = [];
+    let eating = false;
+    let available = true;
+    let p = Promise.resolve('Start')
+    for (let i = 0; i < 3; i++) {
+    }
 
 
-        function eat(onEating) {
-            if (!eating || onEating) {
-                eating = true
-                console.log("开始吃 " + onTable[0].name)
-                let p = new Promise(resolve => {
-                    setTimeout(() => {
-                        resolve(onTable[0])
-                    }, onTable[0].time * 1000);
-                })
-                p.then((e) => {
-                    console.log("吃完了 " + e.name)
-                    onTable.shift()
-                    if (onTable.length > 0) {
-                        eat(true)
-                    }
-                    else {
-                        eating = false;
-                        if(e.lastOne){
-                            console.log("吃饱付账");
-                        }
-                        else{
-                            console.log("没东西吃了目前")
-                        }
-                    }
-                })
-            }
-        }
+    // dataset.forEach((e, index) => {
+    //   p = p.then(el => {
+    //     if (index > 0) {
+    //       console.log(el)
+    //       ready.push({
+    //         name: el.name,
+    //         time: el.time
+    //       })
+    //       // eat(false)
+    //       pass(false)
+    //       console.log("call pass");
+    //     }
+    //     return new Promise(resolve => {
+    //       // console.log("开始做 " + e.name);
+    //       setTimeout(() => {
+    //         console.log("做完了 " + e.name);
+    //         resolve(e)
+    //       }, e.time * 1000);
+    //     })
+    //   })
+    // })
+    // p.then(el => {
+    //   ready.push({
+    //     name: el.name,
+    //     time: el.time,
+    //     lastOne: true
+    //   })
+    //   pass(false)
+    // })
+
+    // function pass(moving) {
+    //   if (available || moving) {
+    //     available = false
+    //     let p = new Promise(resolve => {
+    //       setTimeout(() => {
+    //         resolve(ready[0])
+    //       }, 500)
+    //     }).then(e => {
+    //       onTable.push(e)
+    //       console.log("传到桌子");
+    //       eat(false)
+    //       ready.shift()
+    //       return e.lastOne
+    //     }).then(e => {
+    //       let p
+    //       if (e) {
+    //         console.log("准备收钱");
+    //       }
+    //       else {
+    //         p = new Promise(resolve => {
+    //           setTimeout(() => {
+    //             resolve(ready[0])
+    //           }, 500)
+    //         })
+    //         p.then(e => {
+    //           if (ready.length > 0) {
+    //             pass(true)
+    //           }
+    //           else {
+    //             available = true
+    //           }
+    //         })
+    //       }
+    //     })
+    //   }
+    // }
 
 
-    </script>
+    // function eat(onEating) {
+    //   if (!eating || onEating) {
+    //     eating = true
+    //     console.log("开始吃 " + onTable[0].name)
+    //     let p = new Promise(resolve => {
+    //       setTimeout(() => {
+    //         resolve(onTable[0])
+    //       }, 3000);
+    //     })
+    //     p.then((e) => {
+    //       console.log("吃完了 " + e.name)
+    //       onTable.shift()
+    //       if (onTable.length > 0) {
+    //         eat(true)
+    //       }
+    //       else {
+    //         eating = false;
+    //         if (e.lastOne) {
+    //           console.log("吃饱付账");
+    //         }
+    //         else {
+    //           console.log("没东西吃了目前")
+    //         }
+    //       }
+    //     })
+    //   }
+    // }
+
+
+  </script>
 
 </body>
 

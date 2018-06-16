@@ -17,13 +17,13 @@ class Table {
     createTableHead() {
         let tr = document.createElement("tr");
         if (this.order.product) {
-            tr.innerHTML = `<th id= "product" >产品</th><th>地区</th>`;
+            tr.innerHTML = `<th id= "product" >Product</th><th>Region</th>`;
         }
         else {
-            tr.innerHTML = `<th id= "region">地区</th><th>产品</th>`;
+            tr.innerHTML = `<th id= "region">Region</th><th>Product</th>`;
         }
         this.data[0].sale.forEach((e, index) => {
-            tr.innerHTML += `<th>${index + 1}月</th>`
+            tr.innerHTML += `<th>${index + 1}</th>`
         });
         // console.log(tr);
         // console.log(this.createTableRows());

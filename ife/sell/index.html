@@ -89,7 +89,7 @@
 
 
         td:hover::after {
-            content: "编辑";
+            content: "Edit";
             display: block;
             font-size: 2px;
             position: absolute;
@@ -153,30 +153,30 @@
         // 创建两个选择
         // 1 
         var product = new Checkbox(container1, [{
-            value: "全部",
-            name: "全部"
+            value: "All",
+            name: "All"
         }, {
-            value: "手机",
-            name: "手机"
+            value: "Cellphone",
+            name: "Cellphone"
         }, {
-            value: "笔记本",
-            name: "笔记本"
+            value: "Laptop",
+            name: "Laptop"
         }, {
-            value: "智能音箱",
-            name: "智能音箱"
+            value: "Stereo",
+            name: "Stereo"
         }], "product");
         var region = new Checkbox(container2, [{
-            value: "全部",
-            name: "全部"
+            value: "All",
+            name: "All"
         }, {
-            value: "华东",
-            name: "华东"
+            value: "East",
+            name: "East"
         }, {
-            value: "华北",
-            name: "华北"
+            value: "North",
+            name: "North"
         }, {
-            value: "华南",
-            name: "华南"
+            value: "South",
+            name: "South"
         }], "region");
 
         if (window.location.hash !== "") {
@@ -299,7 +299,7 @@
                                 div.classList.add("hide")
                             }
                             else {
-                                alert("请输入有效数字（整数）");
+                                alert("Please enter an valid number (integer).");
                                 edit.value = "";
                                 available = true;
                                 div.classList.add("hide")

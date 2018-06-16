@@ -80,7 +80,7 @@ class Barchart {
                 y: 227,
                 "font-size": 10,
             });
-            text.textContent = `${index + 1}月`
+            text.textContent = `${index + 1}`
             //create bars
             let rect = this.createSVG("rect", {
                 x: plotStart,

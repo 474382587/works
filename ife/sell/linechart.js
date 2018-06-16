@@ -60,7 +60,7 @@ class Linechart {
             context.beginPath();
             context.font = "10px Arial";
             context.textAlign = "left";
-            context.fillText(`${index + 1}月`, plotStart + 1, 228);
+            context.fillText(`${index + 1}`, plotStart + 1, 228);
             context.strokeStyle = 'black';
             context.stroke();
 

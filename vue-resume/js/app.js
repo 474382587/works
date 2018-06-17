@@ -22,23 +22,17 @@ var app = new Vue({
             phone: 'Tel',
             skills: [
                 {
-                    name: 'Skill',
-                    description: 'Description',
+                    name: 'Skill Name',
+                    description: "description",
                 },
             ],
             projects: [
                 {
-                    name: 'project1',
-                    link:'Link1',
+                    name: 'Work/Project Name',
+                    link:'links(GitHub, LinkedIn etc.)',
                     keywords:'keywords',
-                    description: 'Description',
-                },
-                {
-                    name: 'project2',
-                    link: 'Link',
-                    keywords: 'keywords',
-                    description: 'Description',
-                },
+                    description: "short description",
+                }
             ]
         },
         signUp:{

@@ -3,8 +3,8 @@ Vue.component('editable-span', {
     template: `
             <span class="edit">
                 <span v-show="!editing">{{value}}</span>
-                <input v-show="editing" type="text" @input='notify'></input>
-                <button v-show='!preview' v-on:click="editing = !editing">Edit</button>
+                <input v-show="editing" type="text" @input='notify' v-on:click.prevent @keydown.enter="editing = !editing"></input>
+                <button v-show='!preview' v-on:click.prevent="editing = !editing">Edit</button>
             </span>
             `,
     data: function () {
@@ -14,7 +14,8 @@ Vue.component('editable-span', {
     },
     methods: {
         notify: function (event) {
-            this.$emit('update', event.target.value)//发出一个名字叫update的event，值:event.target.value
+            let result = event.target.value.trim().length === 0 ? 'Inputing...' : event.target.value;
+            this.$emit('update', result)//发出一个名字叫update的event，值:event.target.value
         }
     }
 });

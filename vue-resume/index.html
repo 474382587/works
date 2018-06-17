@@ -2,174 +2,177 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="./css/login-register.css">
-    <link rel="stylesheet" href="./css/theme.css">
-    <link rel="stylesheet" href="./css/dark.css">
-    <link rel="stylesheet" href="./css/default.css">
-    <link rel="stylesheet" href="./css/print.css" media="print">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/login-register.css">
+  <link rel="stylesheet" href="./css/theme.css">
+  <link rel="stylesheet" href="./css/dark.css">
+  <link rel="stylesheet" href="./css/default.css">
+  <link rel="stylesheet" href="./css/print.css" media="print">
 </head>
 
 <body class="default">
-    <div class="page" id="app">
-        <aside v-show='!!currentUser.id && !preview' v-cloak>
-            <div class="upper">
-                <ul class="actions">
-                    <li>
-                        <button class="button" @click='saveClick'>Save</button>
-                    </li>
-                    <li>
-                        <button class="button" @click="onPrint">Print</button>
-                    </li>
-                    <li>
-                        <button class="button" @click="onShare">Share</button>
-                    </li>
-                    <li>
-                        <button class="button" @click='onTheme'>Theme</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="down" v-show='!!currentUser.id' v-cloak>
-                <button class="button" @click="onLogout" >Logout</button>
-            </div>
-        </aside>
+  <div class="page" id="app">
+    <aside v-show='!!currentUser.id && !preview' v-cloak>
+      <div class="upper">
+        <ul class="actions">
+          <li>
+            <button class="button" @click='saveClick'>Save</button>
+          </li>
+          <li>
+            <button class="button" @click="onPrint">Print</button>
+          </li>
+          <li>
+            <button class="button" @click="onShare">Share</button>
+          </li>
+          <li>
+            <button class="button" @click='onTheme'>Theme</button>
+          </li>
+        </ul>
+      </div>
+      <div class="down" v-show='!!currentUser.id' v-cloak>
+        <button class="button" @click="onLogout">Logout</button>
+      </div>
+    </aside>
 
-        <aside v-show='!currentUser.id && !preview' v-cloak>
-            <div class="upper">
-            </div>
-            <div class="down">
-                <button class="button" @click="showLogin">Login</button>
-            </div>
-        </aside>
-        <main>
-            <div class="resume">
-                <div v-show='preview'>wanna build your own? click <a v-bind:href="url">here</a></div>
-                <section>
-                    <h1>
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.name' v-on:update="sync('name',$event)"></editable-span>
-                    </h1>
-
-                    <div>
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.gender' v-on:update="sync('gender',$event)"></editable-span> |
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.birthday' v-on:update="sync('birthday',$event)"></editable-span>|
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.position' v-on:update="sync('position',$event)"></editable-span>|
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.email' v-on:update="sync('email',$event)"></editable-span>|
-                        <editable-span v-bind:preview='preview'v-bind:value='resume.phone' v-on:update="sync('phone',$event)"></editable-span>
-                    </div>
-
-                </section>
-                <section class="skills">
-                    <h2>技能</h2>
-                    <ul>
-                        <li v-for='skill,index in resume.skills'>
-                            <h3>
-                                <editable-span v-bind:preview='preview'class="name" :value="skill.name" @update='syncSkills(`${index}`,"name",$event)'></editable-span>
-                            </h3>
-                            <br>
-                            <div class="description">
-                                <editable-span v-bind:preview='preview':value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
-                            </div>
-                            <span class="disappearPrint delete" v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
-                        </li>
-                        <li v-show='!preview' class="disappearPrint">
-                            <span v-on:click="addSkill" class="addNew">Add</span>
-                        </li>
-
-                    </ul>
-                </section>
-                <section class="projects">
-                    <h2>项目经历</h2>
-                    <ol>
-                        <li v-for="project,index in resume.projects">
-                            <header>
-                                <div class="start">
-                                    <h3 class="name">
-                                        <editable-span v-bind:preview='preview':value="project.name" @update="syncProjects(`${index}`,'name',$event)"></editable-span>
-                                    </h3>
-                                    <editable-span v-bind:preview='preview':value="project.link" @update="syncProjects(`${index}`,'link',$event)"></editable-span>
-
-                                </div>
-                                <div class="end">
-                                    <editable-span v-bind:preview='preview':value="project.keywords" @update="syncProjects(`${index}`,'keywords',$event)"></editable-span>
-                                </div>
-                            </header>
-                            <p class="description">
-                                <editable-span v-bind:preview='preview':value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span>
-                            </p>
-                            <p class="disappearPrint delete" v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
-                        </li>
-                        <li class="disappearPrint" v-show='!preview'>
-                            <span @click="addProject" class="addNew">Add</span>
-                        </li>
-                    </ol>
-                </section>
-            </div>
-        </main>
-        <!-- 'loginVisible' -->
-        <div v-show='loginVisible' class="login" v-cloak>
-            <h2>Login
-                <button @click='onCloseLogin' type="button">Close</button>
-            </h2>
-            <form action="" class="form" @submit.prevent="onLogin">
-                <div class="row">
-                    <label for="">Email</label>
-                    <input type="text" placeholder="username" v-model="login.email">
-                </div>
-                <div class="row">
-                    <label for="">Password</label>
-                    <input type="password" placeholder="password" v-model="login.password">
-                </div>
-                <div class="actions">
-                    <a @click="registerClick">Register</a>
-                    <button type="submit">Submit</button>
-                </div>
-
-            </form>
+    <aside v-show='!currentUser.id && !preview' v-cloak>
+      <div class="upper">
+      </div>
+      <div class="down">
+        <button class="button" @click="showLogin">Login</button>
+      </div>
+    </aside>
+    <main>
+      <div class="resume">
+        <div v-show='preview'>wanna build your own? click
+          <a v-bind:href="url">here</a>
         </div>
-        
-        <div class="register" v-show="registerVisible" v-cloak>
-            <!-- 事件修饰符 -->
-            <h2>Register
-                <button @click='onCloseRegister'>Close</button>
-            </h2>
-            <form action="" @submit.prevent="onRegister">
+        <section>
+          <h1>
+            <editable-span v-bind:preview='preview' v-bind:value='resume.name' v-on:update="sync('name',$event)"></editable-span>
+          </h1>
 
+          <div>
+            <editable-span v-bind:preview='preview' v-bind:value='resume.gender' v-on:update="sync('gender',$event)"></editable-span> |
+            <editable-span v-bind:preview='preview' v-bind:value='resume.birthday' v-on:update="sync('birthday',$event)"></editable-span>|
+            <editable-span v-bind:preview='preview' v-bind:value='resume.position' v-on:update="sync('position',$event)"></editable-span>|
+            <editable-span v-bind:preview='preview' v-bind:value='resume.email' v-on:update="sync('email',$event)"></editable-span>|
+            <editable-span v-bind:preview='preview' v-bind:value='resume.phone' v-on:update="sync('phone',$event)"></editable-span>
+          </div>
 
-                <div class="row">
-                    <label for="">Email</label>
-                    <input type="text" placeholder="username" v-model="signUp.email">
+        </section>
+        <section class="skills">
+          <h2>Skills</h2>
+          <ul>
+            <li v-for='skill,index in resume.skills'>
+              <h3>
+                <editable-span v-bind:preview='preview' class="name" :value="skill.name" @update='syncSkills(`${index}`,"name",$event)'></editable-span>
+              </h3>
+              <br>
+              <div class="description">
+                <editable-span v-bind:preview='preview' :value="skill.description" @update='syncSkills(`${index}`,"description",$event)'></editable-span>
+              </div>
+              <span class="disappearPrint delete" v-if="index>0 && !preview" @click='removeSkill(index)'>delete</span>
+            </li>
+            <li v-show='!preview' class="disappearPrint">
+              <span v-on:click="addSkill" class="addNew">Add</span>
+            </li>
+
+          </ul>
+        </section>
+        <section class="projects">
+          <h2>Experience</h2>
+          <ol>
+            <li v-for="project,index in resume.projects">
+              <header>
+                <div class="start">
+                  <h3 class="name">
+                    <editable-span v-bind:preview='preview' :value="project.name" @update="syncProjects(`${index}`,'name',$event)"></editable-span>
+                  </h3>
+                  <a :href="'//'+project.link" target="_blank">
+                    <editable-span v-bind:preview='preview' :value="project.link" @update="syncProjects(`${index}`,'link',$event)"></editable-span>
+                  </a>
                 </div>
-                <div class="row">
-                    <label for="">Password</label>
-                    <input type="text" placeholder="password" v-model='signUp.password'>
+                <div class="end">
+                  <editable-span v-bind:preview='preview' :value="project.keywords" @update="syncProjects(`${index}`,'keywords',$event)"></editable-span>
                 </div>
-                <div class="actions">
-                    <a @click="showLogin">Login</a>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
+              </header>
+              <p class="description">
+                <editable-span v-bind:preview='preview' :value="project.description" @update="syncProjects(`${index}`,'description',$event)"></editable-span>
+              </p>
+              <p class="disappearPrint delete" v-if="index>0 && !preview" @click="removeProject(index)">delete</p>
+            </li>
+            <li class="disappearPrint" v-show='!preview'>
+              <span @click="addProject" class="addNew">Add</span>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </main>
+    <!-- 'loginVisible' -->
+    <div v-show='loginVisible' class="login" v-cloak>
+      <h2>Login
+        <button @click='onCloseLogin' type="button">Close</button>
+      </h2>
+      <form action="" class="form" @submit.prevent="onLogin">
+        <div class="row">
+          <label for="">Email</label>
+          <input type="text" placeholder="username" v-model="login.email">
         </div>
-        <div v-show="shareVisible" class="share">
-            <textarea readonly>{{shareLink}}</textarea>
+        <div class="row">
+          <label for="">Password</label>
+          <input type="password" placeholder="password" v-model="login.password">
         </div>
-        <div v-show="themeVisible" class="theme">
-            <button @click="onDefaultTheme">Default</button>
-            <button @click="onDarkTheme">Dark</button>
-            <button @click='onCloseTheme'>Close</button>
+        <div class="actions">
+          <a @click="registerClick">Register</a>
+          <button type="submit">Submit</button>
         </div>
+
+      </form>
     </div>
-    <!-- Script -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="//cdn1.lncld.net/static/js/3.6.7/av-min.js"></script>
-    <script src='js/av.js'></script>
-    <script src='js/component.js'></script>
-    <script src='js/app.js'></script>
-    <script>
-    </script>
+
+    <div class="register" v-show="registerVisible" v-cloak>
+      <!-- 事件修饰符 -->
+      <h2>Register
+        <button @click='onCloseRegister'>Close</button>
+      </h2>
+      <form action="" @submit.prevent="onRegister">
+
+
+        <div class="row">
+          <label for="">Email</label>
+          <input type="text" placeholder="username" v-model="signUp.email">
+        </div>
+        <div class="row">
+          <label for="">Password</label>
+          <input type="text" placeholder="password" v-model='signUp.password'>
+        </div>
+        <div class="actions">
+          <a @click="showLogin">Login</a>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div v-show="shareVisible" class="share">
+      <textarea readonly>{{shareLink}}</textarea>
+    </div>
+    <div v-show="themeVisible" class="theme">
+      <button @click="onDefaultTheme">Default</button>
+      <button @click="onDarkTheme">Dark</button>
+      <button @click='onCloseTheme'>Close</button>
+    </div>
+  </div>
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.6.7/av-min.js"></script>
+  <script src='js/av.js'></script>
+  <script src='js/component.js'></script>
+  <script src='js/app.js'></script>
+  <script>
+  </script>
 </body>
 
 </html>

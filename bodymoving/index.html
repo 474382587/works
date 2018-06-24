@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        #bm{
-            width:600px;
 
-        }
-    </style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #bm {
+      width: 600px;
+
+    }
+  </style>
 </head>
+
 <body>
-    <div id="bm"> </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.13.0/bodymovin.js"></script>
-    <script>
-        var animation = bodymovin.loadAnimation({
-                container: document.getElementById('bm'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: false,
-                path: 'data.json'
-            });
-        document.getElementById('bm').addEventListener('mouseenter',e=>{
-            animation.play();
-        });    
-        document.getElementById('bm').addEventListener('mouseleave', e => {
-                animation.stop();
-            }); 
-    </script>
+  <div id="bm"> </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.13.0/bodymovin.js"></script>
+  <script>
+    var animation = bodymovin.loadAnimation({
+      container: document.getElementById('bm'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      path: 'data.json'
+    });
+    document.getElementById('bm').addEventListener('mouseenter', e => {
+      animation.play();
+    });
+    document.getElementById('bm').addEventListener('mouseleave', e => {
+      animation.stop();
+    }); 
+  </script>
 </body>
+
 </html>

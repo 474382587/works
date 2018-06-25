@@ -1,6 +1,6 @@
-Vue.component('checkbox',{
-    props: ["checked","task"],
-    template:`
+Vue.component('checkbox', {
+  props: ['checked', 'task'],
+  template: `
     <div class="checklist">
         <input type="checkbox" @input='updateChecked' :checked ='checked'>
         <span v-show = '!edit'>
@@ -10,20 +10,20 @@ Vue.component('checkbox',{
         </span>
         <input type="text" @input='update' v-show = 'edit' @keyup.enter = 'edit =false'>
     </div>`,
-    data:function() {
-     return {
-        edit: true
-     }   
+  data: function() {
+    return {
+      edit: true
+    }
+  },
+  methods: {
+    update: function(event) {
+      this.$emit('update', event.target.value)
     },
-    methods: {
-        update:function(event) {
-            this.$emit('update',event.target.value);
-        },
-        updateChecked:function(event){
-            this.$emit('updates',event.target.checked);
-        },
-        deleteMe:function() {
-            this.$emit('delete-me');
-        }
+    updateChecked: function(event) {
+      this.$emit('updates', event.target.checked)
     },
-});
+    deleteMe: function() {
+      this.$emit('delete-me')
+    }
+  }
+})

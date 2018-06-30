@@ -2,98 +2,99 @@
 <html lang="en">
 
 <head>
-    <meta charset="GB2312">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
-    <link rel="stylesheet" href="./vendor/swiper-4.2.6/dist/css/swiper.css">
-    <link rel="stylesheet" href="./src/homepage/css/loadig.css">
-    <link rel="stylesheet" href="./src/homepage/css/main.css">
+  <meta charset="GB2312">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>首页</title>
+  <link rel="stylesheet" href="./vendor/swiper-4.2.6/dist/css/swiper.css">
+  <link rel="stylesheet" href="./src/homepage/css/loadig.css">
+  <link rel="stylesheet" href="./src/homepage/css/main.css">
 </head>
+
 <body>
-    
-    <header>
-        <nav>
-            <a href="./">
-                <img src="./static/img/logo.png" alt="Logo"> 猿计划
-            </a>
-            <ul>
-                <li>
-                    <a href="">未读消息</a>
-                </li>
-                <li>
-                    <a href="./" class="active">首页</a>
-                </li>
-                <li>
-                    <a href="">知识体系</a>
-                </li>
-                <li>
-                    <a href="">活动中心</a>
-                </li>
-                <li>
-                    <a href="./src/article/">文章</a>
-                </li>
-                <li class="before-login">
-                    <a href="./src/login/">登录</a>
-                </li>
-                <li class="before-login">
-                    <a href="./src/register/">注册</a>
-                </li>
-                <li class="after-login hide">
-                    <a href="">写文章</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="banner">
-            <!-- Slider main container -->
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide">
-                        <img src="./static/img/banner1.jpg" alt="1">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./static/img/banner2.jpg" alt="2">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="./static/img/banner3.jpg" alt="3">
-                    </div>
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
 
-        </section>
-        <section class="artiles">
+  <header>
+    <nav>
+      <a href="./">
+        <img src="./static/img/logo.png" alt="Logo"> 猿计划
+      </a>
+      <ul>
+        <li>
+          <a href="">未读消息</a>
+        </li>
+        <li>
+          <a href="./" class="active">首页</a>
+        </li>
+        <li>
+          <a href="">知识体系</a>
+        </li>
+        <li>
+          <a href="">活动中心</a>
+        </li>
+        <li>
+          <a href="./src/article/">文章</a>
+        </li>
+        <li class="before-login">
+          <a href="./src/login/">登录</a>
+        </li>
+        <li class="before-login">
+          <a href="./src/register/">注册</a>
+        </li>
+        <li class="after-login hide">
+          <a href="">写文章</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="banner">
+      <!-- Slider main container -->
+      <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <img src="./static/img/banner1.jpg" alt="1">
+          </div>
+          <div class="swiper-slide">
+            <img src="./static/img/banner2.jpg" alt="2">
+          </div>
+          <div class="swiper-slide">
+            <img src="./static/img/banner3.jpg" alt="3">
+          </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
 
-            <ul class="tab">
-                <li class="active">全部</li>
-                <li>HTML</li>
-                <li>PHP</li>
-                <li>JAVA</li>
-            </ul>
-            <div class="loader hide"></div>
-            <ul class='posts'>
+    </section>
+    <section class="artiles">
 
-            </ul>
-            <div class="pagination-container">
-                <button class="previous">&lt;</button>
-                <div class="pagination"></div>
-                <button class="next">&gt;</button>
-            </div>
-        </section>
-    </main>
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-    <script src="./vendor/axios/axios.min.js"></script>
-    <script src="./vendor/swiper-4.2.6/dist/js/swiper.js"></script>
-    <script src="./vendor/momentjs/moment.js"></script>
-    <script src="./src/homepage/js/index.js"></script>
+      <ul class="tab">
+        <li class="active">全部</li>
+        <li>HTML</li>
+        <li>PHP</li>
+        <li>JAVA</li>
+      </ul>
+      <div class="loader hide"></div>
+      <ul class='posts'>
+
+      </ul>
+      <div class="pagination-container">
+        <button class="previous">&lt;</button>
+        <div class="pagination"></div>
+        <button class="next">&gt;</button>
+      </div>
+    </section>
+  </main>
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+  <script src="./vendor/axios/axios.min.js"></script>
+  <script src="./vendor/swiper-4.2.6/dist/js/swiper.js"></script>
+  <script src="./vendor/momentjs/moment.js"></script>
+  <script src="./src/homepage/js/index.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 # works
-all practice and learning results
+All practice and learning results
 
 Here is the preview list:
 

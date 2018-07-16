@@ -1,38 +1,37 @@
-moment.locale('zh-cn');
+moment.locale('zh-cn')
 //計算相對時間
 function calculateTime(millSec) {
-    var date = new Date(millSec * 1000);
-    console.log(moment(date).fromNow());
-    console.log(date);
-    return moment(date).fromNow();
+  var date = new Date(millSec * 1000)
+  console.log(moment(date).fromNow())
+  console.log(date)
+  return moment(date).fromNow()
 }
 //判断用户是否登录
-window.onload = function () {
-    let cookieArr = document.cookie;
-    if (cookieArr !== "") {
-        document.querySelectorAll(".before-login").forEach(e => {
-            e.classList.add('hide');
-        });
-        document.querySelectorAll(".after-login").forEach(e => {
-            e.classList.remove('hide');
-        });
-    }
-    else {
-        document.querySelectorAll(".after-login").forEach(e => {
-            e.classList.add('hide');
-        });
-        document.querySelectorAll(".before-login").forEach(e => {
-            e.classList.remove('hide');
-        });
-    }
+window.onload = function() {
+  let cookieArr = document.cookie
+  if (cookieArr !== '') {
+    document.querySelectorAll('.before-login').forEach(e => {
+      e.classList.add('hide')
+    })
+    document.querySelectorAll('.after-login').forEach(e => {
+      e.classList.remove('hide')
+    })
+  } else {
+    document.querySelectorAll('.after-login').forEach(e => {
+      e.classList.add('hide')
+    })
+    document.querySelectorAll('.before-login').forEach(e => {
+      e.classList.remove('hide')
+    })
+  }
 }
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const timestamp = document.getElementById('timestamp');
-const content = document.getElementById('content');
-const views = document.getElementById('views');
-const comments = document.getElementById('comments');
-var search = window.location.search;
+const title = document.getElementById('title')
+const author = document.getElementById('author')
+const timestamp = document.getElementById('timestamp')
+const content = document.getElementById('content')
+const views = document.getElementById('views')
+const comments = document.getElementById('comments')
+var search = window.location.search
 
 axios
   .get(

@@ -2,174 +2,173 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的收藏</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <style>
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的收藏</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <style>
+  </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <a href="../../">
-                <img src="../../static/img/logo.png" alt="Logo"> 猿计划
-            </a>
-            <ul>
-                <li>
-                    <a href="">未读消息</a>
-                </li>
-                <li>
-                    <a href="../../" class="active">首页</a>
-                </li>
-                <li>
-                    <a href="">知识体系</a>
-                </li>
-                <li>
-                    <a href="">活动中心</a>
-                </li>
-                <li>
-                    <a href="../article/">文章</a>
-                </li>
-                <li class="before-login hide">
-                    <a href="../login/">登录</a>
-                </li>
-                <li class="before-login hide">
-                    <a href="../register/">注册</a>
-                </li>
-                <li class="after-login">
-                    <a href="../center/">
-                        <img src="../../static/img/data@2x.png" alt="">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <aside>
-            <div class="info">
-                <div class="wrapper">
-                    <img src="../../static/img/data@3x.png" alt="">
-                </div>
-                <h3>xiaoyao</h3>
-                <p>这个人很懒，什么都没留下</p>
-            </div>
-            <ul>
-                <li>
-                    <a href="">我的信息</a>
-                </li>
-                <li>
-                    <a href="">修改密码</a>
-                </li>
-                <li>
-                    <a href="">我的文章</a>
-                </li>
-                <li>
-                    <a href="" class="active">我的收藏</a>
-                </li>
-                <li>
-                    <a href="">我的消息</a>
-                </li>
-                <li>
-                    <a href="">我的任务</a>
-                </li>
-            </ul>
-        </aside>
-        <div id="collection">
-            <div class="row">
-                <span>文章名称</span>
-                <span>文章分类</span>
-                <span>发布时间</span>
-                <span>浏览数</span>
-                <span>评论数</span>
-            </div>
+  <header>
+    <nav>
+      <a href="../../">
+        <img src="../../static/img/logo.png" alt="Logo"> 猿计划
+      </a>
+      <ul>
+        <li>
+          <a href="">未读消息</a>
+        </li>
+        <li>
+          <a href="../../" class="active">首页</a>
+        </li>
+        <li>
+          <a href="">知识体系</a>
+        </li>
+        <li>
+          <a href="">活动中心</a>
+        </li>
+        <li>
+          <a href="../article/">文章</a>
+        </li>
+        <li class="before-login hide">
+          <a href="../login/">登录</a>
+        </li>
+        <li class="before-login hide">
+          <a href="../register/">注册</a>
+        </li>
+        <li class="after-login">
+          <a href="../center/">
+            <img src="../../static/img/data@2x.png" alt="">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <aside>
+      <div class="info">
+        <div class="wrapper">
+          <img src="../../static/img/data@3x.png" alt="">
         </div>
-    </main>
-    <script src="../../vendor/axios/axios.min.js"></script>
-    <script src="../../vendor/momentjs/moment.js"></script>
-    <script>
+        <h3>xiaoyao</h3>
+        <p>这个人很懒，什么都没留下</p>
+      </div>
+      <ul>
+        <li>
+          <a href="">我的信息</a>
+        </li>
+        <li>
+          <a href="">修改密码</a>
+        </li>
+        <li>
+          <a href="">我的文章</a>
+        </li>
+        <li>
+          <a href="" class="active">我的收藏</a>
+        </li>
+        <li>
+          <a href="">我的消息</a>
+        </li>
+        <li>
+          <a href="">我的任务</a>
+        </li>
+      </ul>
+    </aside>
+    <div id="collection">
+      <div class="row">
+        <span>文章名称</span>
+        <span>文章分类</span>
+        <span>发布时间</span>
+        <span>浏览数</span>
+        <span>评论数</span>
+      </div>
+    </div>
+  </main>
+  <script src="../../vendor/axios/axios.min.js"></script>
+  <script src="../../vendor/momentjs/moment.js"></script>
+  <script>
 
-        moment.locale('zh-cn');
-        //計算相對時間
-        function calculateTime(millSec) {
-            var date = new Date(millSec * 1000);
-            return moment(date).fromNow();
-        }
-        // 判断用户是否登录
-        window.onload = function () {
-            let cookieArr = document.cookie;
-            if (cookieArr === "") {
-                window.location.href = "../../";
+    moment.locale('zh-cn');
+    //計算相對時間
+    function calculateTime(millSec) {
+      var date = new Date(millSec * 1000);
+      return moment(date).fromNow();
+    }
+    // 判断用户是否登录
+    window.onload = function () {
+      let cookieArr = document.cookie;
+      if (cookieArr === "") {
+        window.location.href = "../../";
+      }
+      else {
+
+        let user = getCurrentUser();
+        console.log(user.userId);
+        getCollection(user.userId, null)
+          .then(response => {
+            total = response.data.data.length;
+            collection = response.data.data;
+            console.log(collection);
+            return {
+              total: total,
+              collection: collection
             }
-            else {
-
-                let user = getCurrentUser();
-                console.log(user.userId);
-                getCollection(user.userId, null)
-                    .then(response => {
-                        total = response.data.data.length;
-                        collection = response.data.data;
-                        console.log(collection);
-                        return {
-                            total: total,
-                            collection: collection
-                        }
-                    })
-                    .then(el => {
-                        console.log(el);
-                        let div = '';
-                        el.collection.forEach(e => {
-                            console.log(e)
-                            div += `<a href='../blog/post.html?topic_id=${e.topic_id}&user_id=${user.userId}' class="row"><span>${e.title}</span><span>${numToCategory(e.type)}</span><span>${calculateTime(e.modify_time)}</span><span>${e.browser_num}</span><span>${e.like_num}</span></a>`;
-                        });
-                        document.getElementById("collection").innerHTML += (div);
-                    })
-
-
-            }
-        }
-
-
-
-        function getCurrentUser() {
-            let user = {
-                userId: document.cookie.split(";")[0].split("=")[1] - "",
-                token: document.cookie.split(";")[1].split("=")[1]
-            }
-            return user;
-        }
-
-        function getCollection(id, pageNum) {
-            let result = axios.get("https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/myColl.php", {
-                params: {
-                    "user_id": id,
-                    "page": pageNum,
-                }
+          })
+          .then(el => {
+            console.log(el);
+            let div = '';
+            el.collection.forEach(e => {
+              console.log(e)
+              div += `<a href='../blog/post.html?topic_id=${e.topic_id}&user_id=${user.userId}' class="row"><span>${e.title}</span><span>${numToCategory(e.type)}</span><span>${calculateTime(e.modify_time)}</span><span>${e.browser_num}</span><span>${e.like_num}</span></a>`;
             });
-            return result;
+            document.getElementById("collection").innerHTML += (div);
+          })
+
+
+      }
+    }
+
+
+
+    function getCurrentUser() {
+      let user = {
+        userId: document.cookie.split(";")[0].split("=")[1] - "",
+        token: document.cookie.split(";")[1].split("=")[1]
+      }
+      return user;
+    }
+
+    function getCollection(id, pageNum) {
+      let result = axios.get("https://cors-anywhere.herokuapp.com/http://www.ftusix.com/static/data/myColl.php", {
+        params: {
+          "user_id": id,
+          "page": pageNum,
         }
+      });
+      return result;
+    }
 
-        function numToCategory(num) {
-            switch (num) {
-                case "1":
-                    return "经验分享";
-                    break;
-                case "2":
-                    return "入门学习";
-                    break;
-                case "3":
-                    return "成果分享";
-                    break;
-                default:
-                    break;
-            }
-        }
+    function numToCategory(num) {
+      switch (num) {
+        case "1":
+          return "经验分享";
+          break;
+        case "2":
+          return "入门学习";
+          break;
+        case "3":
+          return "成果分享";
+          break;
+        default:
+          break;
+      }
+    }
 
 
-    </script>
+  </script>
 
 
 

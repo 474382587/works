@@ -2,249 +2,249 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的任务</title>
-    <link rel="stylesheet" href="./css/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的任务</title>
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
 
-    <body>
-        <header>
-            <nav>
-                <a href="../../">
-                    <img src="../../static/img/logo.png" alt="Logo"> 猿计划
-                </a>
-                <ul>
-                    <li>
-                        <a href="">未读消息</a>
-                    </li>
-                    <li>
-                        <a href="../../">首页</a>
-                    </li>
-                    <li>
-                        <a href="">知识体系</a>
-                    </li>
-                    <li>
-                        <a href="">活动中心</a>
-                    </li>
-                    <li>
-                        <a href="../article/">文章</a>
-                    </li>
-                    <li class="before-login hide">
-                        <a href="../login/">登录</a>
-                    </li>
-                    <li class="before-login hide">
-                        <a href="../register/">注册</a>
-                    </li>
-                    <li class="after-login">
-                        <a>
-                            <img src="../../static/img/data@2x.png" alt="">
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="">个人中心</a>
-                            </li>
-                            <li id="logout">登出</li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <aside>
-                <div class="info">
-                    <div class="wrapper">
-                        <img src="../../static/img/data@3x.png" alt="">
-                    </div>
-                    <h3>xiaoyao</h3>
-                    <p>这个人很懒，什么都没留下</p>
+  <body>
+    <header>
+      <nav>
+        <a href="../../">
+          <img src="../../static/img/logo.png" alt="Logo"> 猿计划
+        </a>
+        <ul>
+          <li>
+            <a href="">未读消息</a>
+          </li>
+          <li>
+            <a href="../../">首页</a>
+          </li>
+          <li>
+            <a href="">知识体系</a>
+          </li>
+          <li>
+            <a href="">活动中心</a>
+          </li>
+          <li>
+            <a href="../article/">文章</a>
+          </li>
+          <li class="before-login hide">
+            <a href="../login/">登录</a>
+          </li>
+          <li class="before-login hide">
+            <a href="../register/">注册</a>
+          </li>
+          <li class="after-login">
+            <a>
+              <img src="../../static/img/data@2x.png" alt="">
+            </a>
+            <ul>
+              <li>
+                <a href="">个人中心</a>
+              </li>
+              <li id="logout">登出</li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <aside>
+        <div class="info">
+          <div class="wrapper">
+            <img src="../../static/img/data@3x.png" alt="">
+          </div>
+          <h3>xiaoyao</h3>
+          <p>这个人很懒，什么都没留下</p>
+        </div>
+        <ul>
+          <li>
+            <a href="">我的信息</a>
+          </li>
+          <li>
+            <a href="">修改密码</a>
+          </li>
+          <li>
+            <a href="">我的文章</a>
+          </li>
+          <li>
+            <a href="">我的收藏</a>
+          </li>
+          <li>
+            <a href="">我的消息</a>
+          </li>
+          <li>
+            <a href="" class="active">我的任务</a>
+          </li>
+        </ul>
+      </aside>
+      <style>
+        .wrapper {
+          flex: 1;
+          padding: 60px 0;
+        }
+
+        .wrapper>* {
+          margin-left: 50px;
+        }
+
+        .wrapper>ul {
+          display: flex;
+          border-bottom: 1px solid #333;
+          padding-bottom: 10px;
+        }
+
+        .wrapper>ul>li {
+          width: 100px;
+          text-align: center;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+
+        .row>.left>span {
+          margin-right: 30px;
+          text-align: center;
+        }
+
+        .row {
+          display: flex;
+          justify-content: space-between;
+          padding: 16px 0;
+          border-bottom: 1px solid #e3e3e3;
+        }
+
+        .row>.right {
+          margin-right: 80px;
+        }
+
+        .row>.right>span {
+          display: block;
+          padding: 0 20px;
+          /* width: 100px; */
+          border: 1px solid red;
+          color: red;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+          font-weight: 600;
+          word-spacing: 2px;
+        }
+
+        form {
+          box-shadow: 0 0 2px 1px #b3b3b3;
+        }
+
+        textarea {
+          width: 100%;
+          height: 40vh;
+          resize: none;
+          border: none;
+          margin: 0;
+          outline: none;
+        }
+
+        form>.submit {
+          background-color: #e3e3e3;
+          padding: none;
+          display: flex;
+          justify-content: space-between;
+          padding: 5px 10px;
+        }
+
+        form>.submit>input {
+          margin: 0;
+          height: 30px;
+          background-color: #e3e3e3;
+          flex: 1;
+          outline: none;
+          border: none;
+        }
+
+        form>.submit>div {
+          padding: 5px;
+        }
+
+        form>.submit>button {
+          outline: none;
+          font-size: 20px;
+          color: red;
+          font-weight: 600;
+          border: 1px solid red;
+          border-radius: 15px;
+          width: 100px;
+          margin: 0 50px;
+          cursor: pointer;
+        }
+
+        .confirmation {
+          flex: 1;
+          padding: 80px 0;
+        }
+
+        .confirmation>.wrapper {
+          padding: 20px 0 0;
+          box-shadow: 0 0 2px 0 #b3b3b3;
+          width: 360px;
+          margin: 0 auto;
+        }
+
+        .confirmation>.wrapper>.textcontent {
+          padding: 20px;
+        }
+
+        .confirmation>.wrapper>.textcontent>h2 {
+          color: red;
+          font-weight: 600;
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+
+        .confirmation>.wrapper>div:last-child {
+          background-color: #e3e3e3;
+          margin: 0;
+          padding: 10px;
+          text-align: center;
+        }
+
+        .confirmation>.wrapper>div>span {
+          margin: 0 auto;
+          display: block;
+          border: 1px solid red;
+
+          width: 80px;
+          border-radius: 10px;
+          color: red;
+          cursor: pointer;
+        }
+      </style>
+      <div class="wrapper">
+        <ul class="tabs">
+          <li class="active" id="tab1">进行中</li>
+          <li id="tab2">已完成</li>
+          <li id="tab3">未通过</li>
+        </ul>
+        <div class="tasks">
+          <div class="in-progress">
+            <div class="list" id="ongoing1">
+              <div class="row">
+                <div class="left">
+                  <span>
+                    2017-10-30
+                  </span>
+                  <span>
+                    HTML 初级三
+                  </span>
                 </div>
-                <ul>
-                    <li>
-                        <a href="">我的信息</a>
-                    </li>
-                    <li>
-                        <a href="">修改密码</a>
-                    </li>
-                    <li>
-                        <a href="">我的文章</a>
-                    </li>
-                    <li>
-                        <a href="">我的收藏</a>
-                    </li>
-                    <li>
-                        <a href="">我的消息</a>
-                    </li>
-                    <li>
-                        <a href="" class="active">我的任务</a>
-                    </li>
-                </ul>
-            </aside>
-            <style>
-                .wrapper {
-                    flex: 1;
-                    padding: 60px 0;
-                }
-
-                .wrapper>* {
-                    margin-left: 50px;
-                }
-
-                .wrapper>ul {
-                    display: flex;
-                    border-bottom: 1px solid #333;
-                    padding-bottom: 10px;
-                }
-
-                .wrapper>ul>li {
-                    width: 100px;
-                    text-align: center;
-                    margin-right: 10px;
-                    cursor: pointer;
-                }
-
-                .row>.left>span {
-                    margin-right: 30px;
-                    text-align: center;
-                }
-
-                .row {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 16px 0;
-                    border-bottom: 1px solid #e3e3e3;
-                }
-
-                .row>.right {
-                    margin-right: 80px;
-                }
-
-                .row>.right>span {
-                    display: block;
-                    padding: 0 20px;
-                    /* width: 100px; */
-                    border: 1px solid red;
-                    color: red;
-                    border-radius: 10px;
-                    text-align: center;
-                    cursor: pointer;
-                    font-weight: 600;
-                    word-spacing: 2px;
-                }
-
-                form {
-                    box-shadow: 0 0 2px 1px #b3b3b3;
-                }
-
-                textarea {
-                    width: 100%;
-                    height: 40vh;
-                    resize: none;
-                    border: none;
-                    margin: 0;
-                    outline: none;
-                }
-
-                form>.submit {
-                    background-color: #e3e3e3;
-                    padding: none;
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 5px 10px;
-                }
-
-                form>.submit>input {
-                    margin: 0;
-                    height: 30px;
-                    background-color: #e3e3e3;
-                    flex: 1;
-                    outline: none;
-                    border: none;
-                }
-
-                form>.submit>div {
-                    padding: 5px;
-                }
-
-                form>.submit>button {
-                    outline: none;
-                    font-size: 20px;
-                    color: red;
-                    font-weight: 600;
-                    border: 1px solid red;
-                    border-radius: 15px;
-                    width: 100px;
-                    margin: 0 50px;
-                    cursor: pointer;
-                }
-
-                .confirmation {
-                    flex: 1;
-                    padding: 80px 0;
-                }
-
-                .confirmation>.wrapper {
-                    padding: 20px 0 0;
-                    box-shadow: 0 0 2px 0 #b3b3b3;
-                    width: 360px;
-                    margin: 0 auto;
-                }
-
-                .confirmation>.wrapper>.textcontent {
-                    padding: 20px;
-                }
-
-                .confirmation>.wrapper>.textcontent>h2 {
-                    color: red;
-                    font-weight: 600;
-                    font-size: 30px;
-                    margin-bottom: 20px;
-                }
-
-                .confirmation>.wrapper>div:last-child {
-                    background-color: #e3e3e3;
-                    margin: 0;
-                    padding: 10px;
-                    text-align: center;
-                }
-
-                .confirmation>.wrapper>div>span {
-                    margin: 0 auto;
-                    display: block;
-                    border: 1px solid red;
-
-                    width: 80px;
-                    border-radius: 10px;
-                    color: red;
-                    cursor: pointer;
-                }
-            </style>
-            <div class="wrapper">
-                <ul class="tabs">
-                    <li class="active" id="tab1">进行中</li>
-                    <li id="tab2">已完成</li>
-                    <li id="tab3">未通过</li>
-                </ul>
-                <div class="tasks">
-                    <div class="in-progress">
-                        <div class="list" id="ongoing1">
-                            <div class="row">
-                                <div class="left">
-                                    <span>
-                                        2017-10-30
-                                    </span>
-                                    <span>
-                                        HTML 初级三
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <span id="test1">提交任务</span>
-                                </div>
-                            </div>
-                            <!-- <div class="row">
+                <div class="right">
+                  <span id="test1">提交任务</span>
+                </div>
+              </div>
+              <!-- <div class="row">
                                 <div class="left">
                                     <span>
                                         2017-10-30
@@ -257,224 +257,224 @@
                                     <span>提交任务</span>
                                 </div>
                             </div> -->
-                        </div>
-                        <form class="editor hide" id="ongoing2">
-                            <textarea name="" id=""></textarea>
-                            <div class="submit">
-                                <div>
-                                    <img src="../../static/img/pencil-alt.svg" alt="" width="20px" height="20px">
-                                </div>
-                                <input type="url" name="github" placeholder="请输入GitHub地址">
-                                <button type="submit" id="test2">提 交 </button>
-                            </div>
-                        </form>
-                        <div class="confirmation hide" id="ongoing3">
-                            <div class="wrapper">
-                                <div class="textcontent">
-                                    <h2>Permissions</h2>
-                                    <pre>
+            </div>
+            <form class="editor hide" id="ongoing2">
+              <textarea name="" id=""></textarea>
+              <div class="submit">
+                <div>
+                  <img src="../../static/img/pencil-alt.svg" alt="" width="20px" height="20px">
+                </div>
+                <input type="url" name="github" placeholder="请输入GitHub地址">
+                <button type="submit" id="test2">提 交 </button>
+              </div>
+            </form>
+            <div class="confirmation hide" id="ongoing3">
+              <div class="wrapper">
+                <div class="textcontent">
+                  <h2>Permissions</h2>
+                  <pre>
 宝剑锋从磨砺出，梅花香自苦寒来！
 该任务GitHub地址
 您的答案等待猿计划教研组评审，具体通知
 在我的任务里查看结果</pre>
-                                </div>
-                                <div>
-                                    <span id="test3">完成</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="completed hide">
-                        <div class="list" id="completed1">
-                            <div class="row">
-                                <div class="left">
-                                    <span>
-                                        HTML 初级一
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <span id="test21">查看评价建议</span>
-                                </div>
-                            </div>
-                        </div>
-                        <style>
-                            div.comment {
-                                width: 95%;
-                                margin: 40px auto 0;
-                                box-shadow: 0 0 2px 1px #dddbdb;
-                                /* border: 1px solid rebeccapurple; */
-                                padding-bottom: 20px;
-                            }
+                </div>
+                <div>
+                  <span id="test3">完成</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="completed hide">
+            <div class="list" id="completed1">
+              <div class="row">
+                <div class="left">
+                  <span>
+                    HTML 初级一
+                  </span>
+                </div>
+                <div class="right">
+                  <span id="test21">查看评价建议</span>
+                </div>
+              </div>
+            </div>
+            <style>
+              div.comment {
+                width: 95%;
+                margin: 40px auto 0;
+                box-shadow: 0 0 2px 1px #dddbdb;
+                /* border: 1px solid rebeccapurple; */
+                padding-bottom: 20px;
+              }
 
-                            div.comment>h2 {
-                                width: 100%;
-                                background-color: #f0eded;
-                                padding: 10px;
-                                text-align: center;
-                            }
+              div.comment>h2 {
+                width: 100%;
+                background-color: #f0eded;
+                padding: 10px;
+                text-align: center;
+              }
 
-                            div.comment>pre {
-                                margin: 30px;
-                            }
+              div.comment>pre {
+                margin: 30px;
+              }
 
-                            div.comment>span {
-                                margin: 0 auto;
-                                display: block;
-                                border: 1px solid red;
+              div.comment>span {
+                margin: 0 auto;
+                display: block;
+                border: 1px solid red;
 
-                                width: 80px;
-                                border-radius: 10px;
-                                color: red;
-                                cursor: pointer;
-                                text-align: center;
-                            }
-                        </style>
-                        <div class="comment hide" id="completed2">
-                            <h2>评价建议</h2>
-                            <pre>
+                width: 80px;
+                border-radius: 10px;
+                color: red;
+                cursor: pointer;
+                text-align: center;
+              }
+            </style>
+            <div class="comment hide" id="completed2">
+              <h2>评价建议</h2>
+              <pre>
 建议1
 建议2
 建议3
 建议4
 建议5
                             </pre>
-                            <span id="test22">OK</span>
-                        </div>
-                    </div>
-                    <div class="revise hide">
-                        <div class="list" id="revise1">
-                            <div class="row">
-                                <div class="left">
-                                    <span>
-                                        2017-10-30
-                                    </span>
-                                    <span>
-                                        HTML 初级二
-                                    </span>
-                                </div>
-                                <div class="right">
-                                    <span id="test31">查看原因</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment hide" id="revise2">
-                            <h2>未通过原因</h2>
-                            <pre>
+              <span id="test22">OK</span>
+            </div>
+          </div>
+          <div class="revise hide">
+            <div class="list" id="revise1">
+              <div class="row">
+                <div class="left">
+                  <span>
+                    2017-10-30
+                  </span>
+                  <span>
+                    HTML 初级二
+                  </span>
+                </div>
+                <div class="right">
+                  <span id="test31">查看原因</span>
+                </div>
+              </div>
+            </div>
+            <div class="comment hide" id="revise2">
+              <h2>未通过原因</h2>
+              <pre>
 原因1
 原因2
 原因3
 原因4
 原因5
                             </pre>
-                            <span id="test32">OK</span>
-                        </div>
-                    </div>
-                </div>
+              <span id="test32">OK</span>
             </div>
+          </div>
+        </div>
+      </div>
 
-        </main>
-        <script>
+    </main>
+    <script>
 
-            var prevTab = document.getElementById("tab1");
-            //tabs
-            document.getElementById("tab1").addEventListener("click", e => {
-                console.log(!prevTab);
+      var prevTab = document.getElementById("tab1");
+      //tabs
+      document.getElementById("tab1").addEventListener("click", e => {
+        console.log(!prevTab);
 
-                if (!prevTab) {
-                    prevTab = e.target;
-                }
-                else {
-                    prevTab.classList.remove("active");
-                    prevTab = e.target;
-                }
+        if (!prevTab) {
+          prevTab = e.target;
+        }
+        else {
+          prevTab.classList.remove("active");
+          prevTab = e.target;
+        }
 
-                e.target.classList.add("active");
-                document.querySelector(".in-progress").classList.remove("hide");
-                document.querySelector(".completed").classList.add("hide");
-                document.querySelector(".revise").classList.add("hide");
+        e.target.classList.add("active");
+        document.querySelector(".in-progress").classList.remove("hide");
+        document.querySelector(".completed").classList.add("hide");
+        document.querySelector(".revise").classList.add("hide");
 
-                document.getElementById("ongoing1").classList.remove("hide");
-                document.getElementById("ongoing2").classList.add("hide");
-                document.getElementById("ongoing3").classList.add("hide");
-            });
+        document.getElementById("ongoing1").classList.remove("hide");
+        document.getElementById("ongoing2").classList.add("hide");
+        document.getElementById("ongoing3").classList.add("hide");
+      });
 
-            document.getElementById("tab2").addEventListener("click", e => {
-                if (!prevTab) {
-                    prevTab = e.target;
-                }
-                else {
-                    prevTab.classList.remove("active");
-                    prevTab = e.target;
-                }
+      document.getElementById("tab2").addEventListener("click", e => {
+        if (!prevTab) {
+          prevTab = e.target;
+        }
+        else {
+          prevTab.classList.remove("active");
+          prevTab = e.target;
+        }
 
-                e.target.classList.add("active");
-                document.querySelector(".in-progress").classList.add("hide");
-                document.querySelector(".completed").classList.remove("hide");
-                document.querySelector(".revise").classList.add("hide");
-
-
-                document.getElementById("completed1").classList.remove("hide");
-                document.getElementById("completed2").classList.add("hide");
-            });
-
-            document.getElementById("tab3").addEventListener("click", e => {
-                if (!prevTab) {
-                    prevTab = e.target;
-                }
-                else {
-                    prevTab.classList.remove("active");
-                    prevTab = e.target;
-                }
-
-                e.target.classList.add("active");
-                document.querySelector(".in-progress").classList.add("hide");
-                document.querySelector(".completed").classList.add("hide");
-                document.querySelector(".revise").classList.remove("hide");
+        e.target.classList.add("active");
+        document.querySelector(".in-progress").classList.add("hide");
+        document.querySelector(".completed").classList.remove("hide");
+        document.querySelector(".revise").classList.add("hide");
 
 
-                document.getElementById("revise1").classList.remove("hide");
-                document.getElementById("revise2").classList.add("hide");
-            });
+        document.getElementById("completed1").classList.remove("hide");
+        document.getElementById("completed2").classList.add("hide");
+      });
 
-            //part 1
-            document.getElementById("test1").addEventListener("click", e => {
-                document.getElementById("ongoing1").classList.add("hide");
-                document.getElementById("ongoing2").classList.remove("hide");
-                document.getElementById("ongoing3").classList.add("hide");
-            });
-            document.getElementById("test2").addEventListener("click", e => {
-                e.preventDefault();
-                document.getElementById("ongoing1").classList.add("hide");
-                document.getElementById("ongoing2").classList.add("hide");
-                document.getElementById("ongoing3").classList.remove("hide");
-            });
-            document.getElementById("test3").addEventListener("click", e => {
-                document.getElementById("ongoing3").classList.add("hide");
-                document.getElementById("ongoing2").classList.add("hide");
-                document.getElementById("ongoing1").classList.remove("hide");
-            });
-            //part 2
-            document.getElementById("test21").addEventListener("click", e => {
-                document.getElementById("completed1").classList.add("hide");
-                document.getElementById("completed2").classList.remove("hide");
-            });
-            document.getElementById("test22").addEventListener("click", e => {
-                e.preventDefault();
-                document.getElementById("completed1").classList.remove("hide");
-                document.getElementById("completed2").classList.add("hide");
-            });
-            //part3
-            document.getElementById("test31").addEventListener("click", e => {
-                document.getElementById("revise1").classList.add("hide");
-                document.getElementById("revise2").classList.remove("hide");
-            });
-            document.getElementById("test32").addEventListener("click", e => {
-                e.preventDefault();
-                document.getElementById("revise1").classList.remove("hide");
-                document.getElementById("revise2").classList.add("hide");
-            });
+      document.getElementById("tab3").addEventListener("click", e => {
+        if (!prevTab) {
+          prevTab = e.target;
+        }
+        else {
+          prevTab.classList.remove("active");
+          prevTab = e.target;
+        }
 
-        </script>
-    </body>
+        e.target.classList.add("active");
+        document.querySelector(".in-progress").classList.add("hide");
+        document.querySelector(".completed").classList.add("hide");
+        document.querySelector(".revise").classList.remove("hide");
+
+
+        document.getElementById("revise1").classList.remove("hide");
+        document.getElementById("revise2").classList.add("hide");
+      });
+
+      //part 1
+      document.getElementById("test1").addEventListener("click", e => {
+        document.getElementById("ongoing1").classList.add("hide");
+        document.getElementById("ongoing2").classList.remove("hide");
+        document.getElementById("ongoing3").classList.add("hide");
+      });
+      document.getElementById("test2").addEventListener("click", e => {
+        e.preventDefault();
+        document.getElementById("ongoing1").classList.add("hide");
+        document.getElementById("ongoing2").classList.add("hide");
+        document.getElementById("ongoing3").classList.remove("hide");
+      });
+      document.getElementById("test3").addEventListener("click", e => {
+        document.getElementById("ongoing3").classList.add("hide");
+        document.getElementById("ongoing2").classList.add("hide");
+        document.getElementById("ongoing1").classList.remove("hide");
+      });
+      //part 2
+      document.getElementById("test21").addEventListener("click", e => {
+        document.getElementById("completed1").classList.add("hide");
+        document.getElementById("completed2").classList.remove("hide");
+      });
+      document.getElementById("test22").addEventListener("click", e => {
+        e.preventDefault();
+        document.getElementById("completed1").classList.remove("hide");
+        document.getElementById("completed2").classList.add("hide");
+      });
+      //part3
+      document.getElementById("test31").addEventListener("click", e => {
+        document.getElementById("revise1").classList.add("hide");
+        document.getElementById("revise2").classList.remove("hide");
+      });
+      document.getElementById("test32").addEventListener("click", e => {
+        e.preventDefault();
+        document.getElementById("revise1").classList.remove("hide");
+        document.getElementById("revise2").classList.add("hide");
+      });
+
+    </script>
+  </body>
 
 </html>

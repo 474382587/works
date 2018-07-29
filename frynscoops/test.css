@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+.main {
+  background-color: #f00;
+  color: #fff;
+  font-size: 14px;
+  height: 100px;
+  min-height: 120px;
+}

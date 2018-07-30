@@ -58,7 +58,7 @@ section:first-of-type .slider li::after {
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.3;
+  opacity: 0.2;
   z-index: 1;
 }
 section:first-of-type .slider li img {
@@ -67,7 +67,7 @@ section:first-of-type .slider li img {
 }
 section:first-of-type .slider li div {
   position: absolute;
-  top: 40%;
+  top: 34%;
   left: 0;
   right: 0;
   text-align: center;
@@ -155,5 +155,108 @@ section:first-of-type li.active {
   section:first-of-type>#next::before,
   section:first-of-type>#previous::before {
     border-width: 20px;
+  }
+}
+section.why-us {
+  position: relative;
+}
+section.why-us .curve {
+  z-index: 3;
+  top: -70px;
+  height: 70px;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+section.why-us .curve::before {
+  position: absolute;
+  top: -190px;
+  left: -10%;
+  content: '';
+  display: block;
+  width: 120%;
+  height: 250px;
+  box-shadow: 0 0 0 100px #66d9c1;
+  border-radius: 100%;
+}
+section.why-us>.content {
+  padding: 20px 0 120px;
+  background-color: #66d9c1;
+  text-align: center;
+}
+section.why-us>.content h2 {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+section.why-us>.content p {
+  color: #357165;
+  font-size: 20px;
+}
+section.why-us .card-wrapper {
+  margin-top: -110px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+}
+section.why-us .card-wrapper .card {
+  text-align: center;
+  width: 25%;
+}
+section.why-us .card-wrapper .card>.content {
+  padding: 0 20px 20px;
+}
+section.why-us .card-wrapper .card>.content h3 {
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+section.why-us .card-wrapper .card>.content p {
+  line-height: 1.4;
+}
+section.why-us .card-wrapper .card .image-wrapper {
+  margin: 0 auto;
+  height: 176px;
+  width: 176px;
+  border: 2px dotted rgba(255,255,255,0.4);
+  border-radius: 50%;
+  padding: 2px;
+}
+section.why-us .card-wrapper .card .image-wrapper a {
+  height: 100%;
+  width: 100%;
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.4);
+  position: relative;
+}
+section.why-us .card-wrapper .card .image-wrapper a img {
+  vertical-align: middle;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+}
+@media screen and (max-width: 991px) {
+  section.why-us .content h2 {
+    font-size: 36px;
+  }
+  section.why-us .content p {
+    font-size: 16px;
+  }
+  section.why-us .card-wrapper .card {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 650px) {
+  section.why-us>.card-wrapper .card {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  section.why-us .curve {
+    display: none;
   }
 }

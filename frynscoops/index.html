@@ -202,12 +202,12 @@
     }
     .nav-items {
       text-align: center;
-      height: 0;
+      max-height: 0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: opacity .8s ease-out;
+      transition: all .3s ease-in-out;
       opacity: 0;
     }
     .nav-items>li {
@@ -225,6 +225,7 @@
     }
     .nav-items.active {
       height: auto;
+      max-height: 500px;
       opacity: 1;
     }
   }

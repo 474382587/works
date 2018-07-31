@@ -286,7 +286,7 @@ section.ourworks .gallery .image-wrapper:hover .overlay {
   opacity: 1;
 }
 section.testimonial {
-  padding: 80px 60px;
+  padding: 80px 20px;
 }
 section.testimonial .content {
   text-align: center;
@@ -315,6 +315,9 @@ section.testimonial .swiper-container .white-bg-left {
   background-color: #fff;
   z-index: 3;
 }
+section.testimonial .swiper-container .white-bg-left .swiper-button-next {
+  color: #f00;
+}
 section.testimonial .swiper-container .swiper-wrapper .swiper-slide {
   display: flex;
   align-items: center;
@@ -322,17 +325,19 @@ section.testimonial .swiper-container .swiper-wrapper .swiper-slide {
 section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper {
   border: 1px dashed #d6d6d6;
   box-shadow: 0 0 0 3px #fff inset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   padding: 20px;
   border-radius: 50%;
   background-color: #ddf5f1;
 }
 section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper img {
+  vertical-align: middle;
   border-radius: 50%;
   height: 130px;
   width: 130px;
+}
+section.testimonial .swiper-container .swiper-wrapper .swiper-slide .content {
+  padding: 20px 10px;
 }
 section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper:hover {
   background-color: #fdeac2;
@@ -358,6 +363,9 @@ section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapp
   }
   section.why-us .card-wrapper .card {
     width: 50%;
+  }
+  section.testimonial .swiper-container .swiper-wrapper .swiper-slide {
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 650px) {

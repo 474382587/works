@@ -233,7 +233,7 @@ section.ourworks
       .overlay
         opacity 1
 section.testimonial
-  padding 80px 60px
+  padding 80px 20px
   .content
     text-align center
     h2
@@ -256,6 +256,8 @@ section.testimonial
       width 40px
       background-color #ffffff
       z-index 3
+      .swiper-button-next
+        color red
     .swiper-wrapper
       .swiper-slide
         display flex
@@ -263,16 +265,20 @@ section.testimonial
         .image-wrapper
           border 1px dashed #d6d6d6
           box-shadow 0 0 0 3px white inset
-          display flex
-          justify-content center 
-          align-items center
+          position relative 
+          // display flex
+          // justify-content center 
+          // align-items center
           padding 20px
           border-radius 50%
           background-color #ddf5f1
           img
+            vertical-align middle
             border-radius 50%
             height 130px
             width 130px
+        .content
+          padding 20px 10px
         .image-wrapper:hover
           background-color #fdeac2
 
@@ -298,6 +304,11 @@ section.testimonial
     .card-wrapper
       .card
         width 50%
+  section.testimonial
+    .swiper-container
+      .swiper-wrapper
+        .swiper-slide
+          flex-direction column
         
 @media screen and (max-width 650px)
   section.why-us>.card-wrapper

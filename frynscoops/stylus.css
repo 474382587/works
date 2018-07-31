@@ -285,6 +285,58 @@ section.ourworks .gallery .image-wrapper .overlay a {
 section.ourworks .gallery .image-wrapper:hover .overlay {
   opacity: 1;
 }
+section.testimonial {
+  padding: 80px 60px;
+}
+section.testimonial .content {
+  text-align: center;
+}
+section.testimonial .content h2 {
+  font-size: 48px;
+}
+section.testimonial .swiper-container {
+  padding: 40px 40px;
+}
+section.testimonial .swiper-container .white-bg-right {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background-color: #fff;
+  z-index: 3;
+}
+section.testimonial .swiper-container .white-bg-left {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background-color: #fff;
+  z-index: 3;
+}
+section.testimonial .swiper-container .swiper-wrapper .swiper-slide {
+  display: flex;
+  align-items: center;
+}
+section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper {
+  border: 1px dashed #d6d6d6;
+  box-shadow: 0 0 0 3px #fff inset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 50%;
+  background-color: #ddf5f1;
+}
+section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper img {
+  border-radius: 50%;
+  height: 130px;
+  width: 130px;
+}
+section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper:hover {
+  background-color: #fdeac2;
+}
 @media screen and (max-width: 1200px) {
   section.why-us .curve {
     display: none;

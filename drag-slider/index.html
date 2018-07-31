@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+  .image-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    transition: transform .3s;
+  }
+  /* .image-wrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+  } */
+  img{
+    float: left;
+  }
+  .container{
+    overflow: hidden;
+    width: 200px;
+    height: 100px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="image-wrapper">
+      <img src="https://picsum.photos/200/100/?image=2" alt="" draggable="false">
+      <img src="https://picsum.photos/200/100/?image=4" alt="" draggable="false">
+      <img src="https://picsum.photos/200/100/?image=1" alt="" draggable="false">
+      <img src="https://picsum.photos/200/100/?image=9" alt="" draggable="false">
+      <img src="https://picsum.photos/200/100/?image=3" alt="" draggable="false">
+    </div>
+  </div>
+
+</body>
+<script>
+  var move = 0;
+  var translation = 0;
+  var enabled = false;
+  const wrapper = document.querySelector('.image-wrapper')
+  wrapper.addEventListener('mousedown',e=>{
+    console.log(e.clientX)
+    move = e.clientX
+    enabled = true
+  })
+  wrapper.addEventListener('mousemove', e=>{
+    let diff = e.clientX - move
+    if(enabled){
+      console.log(diff)
+      let a = translation + diff
+      wrapper.style.transform = "translateX(" + a + "px)"
+    }
+  })
+  wrapper.addEventListener('mouseup', e => {
+      console.log(e.clientX)
+      console.log(e.clientX - move)
+      wrapper.style.color = "red"
+      let diff = e.clientX - move
+      if(diff>=0){
+        translation = translation >= 0 ? 0 : translation + 200
+      }
+      else{
+        translation = translation <= -800 ? -800 : translation - 200
+      }
+      wrapper.style.transform  = "translateX("+ translation +"px)"
+      enabled = false;
+    })
+</script>
+
+</html>

@@ -463,7 +463,7 @@
           text-align: right;
           margin: 0 auto;
           height: 500px;
-          max-width: 1200px;
+          /* max-width: 1800px; */
           width: 98%;
           padding: 0 1%;
         }
@@ -506,7 +506,7 @@
         <div class="swiper-slide">
 
           <div class="image-wrapper">
-            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-3-150x150.jpg" alt="">
+            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-2-150x150.jpg" alt="">
           </div>
           <div class="content">
             <h3>Hello</h3>
@@ -530,7 +530,7 @@
         <div class="swiper-slide">
 
           <div class="image-wrapper">
-            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-3-150x150.jpg" alt="">
+            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-2-150x150.jpg" alt="">
           </div>
           <div class="content">
             <h3>Hello</h3>
@@ -554,7 +554,7 @@
         <div class="swiper-slide">
 
           <div class="image-wrapper">
-            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-3-150x150.jpg" alt="">
+            <img src="http://inspirythemes.biz/html-templates/cream/images/temp-images/testimonial-client-2-150x150.jpg" alt="">
           </div>
           <div class="content">
             <h3>Hello</h3>
@@ -578,29 +578,31 @@
   <section class="contact">
     <div class="form-wrapper">
       <h2>Send a Message</h2>
-      <form action="">
+      <form action="" id="contact-form">
         <div class="one-line-field">
-          <label for="name">
-            Name:
+          <label for="name" title="Nickname - Required">
+            *Name:
           </label>
-          <input type="text" id="name">
+          <input type="text" id="name" required>
         </div>
         <div class="one-line-field">
-          <label for="email">
-            Email:
+          <label for="email" title="Email Address - Required">
+            *Email:
           </label>
-          <input type="email" id="email">
+          <input type="email" id="email" required>
         </div>
         <div class="one-line-field">
-          <label for="phone">
+          <label for="phone" title="Your Phone Number">
             Phone:
           </label>
           <input type="tel" id="phone">
         </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" cols="100" rows="10"></textarea>
+        <div class="text">
+          <label for="message" title="Any Suggestion">Message</label>
+          <textarea name="message" cols="30" rows="10"></textarea>
         </div>
+        <button type="submit">Sumit</button>
+        <p class="confirmation" id="confirmation">Thank you for your message! We will be in touch with you soon!</p>
       </form>
     </div>
   </section>
@@ -624,6 +626,7 @@
   <!-- scripts -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js"></script>
+  <script src="firebase.js"></script>
   <script>
     const hamburger = document.getElementById('hamburger');
     hamburger.addEventListener('click', function () {
@@ -675,6 +678,32 @@
         }
       }
     });
+
+
+  /*
+    ------------------------- ----------------------------------
+  */
+
+  var form = document.getElementById('contact-form')
+  form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    let data = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      message: e.target.message.value,
+    }
+    console.log(data)
+    let result = writeUserData(data.email, data.name, data.phone, data.message)
+    console.log(result)
+
+    result.then(()=>{
+      console.log("successful")
+      document.getElementById('confirmation').style.visibility = 'visible'
+    }).catch(e=>{
+      console.log(e)
+    })
+  })
   </script>
 </body>
 

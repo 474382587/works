@@ -289,11 +289,21 @@ section.contact
       text-align center
       font-size 48px
       line-height 72px
-      margin-bottom 20px
+      margin-bottom 80px
     form
       display flex
       flex-wrap wrap
       justify-content space-between
+      padding 40px
+      
+      button 
+        padding 8px 14px
+      .text
+          width 100%
+          textarea 
+            width 100%
+      p.confirmation
+       visibility hidden
       &>*
         margin-bottom 40px
         display flex
@@ -307,6 +317,7 @@ section.contact
           padding 10px 12px
       .one-line-field
         width 30%
+        
         
 
 @media screen and (max-width 1200px)
@@ -350,6 +361,11 @@ section.contact
       &>.image-wrapper:nth-child(8)
       &>.image-wrapper:nth-child(5)
         display none 
+  section.contact
+    .form-wrapper
+      form
+        .one-line-field
+          width 100%
 
 
 

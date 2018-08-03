@@ -350,12 +350,25 @@ section.contact .form-wrapper h2 {
   text-align: center;
   font-size: 48px;
   line-height: 72px;
-  margin-bottom: 20px;
+  margin-bottom: 80px;
 }
 section.contact .form-wrapper form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 40px;
+}
+section.contact .form-wrapper form button {
+  padding: 8px 14px;
+}
+section.contact .form-wrapper form .text {
+  width: 100%;
+}
+section.contact .form-wrapper form .text textarea {
+  width: 100%;
+}
+section.contact .form-wrapper form p.confirmation {
+  visibility: hidden;
 }
 section.contact .form-wrapper form>* {
   margin-bottom: 40px;
@@ -412,5 +425,8 @@ section.contact .form-wrapper form .one-line-field {
   section.ourworks .gallery>.image-wrapper:nth-child(8),
   section.ourworks .gallery>.image-wrapper:nth-child(5) {
     display: none;
+  }
+  section.contact .form-wrapper form .one-line-field {
+    width: 100%;
   }
 }

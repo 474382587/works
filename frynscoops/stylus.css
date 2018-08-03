@@ -342,6 +342,38 @@ section.testimonial .swiper-container .swiper-wrapper .swiper-slide .content {
 section.testimonial .swiper-container .swiper-wrapper .swiper-slide .image-wrapper:hover {
   background-color: #fdeac2;
 }
+section.contact .form-wrapper {
+  max-width: 1200px;
+  margin: 20px auto;
+}
+section.contact .form-wrapper h2 {
+  text-align: center;
+  font-size: 48px;
+  line-height: 72px;
+  margin-bottom: 20px;
+}
+section.contact .form-wrapper form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+section.contact .form-wrapper form>* {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+section.contact .form-wrapper form>* label {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+section.contact .form-wrapper form>* input {
+  font-size: 16px;
+  padding: 10px 12px;
+}
+section.contact .form-wrapper form .one-line-field {
+  width: 30%;
+}
 @media screen and (max-width: 1200px) {
   section.why-us .curve {
     display: none;

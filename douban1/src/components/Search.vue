@@ -22,20 +22,22 @@ export default {
 }
 .search {
   display: flex;
-  justify-content: space-between;
-  max-width: 20rem;
+  justify-content: space-evenly;
+  max-width: 30rem;
   margin: 0 auto;
   input {
-    flex: 1;
     margin-right: 0.5rem;
     border: 1px solid darken($color: $gray, $amount: 10%);
     border-radius: 0.25rem;
     padding: 0.4rem;
+    width: 70%;
   }
   button {
-    background: white;
+    background: #3093e5;
     border: 1px solid $gray;
     border-radius: 0.25rem;
+    width: 20%;
+    color: #fff;
   }
 }
 </style>

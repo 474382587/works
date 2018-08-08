@@ -25,15 +25,13 @@ export default {
   props: {
     list: {
       type: Array,
-      default: []
     }
   },
   data() {
-    return {
-    }
+    return {}
   },
   created() {
-    console.log(this.list)
+    // console.log(this.list)
   }
 }
 </script>
@@ -58,18 +56,26 @@ export default {
   border-bottom: 1px solid $gray;
 }
 .movie-item {
-  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
   margin: 1%;
   text-align: center;
   min-width: 30%;
   max-width: 30%;
   padding: 0.2rem;
 }
+.image-wrapper {
+  flex: 1;
+}
 .movie-image {
   margin-bottom: 0.4rem;
   width: 100%;
+  height: 100%;
 }
 .movie-title {
-  margin: 0.4rem 0;
+  font-style: sans-serif;
+  margin: 0.8rem 0 .4rem;
 }
 </style>

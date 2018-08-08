@@ -17,7 +17,7 @@ export default {
 @import '../styles/mixins/mixin.scss';
 .search-container {
   width: 100%;
-  padding: 3rem 0 .8rem;
+  padding: 3rem 0 0.8rem;
   border-bottom: 1px solid $gray;
 }
 .search {

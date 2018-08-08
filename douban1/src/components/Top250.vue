@@ -2,7 +2,7 @@
   <div class="top-250">
     <h3 class="title">豆瓣电影 TOP250</h3>
 
-    <div class="movie-item" v-for="item in list" :key=item.id>
+    <div class="movie-item" v-for="(item) in list" :key=item.id>
       <div class="image-wrapper">
         <img :src="item.images.small" :alt="item.alt" class="movie-image">
       </div>
@@ -11,7 +11,6 @@
         <Stars :rating="item.rating.average" :itemid="item.id" /> {{item.rating.average}}
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -60,22 +59,30 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  margin: 1%;
+  margin: .6rem 0.66%;
   text-align: center;
   min-width: 30%;
   max-width: 30%;
-  padding: 0.2rem;
+  padding: 1%;
+  background-color: lighten($color: $pearl, $amount: 10%);
 }
 .image-wrapper {
-  flex: 1;
+  width: 100%;
+  height: 76%;
 }
 .movie-image {
   margin-bottom: 0.4rem;
   width: 100%;
   height: 100%;
+  max-height: 16rem;
 }
 .movie-title {
-  font-style: sans-serif;
-  margin: 0.8rem 0 .4rem;
+  font-family: sans-serif;
+  margin: 0.2rem 0 0;
+  word-break: keep-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 </style>

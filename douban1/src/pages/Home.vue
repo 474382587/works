@@ -68,15 +68,17 @@ export default {
     getData() {
       console.log('Start', this.start)
       console.log('完成了吗？', this.completeLoading)
-
+// https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
+// http://api.douban.com/v2
       this.completeLoading = false
-      Axios.get('/api/movie/top250?start=' + this.start)
+      ///api/movie/top250?start=
+      Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
         .then(res => {
           console.dir(res.data.subjects)
           this.list.push(...res.data.subjects)
           this.start += 20
           // /api/movie/subject/:id
-          return Axios.get('/api/movie/top250?start=' + this.start)
+          return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
         })
         .then(res => {
           this.start += 20
@@ -87,7 +89,7 @@ export default {
               data: 'finished'
             }
           } else {
-            return Axios.get('/api/movie/top250?start=' + this.start)
+            return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
           }
         })
         .then(res => {

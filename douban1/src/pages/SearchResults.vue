@@ -14,8 +14,8 @@
         </div>
       </router-link>
     </div>
-    <Loading v-if="loadingVisible" />
-    <div class="end" v-if="thisIsTheEnd">到底了朋友</div>
+    <Loading v-if="!completeLoading" />
+    <div class="end" v-if="allLoaded">到底了朋友</div>
   </div>
 </template>
 
@@ -38,7 +38,8 @@ export default {
       list: [],
       completeLoading: undefined,
       loadingVisible: true,
-      thisIsTheEnd: false
+      thisIsTheEnd: false,
+      allLoaded: false
     }
   },
   components: {
@@ -66,67 +67,93 @@ export default {
     getData() {
       console.log('Start', this.start)
       console.log('完成了吗？', this.completeLoading)
+
+
+      var devUrl = '/api/movie/search?q=?' + this.searchKeywords + '&start='
+      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' + this.searchKeywords + '&start='
+      var promiseArray = []
+      this.completeLoading = false
+      // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
+      promiseArray.push(Axios.get(prodUrl + this.start))
+      promiseArray.push(Axios.get(prodUrl + (this.start + 20)))
+      promiseArray.push(Axios.get(prodUrl + (this.start + 40)))
+      Promise.all(promiseArray).then(res=>{
+          console.log(res)
+          res.forEach(e=>{
+            if (e.data.subjects.length === 0) {
+              this.allLoaded = true
+            } 
+            !!e.data.length ? '' : this.list.push(...e.data.subjects)
+          })
+          this.completeLoading = true
+          this.start += 60
+      })
+
+
+
+
+
       // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
       // http://api.douban.com/v2
       // http://api.douban.com/v2/movie/search?q=start=
-      this.completeLoading = false
-      Axios.get(
-        'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' + this.searchKeywords + '&start=' + this.start
-      )
-        .then(res => {
-          !!res.data.length ? '' : this.list.push(...res.data.subjects)
-          if (res.data.subjects.length < 20) {
-            this.toggleLoading()
-            this.thisIsTheEnd = true
-            return {
-              data: 'finished'
-            }
-          }
-          this.start += 20
-          // /api/movie/subject/:id
-          return Axios.get(
-            'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' +
-              this.searchKeywords +
-              '&start=' +
-              this.start
-          )
-        })
-        .then(res => {
-          this.start += 20
-          !!res.data.length ? '' : this.list.push(...res.data.subjects)
-          if (res.data === 'finished') {
-            return {
-              data: 'finished'
-            }
-          } else if (res.data.subjects.length < 20) {
-            this.toggleLoading()
-            this.thisIsTheEnd = true
-            return {
-              data: 'finished'
-            }
-          } else {
-            return Axios.get(
-              'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' +
-                this.searchKeywords +
-                '&start=' +
-                this.start
-            )
-          }
-        })
-        .then(res => {
-          !!res.data.length ? '' : this.list.push(...res.data.subjects)
-          this.start += 20
-          if (res.data === 'finished') {
-            console.log('All finished')
-          } else if (res.data.subjects.length < 20) {
-            this.toggleLoading()
-            this.thisIsTheEnd = true
-            console.log('All finished')
-          } else {
-            this.completeLoading = true
-            this.toggleLoading()
-          }
-        })
+      // this.completeLoading = false
+      // Axios.get(
+      //   'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' + this.searchKeywords + '&start=' + this.start
+      // )
+      //   .then(res => {
+      //     !!res.data.length ? '' : this.list.push(...res.data.subjects)
+      //     if (res.data.subjects.length < 20) {
+      //       this.toggleLoading()
+      //       this.thisIsTheEnd = true
+      //       return {
+      //         data: 'finished'
+      //       }
+      //     }
+      //     this.start += 20
+      //     // /api/movie/subject/:id
+      //     return Axios.get(
+      //       'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' +
+      //         this.searchKeywords +
+      //         '&start=' +
+      //         this.start
+      //     )
+      //   })
+      //   .then(res => {
+      //     this.start += 20
+      //     !!res.data.length ? '' : this.list.push(...res.data.subjects)
+      //     if (res.data === 'finished') {
+      //       return {
+      //         data: 'finished'
+      //       }
+      //     } else if (res.data.subjects.length < 20) {
+      //       this.toggleLoading()
+      //       this.thisIsTheEnd = true
+      //       return {
+      //         data: 'finished'
+      //       }
+      //     } else {
+      //       return Axios.get(
+      //         'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/search?q=?' +
+      //           this.searchKeywords +
+      //           '&start=' +
+      //           this.start
+      //       )
+      //     }
+      //   })
+      //   .then(res => {
+      //     !!res.data.length ? '' : this.list.push(...res.data.subjects)
+      //     this.start += 20
+      //     if (res.data === 'finished') {
+      //       console.log('All finished')
+      //     } else if (res.data.subjects.length < 20) {
+      //       this.toggleLoading()
+      //       this.thisIsTheEnd = true
+      //       console.log('All finished')
+      //     } else {
+      //       this.completeLoading = true
+      //       this.toggleLoading()
+      //     }
+      //   })
     }
   },
   beforeMount() {
@@ -140,7 +167,7 @@ export default {
       this.throttle(() => {
         if (
           //判断是否到底
-          this.completeLoading &&
+          !this.allLoaded && this.completeLoading &&
           window.pageYOffset + window.innerHeight >
             document.documentElement.scrollHeight - 300
         ) {

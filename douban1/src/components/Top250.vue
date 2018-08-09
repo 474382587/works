@@ -1,7 +1,7 @@
 <template>
   <div class="top-250">
     <h3 class="title">豆瓣电影 TOP250</h3>
-    <router-link :to="{name:'movie-detail', params: { movieId: item.id }}" tag='div' :mid="item.id" class="movie-item" v-for="(item) in list" :key=item.id>
+    <router-link :to="{name:'movie-detail', params: { movieId: item.id }}" tag='div' :mid="item.id" class="movie-item" v-for="(item) in list" :key="'k'+item.id">
       <div class="image-wrapper">
         <img :src="item.images.small" :alt="item.alt" class="movie-image">
       </div>

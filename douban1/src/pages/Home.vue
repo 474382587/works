@@ -2,7 +2,7 @@
   <div>
       <Search />
       <Top250 :list="list"/>
-      <Loading v-if="loadingVisible" />
+      <Loading v-if="!completeLoading" />
       <div class="end" v-if="list.length === 250">到底了朋友</div>
   </div>
 </template>
@@ -25,7 +25,8 @@ export default {
       start: 0,
       list: [],
       completeLoading: undefined,
-      loadingVisible: true
+      loadingVisible: true,
+      allLoaded: false
     }
   },
   created() {
@@ -38,7 +39,7 @@ export default {
       this.throttle(() => {
         if (
           //判断是否到底
-          this.completeLoading &&
+          !this.allLoaded && this.completeLoading &&
           window.pageYOffset + window.innerHeight >
             document.documentElement.scrollHeight - 300
         ) {
@@ -67,42 +68,63 @@ export default {
     },
     getData() {
       console.log('Start', this.start)
-      console.log('完成了吗？', this.completeLoading)
+      var promiseArray = []
+      this.completeLoading = false
+      var devUrl = '/api/movie/top250?start='
+      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie//top250?start=' + this.searchKeywords + '&start='
+      // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
+      promiseArray.push(Axios.get(prodUrl + this.start))
+      promiseArray.push(Axios.get(prodUrl + (this.start + 20)))
+      promiseArray.push(Axios.get(prodUrl + (this.start + 40)))
+      Promise.all(promiseArray).then(res=>{
+        console.log(res)
+          res.forEach(e=>{
+            if (e.data.subjects.length === 0) {
+              this.allLoaded = true
+            } 
+            !e.data.subjects.length ? '' : this.list.push(...e.data.subjects)
+          })
+          this.completeLoading = true
+          this.start += 60
+      })
+
       // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
       // build ^ dev v
       // /api/movie/top250?start=
-      this.completeLoading = false
-      Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
-        .then(res => {
-          console.dir(res.data.subjects)
-          this.list.push(...res.data.subjects)
-          this.start += 20
-          // /api/movie/subject/:id
-          return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
-        })
-        .then(res => {
-          this.start += 20
-          this.list.push(...res.data.subjects)
-          if (this.start > 250) {
-            this.toggleLoading()
-            return {
-              data: 'finished'
-            }
-          } else {
-            return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
-          }
-        })
-        .then(res => {
-          if (res.data === 'finished') {
-            console.log('All finished')
-          } else {
-            this.start += 20
-            this.completeLoading = true
-            console.log('完成了吗？', this.completeLoading)
-            this.list.push(...res.data.subjects)
-            this.toggleLoading()
-          }
-        })
+      //  -----------------------------------------------------------------------------------------------------------
+      // this.completeLoading = false
+      // Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
+      //   .then(res => {
+      //     console.dir(res.data.subjects)
+      //     this.list.push(...res.data.subjects)
+      //     this.start += 20
+      //     // /api/movie/subject/:id
+      //     return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
+      //   })
+      //   .then(res => {
+      //     this.start += 20
+      //     this.list.push(...res.data.subjects)
+      //     if (this.start > 250) {
+      //       this.toggleLoading()
+      //       return {
+      //         data: 'finished'
+      //       }
+      //     } else {
+      //       return Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
+      //     }
+      //   })
+      //   .then(res => {
+      //     if (res.data === 'finished') {
+      //       console.log('All finished')
+      //     } else {
+      //       this.start += 20
+      //       this.completeLoading = true
+      //       console.log('完成了吗？', this.completeLoading)
+      //       this.list.push(...res.data.subjects)
+      //       this.toggleLoading()
+      //     }
+      //   })
+      //  -------------------------------------------------------------------------------------------------------------------------------
     }
   }
 }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './pages/Home.vue'
 import Detail from './pages/Detail.vue'
+import SearchResults from './pages/SearchResults.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,12 @@ export default new Router({
       path: '/detail/:movieId',
       name: 'movie-detail',
       component: Detail,
+      props: true
+    },
+    {
+      path: '/search/:searchKeywords',
+      name: 'search-result',
+      component: SearchResults,
       props: true
     },
     {

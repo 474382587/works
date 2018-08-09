@@ -1,15 +1,29 @@
 <template>
   <div class="search-container">
-    <form action="" class="search">
-      <input type="text" placeholder="请输入电影名称">
-      <button>搜索</button>
+    <form action="" class="search" @submit=handleSearch($event)>
+      <input type="text" placeholder="请输入电影名称" v-model="keywords">
+      <button type="submit">搜索</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Search'
+  name: 'Search',
+  data() {
+    return {
+      keywords: '',
+    }
+  },
+  methods: {
+    handleSearch(event) {
+      console.log(this)
+      event.preventDefault()
+      const searchKeywords = this.keywords
+      console.log("searchKeywords", searchKeywords)
+      this.$router.push({ path: `/search/${searchKeywords}` }) 
+    }
+  }
 }
 </script>
 

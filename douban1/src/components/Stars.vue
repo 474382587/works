@@ -1,5 +1,5 @@
 <template>
-  <div class="star" :id="this.itemid">
+  <div class="star" :id="itemid">
   </div>
 </template>
 

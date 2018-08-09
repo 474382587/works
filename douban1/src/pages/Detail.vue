@@ -2,20 +2,20 @@
   <div>
     <div class="lds-hourglass" v-if="!completed"></div>
     <div class="detail" v-if="completed">
-      <div class="back-button" @click='this.backToPrevious'>返回</div>
+      <div class="back-button" @click='backToPrevious'>返回</div>
       <div class="detail__image-wrapper">
-        <img class="detail__image" :src="this.image" alt="">
+        <img class="detail__image" :src="image" alt="">
       </div>
       <div class="detail__content-wrapper">
         <ul class="info">
-          <li class="title">{{this.title}}</li>
-          <li class="director">导演：{{this.directors}}</li>
-          <li class="cast">主演：{{this.casts}}</li>
+          <li class="title">{{title}}</li>
+          <li class="director">导演：{{directors}}</li>
+          <li class="cast">主演：{{casts}}</li>
         </ul>
         <div class="intro">
           <p class="intro-title">简介</p>
           <p class="intro-content">
-            {{this.intro}}
+            {{intro}}
           </p>
         </div>
       </div>
@@ -66,6 +66,7 @@ export default {
   activated() {
     console.log(this.movieId, "获取详情")
     this.getData()
+    console.log(this)
   },
   beforeDestroy() {
     console.log('beforeDestroy')

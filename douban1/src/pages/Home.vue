@@ -1,9 +1,9 @@
 <template>
   <div>
       <Search />
-      <Top250 :list="this.list"/>
-      <Loading v-if="this.loadingVisible" />
-      <div class="end" v-if="this.list.length === 250">到底了朋友</div>
+      <Top250 :list="list"/>
+      <Loading v-if="loadingVisible" />
+      <div class="end" v-if="list.length === 250">到底了朋友</div>
   </div>
 </template>
 
@@ -68,10 +68,10 @@ export default {
     getData() {
       console.log('Start', this.start)
       console.log('完成了吗？', this.completeLoading)
-// https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
-// http://api.douban.com/v2
+      // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
+      // build ^ dev v
+      // /api/movie/top250?start=
       this.completeLoading = false
-      ///api/movie/top250?start=
       Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=' + this.start)
         .then(res => {
           console.dir(res.data.subjects)
@@ -110,11 +110,11 @@ export default {
 
 <style lang="scss" scoped>
 .end {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 5rem;
-    height: 5rem;
-  }
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 5rem;
+  height: 5rem;
+}
 </style>
   

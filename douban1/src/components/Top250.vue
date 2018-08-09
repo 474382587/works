@@ -1,8 +1,7 @@
 <template>
   <div class="top-250">
     <h3 class="title">豆瓣电影 TOP250</h3>
-
-    <div class="movie-item" v-for="(item) in list" :key=item.id>
+    <router-link :to="{name:'movie-detail', params: { movieId: item.id }}" tag='div' :mid="item.id" class="movie-item" v-for="(item) in list" :key=item.id>
       <div class="image-wrapper">
         <img :src="item.images.small" :alt="item.alt" class="movie-image">
       </div>
@@ -10,7 +9,7 @@
       <div class="movie-rating">
         <Stars :rating="item.rating.average" :itemid="item.id" /> {{item.rating.average}}
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -29,9 +28,6 @@ export default {
   data() {
     return {}
   },
-  created() {
-    // console.log(this.list)
-  }
 }
 </script>
 

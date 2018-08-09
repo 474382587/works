@@ -20,14 +20,11 @@ export default {
   },
   methods: {
     calculatePosition() {
-      // console.log(this.itemid)
-      // console.log(document.getElementById(this.itemid))
       let coefficient = 10 - Math.round(Math.floor(this.rating * 2) / 2)
-      // console.log(this.rating)
-      // console.log('coefficient', coefficient)
       let star = document.getElementById(this.itemid)
-      star.style.backgroundPosition = '0px -' + coefficient * 11 + 'px'
-      // console.log(document.getElementById(this.itemid).style.backgroundPosition)
+      if (star) {
+        star.style.backgroundPosition = '0px -' + coefficient * 11 + 'px'
+      }
     }
   }
 }

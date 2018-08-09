@@ -17,11 +17,14 @@ export default {
   },
   methods: {
     handleSearch(event) {
-      console.log(this)
       event.preventDefault()
       const searchKeywords = this.keywords
-      console.log("searchKeywords", searchKeywords)
-      this.$router.push({ path: `/search/${searchKeywords}` }) 
+      if(!!searchKeywords){
+        this.$router.push({ path: `/search/${searchKeywords}` }) 
+      }
+      else {
+        alert('请输入关键字后查询')
+      }
     }
   }
 }

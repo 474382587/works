@@ -21,7 +21,7 @@
 
 <script>
 import Loading from '../components/Loading.vue'
-// import Axios from 'axios'
+import Axios from 'axios'
 import Stars from '../components/Stars'
 
 export default {

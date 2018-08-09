@@ -54,7 +54,7 @@ export default {
       var devUrl = '/api/movie/subject/'
       var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/subject/'
       // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/subject/
-      Axios.get(prodUrl + this.movieId).then(res => {
+      Axios.get(devUrl + this.movieId).then(res => {
         console.log(res.data)
         this.title = res.data.title
         this.directors = res.data.directors.map(e=>e.name).join("，")

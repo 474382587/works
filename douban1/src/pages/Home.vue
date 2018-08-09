@@ -71,11 +71,11 @@ export default {
       var promiseArray = []
       this.completeLoading = false
       var devUrl = '/api/movie/top250?start='
-      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie//top250?start=' + this.searchKeywords + '&start='
+      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie//top250?start='
       // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
-      promiseArray.push(Axios.get(prodUrl + this.start))
-      promiseArray.push(Axios.get(prodUrl + (this.start + 20)))
-      promiseArray.push(Axios.get(prodUrl + (this.start + 40)))
+      promiseArray.push(Axios.get(devUrl + this.start))
+      promiseArray.push(Axios.get(devUrl + (this.start + 20)))
+      promiseArray.push(Axios.get(devUrl + (this.start + 40)))
       Promise.all(promiseArray).then(res=>{
         console.log(res)
           res.forEach(e=>{
@@ -86,6 +86,7 @@ export default {
           })
           this.completeLoading = true
           this.start += 60
+          console.log("cong zhe li kai shi " + this.start)
       })
 
       // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=

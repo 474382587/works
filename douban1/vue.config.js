@@ -2,7 +2,7 @@
 // CORS 
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? '/dist/'
+  baseUrl: process.env.NODE_ENV === 'production' ? '/works/douban1/dist/'
   : '/',
   devServer: {
     proxy: {

@@ -51,6 +51,7 @@ export default {
     },
     getData() {
       this.completed = false;
+      // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/subject/
       Axios.get('https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/subject/' + this.movieId).then(res => {
         console.log(res.data)
         this.title = res.data.title

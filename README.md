@@ -7,6 +7,18 @@ Here is the preview list:
 [My notes](https://github.com/jerkjoe/works/tree/master/blog-post)
 
 ## Projects
+
+### Most Recent:
+
+- React:     
+[Douban Movie](https://josephjin.site/react-douban-movie/dist/#/)    
+[Random Decision](https://josephjin.site/react-random-decision/public)
+
+- Vue:    
+[Douban Movie](https://josephjin.site/works/douban1/dist/#/)    
+[Qunar](http://josephjin.site/vue-qunar/dist)
+
+
 1. [bodymoving](http://josephjin.site/works/bodymoving/index.html)    
   Please hover on the image to see the animation
 

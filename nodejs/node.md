@@ -1,6 +1,6 @@
 1. http module
 2. url module - parse(), resolve()
-3. supervisor -- watch mode of node
+3. supervisor -- watch mode of node `npm install supervisor -g`
 
 ```
 var http = require('http'); 
@@ -17,3 +17,46 @@ http.createServer(function (request, response) {
   // 终端打印如下信息 
   console.log('Server running at http://127.0.0.1:8888/');
 ```
+
+
+CommonJS
+
+
+
+--------------
+npm install package
+npm uninstall package@1.1.1
+npm info package
+
+
+---------
+FS module
+fs.stat(name, function(err, stats){
+  stats.isFile()
+  stats.isDirectory()
+})
+fs.mkdir(name, function(err){})
+fs.writeFile(name, content, function(err){})
+fs.appendFile(name, content, function(err){})
+fs.readFile(name, encoding, function(err){})
+fs.readdir(name, function(err){})
+fs.rename(name, newName) --> Rename or Move
+fs.rmdir(name, function(err){})
+fs.unlink(name, function(err){})
+
+
+
+
+-----------------------------
+```
+fs.readdir('html',function(err, files){
+  if(err){
+
+  }
+  else{
+    // files --> async 
+  }
+})
+```
+
+we can use iife to run code inside async functions

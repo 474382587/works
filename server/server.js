@@ -3,16 +3,18 @@ var fs = require('fs')
 var url = require('url')
 var port = process.argv[2]
 
-if(!port){
+if (!port) {
   console.log('请指定端口号好不啦？\nnode server.js 8888 这样不会吗？')
   process.exit(1)
 }
- 
-var server = http.createServer(function(request, response){
+
+var server = http.createServer(function (request, response) {
   var parsedUrl = url.parse(request.url, true)
-  var pathWithQuery = request.url 
+  var pathWithQuery = request.url
   var queryString = ''
-  if(pathWithQuery.indexOf('?') >= 0){ queryString = pathWithQuery.substring(pathWithQuery.indexOf('?')) }
+  if (pathWithQuery.indexOf('?') >= 0) {
+    queryString = pathWithQuery.substring(pathWithQuery.indexOf('?'))
+  }
   var path = parsedUrl.pathname
   var query = parsedUrl.query
   var method = request.method
@@ -21,12 +23,12 @@ var server = http.createServer(function(request, response){
 
   console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
 
-  if(path === '/'){
+  if (path === '/') {
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write('哈哈哈')
     response.end()
-  }else{
+  } else {
     response.statusCode = 404
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write('呜呜呜')

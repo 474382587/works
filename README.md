@@ -4,6 +4,7 @@ all practice and learning results
 Here is the preview list:
 
 ## Notes
+[My Blog](https://josephjin.site/blog)
 [My notes](https://github.com/jerkjoe/works/tree/master/blog-post)
 
 ## Projects

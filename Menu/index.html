@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      position: relative;
+      height: 100vh;
+      background-image: url("./static/universe.jpg");
+      padding: 6% 4%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* body::before {
+      content: "";
+      height: 100%;
+      width: 100%;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #000;
+      opacity: .5;
+    } */
+    .thumbnails-wrapper {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      /* background-color: #fff; */
+      overflow: hidden;
+    }
+
+
+
+    .border {
+      margin: 6px 0;
+      height: 2%;
+      min-height: 5px;
+      width: 100%;
+      display: flex;
+    }
+
+    .thumbnails {
+      height: 100%;
+      width: 95%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    .border-left {
+      border: 3px solid #e3e3e3;
+      border-right: transparent;
+      border-left: transparent;
+      width: 60%;
+      position: relative;
+      height: 100%;
+    }
+
+    .border-right {
+      border: 2px solid #ffffff;
+      border-right: transparent;
+      border-left: transparent;
+      width: 40%;
+      position: relative;
+      height: 100%;
+    }
+
+
+
+    .edge-square {
+      position: absolute;
+      height: 6px;
+      width: 6px;
+      background-color: #fff;
+    }
+
+    .top {
+      top: -5px;
+    }
+
+    .bottom {
+      bottom: -5px;
+    }
+
+    .right {
+      right: -3px;
+    }
+
+    .left {
+      left: -3px;
+    }
+
+    .right-border {
+      position: relative;
+      height: 98%;
+      right: 6px;
+      top: 8px;
+      border-right: 2px solid white;
+      box-shadow: 0 0 20px 2px black;
+    }
+
+    .rect {
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      right: -6px;
+      border: 2px solid white;
+    }
+
+    .position-1 {
+      top: -5px;
+    }
+
+    .position-2 {
+      top: calc(20% - 5px);
+    }
+
+    .position-3 {
+      top: calc(40% - 5px);
+    }
+
+    .position-4 {
+      top: calc(60% - 5px);
+    }
+
+    .position-5 {
+      top: calc(80% - 5px);
+    }
+
+    .position-6 {
+      bottom: -5px;
+    }
+
+    .images {
+      box-sizing: content-box;
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: auto;
+      width: 100%;
+      padding-right: 40px;
+    }
+
+    .thumbnail {
+      background-color: #111;
+      padding: 4px 0;
+      height: 18%;
+      width: 32.3%;
+      margin-left: 1%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0.5;
+      margin-top: 10px;
+      border: 2px solid white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .thumbnail:hover,
+    .thumbnail.active {
+      opacity: 1;
+    }
+
+
+    .thumbnail .title {
+      border-bottom: 2px solid white;
+      width: 100%;
+      background-color: #000;
+      font-size: 20px;
+      line-height: 40px;
+      color: #fff;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      flex: 1;
+    }
+
+    .thumbnail img {
+      height: 70%;
+    }
+
+    .detail {
+      width: 70%;
+      border: 2px solid white;
+      border-right: transparent;
+      border-left: transparent;
+      padding: 2% 0%;
+      position: relative;
+    }
+
+    #play {
+      position: absolute;
+      top: 6%;
+      left: 2%;
+      color: white;
+    }
+
+    #play:hover {
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .detail .wrapper {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid white;
+      padding: 2%;
+      height: 100%;
+      width: 98%;
+      margin: 0 auto;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.781), 0 0 0 4px white;
+      position: relative;
+    }
+
+    .info {
+      width: 30%;
+      text-align: center;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .type {
+      font-size: 24px;
+      height: 20%;
+      width: 60%;
+      border: 1px solid #abcdef;
+      border-radius: 10px;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+    }
+
+    .english {
+      color: #abcdef;
+      font-size: 38px;
+    }
+
+    .image {
+      flex: 1;
+      height: 100%;
+    }
+
+    .image img {
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .details {
+      width: 90%;
+      min-width: 270px;
+      background-color: rgba(0, 0, 0, 0.6);
+      height: 60%;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    .details .chinese {
+      border-top: 1px solid white;
+      line-height: 1.5;
+      font-size: 42px;
+    }
+
+    .product-name .english {
+      line-height: 1.5;
+      border-bottom: 1px solid white;
+      border-top: 1px solid white;
+    }
+
+    .description {
+      text-align: left;
+      font-size: 18px;
+    }
+
+    .price {
+      text-align: right;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="thumbnails-wrapper">
+
+    <div class="thumbnails">
+      <div class="border">
+        <div class="border-left">
+          <div class="edge-square left top"></div>
+          <div class="edge-square left bottom"></div>
+          <div class="edge-square right top"></div>
+          <div class="edge-square right bottom"></div>
+        </div>
+        <div class="border-right">
+          <div class="edge-square top right"></div>
+          <div class="edge-square bottom right"></div>
+        </div>
+      </div>
+      <div class="images" id="thumbnail-images">
+      </div>
+      <div class="border">
+        <div class="border-left">
+          <div class="edge-square left top"></div>
+          <div class="edge-square left bottom"></div>
+          <div class="edge-square right top"></div>
+          <div class="edge-square right bottom"></div>
+        </div>
+        <div class="border-right">
+          <div class="edge-square top right"></div>
+          <div class="edge-square bottom right"></div>
+        </div>
+      </div>
+    </div>
+    <div class="right-border">
+      <div class="rect position-1"></div>
+      <div class="rect position-2"></div>
+      <div class="rect position-3"></div>
+      <div class="rect position-4"></div>
+      <div class="rect position-5"></div>
+      <div class="rect position-6"></div>
+    </div>
+  </div>
+  <div class="detail">
+    <div class="wrapper" id="detail">
+    </div>
+    <div id="play">
+      自动播放
+    </div>
+  </div>
+  <script>
+    const PRODUCTS = [{
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'pork',
+        chinese: '猪肉',
+        price: '123',
+        image: './static/pork.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }, {
+        english: 'lamb',
+        chinese: '羊肉',
+        price: '77',
+        image: './static/lamb.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      },
+      {
+        english: 'beef',
+        chinese: '牛肉',
+        price: '66',
+        image: './static/beef.jpg',
+        description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis assumendaarchitecto temporibus ex eius culpa libero,quaerat ullam blanditiis minima non ipsa ',
+        type: {
+          english: 'Set',
+          chinese: '套餐'
+        }
+      }
+    ];
+    console.log(PRODUCTS)
+    const thumbnailContainer = document.getElementById('thumbnail-images');
+    PRODUCTS.forEach((e, index) => {
+      let divElement = document.createElement('div')
+      divElement.className = "thumbnail"
+      divElement.id = index
+      divElement.innerHTML =
+        `
+        <p class="title">${e.chinese}</p>
+        <img src="${e.image}" alt="${index}">
+      `
+      thumbnailContainer.appendChild(divElement)
+    })
+
+    const detail = document.getElementById('detail')
+    document.getElementById('0').classList.add('active')
+    detail.innerHTML =
+      `
+          <div class="overlay"></div>
+          <div class="info">
+            <div class="type">
+              <p class="chinese">${PRODUCTS[0].type.chinese}</p>
+              <hr>
+              <p class="english">${PRODUCTS[0].type.english}</p>
+            </div>
+            <div class="details">
+              <div class="product-name">
+                <p class="chinese">${PRODUCTS[0].chinese}</p>
+                <p class="english">${PRODUCTS[0].english}</p>
+              </div>
+              <div class="description">
+                ${PRODUCTS[0].description}
+              </div>
+              <div class="price">${PRODUCTS[0].price} USD</div>
+            </div>
+          </div>
+          <div class="image">
+          <img src="${PRODUCTS[0].image}" alt="">
+          </div>
+        `
+    var previousActive = document.getElementById('0');
+    var currentIndex = 0;
+
+    Array.from(document.getElementsByClassName('thumbnail')).forEach((e, index) => {
+      e.addEventListener('click', () => {
+        currentIndex = index
+        if (timer) {
+          clearInterval(timer)
+          timer = null
+          play.innerText = '自动播放'
+        }
+        if (previousActive) {
+          previousActive.classList.remove('active')
+        }
+        detail.innerHTML =
+          `
+          <div class="overlay"></div>
+          <div class="info">
+            <div class="type">
+              <p class="chinese">${PRODUCTS[e.id].type.chinese}</p>
+              <hr>
+              <p class="english">${PRODUCTS[e.id].type.english}</p>
+            </div>
+            <div class="details">
+              <div class="product-name">
+                <p class="chinese">${PRODUCTS[e.id].chinese}</p>
+                <p class="english">${PRODUCTS[e.id].english}</p>
+              </div>
+              <div class="description">
+                ${PRODUCTS[e.id].description}
+              </div>
+              <div class="price">${PRODUCTS[e.id].price} USD</div>
+            </div>
+          </div>
+          <div class="image">
+          <img src="${PRODUCTS[e.id].image}" alt="">
+          </div>
+        `
+        e.classList.add('active')
+        previousActive = e;
+      })
+    })
+    const play = document.getElementById('play')
+    play.addEventListener('click', function () {
+      if (timer) {
+        clearInterval(timer)
+        timer = null
+        play.innerText = '自动播放'
+      } else {
+        autoPlay()
+        play.innerText = '停止自动播放'
+      }
+
+
+    })
+    var timer
+
+    function autoPlay() {
+      timer = setInterval(function () {
+        var nextIndex = currentIndex + 1;
+        if (previousActive) {
+          previousActive.classList.remove('active')
+        }
+        detail.innerHTML =
+          `
+          <div class="overlay"></div>
+          <div class="info">
+            <div class="type">
+              <p class="chinese">${PRODUCTS[nextIndex].type.chinese}</p>
+              <hr>
+            <p class="english">${PRODUCTS[nextIndex].type.english}</p>
+            </div>
+            <div class="details">
+              <div class="product-name">
+                <p class="chinese">${PRODUCTS[nextIndex].chinese}</p>
+                <p class="english">${PRODUCTS[nextIndex].english}</p>
+              </div>
+              <div class="description">
+                ${PRODUCTS[nextIndex].description}
+              </div>
+            <div class="price">${PRODUCTS[nextIndex].price} USD</div>
+            </div>
+          </div>
+          <div class="image">
+            <img src="${PRODUCTS[nextIndex].image}" alt="">
+          </div>
+          `
+        document.getElementById(nextIndex).classList.add('active')
+        previousActive = document.getElementById(nextIndex);
+        currentIndex++
+        if (currentIndex >= PRODUCTS.length - 1) {
+          currentIndex = -1;
+        }
+      }, 3000)
+    }
+  </script>
+</body>
+
+</html>

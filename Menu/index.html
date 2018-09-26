@@ -348,12 +348,34 @@
   </div>
   <div class="detail">
     <div class="wrapper" id="detail">
+      <div class="overlay"></div>
+      <div class="info">
+        <div class="type">
+          <p class="chinese">${PRODUCTS[0].type.chinese}</p>
+          <hr>
+          <p class="english">${PRODUCTS[0].type.english}</p>
+        </div>
+        <div class="details">
+          <div class="product-name">
+            <p class="chinese">${PRODUCTS[0].chinese}</p>
+            <p class="english">${PRODUCTS[0].english}</p>
+          </div>
+          <div class="description">
+            ${PRODUCTS[0].description}
+          </div>
+          <div class="price">${PRODUCTS[0].price} USD</div>
+        </div>
+      </div>
+      <div class="image">
+        <img src="${PRODUCTS[0].image}" alt="">
+      </div>
     </div>
     <div id="play">
       自动播放
     </div>
   </div>
   <script>
+    // dummy data
     const PRODUCTS = [{
         english: 'pork',
         chinese: '猪肉',
@@ -547,49 +569,67 @@
         }
       }
     ];
-    console.log(PRODUCTS)
+    // const
+    const play = document.getElementById('play')
     const thumbnailContainer = document.getElementById('thumbnail-images');
-    PRODUCTS.forEach((e, index) => {
-      let divElement = document.createElement('div')
-      divElement.className = "thumbnail"
-      divElement.id = index
-      divElement.innerHTML =
-        `
-        <p class="title">${e.chinese}</p>
-        <img src="${e.image}" alt="${index}">
-      `
-      thumbnailContainer.appendChild(divElement)
-    })
+    const typeChinese = document.querySelector('div.type>p.chinese')
+    const typeEnglish = document.querySelector('div.type>p.english')
+    const nameEnglish = document.querySelector('div.product-name>p.english')
+    const nameChinese = document.querySelector('div.product-name>p.chinese')
+    const description = document.querySelector('.details>.description')
+    const price = document.querySelector('.details>.price')
+    const image = document.querySelector('.image>img')
 
-    const detail = document.getElementById('detail')
-    document.getElementById('0').classList.add('active')
-    detail.innerHTML =
-      `
-          <div class="overlay"></div>
-          <div class="info">
-            <div class="type">
-              <p class="chinese">${PRODUCTS[0].type.chinese}</p>
-              <hr>
-              <p class="english">${PRODUCTS[0].type.english}</p>
-            </div>
-            <div class="details">
-              <div class="product-name">
-                <p class="chinese">${PRODUCTS[0].chinese}</p>
-                <p class="english">${PRODUCTS[0].english}</p>
-              </div>
-              <div class="description">
-                ${PRODUCTS[0].description}
-              </div>
-              <div class="price">${PRODUCTS[0].price} USD</div>
-            </div>
-          </div>
-          <div class="image">
-          <img src="${PRODUCTS[0].image}" alt="">
-          </div>
-        `
+    // global
     var previousActive = document.getElementById('0');
     var currentIndex = 0;
+    var timer
 
+    class Element {
+      createElement(type, attributes) {
+        var node = document.createElement(type)
+        if (attributes) {
+          for (let key in attributes) {
+            node.setAttribute(key, attributes[key])
+          }
+        }
+        return node
+      }
+    }
+    class Thumbnail extends Element {
+      constructor(title, image, index) {
+        super()
+        this.title = title;
+        this.image = image;
+        this.index = index;
+        console.log(this.index, index)
+      }
+      createThumbnail() {
+        let divElement = this.createElement('div', {
+          class: 'thumbnail',
+          id: this.index
+        })
+        let pElement = this.createElement('p', {
+          class: 'title'
+        })
+        pElement.textContent = this.title
+        let imgElement = this.createElement('img', {
+          src: this.image,
+          alt: this.index
+        })
+        divElement.appendChild(pElement)
+        divElement.appendChild(imgElement)
+        return divElement
+      }
+    }
+
+    // init
+    PRODUCTS.forEach((e, index) => {
+      let thumbnail = new Thumbnail(e.chinese, e.image, index)
+      thumbnailContainer.appendChild(thumbnail.createThumbnail())
+    })
+    document.getElementById('0').classList.add('active')
+    updateText(0)
     Array.from(document.getElementsByClassName('thumbnail')).forEach((e, index) => {
       e.addEventListener('click', () => {
         currentIndex = index
@@ -601,35 +641,11 @@
         if (previousActive) {
           previousActive.classList.remove('active')
         }
-        detail.innerHTML =
-          `
-          <div class="overlay"></div>
-          <div class="info">
-            <div class="type">
-              <p class="chinese">${PRODUCTS[e.id].type.chinese}</p>
-              <hr>
-              <p class="english">${PRODUCTS[e.id].type.english}</p>
-            </div>
-            <div class="details">
-              <div class="product-name">
-                <p class="chinese">${PRODUCTS[e.id].chinese}</p>
-                <p class="english">${PRODUCTS[e.id].english}</p>
-              </div>
-              <div class="description">
-                ${PRODUCTS[e.id].description}
-              </div>
-              <div class="price">${PRODUCTS[e.id].price} USD</div>
-            </div>
-          </div>
-          <div class="image">
-          <img src="${PRODUCTS[e.id].image}" alt="">
-          </div>
-        `
+        updateText(index)
         e.classList.add('active')
         previousActive = e;
       })
     })
-    const play = document.getElementById('play')
     play.addEventListener('click', function () {
       if (timer) {
         clearInterval(timer)
@@ -639,10 +655,19 @@
         autoPlay()
         play.innerText = '停止自动播放'
       }
-
-
     })
-    var timer
+
+    // helpers
+    function updateText(index) {
+      typeChinese.innerText = PRODUCTS[index].type.chinese
+      typeEnglish.innerText = PRODUCTS[index].type.english
+      nameEnglish.innerText = PRODUCTS[index].english
+      nameChinese.innerText = PRODUCTS[index].chinese
+      description.innerText = PRODUCTS[index].description
+      price.innerText = PRODUCTS[index].price + ' USD'
+      image.src = PRODUCTS[index].image
+      image.alt = index
+    }
 
     function autoPlay() {
       timer = setInterval(function () {
@@ -650,30 +675,7 @@
         if (previousActive) {
           previousActive.classList.remove('active')
         }
-        detail.innerHTML =
-          `
-          <div class="overlay"></div>
-          <div class="info">
-            <div class="type">
-              <p class="chinese">${PRODUCTS[nextIndex].type.chinese}</p>
-              <hr>
-            <p class="english">${PRODUCTS[nextIndex].type.english}</p>
-            </div>
-            <div class="details">
-              <div class="product-name">
-                <p class="chinese">${PRODUCTS[nextIndex].chinese}</p>
-                <p class="english">${PRODUCTS[nextIndex].english}</p>
-              </div>
-              <div class="description">
-                ${PRODUCTS[nextIndex].description}
-              </div>
-            <div class="price">${PRODUCTS[nextIndex].price} USD</div>
-            </div>
-          </div>
-          <div class="image">
-            <img src="${PRODUCTS[nextIndex].image}" alt="">
-          </div>
-          `
+        updateText(nextIndex)
         document.getElementById(nextIndex).classList.add('active')
         previousActive = document.getElementById(nextIndex);
         currentIndex++

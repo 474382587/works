@@ -1,0 +1,241 @@
+<style>
+    .detail {
+        height: 100%;
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.7)
+    }
+
+    .detail>.container {
+        margin: 140px auto 0;
+        height: 60%;
+        width: 60%;
+        display: flex;
+        justify-content: space-evenly;
+        background-color: white;
+        padding: 0 40px;
+        position: relative;
+    }
+
+    .content {
+        width: 60%;
+    }
+
+    .image-container {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+    }
+
+    .image-container>img {
+        width: 100%;
+    }
+
+    .container>.content {
+        flex: 2;
+        margin-left: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content>h3 {
+        margin-bottom: 40px;
+    }
+
+    #close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    #close:hover {
+        cursor: pointer;
+    }
+
+    /* Programs */
+    .programs {
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .item {
+        position: relative;
+        width: 22%;
+        height: 300px;
+        background-image: url(https://www.snclubs.com/content/uploads/2018/10/sn_pt_website_homeimage.jpg);
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .item:hover {
+        cursor: pointer;
+    }
+
+    .item::after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .4);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .item>h2 {
+        letter-spacing: 2px;
+        z-index: 1;
+        position: absolute;
+        top: 35%;
+        width: 100%;
+        text-align: center;
+    }
+</style>
+
+<body>
+    
+<div class="programs">
+    <div class="item">
+        <h2>Item1</h2>
+    </div>
+    <div class="item">
+        <h2>Item2</h2>
+    </div>
+    <div class="item">
+        <h2>Item3</h2>
+    </div>
+    <div class="item">
+        <h2>Item4</h2>
+    </div>
+    <div class="item">
+        <h2>Item5</h2>
+    </div>
+    <div class="item">
+        <h2>Item6</h2>
+    </div>
+    <div class="item">
+        <h2>Item7</h2>
+    </div>
+    <div class="item">
+        <h2>Item8</h2>
+    </div>
+    <div class="item">
+        <h2>Item9</h2>
+    </div>
+    <div class="item">
+        <h2>Item10</h2>
+    </div>
+    <div class="item">
+        <h2>Item11</h2>
+    </div>
+    <div class="item">
+        <h2>Item12</h2>
+    </div>
+</div>
+
+<div class="detail" style="display: none;">
+        <div class="container">
+            <div id="close">
+                Close
+            </div>
+            <div class="image-container">
+                <img id="image" src="https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg" alt="">
+            </div>
+            <div class="content">
+                <h3 id="title">Title</h3>
+                <p id="description">content Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore ullam
+                    doloremque perferendis
+                    pariatur iusto error. Cum ad quis sint exercitationem consequuntur harum tempora iste, ex illo
+                    inventore vitae velit aliquam.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+    <script>
+    var programs = [
+            {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            }, {
+                title: 'Title',
+                description: 'This is Description',
+                image: 'https://www.snclubs.com/content/uploads/2018/10/sn_gf_website_homeimage.jpg'
+            },
+        ]
+        var image = document.getElementById('image')
+        var description = document.getElementById('description')
+        var title = document.getElementById('title')
+
+        var items = Array.from(document.getElementsByClassName('item'))
+        items.forEach(function (e, index) {
+            e.addEventListener('click', function () {
+                fillContent(index)
+                document.querySelector('.detail').style.display = 'block'
+            })
+        })
+        var closeBtn = document.getElementById('close')
+        closeBtn.addEventListener('click', function () {
+            document.querySelector('.detail').style.display = 'none'
+        })
+
+
+        function fillContent(index) {
+            console.log('this is ', index)
+            title.innerText = programs[index].title
+            image.setAttribute('src', programs[index].image)
+            description.innerText = programs[index].description
+        }
+    </script>

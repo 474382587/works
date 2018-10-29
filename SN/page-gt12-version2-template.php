@@ -53,9 +53,7 @@
     reset
 */
 
-h1, h2, h2, h4, h5, h6 {
-    font-family: bebas;
-}
+
 
 * {
     font-family: gotham-light;
@@ -63,6 +61,10 @@ h1, h2, h2, h4, h5, h6 {
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: bebas;
 }
 
 ::-webkit-scrollbar {
@@ -117,8 +119,8 @@ img {
 }
 
 .links {
-    width: 30%;
-    min-width: 500px;
+    width: 20%;
+    min-width: 520px;
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -140,10 +142,10 @@ img {
 }
 
 .slogan>h2 {
-    margin-bottom: 120px;
-    font-size: 40px;
+    margin-bottom: 130px;
+    font-size: 30px;
     color: white;
-    letter-spacing: 30px;
+    letter-spacing: 65px;
 }
 
 .newsletter {
@@ -195,6 +197,7 @@ form>.hs_email {
     display: inline-block;
     height: 100%;
     width: 80%;
+    min-width: 120px;
     border: none;
     padding: 10px 20px;
     color: white;
@@ -203,6 +206,7 @@ form>.hs_email {
 }
 
 .actions>input:hover {
+    cursor: pointer;
     background-color: #333;
 }
 
@@ -259,6 +263,7 @@ p>strong {
     font-family: gotham-bold;
 }
 ul {
+    width:100%;
     padding-left: 20px;
     margin: 40px auto;
 }
@@ -421,6 +426,7 @@ section {
         width: 100%;
     }
     .image, .text {
+        display: block;
         width: 100%;
         height: 50%;
     }
@@ -481,6 +487,12 @@ video {
     video {
         width: 300%;
         left: -100%;
+    }
+    .text, .image {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 0;
     }
 }
 </style>
@@ -625,6 +637,13 @@ video {
 
         // This is smooth scroll function
         !function () {
+            document.addEventListener('wheel', function(e) {
+                e.preventDefault();
+            })
+            document.addEventListener('scroll', function(e) {
+                e.preventDefault();
+            })
+
             var lastScroll = 0;
             document.addEventListener('wheel', throttle(handleScroll, 100))
             function throttle(fn, delay) {

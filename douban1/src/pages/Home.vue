@@ -71,8 +71,7 @@ export default {
       var promiseArray = []
       this.completeLoading = false
       var devUrl = '/api/movie/top250?start='
-      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie//top250?start='
-      // https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start=
+      var prodUrl = 'https://cors-anywhere.herokuapp.com/http://api.douban.com/v2/movie/top250?start='
       promiseArray.push(Axios.get(prodUrl + this.start))
       promiseArray.push(Axios.get(prodUrl + (this.start + 20)))
       promiseArray.push(Axios.get(prodUrl + (this.start + 40)))

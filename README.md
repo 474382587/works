@@ -2,10 +2,10 @@
 All practice and learning results
 
 # Recent Works
-[WordPress Theme Customization](https://greenstockreport.ca/home)
-[Fitness Club Landing Page](snclubs.com/gt12)
-[Landing Page](https://greenstockreport.ca/cse-2/)
-[Landing Page](https://greenstockreport.ca/1203-2)
+[WordPress Theme Customization](https://greenstockreport.ca/home)    
+[Fitness Club Landing Page](snclubs.com/gt12)    
+[Landing Page](https://greenstockreport.ca/cse-2/)    
+[Landing Page](https://greenstockreport.ca/1203-2)    
 
 Here is the preview list:
 

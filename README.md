@@ -1,6 +1,22 @@
 # works
 All practice and learning results
 
+## Recent Job Interview Questions
+- I have been asked to build these in a short amount of time. I thought it would be good to post them here:
+
+1. PayByPhone: An Ingredient list 
+  - With React: 
+    - Code: https://github.com/jerkjoe/PBP-Recipes
+    - Live Preview: josephjin.site/PBP-Recipes/
+  - With Vue: 
+    - Code: https://github.com/jerkjoe/works/tree/master/recipe
+    - Live Preview: josephjin.site/works/recipe/dist/
+    
+2. Sitemax: A simple login feature and displaying data received from http request/response
+  - With Angular.js: 
+    - Code: https://github.com/jerkjoe/sitemax-test
+    - Live Preview: josephjin.site/sitemax-test 
+
 # Recent Works
 [WordPress Theme Customization](https://greenstockreport.ca/home)    
 [Fitness Club Landing Page](snclubs.com/gt12)    

@@ -15,7 +15,9 @@ All practice and learning results
 2. Sitemax: A simple login feature and displaying data received from http request/response
   - With Angular.js: 
     - Code: https://github.com/jerkjoe/sitemax-test
-    - Live Preview: https://josephjin.site/sitemax-test 
+    - Live Preview: https://josephjin.site/sitemax-test/#!/welcome
+      - Please go to welcome page to login. 
+      - username: 123@123 password: 123456
 
 # Recent Works
 [WordPress Theme Customization](https://greenstockreport.ca/home)    

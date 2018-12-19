@@ -7,15 +7,15 @@ All practice and learning results
 1. PayByPhone: An Ingredient list 
   - With React: 
     - Code: https://github.com/jerkjoe/PBP-Recipes
-    - Live Preview: josephjin.site/PBP-Recipes/
+    - Live Preview: https://josephjin.site/PBP-Recipes/
   - With Vue: 
     - Code: https://github.com/jerkjoe/works/tree/master/recipe
-    - Live Preview: josephjin.site/works/recipe/dist/
+    - Live Preview: https://josephjin.site/works/recipe/dist/
     
 2. Sitemax: A simple login feature and displaying data received from http request/response
   - With Angular.js: 
     - Code: https://github.com/jerkjoe/sitemax-test
-    - Live Preview: josephjin.site/sitemax-test 
+    - Live Preview: https://josephjin.site/sitemax-test 
 
 # Recent Works
 [WordPress Theme Customization](https://greenstockreport.ca/home)    

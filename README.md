@@ -6,16 +6,16 @@ All practice and learning results
 
 1. PayByPhone: An Ingredient list 
   - With React: 
-    - Code: https://github.com/jerkjoe/PBP-Recipes
-    - Live Preview: https://josephjin.site/PBP-Recipes/
+    - Code: [https://github.com/jerkjoe/PBP-Recipes](https://github.com/jerkjoe/PBP-Recipes)
+    - Live Preview: [https://josephjin.site/PBP-Recipes/](https://josephjin.site/PBP-Recipes/)
   - With Vue: 
-    - Code: https://github.com/jerkjoe/works/tree/master/recipe
-    - Live Preview: https://josephjin.site/works/recipe/dist/
+    - Code: [https://github.com/jerkjoe/works/tree/master/recipe](https://github.com/jerkjoe/works/tree/master/recipe)
+    - Live Preview: [https://josephjin.site/works/recipe/dist/](https://josephjin.site/works/recipe/dist/)
     
 2. Sitemax: A simple login feature and displaying data received from http request/response
   - With Angular.js: 
-    - Code: https://github.com/jerkjoe/sitemax-test
-    - Live Preview: https://josephjin.site/sitemax-test/#!/welcome
+    - Code: [https://github.com/jerkjoe/sitemax-test](https://github.com/jerkjoe/sitemax-test)
+    - Live Preview: [https://josephjin.site/sitemax-test/#!/welcome](https://josephjin.site/sitemax-test/#!/welcome)
       - Please go to welcome page to login. 
       - username: 123@123 password: 123456
 

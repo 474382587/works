@@ -4,7 +4,6 @@ All practice and learning results
 ## Backbone.js 
 [Weather ](https://josephjin.site/Study/BBWeather/)    
 [Todo ](https://josephjin.site/Study/BBContact/)    
-[Router ](https://josephjin.site/Study/Backbone/)    
 
 ## Recent Job Interview Questions
 - I have been asked to build these in a short amount of time. I thought it would be good to post them here:
